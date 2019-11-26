@@ -46,7 +46,7 @@ The `MessageManager` will look after all `Timer`s when a finite `MessageTime` is
 1. `.top(UIView)` - Add the `MessageStackView` to the safe top, safe leading, and safe width of the given `UIView`  
 2. `.bottom(UIView)` - Add the `MessageStackView` to the safe bottom, safe leading, and safe width of the given `UIView`  
 
-These do not have to be used, you may constrain the `MessageStackView` explicitly if you want.  
+A `MessageLayout` does not have to be used, they are merely common use cases. You may add as a subview and constrain the `MessageStackView` explicitly if you want.  
 Call `messageManager.addTo(MessageLayout)` to add the `MessageStackView` to a `view` and constrain it w.r.t the `MessageLayout`.
 
 ### Message
