@@ -46,8 +46,8 @@ The `MessageManager` will look after all `Timer`s when a finite `MessageTime` is
 1. `.top(UIView)` - Add the `MessageStackView` to the safe top, safe leading, and safe width of the given `UIView`  
 2. `.bottom(UIView)` - Add the `MessageStackView` to the safe bottom, safe leading, and safe width of the given `UIView`  
 
-A `MessageLayout` does not have to be used, they are merely common use cases. You may add as a subview and constrain the `MessageStackView` explicitly if you want.  
-Call `messageManager.addTo(MessageLayout)` to add the `MessageStackView` to a `view` and constrain it w.r.t the `MessageLayout`.
+A `MessageLayout` does not have to be used, they are merely common use cases. You may explicitly add the `MessageStackView` as a subview to another `UIView` and constrain if you want.  
+Call `messageManager.addTo(MessageLayout)` to add the `MessageStackView` to a `UIView` and constrain it w.r.t the `MessageLayout`.
 
 ### Message
 
@@ -62,7 +62,7 @@ A `Message` describes how a `MessageView` should look, which is the view which i
 ### Custom View
 
 The `MessageManager` supports custom `UIView`s.  
-The `UIView`s width will be determined by the `UIStackView` as the `distribution` is `fill`.  
+The `UIView`s width will be determined by the `UIStackView` as the `distribution` is `fill` and the `UIStackView` axis is `.vertical`.  
 However the height of the `UIView` is driven by the `UIView` itself, e.g. autolayout.  
   
 If, when posting and removing this `UIView` from the `MessageStackView` you want the animation to be smooth, then consider a "breakable" constraint for the height. Since the `UIStackView` will animate the `isHidden` property on the `UIView`, which will set an explict height during animation.
