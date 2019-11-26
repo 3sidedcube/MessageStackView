@@ -11,23 +11,34 @@ import UIKit
 public struct MessageConfiguration
 {
     /// Background color of `MessageView`s
-    public var backgroundColor: UIColor = .defaultBackgroundColor
+    public var backgroundColor: UIColor = MessageConfiguration.defaultBackgroundColor
     
     /// Tint color of `MessageView`s
-    public var tintColor: UIColor = .defaultTintColor
+    public var tintColor: UIColor = MessageConfiguration.defaultTintColor
     
     /// If shadow is added below `MessageView`
     public var shadow: Bool = true
     
     /// If this configuration updates, should previously posted messageViews be updated
-    public var applyToAll = false
-}
-
-fileprivate extension UIColor {
+    public var applyToAll: Bool = false
+    
+    /// Public default memberwise initializer.
+    public init(backgroundColor: UIColor = MessageConfiguration.defaultBackgroundColor,
+                tintColor: UIColor = MessageConfiguration.defaultTintColor,
+                shadow: Bool = true,
+                applyToAll: Bool = false)
+    {
+        self.backgroundColor = backgroundColor
+        self.tintColor = tintColor
+        self.shadow = shadow
+        self.applyToAll = applyToAll
+    }
+    
+    // MARK: - Constants
     
     /// Default background color of a `MessageView`
-    static let defaultBackgroundColor = UIColor(red255: 245, green: 245, blue: 245)
-    
-    /// Default tint color of a `MessageView`
-    static let defaultTintColor: UIColor = .darkGray
+     public static let defaultBackgroundColor = UIColor(red255: 245, green: 245, blue: 245)
+     
+     /// Default tint color of a `MessageView`
+     public static let defaultTintColor: UIColor = .darkGray
 }

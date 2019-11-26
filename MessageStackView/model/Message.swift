@@ -20,7 +20,7 @@ public struct Message
     /// `UIImage` of the message
     public var image: UIImage? = nil
     
-    /// Default Memberwise Initializer.
+    /// Public default memberwise initializer.
     /// Definition required for public in framework, otherwise defaults to internal (unless there is a private var in which
     /// case it would be private).
     public init(title: String, subtitle: String? = nil, image: UIImage? = nil) {

@@ -25,7 +25,7 @@ open class MessageManager
     private var timerMap = [UIView: Timer]()
     
     /// `UIStackView` to post messages on to
-    private(set) lazy var messageStackView = MessageStackView()
+    public private(set) lazy var messageStackView = MessageStackView()
     
     /// Default `MessageConfiguration` which describes the default look and feel of `MessageView`s.
     public var messageConfiguation = MessageConfiguration() {

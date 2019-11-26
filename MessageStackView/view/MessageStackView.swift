@@ -11,7 +11,7 @@ import UIKit
 /// Simply a `UIStackView`, defined for type restriction
 open class MessageStackView: UIStackView
 {
-    convenience init() {
+    public convenience init() {
         self.init(arrangedSubviews: [])
         axis = .vertical
         alignment = .fill

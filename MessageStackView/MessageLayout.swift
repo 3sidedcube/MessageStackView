@@ -8,7 +8,8 @@
 
 import UIKit
 
-public enum MessageLayout {
+public enum MessageLayout
+{
     /// Constrain `MessageStackView` to safe top, safe leading, and safe width of given `UIView`
     case top(UIView)
     
@@ -32,6 +33,7 @@ public enum MessageLayout {
 
 extension MessageLayout {
 
+    /// Constrain `MessageStackView` based on `MessageLayout` value
     func constrain(subview: MessageStackView) {
         let superview = self.view
         
@@ -52,6 +54,7 @@ extension MessageLayout {
         }
     }
     
+    /// Constrain given `constraints` + leading and width anchor of `subview` to `superview`
     private func constrain(_ subview: UIView, superview: UIView, including constraints: [NSLayoutConstraint]) {
         NSLayoutConstraint.activate(constraints + [
             subview.leadingAnchor.constraint(equalTo: superview.safeLeadingAnchor),

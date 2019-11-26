@@ -43,7 +43,7 @@ open class MessageView : UIView
     /// Container view for other subviews of `MessageView`.
     /// Required for shadow: for smooth animations we need to clip subview content (`clipsToBounds = true` ),
     /// but this would remove shadow. So clip this `containerView`, but allow out of bounds content on the `MessageView`
-    private(set) lazy var containerView: UIView = {
+    public private(set) lazy var containerView: UIView = {
         let view = UIView()
         view.backgroundColor = .clear
         
@@ -54,7 +54,7 @@ open class MessageView : UIView
     }()
     
     /// `UIStackView` subview of `MessageView` to position `UIImageView` and `UILabel`
-    private(set) lazy var horizontalStackView: UIStackView = {
+    public private(set) lazy var horizontalStackView: UIStackView = {
         let stackView = MessageView.defaultStackView(axis: .horizontal)
         stackView.alignment = .center
         stackView.spacing = Constants.horizontalStackViewSpacing
@@ -62,7 +62,7 @@ open class MessageView : UIView
     }()
     
     /// `UIImageView`, first arrangedSubview of the horizontally oriented `UIStackView`
-    private(set) lazy var imageView: UIImageView = {
+    public private(set) lazy var imageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill
         imageView.image = nil
@@ -70,21 +70,21 @@ open class MessageView : UIView
     }()
     
     /// `UIStackView` subview of `MessageView` to position `UIImageView` and `UILabel`
-    private(set) lazy var verticalStackView: UIStackView = {
+    public private(set) lazy var verticalStackView: UIStackView = {
         let stackView = MessageView.defaultStackView(axis: .vertical)
         stackView.spacing = Constants.verticalStackViewSpacing
         return stackView
     }()
     
     /// `UILabel`, last arrangedSubview of the horizontally oriented `UIStackView`
-    private(set) lazy var titleLabel: UILabel = {
+    public private(set) lazy var titleLabel: UILabel = {
         let label = MessageView.defaultLabel()
         label.font = Constants.titleFont
         return label
     }()
     
     /// `UILabel`, last arrangedSubview of the horizontally oriented `UIStackView`
-    private(set) lazy var subtitleLabel: UILabel = {
+    public private(set) lazy var subtitleLabel: UILabel = {
         let label = MessageView.defaultLabel()
         label.font = Constants.detailFont
         return label
