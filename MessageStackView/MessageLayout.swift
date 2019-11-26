@@ -16,15 +16,11 @@ public enum MessageLayout
     /// Constrain `MessageStackView` to safe bottom, safe leading, and safe width of given `UIView`
     case bottom(UIView)
     
-    /// Closure responsible for constraints of `MessageStackView`
-    case custom(UIView, (MessageStackView) -> Void)
-    
     /// Superview of the `MessageStackView`
     var view: UIView {
         switch self {
         case .top(let view): return view
         case .bottom(let view): return view
-        case .custom(let view, _): return view
         }
     }
 }
@@ -49,8 +45,6 @@ extension MessageLayout {
             constrain(subview, superview: superview, including: [
                 subview.bottomAnchor.constraint(equalTo: viewToAddTo.safeBottomAnchor)
             ])
-        case .custom(_, let closure):
-            closure(subview)
         }
     }
     

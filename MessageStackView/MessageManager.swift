@@ -45,9 +45,7 @@ open class MessageManager
     // MARK: - Init
     
     /// Add `messageStackView` to `view` to prepare for posting messages
-    public init (layout: MessageLayout) {
-        layout.constrain(subview: messageStackView)
-        
+    public init () {
         // This view is for smooth animations when there are no arrangedSubviews in the stackView.
         // Otherwise the stackView can not determine it's width/height.
         // With "no arranged subviews", we want to fix the width according to it's constraints,
@@ -58,12 +56,24 @@ open class MessageManager
             view.heightAnchor.constraint(equalToConstant: 0)
         ])
         messageStackView.addArrangedSubview(view)
-        layout.view.layoutIfNeeded()
     }
     
     /// Invalidate timers on deinit
     deinit {
         invalidate()
+    }
+    
+    // MARK: - Layout
+    
+    /// Layout the `MessageStackView` with a common `MessafeLayout` use case.
+    /// Custom layout is supported, simply add the `messageStackView` as a subview to a `UIView` and
+    /// constrain it accordingly.
+    public func addTo(_ layout: MessageLayout) {
+        // Constrain the `MessageStackView`
+        layout.constrain(subview: messageStackView)
+        
+        // Prevent the first animation also positioning the `messageStackView`
+        layout.view.setNeedsLayout()
     }
     
     // MARK: - Post

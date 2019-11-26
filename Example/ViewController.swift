@@ -12,12 +12,13 @@ import MessageStackView
 class ViewController: UIViewController {
     
     /// `MessageManager` to control
-    lazy var messageManager = MessageManager(layout: .top(view))
+    private let messageManager = MessageManager()
 
     // MARK: - ViewController lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        messageManager.addTo(.top(view))
     }
     
     override func viewDidAppear(_ animated: Bool) {

@@ -1,7 +1,7 @@
 ## MessageStackView
 
 A simple wrapper of a vertical `UIStackView` for posting and removing messages.  
-The most simple case is posting a `Message`  `struct`, but custom `UIView`s are also supported.
+The most simple case is posting a `Message`, which in turn creates a `MessageView`, but custom `UIView`s are also supported.
 
 ### Usage
 
@@ -10,8 +10,14 @@ There is an Example project in the repository, but a simple use case would be:
     class ViewController: UIViewController  
     {  
         /// `MessageManager` for posting `Message`s  
-        private lazy var messageManager = MessageManager(layout: .top(view)) 
+        private let messageManager = MessageManager() 
         
+        /// Add `MessageStackView` to view hierarchy
+        override func viewDidLoad() {
+            super.viewDidLoad()
+            messageManager.addTo(.top(view))
+        }
+
         /// Event method  
         private func onSomeEvent() {  
             messageManager.post(message: Message(  
@@ -24,9 +30,9 @@ There is an Example project in the repository, but a simple use case would be:
 
 This class is responsible for posting `Message`s and `UIView`s on a `MessageStackView`.  
 The lifetime of these items is determined by the `MessageTime` specified on post.  
-The layout of the `MessageStackView` is determined by the `MessageLayout` defined in the initializer.  
+By default the `MessageStackView` is not added to a view hierarchy. To do so call `messageManager.addTo(MessageLayout)` or explicitly add the `MessageStackView` as a subview to a `UIView` and add corresponding constraints.  
 
-The `MessageManager` will look after all `Timer`s when a finite `MessageTime` is specified for dismissal of an item.  
+The `MessageManager` will look after all `Timer`s when a finite `MessageTime` is specified for dismissal of an item.
 
 ### MessageTime
 
@@ -36,11 +42,12 @@ The `MessageManager` will look after all `Timer`s when a finite `MessageTime` is
 
 ### MessageLayout
 
-`enum` to specify the `MessageStackView` layout.  
-It will constrain the `MessageStackView` differently depending on the `MessageLayout`.  
+`enum` to specify common `MessageStackView` layouts:  
 1. `.top(UIView)` - Add the `MessageStackView` to the safe top, safe leading, and safe width of the given `UIView`  
 2. `.bottom(UIView)` - Add the `MessageStackView` to the safe bottom, safe leading, and safe width of the given `UIView`  
-3. `.custom((MessageStackView) -> Void)` - Add the `MessageStackView` as a subview and define custom constraints.  
+
+These do not have to be used, you may constrain the `MessageStackView` explicitly if you want.  
+Call `messageManager.addTo(MessageLayout)` to add the `MessageStackView` to a `view` and constrain it w.r.t the `MessageLayout`.
 
 ### Message
 
