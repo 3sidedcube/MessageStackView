@@ -9,11 +9,12 @@
 import UIKit
 
 /// A `UIView` for showing messages. It has a subview tree structure of:
-/// - Horizontally oriented `UIStackView`:
-///   - `UIImageView`
-///   - Vertically oriented `UIStackView`
-///     - Title `UILabel`
-///     - Detail `UILabel`
+/// - ContainerView
+///   - Horizontally oriented `UIStackView`:
+///     - `UIImageView`
+///     - Vertically oriented `UIStackView`
+///       - Title `UILabel`
+///       - Detail `UILabel`
 open class MessageView : UIView
 {
     /// Constants for the `MessageView`

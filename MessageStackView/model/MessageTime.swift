@@ -9,8 +9,8 @@
 import Foundation
 
 /// How long should a message be visible
-public enum MessageDismiss
-{
+public enum MessageDismiss {
+    
     /// Dismiss a message after the given `TimeInterval` (seconds)
     case after(TimeInterval)
     

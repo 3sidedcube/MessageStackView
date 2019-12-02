@@ -9,6 +9,7 @@
 import UIKit
 import MessageStackView
 
+// TODO: Build an interface with buttons for users to experiment with functionality
 class ViewController: UIViewController {
     
     /// `MessageManager` to control

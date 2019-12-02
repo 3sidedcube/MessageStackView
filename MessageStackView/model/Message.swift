@@ -9,8 +9,8 @@
 import UIKit
 
 /// Message model to post
-public struct Message
-{
+public struct Message {
+    
     /// Title of the message
     public var title: String
     

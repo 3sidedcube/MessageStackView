@@ -9,12 +9,12 @@
 import Foundation
 import UIKit
 
-/// Controller for posting aInd removing `Message`s on a `UIStackView`.
+/// Controller for posting and removing `Message`s on a `UIStackView`.
 /// Custom `UIView`s are also supported.
 ///
 /// `Timer` schedules for removing a message are handled by this class.
-open class MessageManager
-{
+open class MessageManager {
+    
     /// Default constants
     public struct Constants {
         /// Animation duration when showing/hiding the `MessageView`s
@@ -69,6 +69,11 @@ open class MessageManager
     /// Custom layout is supported, simply add the `messageStackView` as a subview to a `UIView` and
     /// constrain it accordingly.
     public func addTo(_ layout: MessageLayout) {
+        // Remove from previous layout tree
+        if messageStackView.superview != nil {
+            messageStackView.removeFromSuperview()
+        }
+        
         // Constrain the `MessageStackView`
         layout.constrain(subview: messageStackView)
         
@@ -89,11 +94,17 @@ open class MessageManager
     @discardableResult
     public func post(message: Message,
                      dismiss: MessageDismiss = .default,
-                     animated: PostAnimation = .default) -> MessageView
-    {
+                     animated: PostAnimation = .default) -> MessageView {
+        
         // Create a `MessageView`
         let messageView = MessageView()
-        configure(messageView: messageView, for: message)
+        
+        // Apply message
+        messageView.apply(message: message)
+        
+        // Apply configuration
+        messageView.apply(configuration: messageConfiguation)
+        
         post(view: messageView, dismiss: dismiss, animated: animated)
         return messageView
     }
@@ -108,8 +119,8 @@ open class MessageManager
     ///     - animated: Animate the showing of the `UIView`
     public func post(view: UIView,
                      dismiss: MessageDismiss = .default,
-                     animated: PostAnimation = .default)
-    {
+                     animated: PostAnimation = .default) {
+        
         // Check arguments
         guard dismiss.isValid() else {
             fatalError("Invalid \(MessageDismiss.self)")
@@ -119,7 +130,7 @@ open class MessageManager
         messageStackView.addArrangedSubview(view)
         
         // Animate if required
-        if animated.animateOnPost {
+        if animated.contains(.onPost) {
             view.isHidden = true
             messageStackView.layoutIfNeeded()
             UIView.animate(withDuration: Constants.animationDuration) {
@@ -137,7 +148,7 @@ open class MessageManager
         timerMap[view] = Timer.scheduledTimer(
             withTimeInterval: timeInterval, repeats: false) { [weak view, weak self] timer in
                 if let view = view, let self = self {
-                    self.remove(view: view, animated: animated.animateOnRemove)
+                    self.remove(view: view, animated: animated.contains(.onRemove))
                 }
             }
     }
@@ -185,45 +196,40 @@ open class MessageManager
         }
         timerMap = [UIView: Timer]()
     }
-    
-    // MARK: - Private API
-    
-    /// Convert `message` model to `messageView`
-    private func configure(messageView: MessageView, for message: Message) {
-        // Title
-        messageView.titleLabel.text = message.title
-        
-        // Detail
-        let subtitle = message.subtitle?.trim ?? ""
-        messageView.subtitleLabel.text = subtitle
-        messageView.subtitleLabel.isHidden = subtitle.isEmpty
-        
-        // Image
-        messageView.imageView.image = message.image
-        messageView.imageView.isHidden = message.image == nil
-        
-        // `MessageConfiguration`
-        messageView.apply(configuration: messageConfiguation)
-    }
 }
 
 
 // MARK: - Extensions
 
-extension MessageDismiss
-{
+extension MessageDismiss {
+    
     /// Default `MessageDismiss`
     public static let `default`: MessageDismiss = .after(3)
 }
 
-extension PostAnimation
-{
+extension PostAnimation {
+    
     /// Default `PostAnimation`
     public static let `default`: PostAnimation = .both
 }
 
-extension MessageView
-{
+extension MessageView {
+    
+    /// Apply `Message` to `MessageView`
+    func apply(message: Message) {
+        // Title
+        titleLabel.text = message.title
+        
+        // Detail
+        let subtitle = message.subtitle ?? ""
+        subtitleLabel.text = subtitle
+        subtitleLabel.isHidden = subtitle.isEmpty
+        
+        // Image
+        imageView.image = message.image
+        imageView.isHidden = message.image == nil
+    }
+    
     /// Apply `MessageConfiguration` to `MessageView`
     func apply(configuration: MessageConfiguration) {
         backgroundColor = configuration.backgroundColor
@@ -233,6 +239,5 @@ extension MessageView
         } else {
             removeShadow()
         }
-    }
-    
+    }   
 }

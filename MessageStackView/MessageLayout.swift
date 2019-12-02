@@ -8,8 +8,10 @@
 
 import UIKit
 
-public enum MessageLayout
-{
+/// Common use cases for constraining the `MessageStackView`.
+/// `MessageLayout` does not have to be used, one may constrain explicitly instead.
+public enum MessageLayout {
+    
     /// Constrain `MessageStackView` to safe top, safe leading, and safe width of given `UIView`
     case top(UIView)
     
