@@ -13,7 +13,11 @@ import MessageStackView
 class ViewController: UIViewController {
     
     /// `MessageManager` to control
-    private let messageManager = MessageManager()
+    private lazy var messageManager: MessageManager = {
+        let messageManager = MessageManager()
+        messageManager.delegate = self
+        return messageManager
+    }()
 
     // MARK: - ViewController lifecycle
     
@@ -54,6 +58,16 @@ class ViewController: UIViewController {
     private func dispatchAfter(seconds: Int, closure: @escaping () -> Void) {
         DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(seconds), execute: closure)
     }
+}
+
+// MARK: - MessageManagerDelegate
+
+extension ViewController : MessageManagerDelegate {
+    
+    func messageManager(_ messageManager: MessageManager, willRemove view: UIView) {
+        print("Will remove called!")
+    }
+    
 }
 
 // MARK: - CustomView

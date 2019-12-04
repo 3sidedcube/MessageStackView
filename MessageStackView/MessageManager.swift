@@ -9,6 +9,42 @@
 import Foundation
 import UIKit
 
+// MARK: - MessageManagerDelegate
+
+/// Delegate methods for `MessageManager`
+public protocol MessageManagerDelegate: AnyObject {
+    
+    /// Called when a `view` will be posted
+    func messageManager(_ messageManager: MessageManager, willPost view: UIView)
+    
+    /// Called when a `view` was posted
+    func messageManager(_ messageManager: MessageManager, didPost view: UIView)
+    
+    /// Called when a `view` will be removed
+    func messageManager(_ messageManager: MessageManager, willRemove view: UIView)
+    
+    /// Called when a `view` was removed
+    func messageManager(_ messageManager: MessageManager, didRemove view: UIView)
+}
+
+/// Provide default implementation of `MessageManagerDelegate` optional methods
+public extension MessageManagerDelegate {
+    
+    func messageManager(_ messageManager: MessageManager, willPost view: UIView) {
+    }
+    
+    func messageManager(_ messageManager: MessageManager, didPost view: UIView) {
+    }
+    
+    func messageManager(_ messageManager: MessageManager, willRemove view: UIView) {
+    }
+    
+    func messageManager(_ messageManager: MessageManager, didRemove view: UIView) {
+    }
+}
+
+// MARK: - MessageManager
+
 /// Controller for posting and removing `Message`s on a `UIStackView`.
 /// Custom `UIView`s are also supported.
 ///
@@ -43,6 +79,8 @@ open class MessageManager {
             }
         }
     }
+    
+    public weak var delegate: MessageManagerDelegate?
     
     // MARK: - Init
     
@@ -119,6 +157,9 @@ open class MessageManager {
         // Remove from previous layout tree if it exists
         view.removeFromSuperviewIfExists()
         
+        // Fire will post
+        delegate?.messageManager(self, willPost: view)
+        
         // Add to the `messageStackView`
         messageStackView.addArrangedSubview(view)
         
@@ -132,7 +173,13 @@ open class MessageManager {
             UIView.animate(withDuration: Constants.animationDuration) {
                 view.isHidden = false
                 self.messageStackView.layoutIfNeeded()
+                
+                // Fire did post
+                self.delegate?.messageManager(self, didPost: view)
             }
+        } else {
+            // Fire did post
+            self.delegate?.messageManager(self, didPost: view)
         }
        
         // Stop here if the caller does not want to dismiss this message
@@ -172,8 +219,15 @@ open class MessageManager {
             return
         }
         
+        // Fire will remove
+        self.delegate?.messageManager(self, willRemove: view)
+        
         guard animated else {
             view.removeFromSuperview()
+            
+            // Fire did remove
+            self.delegate?.messageManager(self, didRemove: view)
+            
             return
         }
         
@@ -185,6 +239,9 @@ open class MessageManager {
             // Apple docs say the stackView will remove it from its arrangedSubviews list automatically
             // when calling this method 
             view.removeFromSuperview()
+            
+            // Fire did remove
+            self.delegate?.messageManager(self, didRemove: view)
         }
     }
     
