@@ -18,13 +18,13 @@ import UIKit
 open class MessageView : UIView
 {
     /// Constants for the `MessageView`
-    private struct Constants
+    public struct Constants
     {
         /// Size of the `UIImageView`
-        static let imageViewSize: CGFloat = 20
+        static let imageViewSize: CGSize = CGSize(width: 20, height: 20)
         
         /// Inset of the `UIStackView` relative to the `MessageView`
-        static let stackViewInsets = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
+        static let stackViewInsets = UIEdgeInsets(top: 10, left: 15, bottom: 10, right: 15)
         
         /// Vertical `UIStackView` spacing
         static let verticalStackViewSpacing: CGFloat = 5
@@ -63,11 +63,8 @@ open class MessageView : UIView
     }()
     
     /// `UIImageView`, first arrangedSubview of the horizontally oriented `UIStackView`
-    public private(set) lazy var imageView: UIImageView = {
-        let imageView = UIImageView()
-        imageView.contentMode = .scaleAspectFill
-        imageView.image = nil
-        return imageView
+    public private(set) lazy var leftImageView: UIImageView = {
+        return MessageView.defaultImageView()
     }()
     
     /// `UIStackView` subview of `MessageView` to position `UIImageView` and `UILabel`
@@ -90,6 +87,33 @@ open class MessageView : UIView
         label.font = Constants.detailFont
         return label
     }()
+    
+    /// `UIImageView`, first arrangedSubview of the horizontally oriented `UIStackView`
+    public private(set) lazy var rightImageView: UIImageView = {
+        return MessageView.defaultImageView()
+    }()
+    
+    /// `CGSize` of the `leftImageView`
+    public var leftImageViewSize: CGSize = Constants.imageViewSize {
+        didSet {
+            leftImageSizeConstaints?.setWidth(constant: leftImageViewSize.width)
+            leftImageSizeConstaints?.setHeight(constant: leftImageViewSize.height)
+        }
+    }
+    
+    /// `CGSize` of the `rightImageView`
+    public var rightImageViewSize: CGSize = Constants.imageViewSize {
+        didSet {
+            rightImageSizeConstaints?.setWidth(constant: rightImageViewSize.width)
+            rightImageSizeConstaints?.setHeight(constant: rightImageViewSize.height)
+        }
+    }
+    
+    /// `NSLayoutConstraints` setting the `SizeConstraints` on the `leftImageView`
+    private var leftImageSizeConstaints: SizeConstraints!
+    
+    /// `NSLayoutConstraints` setting the `SizeConstraints` on the `rightImageView`
+    private var rightImageSizeConstaints: SizeConstraints!
     
     // MARK: - Init
     
@@ -121,15 +145,17 @@ open class MessageView : UIView
         // Add subviews
         addSubview(containerView)
         containerView.addSubview(horizontalStackView)
-        horizontalStackView.addArrangedSubview(imageView)
+        horizontalStackView.addArrangedSubview(leftImageView)
         horizontalStackView.addArrangedSubview(verticalStackView)
+        horizontalStackView.addArrangedSubview(rightImageView)
         verticalStackView.addArrangedSubview(titleLabel)
         verticalStackView.addArrangedSubview(subtitleLabel)
         
         // Set translatesAutoresizingMaskIntoConstraints
         containerView.translatesAutoresizingMaskIntoConstraints = false
         horizontalStackView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.translatesAutoresizingMaskIntoConstraints = false
+        leftImageView.translatesAutoresizingMaskIntoConstraints = false
+        rightImageView.translatesAutoresizingMaskIntoConstraints = false
         
         // Set hugging and compressionResistance
         subtitleLabel.setContentHuggingPriority(.init(200), for: .vertical)
@@ -152,7 +178,12 @@ open class MessageView : UIView
                 equalTo: containerView.trailingAnchor, constant: -Constants.stackViewInsets.right),
             horizontalStackViewBottom
         ]
-        constraints += imageView.constrainSize(size: Constants.imageViewSize)
+        leftImageSizeConstaints = leftImageView.constrainSize(size: Constants.imageViewSize)
+        constraints += leftImageSizeConstaints?.constraints ?? []
+        
+        rightImageSizeConstaints = rightImageView.constrainSize(size: Constants.imageViewSize)
+        constraints += rightImageSizeConstaints?.constraints ?? []
+        
         NSLayoutConstraint.activate(constraints)
     }
     
@@ -160,13 +191,21 @@ open class MessageView : UIView
     
     public override var tintColor: UIColor! {
         didSet {
-            imageView.tintColor = tintColor
+            leftImageView.tintColor = tintColor
             titleLabel.textColor = tintColor
             subtitleLabel.textColor = tintColor
+            rightImageView.tintColor = tintColor
         }
     }
     
     // MARK: - Defaults
+    
+    private static func defaultImageView() -> UIImageView {
+        let imageView = UIImageView()
+        imageView.contentMode = .scaleAspectFit
+        imageView.image = nil
+        return imageView
+    }
     
     private static func defaultLabel() -> UILabel {
         let label = UILabel()
@@ -184,5 +223,4 @@ open class MessageView : UIView
         stackView.spacing = 0
         return stackView
     }
-    
 }

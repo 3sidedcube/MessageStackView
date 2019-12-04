@@ -20,7 +20,7 @@ public struct MessageConfiguration {
     /// If shadow is added below `MessageView`
     public var shadow: Bool = true
     
-    /// If this configuration updates, should previously posted messageViews be updated
+    /// If this configuration updates, should previously posted `MessageView`s be updated
     public var applyToAll: Bool = false
     
     /// Public default memberwise initializer.

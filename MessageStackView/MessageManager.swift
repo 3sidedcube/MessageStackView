@@ -24,8 +24,11 @@ open class MessageManager {
     /// Keep track of `Timer`s for views
     private var timerMap = [UIView: Timer]()
     
+    /// Map `UIView`s to their "tap to dismiss" `UITapGestureRecognizer`
+    private var tapGestureMap = [UIView: UITapGestureRecognizer]()
+    
     /// `UIStackView` to post messages on to
-    public private(set) lazy var messageStackView = MessageStackView()
+    public let messageStackView: MessageStackView
     
     /// Default `MessageConfiguration` which describes the default look and feel of `MessageView`s.
     public var messageConfiguation = MessageConfiguration() {
@@ -34,31 +37,21 @@ open class MessageManager {
                 return
             }
             
-            // If the `messageConfiguation` has updated, update the current `MessageView`s
-            let messageViews = messageStackView.arrangedSubviews.compactMap { $0 as? MessageView }
-            messageViews.forEach {
-                $0.apply(configuration: messageConfiguation)
+            // If the `messageConfiguation` has updated, update the current `UIView`s
+            messageStackView.arrangedSubviewsExcludingSpace.forEach {
+                configure(view: $0)
             }
         }
     }
     
     // MARK: - Init
     
-    /// Add `messageStackView` to `view` to prepare for posting messages
+    /// Configure `messageStackView`
     public init () {
-        // This view is for smooth animations when there are no arrangedSubviews in the stackView.
-        // Otherwise the stackView can not determine it's width/height.
-        // With "no arranged subviews", we want to fix the width according to it's constraints,
-        // but have 0 height
-        let view = UIView()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            view.heightAnchor.constraint(equalToConstant: 0)
-        ])
-        messageStackView.addArrangedSubview(view)
+        messageStackView = MessageStackView()
     }
     
-    /// Invalidate timers on deinit
+    /// Invalidate on deinit
     deinit {
         invalidate()
     }
@@ -69,10 +62,8 @@ open class MessageManager {
     /// Custom layout is supported, simply add the `messageStackView` as a subview to a `UIView` and
     /// constrain it accordingly.
     public func addTo(_ layout: MessageLayout) {
-        // Remove from previous layout tree
-        if messageStackView.superview != nil {
-            messageStackView.removeFromSuperview()
-        }
+        // Remove from previous layout tree if exists
+        messageStackView.removeFromSuperviewIfExists()
         
         // Constrain the `MessageStackView`
         layout.constrain(subview: messageStackView)
@@ -102,10 +93,9 @@ open class MessageManager {
         // Apply message
         messageView.apply(message: message)
         
-        // Apply configuration
-        messageView.apply(configuration: messageConfiguation)
-        
+        // Post the message like any other `UIView`
         post(view: messageView, dismiss: dismiss, animated: animated)
+        
         return messageView
     }
     
@@ -126,8 +116,14 @@ open class MessageManager {
             fatalError("Invalid \(MessageDismiss.self)")
         }
         
+        // Remove from previous layout tree if it exists
+        view.removeFromSuperviewIfExists()
+        
         // Add to the `messageStackView`
         messageStackView.addArrangedSubview(view)
+        
+        // Configure the message
+        configure(view: view)
         
         // Animate if required
         if animated.contains(.onPost) {
@@ -141,6 +137,9 @@ open class MessageManager {
        
         // Stop here if the caller does not want to dismiss this message
         guard case MessageDismiss.after(let timeInterval) = dismiss else {
+            if case MessageDismiss.onTap = dismiss {
+                addTapGesture(to: view)
+            }
             return
         }
         
@@ -167,6 +166,8 @@ open class MessageManager {
         timerMap[view]?.invalidate()
         timerMap[view] = nil
         
+        removeTapGesture(from: view)
+        
         guard view.superview == messageStackView else {
             return
         }
@@ -187,17 +188,65 @@ open class MessageManager {
         }
     }
     
+    // MARK: - Configuration
+    
+    /// Configure a `view` conforming to `MessageConfigurable` or provide a default implementation
+    public func configure(view: UIView) {
+        if let configurableView = view as? MessageConfigurable {
+            configurableView.apply(configuration: messageConfiguation)
+        } else {
+            view.defaultApply(configuration: messageConfiguation)
+        }
+    }
+    
+    // MARK: - Tap
+    
+    /// Add `UITapGestureRecognizer`
+    fileprivate func addTapGesture(to view: UIView) {
+        guard tapGestureMap[view] == nil else {
+            return
+        }
+        let tap = UITapGestureRecognizer(target: self, action: #selector(viewTapped))
+        tapGestureMap[view] = tap
+        view.addGestureRecognizer(tap)
+    }
+    
+    /// Remove `UITapGestureRecognizer`
+    fileprivate func removeTapGesture(from view: UIView) {
+        guard let tap = tapGestureMap[view] else {
+            return
+        }
+        
+        tapGestureMap[view] = nil
+        view.removeGestureRecognizer(tap)
+    }
+    
+    /// When a `UIView` wants to be dismissed on tap,
+    @objc func viewTapped(_ sender: UITapGestureRecognizer) {
+        guard sender.state == .ended, let view = sender.view else {
+            return
+        }
+        remove(view: view, animated: true)
+    }
+    
     // MARK: - Invalidate
     
     /// Invalidate and remove timers
     public func invalidate() {
+        messageStackView.arrangedSubviewsExcludingSpace.forEach {
+            remove(view: $0, animated: false)
+            removeTapGesture(from: $0)
+        }
+
+        // These should theoretically be cleaned up from the remove methods,
+        // but add in case of unexpected manipulation from caller
         timerMap.values.forEach {
             $0.invalidate()
         }
         timerMap = [UIView: Timer]()
+        tapGestureMap = [UIView : UITapGestureRecognizer]()
     }
 }
-
 
 // MARK: - Extensions
 
@@ -217,21 +266,60 @@ extension MessageView {
     
     /// Apply `Message` to `MessageView`
     func apply(message: Message) {
+        
         // Title
         titleLabel.text = message.title
         
         // Detail
-        let subtitle = message.subtitle ?? ""
-        subtitleLabel.text = subtitle
-        subtitleLabel.isHidden = subtitle.isEmpty
+        subtitleLabel.setTextAndHidden(message.subtitle)
         
-        // Image
-        imageView.image = message.image
-        imageView.isHidden = message.image == nil
+        // Left Image
+        leftImageView.setImageAndHidden(message.leftImage)
+        
+        // Right Image
+        rightImageView.setImageAndHidden(message.rightImage)
+    }
+}
+
+extension UIImageView {
+    
+    /// Set the `UIImageView.image` and update `isHidden` by nullability of`image`
+    func setImageAndHidden(_ image: UIImage?) {
+        self.image = image
+        isHidden = image == nil
     }
     
-    /// Apply `MessageConfiguration` to `MessageView`
-    func apply(configuration: MessageConfiguration) {
+}
+
+extension UILabel {
+    
+    /// Set the `UILabel.text` and update `isHidden` by nullability of `text`
+    func setTextAndHidden(_ text: String?) {
+        let labelText = text ?? ""
+        self.text = text
+        isHidden = labelText.isEmpty
+    }
+    
+}
+
+extension UIView {
+    
+    /// Remove from `superview` if that `superview` exists.
+    /// Pretty sure this is the default behavior in `removeFromSuperview()` anyway but a harmless additional check
+    /// for (future?) safety
+    func removeFromSuperviewIfExists() {
+        if superview != nil {
+            removeFromSuperview()
+        }
+    }
+    
+    /// This is a default implemention of the `MessageConfigurable` protocol without actually
+    /// implementing it.
+    /// If we did implement it, then we would write an extension of `UIView` (a class) conforming to
+    /// it, but we would not be able to override that behavior in subclasses as you can not override
+    /// declarations in extensions.
+    /// As we can not provide the code in the `UIView` base class (and override that), declare here.
+    public func defaultApply(configuration: MessageConfiguration) {
         backgroundColor = configuration.backgroundColor
         tintColor = configuration.tintColor
         if configuration.shadow {
@@ -239,5 +327,16 @@ extension MessageView {
         } else {
             removeShadow()
         }
-    }   
+    }
 }
+
+// MARK: - MessageConfigurableView
+
+/// Subclasses may inherit from this  and simply override the `MessageConfigurable` method if they wish.
+/// Alternatively simply conform to `MessageConfigurable`
+open class MessageConfigurableView: UIView, MessageConfigurable {
+    open func apply(configuration: MessageConfiguration) {
+        defaultApply(configuration: configuration)
+    }
+}
+
