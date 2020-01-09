@@ -9,10 +9,15 @@
 import UIKit
 import MessageStackView
 
+// TODO: Build an interface with buttons for users to experiment with functionality
 class ViewController: UIViewController {
     
     /// `MessageManager` to control
-    private let messageManager = MessageManager()
+    private lazy var messageManager: MessageManager = {
+        let messageManager = MessageManager()
+        messageManager.delegate = self
+        return messageManager
+    }()
 
     // MARK: - ViewController lifecycle
     
@@ -27,12 +32,24 @@ class ViewController: UIViewController {
         dispatchAfter(seconds: 2) { [weak self] in
             self?.messageManager.post(message: Message(
                 title: "This is a title",
-                subtitle: "This is a subtitle",
-                image: .information))
+                subtitle: "This is a subtitle, with a left image",
+                leftImage: .information))
         }
         
         dispatchAfter(seconds: 4) { [weak self] in
-            self?.messageManager.post(view: CustomView(), dismiss: .after(5))
+            let messageView = self?.messageManager.post(
+                message: Message(
+                    title: "This is another title",
+                    subtitle: "And yes, this is another subtitle, but with the right image this time!",
+                    leftImage: .information,
+                    rightImage: .cross),
+                dismiss: .after(8))
+            
+            messageView?.rightImageViewSize = CGSize(width: 10, height: 10)
+        }
+        
+        dispatchAfter(seconds: 6) { [weak self] in
+            self?.messageManager.post(view: CustomView(), dismiss: .onTap)
         }
     }
     
@@ -43,9 +60,19 @@ class ViewController: UIViewController {
     }
 }
 
+// MARK: - MessageManagerDelegate
+
+extension ViewController : MessageManagerDelegate {
+    
+    func messageManager(_ messageManager: MessageManager, willRemove view: UIView) {
+        print("Will remove called!")
+    }
+    
+}
+
 // MARK: - CustomView
 
-fileprivate class CustomView: UIView {
+fileprivate class CustomView: UIView, MessageConfigurable {
     
     init() {
         super.init(frame: .zero)
@@ -63,10 +90,15 @@ fileprivate class CustomView: UIView {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    func apply(configuration: MessageConfiguration) {
+        print("Called")
+        // do nothing
+    }
 }
-
 // MARK: - Extensions
 
 extension UIImage {
     static let information = UIImage(named: "information-32")
+    static let cross = UIImage(named: "cross-32")
 }

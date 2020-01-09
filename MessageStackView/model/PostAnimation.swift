@@ -9,27 +9,23 @@
 import Foundation
 
 /// Alow the caller to control the animation when posting a message
-public enum PostAnimation: Int
-{
-    /// Animate both on post and on remove
-    case both
+public struct PostAnimation: OptionSet {
+    public let rawValue: Int
     
+    /// Override access modifier to public
+    public init(rawValue: Int) {
+        self.rawValue = rawValue
+    }
+
     /// Animate only on post
-    case onPost
+    public static let onPost = PostAnimation(rawValue: 1 << 0)
     
     /// Animate only on remove
-    case onRemove
+    public static let onRemove = PostAnimation(rawValue: 1 << 1)
     
-    /// Do not animate on either post or remove
-    case none
+    /// Animate both on post and remove
+    public static let both: PostAnimation = [.onPost, .onRemove]
     
-    /// Helper to check if we should animate on post
-    var animateOnPost: Bool {
-        return self == .both || self == .onPost
-    }
-    
-    /// Helper to check if we should animate on remove
-    var animateOnRemove: Bool {
-        return self == .both || self == .onRemove
-    }
+    /// Don't animate on either post or remove
+    public static let none: PostAnimation = []
 }

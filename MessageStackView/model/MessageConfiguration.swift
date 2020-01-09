@@ -8,8 +8,9 @@
 
 import UIKit
 
-public struct MessageConfiguration
-{
+/// Define a default configuration to messages look and feel
+public struct MessageConfiguration {
+    
     /// Background color of `MessageView`s
     public var backgroundColor: UIColor = MessageConfiguration.defaultBackgroundColor
     
@@ -19,15 +20,15 @@ public struct MessageConfiguration
     /// If shadow is added below `MessageView`
     public var shadow: Bool = true
     
-    /// If this configuration updates, should previously posted messageViews be updated
+    /// If this configuration updates, should previously posted `MessageView`s be updated
     public var applyToAll: Bool = false
     
     /// Public default memberwise initializer.
     public init(backgroundColor: UIColor = MessageConfiguration.defaultBackgroundColor,
                 tintColor: UIColor = MessageConfiguration.defaultTintColor,
                 shadow: Bool = true,
-                applyToAll: Bool = false)
-    {
+                applyToAll: Bool = false) {
+        
         self.backgroundColor = backgroundColor
         self.tintColor = tintColor
         self.shadow = shadow

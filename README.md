@@ -30,7 +30,7 @@ There is an Example project in the repository, but a simple use case would be:
 
 This class is responsible for posting `Message`s and `UIView`s on a `MessageStackView`.  
 The lifetime of these items is determined by the `MessageTime` specified on post.  
-By default the `MessageStackView` is not added to a view hierarchy. To do so call `messageManager.addTo(MessageLayout)` or explicitly add the `MessageStackView` as a subview to a `UIView` and add corresponding constraints.  
+By default the `MessageStackView` is not added to a view hierarchy. To do so, call `messageManager.addTo(MessageLayout)` or explicitly add the `MessageStackView` as a subview to a `UIView` and add corresponding constraints.  
 
 The `MessageManager` will look after all `Timer`s when a finite `MessageTime` is specified for dismissal of an item.
 
@@ -38,7 +38,8 @@ The `MessageManager` will look after all `Timer`s when a finite `MessageTime` is
 
 `enum` to specify when a `UIView` is dismissed from the `MessageStackView`:  
 1. `.after(TimeInterval)` - dismiss after a given `TimeInterval` (seconds)  
-2. `.never` - Once posted do not dismiss  
+2. `.onTap` - dismiss when the view is tapped 
+3. `.never` - Once posted do not dismiss  
 
 ### MessageLayout
 
@@ -54,7 +55,8 @@ Call `messageManager.addTo(MessageLayout)` to add the `MessageStackView` to a `U
 Properties include:  
 1. `title` -  required  
 2. `subtitle` -  Optional  
-3. `image` - Optional  
+3. `leftImage` - Optional  
+3. `rightImage` - Optional  
 
 These can be posted on the `MessageManager`.
 A `Message` describes how a `MessageView` should look, which is the view which is posted on the `MessageStackView`.
@@ -70,3 +72,4 @@ If, when posting and removing this `UIView` from the `MessageStackView` you want
 ### MessageConfiguration
 
 Property on the `MessageManager`, specify a custom look and feel of  `Message`s.  
+To determine how the `MessageConfiguration` applies to a view, conform to `MessageConfigurable`.

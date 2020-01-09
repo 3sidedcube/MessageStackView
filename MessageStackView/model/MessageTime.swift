@@ -9,10 +9,13 @@
 import Foundation
 
 /// How long should a message be visible
-public enum MessageDismiss
-{
+public enum MessageDismiss {
+    
     /// Dismiss a message after the given `TimeInterval` (seconds)
     case after(TimeInterval)
+    
+    /// Dismiss a message when it's tapped
+    case onTap
     
     /// Don't dismiss the message after posting
     case never

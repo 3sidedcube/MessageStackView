@@ -21,15 +21,15 @@ extension UIView {
     }
     
     /// Constrain width and height equal to `size`
-    func constrainSize(size: CGFloat) -> [NSLayoutConstraint] {
+    func constrainSize(size: CGFloat) -> SizeConstraints {
         return constrainSize(size: CGSize(width: size, height: size))
     }
     
     /// Constrain width and height by corresponding `size` property
-    func constrainSize(size: CGSize) -> [NSLayoutConstraint] {
-        return [
-            widthAnchor.constraint(equalToConstant: size.width),
-            heightAnchor.constraint(equalToConstant: size.height)
-        ]
+    func constrainSize(size: CGSize) -> SizeConstraints {
+        return SizeConstraints(
+            width: widthAnchor.constraint(equalToConstant: size.width),
+            height: heightAnchor.constraint(equalToConstant: size.height)
+        )
     }
 }
