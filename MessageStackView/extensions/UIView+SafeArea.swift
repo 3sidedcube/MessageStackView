@@ -11,6 +11,8 @@ import UIKit
 /// SafeArea support for pre iOS 11
 extension UIView {
     
+    /// If the safe area is available, then the `safeAreaLayoutGuide.topAnchor`,
+    /// otherwise the `topAnchor`
     var safeTopAnchor: NSLayoutYAxisAnchor {
         if #available(iOS 11.0, *) {
             return self.safeAreaLayoutGuide.topAnchor
@@ -19,6 +21,8 @@ extension UIView {
         }
     }
     
+    /// If the safe area is available, then the `safeAreaLayoutGuide.leadingAnchor`,
+    /// otherwise the `leadingAnchor`
     var safeLeadingAnchor: NSLayoutXAxisAnchor {
         if #available(iOS 11.0, *){
             return self.safeAreaLayoutGuide.leadingAnchor
@@ -27,6 +31,8 @@ extension UIView {
         }
     }
     
+    /// If the safe area is available, then the `safeAreaLayoutGuide.trailingAnchor`,
+    /// otherwise the `trailingAnchor`
     var safeTrailingAnchor: NSLayoutXAxisAnchor {
         if #available(iOS 11.0, *){
             return self.safeAreaLayoutGuide.trailingAnchor
@@ -35,6 +41,8 @@ extension UIView {
         }
     }
     
+    /// If the safe area is available, then the `safeAreaLayoutGuide.bottomAnchor`,
+    /// otherwise the `bottomAnchor`
     var safeBottomAnchor: NSLayoutYAxisAnchor {
         if #available(iOS 11.0, *) {
             return self.safeAreaLayoutGuide.bottomAnchor
@@ -43,6 +51,8 @@ extension UIView {
         }
     }
     
+    /// If the safe area is available, then the `safeAreaLayoutGuide.widthAnchor`,
+    /// otherwise the `widthAnchor`
     var safeWidthAnchor: NSLayoutDimension {
         if #available(iOS 11.0, *){
             return self.safeAreaLayoutGuide.widthAnchor
@@ -51,6 +61,8 @@ extension UIView {
         }
     }
     
+    /// If the safe area is available, then the `safeAreaLayoutGuide.heightAnchor`,
+    /// otherwise the `heightAnchor`
     var safeHeightAnchor: NSLayoutDimension {
         if #available(iOS 11.0, *){
             return self.safeAreaLayoutGuide.heightAnchor

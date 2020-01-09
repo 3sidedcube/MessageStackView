@@ -18,11 +18,15 @@ struct SizeConstraints {
     var height: NSLayoutConstraint
     
     /// Set the `constant` on the `width`
+    ///
+    /// - Parameter constant: `width`  value
     func setWidth(constant: CGFloat) {
         width.constant = constant
     }
     
     /// Set the `constant` on the `height`
+    /// 
+    /// - Parameter constant: `height` value
     func setHeight(constant: CGFloat) {
         height.constant = constant
     }
