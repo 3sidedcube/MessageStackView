@@ -165,3 +165,5 @@ tags
 # End of https://www.gitignore.io/api/swift,xcode,carthage,objective-c
 
 ### Vim ###
+
+.DS_Store
