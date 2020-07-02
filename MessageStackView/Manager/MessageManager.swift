@@ -9,40 +9,6 @@
 import Foundation
 import UIKit
 
-// MARK: - MessageManagerDelegate
-
-/// Delegate methods for `MessageManager`
-public protocol MessageManagerDelegate: AnyObject {
-    
-    /// Called when a `view` will be posted
-    func messageManager(_ messageManager: MessageManager, willPost view: UIView)
-    
-    /// Called when a `view` was posted
-    func messageManager(_ messageManager: MessageManager, didPost view: UIView)
-    
-    /// Called when a `view` will be removed
-    func messageManager(_ messageManager: MessageManager, willRemove view: UIView)
-    
-    /// Called when a `view` was removed
-    func messageManager(_ messageManager: MessageManager, didRemove view: UIView)
-}
-
-/// Provide default implementation of `MessageManagerDelegate` optional methods
-public extension MessageManagerDelegate {
-    
-    func messageManager(_ messageManager: MessageManager, willPost view: UIView) {
-    }
-    
-    func messageManager(_ messageManager: MessageManager, didPost view: UIView) {
-    }
-    
-    func messageManager(_ messageManager: MessageManager, willRemove view: UIView) {
-    }
-    
-    func messageManager(_ messageManager: MessageManager, didRemove view: UIView) {
-    }
-}
-
 // MARK: - MessageManager
 
 /// Controller for posting and removing `Message`s on a `UIStackView`.
@@ -53,11 +19,12 @@ open class MessageManager {
     
     /// Default constants
     public struct Constants {
+        
         /// Animation duration when showing/hiding the `MessageView`s
         static let animationDuration: TimeInterval = 0.25
     }
     
-    /// Keep track of `Timer`s for views
+    /// Keep track of `Timer`s for removing `UIView`s that should only be around for a finite time
     private var timerMap = [UIView: Timer]()
     
     /// Map `UIView`s to their "tap to dismiss" `UITapGestureRecognizer`
@@ -66,20 +33,23 @@ open class MessageManager {
     /// `UIStackView` to post messages on to
     public let messageStackView: MessageStackView
     
-    /// Default `MessageConfiguration` which describes the default look and feel of `MessageView`s.
+    /// Default `MessageConfiguration` which describes the default
+    /// look and feel of `MessageView`s.
     public var messageConfiguation = MessageConfiguration() {
         didSet {
             guard messageConfiguation.applyToAll else {
                 return
             }
             
-            // If the `messageConfiguation` has updated, update the current `UIView`s
+            // If the `messageConfiguation` has updated, update
+            // the current `UIView`s
             messageStackView.arrangedSubviewsExcludingSpace.forEach {
                 configure(view: $0)
             }
         }
     }
     
+    /// `MessageManagerDelegate`
     public weak var delegate: MessageManagerDelegate?
     
     // MARK: - Init
@@ -101,7 +71,7 @@ open class MessageManager {
     /// constrain it accordingly.
     public func addTo(_ layout: MessageLayout) {
         // Remove from previous layout tree if exists
-        messageStackView.removeFromSuperviewIfExists()
+        messageStackView.removeFromSuperview()
         
         // Constrain the `MessageStackView`
         layout.constrain(subview: messageStackView)
@@ -121,9 +91,11 @@ open class MessageManager {
     ///
     /// - Returns: The `MessageView` created and added to the `messageStackView`
     @discardableResult
-    public func post(message: Message,
-                     dismiss: MessageDismiss = .default,
-                     animated: PostAnimation = .default) -> MessageView {
+    public func post(
+        message: Message,
+        dismiss: MessageDismiss = .default,
+        animated: PostAnimation = .default
+    ) -> MessageView {
         
         // Create a `MessageView`
         let messageView = MessageView()
@@ -145,17 +117,18 @@ open class MessageManager {
     ///     - view: A `UIView` to post
     ///     - dismiss: After how long should we dismiss the `UIView`
     ///     - animated: Animate the showing of the `UIView`
-    public func post(view: UIView,
-                     dismiss: MessageDismiss = .default,
-                     animated: PostAnimation = .default) {
-        
+    public func post(
+        view: UIView,
+        dismiss: MessageDismiss = .default,
+        animated: PostAnimation = .default
+    ){
         // Check arguments
         guard dismiss.isValid() else {
             fatalError("Invalid \(MessageDismiss.self)")
         }
         
         // Remove from previous layout tree if it exists
-        view.removeFromSuperviewIfExists()
+        view.removeFromSuperview()
         
         // Fire will post
         delegate?.messageManager(self, willPost: view)
@@ -192,17 +165,20 @@ open class MessageManager {
         
         // Schedule timer to fire `remove` call
         timerMap[view] = Timer.scheduledTimer(
-            withTimeInterval: timeInterval, repeats: false) { [weak view, weak self] timer in
-                if let view = view, let self = self {
-                    self.remove(view: view, animated: animated.contains(.onRemove))
-                }
+            withTimeInterval: timeInterval,
+            repeats: false
+        ) { [weak view, weak self] timer in
+            if let view = view, let self = self {
+                self.remove(view: view, animated: animated.contains(.onRemove))
             }
+        }
     }
     
     // MARK: - Remove
     
     /// Remove a `MessageView`.
-    /// Checks if the `messageView` superview is the `messageStackView`, if not, does nothing and simply returns
+    /// Checks if the `messageView` superview is the `messageStackView`, if not,
+    /// does nothing and simply returns
     ///
     /// - Parameters:
     ///     - messageView: `UIView` to remove
@@ -319,25 +295,6 @@ extension PostAnimation {
     public static let `default`: PostAnimation = .both
 }
 
-extension MessageView {
-    
-    /// Apply `Message` to `MessageView`
-    func apply(message: Message) {
-        
-        // Title
-        titleLabel.text = message.title
-        
-        // Detail
-        subtitleLabel.setTextAndHidden(message.subtitle)
-        
-        // Left Image
-        leftImageView.setImageAndHidden(message.leftImage)
-        
-        // Right Image
-        rightImageView.setImageAndHidden(message.rightImage)
-    }
-}
-
 extension UIImageView {
     
     /// Set the `UIImageView.image` and update `isHidden` by nullability of`image`
@@ -360,15 +317,6 @@ extension UILabel {
 }
 
 extension UIView {
-    
-    /// Remove from `superview` if that `superview` exists.
-    /// Pretty sure this is the default behavior in `removeFromSuperview()` anyway but a harmless additional check
-    /// for (future?) safety
-    func removeFromSuperviewIfExists() {
-        if superview != nil {
-            removeFromSuperview()
-        }
-    }
     
     /// This is a default implemention of the `MessageConfigurable` protocol without actually
     /// implementing it.

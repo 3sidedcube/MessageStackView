@@ -8,8 +8,10 @@
 
 import UIKit
 
-/// Common use cases for constraining the `MessageStackView`.
-/// `MessageLayout` does not have to be used, one may constrain explicitly instead.
+/// Common use cases for constraining a`UIView` in the context of posting a message.
+///
+/// - Note:
+/// `MessageLayout` is not required, one may opt to constrain explicitly instead.
 public enum MessageLayout {
     
     /// Constrain `MessageStackView` to safe top, safe leading, and safe width of given `UIView`
@@ -17,6 +19,11 @@ public enum MessageLayout {
     
     /// Constrain `MessageStackView` to safe bottom, safe leading, and safe width of given `UIView`
     case bottom(UIView)
+}
+
+// MARK: - View
+
+public extension MessageLayout {
     
     /// Superview of the `MessageStackView`
     var view: UIView {
@@ -29,10 +36,11 @@ public enum MessageLayout {
 
 // MARK: - NSLayoutConstraint
 
-extension MessageLayout {
+public extension MessageLayout {
 
     /// Constrain `MessageStackView` based on `MessageLayout` value
-    func constrain(subview: MessageStackView) {
+    /// - Parameter subview: `UIView` to add as a subview to `self.view`
+    func constrain(subview: UIView) {
         let superview = self.view
         
         superview.addSubview(subview)
@@ -51,11 +59,18 @@ extension MessageLayout {
     }
     
     /// Constrain given `constraints` + leading and width anchor of `subview` to `superview`
-    private func constrain(_ subview: UIView, superview: UIView, including constraints: [NSLayoutConstraint]) {
+    /// - Parameters:
+    ///   - subview: `UIView` to add to `superview`
+    ///   - superview: `UIView` to have `subview` added to
+    ///   - constraints: Additional `NSLayoutConstraint`s
+    private func constrain(
+        _ subview: UIView,
+        superview: UIView,
+        including constraints: [NSLayoutConstraint]
+    ){
         NSLayoutConstraint.activate(constraints + [
             subview.leadingAnchor.constraint(equalTo: superview.safeLeadingAnchor),
             subview.widthAnchor.constraint(equalTo: superview.safeWidthAnchor)
         ])
     }
-    
 }

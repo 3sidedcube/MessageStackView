@@ -8,8 +8,7 @@
 
 import UIKit
 
-
-/// Apply a `MessageConfigurable`
+/// Apply a `MessageConfiguration`
 public protocol MessageConfigurable {
     
     /// Allow a `MessageConfiguration` to be applied

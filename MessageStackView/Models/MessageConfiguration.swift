@@ -24,11 +24,12 @@ public struct MessageConfiguration {
     public var applyToAll: Bool = false
     
     /// Public default memberwise initializer.
-    public init(backgroundColor: UIColor = MessageConfiguration.defaultBackgroundColor,
-                tintColor: UIColor = MessageConfiguration.defaultTintColor,
-                shadow: Bool = true,
-                applyToAll: Bool = false) {
-        
+    public init(
+        backgroundColor: UIColor = MessageConfiguration.defaultBackgroundColor,
+        tintColor: UIColor = MessageConfiguration.defaultTintColor,
+        shadow: Bool = true,
+        applyToAll: Bool = false
+    ){
         self.backgroundColor = backgroundColor
         self.tintColor = tintColor
         self.shadow = shadow
@@ -38,8 +39,10 @@ public struct MessageConfiguration {
     // MARK: - Constants
     
     /// Default background color of a `MessageView`
-     public static let defaultBackgroundColor = UIColor(red255: 245, green: 245, blue: 245)
-     
-     /// Default tint color of a `MessageView`
-     public static let defaultTintColor: UIColor = .darkGray
+    public static let defaultBackgroundColor = UIColor(
+        red255: 245, green255: 245, blue255: 245
+    )
+    
+    /// Default tint color of a `MessageView`
+    public static let defaultTintColor: UIColor = .darkGray
 }

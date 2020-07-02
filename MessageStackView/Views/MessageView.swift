@@ -15,11 +15,11 @@ import UIKit
 ///     - Vertically oriented `UIStackView`
 ///       - Title `UILabel`
 ///       - Detail `UILabel`
-open class MessageView : UIView
-{
+open class MessageView : UIView {
+    
     /// Constants for the `MessageView`
-    public struct Constants
-    {
+    public struct Constants {
+        
         /// Size of the `UIImageView`
         static let imageViewSize: CGSize = CGSize(width: 20, height: 20)
         
@@ -41,6 +41,7 @@ open class MessageView : UIView
         /// Default font for `detailLabel`
         static let detailFont = UIFont.systemFont(ofSize: 12, weight: .regular)
     }
+    
     /// Container view for other subviews of `MessageView`.
     /// Required for shadow: for smooth animations we need to clip subview content (`clipsToBounds = true` ),
     /// but this would remove shadow. So clip this `containerView`, but allow out of bounds content on the `MessageView`
@@ -96,16 +97,22 @@ open class MessageView : UIView
     /// `CGSize` of the `leftImageView`
     public var leftImageViewSize: CGSize = Constants.imageViewSize {
         didSet {
-            leftImageSizeConstaints?.setWidth(constant: leftImageViewSize.width)
-            leftImageSizeConstaints?.setHeight(constant: leftImageViewSize.height)
+            let width = leftImageViewSize.width
+            leftImageSizeConstaints?.setWidth(constant: width)
+            
+            let height = leftImageViewSize.height
+            leftImageSizeConstaints?.setHeight(constant: height)
         }
     }
     
     /// `CGSize` of the `rightImageView`
     public var rightImageViewSize: CGSize = Constants.imageViewSize {
         didSet {
-            rightImageSizeConstaints?.setWidth(constant: rightImageViewSize.width)
-            rightImageSizeConstaints?.setHeight(constant: rightImageViewSize.height)
+            let width = rightImageViewSize.width
+            rightImageSizeConstaints?.setWidth(constant: width)
+            
+            let height = rightImageViewSize.height
+            rightImageSizeConstaints?.setHeight(constant: height)
         }
     }
     
@@ -137,8 +144,8 @@ open class MessageView : UIView
     // MARK: - Setup
     
     /// Add subviews and constrain
-    internal func setup()
-    {
+    internal func setup() {
+        
         /// Explicity set default tintColor
         tintColor = Constants.defaultTintColor
         
