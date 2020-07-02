@@ -8,9 +8,9 @@
 
 import UIKit
 
-/// Simply a `UIStackView`, defined for type restriction
-open class MessageStackView: UIStackView
-{
+/// Simply, a `UIStackView`, defined for type restriction
+open class MessageStackView: UIStackView {
+    
     /// This view is for smooth animations when there are no `arrangedSubviews` in the `UIStackView`.
     /// Otherwise the `UIStackView` can not determine it's width/height.
     /// With "no arranged subviews", we want to fix the width according to it's constraints,
@@ -24,7 +24,7 @@ open class MessageStackView: UIStackView
         return view
     }()
     
-    /// Default init
+    /// Default initializer
     public convenience init() {
         self.init(arrangedSubviews: [])
         axis = .vertical

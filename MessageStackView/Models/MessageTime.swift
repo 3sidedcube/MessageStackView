@@ -19,9 +19,12 @@ public enum MessageDismiss {
     
     /// Don't dismiss the message after posting
     case never
+}
+
+public extension MessageDismiss {
 
     /// Validate the `MessageDismiss`
-    public func isValid() -> Bool {
+    func isValid() -> Bool {
         if case MessageDismiss.after(let timeInterval) = self {
             return timeInterval > 0
         }

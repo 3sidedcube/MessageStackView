@@ -17,7 +17,7 @@ import UIKit
 ///
 /// - Note:
 /// When talking about `UIEdgeInsets`, the value of `c` would refer to the opposite direction
-struct EdgeConstraints {
+struct EdgeConstraints: Constrainable {
     
     /// Leading anchor
     var leading: NSLayoutConstraint
@@ -31,12 +31,14 @@ struct EdgeConstraints {
     /// Bottom anchor
     var bottom: NSLayoutConstraint
     
-    // MARK: - Computed
+    // MARK: - Constrainable
     
     /// All `NSLayoutConstraint`s of `EdgeConstraints`
     var constraints: [NSLayoutConstraint] {
         return [leading, top, trailing, bottom]
     }
+    
+    // MARK: - UIEdgeInsets
     
     /// Constants of `constraints`
     var insets: UIEdgeInsets {
@@ -55,9 +57,44 @@ struct EdgeConstraints {
             bottom.constant = -newValue.bottom
         }
     }
+}
+
+// MARK: - UIView + EdgeConstraints
+
+extension UIView {
     
-    /// Activate `constraints`
-    func activate() {
-        NSLayoutConstraint.activate(constraints)
+    /// Construct `EdgeConstraints` `NSLayoutConstraint`s from
+    /// `self` to `view`
+    ///
+    /// - Parameters:
+    ///   - view: `UIView` to constrain to
+    ///   - activate: Activate the `NSLayoutConstraint`s
+    @discardableResult
+    func edgeConstraints(
+        to view: UIView,
+        activate: Bool = true
+    ) -> EdgeConstraints {
+        translatesAutoresizingMaskIntoConstraints = false
+        
+        let edgeConstraints = EdgeConstraints(
+            leading: leadingAnchor.constraint(
+                equalTo: view.leadingAnchor
+            ),
+            top: topAnchor.constraint(
+                equalTo: view.topAnchor
+            ),
+            trailing: trailingAnchor.constraint(
+                equalTo: view.trailingAnchor
+            ),
+            bottom: bottomAnchor.constraint(
+                equalTo: view.bottomAnchor
+            )
+        )
+        
+        if activate {
+            edgeConstraints.activate()
+        }
+        
+        return edgeConstraints
     }
 }

@@ -13,6 +13,7 @@ public struct PostAnimation: OptionSet {
     public let rawValue: Int
     
     /// Override access modifier to public
+    /// - Parameter rawValue: `Int`
     public init(rawValue: Int) {
         self.rawValue = rawValue
     }

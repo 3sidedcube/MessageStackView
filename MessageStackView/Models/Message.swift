@@ -23,10 +23,18 @@ public struct Message {
     /// Right `UIImage` of the message
     public var rightImage: UIImage? = nil
     
-    /// Public default memberwise initializer.
-    /// Definition required for public in framework, otherwise defaults to internal (unless there is a private var in which
-    /// case it would be private).
-    public init(title: String, subtitle: String? = nil, leftImage: UIImage? = nil, rightImage: UIImage? = nil) {
+    /// Default public memberwise initializer.
+    /// - Parameters:
+    ///   - title: `String` title of the message
+    ///   - subtitle: `String` subtitle of the message
+    ///   - leftImage: `UIImage` on left
+    ///   - rightImage: `UIImage` on right
+    public init(
+        title: String,
+        subtitle: String? = nil,
+        leftImage: UIImage? = nil,
+        rightImage: UIImage? = nil
+    ){
         self.title = title
         self.subtitle = subtitle
         self.leftImage = leftImage

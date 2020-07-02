@@ -15,7 +15,7 @@ import UIKit
 ///     - Vertically oriented `UIStackView`
 ///       - Title `UILabel`
 ///       - Detail `UILabel`
-open class MessageView : UIView {
+open class MessageView: UIView {
     
     /// Constants for the `MessageView`
     public struct Constants {
@@ -24,7 +24,9 @@ open class MessageView : UIView {
         static let imageViewSize: CGSize = CGSize(width: 20, height: 20)
         
         /// Inset of the `UIStackView` relative to the `MessageView`
-        static let stackViewInsets = UIEdgeInsets(top: 10, left: 15, bottom: 10, right: 15)
+        static let stackViewInsets = UIEdgeInsets(
+            top: 10, left: 15, bottom: 10, right: 15
+        )
         
         /// Vertical `UIStackView` spacing
         static let verticalStackViewSpacing: CGFloat = 5
@@ -51,13 +53,13 @@ open class MessageView : UIView {
         
         /// Hide subview content when the height of this view is being animated
         view.clipsToBounds = true
-        
         return view
     }()
     
     /// `UIStackView` subview of `MessageView` to position `UIImageView` and `UILabel`
     public private(set) lazy var horizontalStackView: UIStackView = {
-        let stackView = MessageView.defaultStackView(axis: .horizontal)
+        let stackView: UIStackView = .defaultStackView
+        stackView.axis = .horizontal
         stackView.alignment = .center
         stackView.spacing = Constants.horizontalStackViewSpacing
         return stackView
@@ -65,54 +67,46 @@ open class MessageView : UIView {
     
     /// `UIImageView`, first arrangedSubview of the horizontally oriented `UIStackView`
     public private(set) lazy var leftImageView: UIImageView = {
-        return MessageView.defaultImageView()
+        return .defaultImageView
     }()
     
     /// `UIStackView` subview of `MessageView` to position `UIImageView` and `UILabel`
     public private(set) lazy var verticalStackView: UIStackView = {
-        let stackView = MessageView.defaultStackView(axis: .vertical)
+        let stackView: UIStackView = .defaultStackView
         stackView.spacing = Constants.verticalStackViewSpacing
         return stackView
     }()
     
     /// `UILabel`, last arrangedSubview of the horizontally oriented `UIStackView`
     public private(set) lazy var titleLabel: UILabel = {
-        let label = MessageView.defaultLabel()
+        let label: UILabel = .defaultLabel
         label.font = Constants.titleFont
         return label
     }()
     
     /// `UILabel`, last arrangedSubview of the horizontally oriented `UIStackView`
     public private(set) lazy var subtitleLabel: UILabel = {
-        let label = MessageView.defaultLabel()
+        let label: UILabel = .defaultLabel
         label.font = Constants.detailFont
         return label
     }()
     
     /// `UIImageView`, first arrangedSubview of the horizontally oriented `UIStackView`
     public private(set) lazy var rightImageView: UIImageView = {
-        return MessageView.defaultImageView()
+        return .defaultImageView
     }()
     
     /// `CGSize` of the `leftImageView`
     public var leftImageViewSize: CGSize = Constants.imageViewSize {
         didSet {
-            let width = leftImageViewSize.width
-            leftImageSizeConstaints?.setWidth(constant: width)
-            
-            let height = leftImageViewSize.height
-            leftImageSizeConstaints?.setHeight(constant: height)
+            leftImageSizeConstaints.setSize(leftImageViewSize)
         }
     }
     
     /// `CGSize` of the `rightImageView`
     public var rightImageViewSize: CGSize = Constants.imageViewSize {
         didSet {
-            let width = rightImageViewSize.width
-            rightImageSizeConstaints?.setWidth(constant: width)
-            
-            let height = rightImageViewSize.height
-            rightImageSizeConstaints?.setHeight(constant: height)
+            rightImageSizeConstaints.setSize(rightImageViewSize)
         }
     }
     
@@ -169,7 +163,7 @@ open class MessageView : UIView {
         subtitleLabel.setContentCompressionResistancePriority(.init(700), for: .vertical)
         
         // Constrain
-        var constraints = constrainToEdges(for: containerView)
+        var constraints = containerView.edgeConstraints(to: self).constraints
 
         // When the view is being hidden in an animation, allow the bottom constraint to break so the animation is smooth
         let horizontalStackViewBottom = horizontalStackView.bottomAnchor.constraint(
@@ -185,10 +179,10 @@ open class MessageView : UIView {
                 equalTo: containerView.trailingAnchor, constant: -Constants.stackViewInsets.right),
             horizontalStackViewBottom
         ]
-        leftImageSizeConstaints = leftImageView.constrainSize(size: Constants.imageViewSize)
+        leftImageSizeConstaints = leftImageView.sizeConstraints(size: Constants.imageViewSize)
         constraints += leftImageSizeConstaints?.constraints ?? []
         
-        rightImageSizeConstaints = rightImageView.constrainSize(size: Constants.imageViewSize)
+        rightImageSizeConstaints = rightImageView.sizeConstraints(size: Constants.imageViewSize)
         constraints += rightImageSizeConstaints?.constraints ?? []
         
         NSLayoutConstraint.activate(constraints)
@@ -204,30 +198,45 @@ open class MessageView : UIView {
             rightImageView.tintColor = tintColor
         }
     }
+}
+
+// MARK: - UILabel + Default
+
+private extension UILabel {
     
-    // MARK: - Defaults
-    
-    private static func defaultImageView() -> UIImageView {
-        let imageView = UIImageView()
-        imageView.contentMode = .scaleAspectFit
-        imageView.image = nil
-        return imageView
-    }
-    
-    private static func defaultLabel() -> UILabel {
+    static var defaultLabel: UILabel {
         let label = UILabel()
         label.text = ""
         label.numberOfLines = 0
         label.textAlignment = .left
         return label
     }
+}
+
+// MARK: - UIStackView + Default
+
+private extension UIStackView {
     
-    private static func defaultStackView(axis: NSLayoutConstraint.Axis) -> UIStackView {
+    static var defaultStackView: UIStackView {
         let stackView = UIStackView()
-        stackView.axis = axis
+        stackView.axis = .vertical
         stackView.alignment = .fill
         stackView.distribution = .fill
         stackView.spacing = 0
         return stackView
     }
 }
+
+// MARK: - UIImageView + Default
+
+private extension UIImageView {
+    
+    static var defaultImageView: UIImageView {
+        let imageView = UIImageView()
+        imageView.contentMode = .scaleAspectFit
+        imageView.image = nil
+        return imageView
+    }
+}
+
+

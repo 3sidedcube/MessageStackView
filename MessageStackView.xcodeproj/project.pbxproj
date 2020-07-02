@@ -11,7 +11,6 @@
 		B84420A1238D3DF700462399 /* MessageStackView.h in Headers */ = {isa = PBXBuildFile; fileRef = B844209F238D3DF700462399 /* MessageStackView.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B84420AC238D3E1500462399 /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B84420A8238D3E1500462399 /* String+Extensions.swift */; };
 		B84420AD238D3E1500462399 /* UIColor+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B84420A9238D3E1500462399 /* UIColor+Extensions.swift */; };
-		B84420AE238D3E1500462399 /* UIView+Constraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = B84420AA238D3E1500462399 /* UIView+Constraints.swift */; };
 		B84420AF238D3E1500462399 /* UIView+SafeArea.swift in Sources */ = {isa = PBXBuildFile; fileRef = B84420AB238D3E1500462399 /* UIView+SafeArea.swift */; };
 		B84420B2238D3E2000462399 /* MessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B84420B1238D3E2000462399 /* MessageView.swift */; };
 		B84420B7238D3E2600462399 /* PostAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = B84420B4238D3E2600462399 /* PostAnimation.swift */; };
@@ -31,6 +30,7 @@
 		B8905C9424AE3BDA00306FAA /* MessageView+Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8905C9324AE3BDA00306FAA /* MessageView+Message.swift */; };
 		B8905C9724AE3DFA00306FAA /* MessageManagerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8905C9624AE3DFA00306FAA /* MessageManagerDelegate.swift */; };
 		B8905C9B24AE3F9B00306FAA /* EdgeConstraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8905C9A24AE3F9B00306FAA /* EdgeConstraints.swift */; };
+		B8905C9D24AE850C00306FAA /* Constrainable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8905C9C24AE850C00306FAA /* Constrainable.swift */; };
 		B8BE92F32396C9D00026E7AF /* SizeConstraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8BE92F22396C9D00026E7AF /* SizeConstraints.swift */; };
 /* End PBXBuildFile section */
 
@@ -51,7 +51,6 @@
 		B84420A0238D3DF700462399 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B84420A8238D3E1500462399 /* String+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
 		B84420A9238D3E1500462399 /* UIColor+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Extensions.swift"; sourceTree = "<group>"; };
-		B84420AA238D3E1500462399 /* UIView+Constraints.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Constraints.swift"; sourceTree = "<group>"; };
 		B84420AB238D3E1500462399 /* UIView+SafeArea.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+SafeArea.swift"; sourceTree = "<group>"; };
 		B84420B1238D3E2000462399 /* MessageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageView.swift; sourceTree = "<group>"; };
 		B84420B4238D3E2600462399 /* PostAnimation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostAnimation.swift; sourceTree = "<group>"; };
@@ -73,6 +72,7 @@
 		B8905C9324AE3BDA00306FAA /* MessageView+Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MessageView+Message.swift"; sourceTree = "<group>"; };
 		B8905C9624AE3DFA00306FAA /* MessageManagerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageManagerDelegate.swift; sourceTree = "<group>"; };
 		B8905C9A24AE3F9B00306FAA /* EdgeConstraints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EdgeConstraints.swift; sourceTree = "<group>"; };
+		B8905C9C24AE850C00306FAA /* Constrainable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constrainable.swift; sourceTree = "<group>"; };
 		B8BE92F22396C9D00026E7AF /* SizeConstraints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SizeConstraints.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -124,7 +124,7 @@
 			isa = PBXGroup;
 			children = (
 				B8073B4A2397B4A700D248A1 /* Protocols */,
-				B8BE92F42396C9DA0026E7AF /* Utilities */,
+				B8BE92F42396C9DA0026E7AF /* Constraints */,
 				B84420A7238D3E1500462399 /* Extensions */,
 				B84420B0238D3E2000462399 /* Views */,
 				B8905C9224AE3BC300306FAA /* ViewModels */,
@@ -141,7 +141,6 @@
 			children = (
 				B84420A8238D3E1500462399 /* String+Extensions.swift */,
 				B84420A9238D3E1500462399 /* UIColor+Extensions.swift */,
-				B84420AA238D3E1500462399 /* UIView+Constraints.swift */,
 				B84420AB238D3E1500462399 /* UIView+SafeArea.swift */,
 				B84420DD238D46D600462399 /* UIView+Shadow.swift */,
 			);
@@ -200,13 +199,14 @@
 			path = Manager;
 			sourceTree = "<group>";
 		};
-		B8BE92F42396C9DA0026E7AF /* Utilities */ = {
+		B8BE92F42396C9DA0026E7AF /* Constraints */ = {
 			isa = PBXGroup;
 			children = (
 				B8BE92F22396C9D00026E7AF /* SizeConstraints.swift */,
 				B8905C9A24AE3F9B00306FAA /* EdgeConstraints.swift */,
+				B8905C9C24AE850C00306FAA /* Constrainable.swift */,
 			);
-			path = Utilities;
+			path = Constraints;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -331,8 +331,8 @@
 				B8905C9B24AE3F9B00306FAA /* EdgeConstraints.swift in Sources */,
 				B84420DB238D444700462399 /* MessageConfiguration.swift in Sources */,
 				B84420D7238D3FAB00462399 /* MessageStackView.swift in Sources */,
+				B8905C9D24AE850C00306FAA /* Constrainable.swift in Sources */,
 				B84420AF238D3E1500462399 /* UIView+SafeArea.swift in Sources */,
-				B84420AE238D3E1500462399 /* UIView+Constraints.swift in Sources */,
 				B84420B7238D3E2600462399 /* PostAnimation.swift in Sources */,
 				B84420AC238D3E1500462399 /* String+Extensions.swift in Sources */,
 				B84420AD238D3E1500462399 /* UIColor+Extensions.swift in Sources */,
