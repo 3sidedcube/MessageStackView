@@ -31,6 +31,7 @@
 		B8905C9724AE3DFA00306FAA /* MessageManagerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8905C9624AE3DFA00306FAA /* MessageManagerDelegate.swift */; };
 		B8905C9B24AE3F9B00306FAA /* EdgeConstraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8905C9A24AE3F9B00306FAA /* EdgeConstraints.swift */; };
 		B8905C9D24AE850C00306FAA /* Constrainable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8905C9C24AE850C00306FAA /* Constrainable.swift */; };
+		B8905C9F24AE90AD00306FAA /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = B8905C9E24AE90AD00306FAA /* README.md */; };
 		B8BE92F32396C9D00026E7AF /* SizeConstraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8BE92F22396C9D00026E7AF /* SizeConstraints.swift */; };
 /* End PBXBuildFile section */
 
@@ -73,6 +74,7 @@
 		B8905C9624AE3DFA00306FAA /* MessageManagerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageManagerDelegate.swift; sourceTree = "<group>"; };
 		B8905C9A24AE3F9B00306FAA /* EdgeConstraints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EdgeConstraints.swift; sourceTree = "<group>"; };
 		B8905C9C24AE850C00306FAA /* Constrainable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constrainable.swift; sourceTree = "<group>"; };
+		B8905C9E24AE90AD00306FAA /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = SOURCE_ROOT; };
 		B8BE92F22396C9D00026E7AF /* SizeConstraints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SizeConstraints.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -131,6 +133,7 @@
 				B84420B3238D3E2600462399 /* Models */,
 				B8905C9524AE3DE900306FAA /* Manager */,
 				B844209F238D3DF700462399 /* MessageStackView.h */,
+				B8905C9E24AE90AD00306FAA /* README.md */,
 				B84420A0238D3DF700462399 /* Info.plist */,
 			);
 			path = MessageStackView;
@@ -301,6 +304,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B8905C9F24AE90AD00306FAA /* README.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

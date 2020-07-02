@@ -7,8 +7,8 @@ The most simple case is posting a `Message`, which in turn creates a `MessageVie
 
 There is an Example project in the repository, but a simple use case would be:  
 
-    class ViewController: UIViewController  
-    {  
+    class ViewController: UIViewController {
+    
         /// `MessageManager` for posting `Message`s  
         private let messageManager = MessageManager() 
         
@@ -22,7 +22,8 @@ There is an Example project in the repository, but a simple use case would be:
         private func onSomeEvent() {  
             messageManager.post(message: Message(  
                 title: "This is a title",  
-                subtitle: "This is a subtitle")  
+                subtitle: "This is a subtitle"
+            ))  
         }  
     }
 
