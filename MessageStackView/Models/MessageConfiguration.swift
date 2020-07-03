@@ -48,5 +48,4 @@ public extension UIColor {
     
     /// Default tint color of a `MessageView`
     static let defaultTintColor: UIColor = .darkGray
-    
 }

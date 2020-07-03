@@ -16,7 +16,6 @@
 		B84420B7238D3E2600462399 /* PostAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = B84420B4238D3E2600462399 /* PostAnimation.swift */; };
 		B84420B8238D3E2600462399 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = B84420B5238D3E2600462399 /* Message.swift */; };
 		B84420B9238D3E2600462399 /* MessageTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = B84420B6238D3E2600462399 /* MessageTime.swift */; };
-		B84420BC238D3E3800462399 /* MessageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B84420BA238D3E3800462399 /* MessageManager.swift */; };
 		B84420BD238D3E3800462399 /* MessageLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = B84420BB238D3E3800462399 /* MessageLayout.swift */; };
 		B84420C5238D3F0A00462399 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B84420C4238D3F0A00462399 /* AppDelegate.swift */; };
 		B84420C7238D3F0A00462399 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B84420C6238D3F0A00462399 /* SceneDelegate.swift */; };
@@ -28,11 +27,17 @@
 		B84420DB238D444700462399 /* MessageConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = B84420DA238D444700462399 /* MessageConfiguration.swift */; };
 		B84420DE238D46D600462399 /* UIView+Shadow.swift in Sources */ = {isa = PBXBuildFile; fileRef = B84420DD238D46D600462399 /* UIView+Shadow.swift */; };
 		B8905C9424AE3BDA00306FAA /* MessageView+Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8905C9324AE3BDA00306FAA /* MessageView+Message.swift */; };
-		B8905C9724AE3DFA00306FAA /* MessageManagerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8905C9624AE3DFA00306FAA /* MessageManagerDelegate.swift */; };
+		B8905C9724AE3DFA00306FAA /* MessageStackViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8905C9624AE3DFA00306FAA /* MessageStackViewDelegate.swift */; };
 		B8905C9B24AE3F9B00306FAA /* EdgeConstraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8905C9A24AE3F9B00306FAA /* EdgeConstraints.swift */; };
 		B8905C9D24AE850C00306FAA /* Constrainable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8905C9C24AE850C00306FAA /* Constrainable.swift */; };
 		B8905C9F24AE90AD00306FAA /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = B8905C9E24AE90AD00306FAA /* README.md */; };
 		B8BE92F32396C9D00026E7AF /* SizeConstraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8BE92F22396C9D00026E7AF /* SizeConstraints.swift */; };
+		B8F027EF24AFB0C700428B50 /* UIWindow+Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F027EE24AFB0C700428B50 /* UIWindow+Message.swift */; };
+		B8F027F224AFD0D000428B50 /* MessageStackView+Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F027F124AFD0D000428B50 /* MessageStackView+Post.swift */; };
+		B8F027F424AFD0DC00428B50 /* MessageStackView+Remove.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F027F324AFD0DC00428B50 /* MessageStackView+Remove.swift */; };
+		B8F027F624AFD3A900428B50 /* UIView+Hidden.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F027F524AFD3A900428B50 /* UIView+Hidden.swift */; };
+		B8F027F824AFD3DF00428B50 /* UIView+MessageConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F027F724AFD3DF00428B50 /* UIView+MessageConfiguration.swift */; };
+		B8F027FA24AFD5E200428B50 /* DispatchQueue+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F027F924AFD5E200428B50 /* DispatchQueue+Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,7 +62,6 @@
 		B84420B4238D3E2600462399 /* PostAnimation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostAnimation.swift; sourceTree = "<group>"; };
 		B84420B5238D3E2600462399 /* Message.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		B84420B6238D3E2600462399 /* MessageTime.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageTime.swift; sourceTree = "<group>"; };
-		B84420BA238D3E3800462399 /* MessageManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageManager.swift; sourceTree = "<group>"; };
 		B84420BB238D3E3800462399 /* MessageLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageLayout.swift; sourceTree = "<group>"; };
 		B84420C2238D3F0A00462399 /* Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B84420C4238D3F0A00462399 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -71,11 +75,17 @@
 		B84420DA238D444700462399 /* MessageConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageConfiguration.swift; sourceTree = "<group>"; };
 		B84420DD238D46D600462399 /* UIView+Shadow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Shadow.swift"; sourceTree = "<group>"; };
 		B8905C9324AE3BDA00306FAA /* MessageView+Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MessageView+Message.swift"; sourceTree = "<group>"; };
-		B8905C9624AE3DFA00306FAA /* MessageManagerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageManagerDelegate.swift; sourceTree = "<group>"; };
+		B8905C9624AE3DFA00306FAA /* MessageStackViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageStackViewDelegate.swift; sourceTree = "<group>"; };
 		B8905C9A24AE3F9B00306FAA /* EdgeConstraints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EdgeConstraints.swift; sourceTree = "<group>"; };
 		B8905C9C24AE850C00306FAA /* Constrainable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constrainable.swift; sourceTree = "<group>"; };
 		B8905C9E24AE90AD00306FAA /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = SOURCE_ROOT; };
 		B8BE92F22396C9D00026E7AF /* SizeConstraints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SizeConstraints.swift; sourceTree = "<group>"; };
+		B8F027EE24AFB0C700428B50 /* UIWindow+Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIWindow+Message.swift"; sourceTree = "<group>"; };
+		B8F027F124AFD0D000428B50 /* MessageStackView+Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MessageStackView+Post.swift"; sourceTree = "<group>"; };
+		B8F027F324AFD0DC00428B50 /* MessageStackView+Remove.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MessageStackView+Remove.swift"; sourceTree = "<group>"; };
+		B8F027F524AFD3A900428B50 /* UIView+Hidden.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Hidden.swift"; sourceTree = "<group>"; };
+		B8F027F724AFD3DF00428B50 /* UIView+MessageConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+MessageConfiguration.swift"; sourceTree = "<group>"; };
+		B8F027F924AFD5E200428B50 /* DispatchQueue+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DispatchQueue+Extensions.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -125,13 +135,14 @@
 		B844209E238D3DF700462399 /* MessageStackView */ = {
 			isa = PBXGroup;
 			children = (
+				B8F027F024AFD0B600428B50 /* Events */,
+				B8F027ED24AFB0BA00428B50 /* Window */,
 				B8073B4A2397B4A700D248A1 /* Protocols */,
 				B8BE92F42396C9DA0026E7AF /* Constraints */,
 				B84420A7238D3E1500462399 /* Extensions */,
 				B84420B0238D3E2000462399 /* Views */,
 				B8905C9224AE3BC300306FAA /* ViewModels */,
 				B84420B3238D3E2600462399 /* Models */,
-				B8905C9524AE3DE900306FAA /* Manager */,
 				B844209F238D3DF700462399 /* MessageStackView.h */,
 				B8905C9E24AE90AD00306FAA /* README.md */,
 				B84420A0238D3DF700462399 /* Info.plist */,
@@ -146,6 +157,8 @@
 				B84420A9238D3E1500462399 /* UIColor+Extensions.swift */,
 				B84420AB238D3E1500462399 /* UIView+SafeArea.swift */,
 				B84420DD238D46D600462399 /* UIView+Shadow.swift */,
+				B8F027F524AFD3A900428B50 /* UIView+Hidden.swift */,
+				B8F027F924AFD5E200428B50 /* DispatchQueue+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -154,6 +167,7 @@
 			isa = PBXGroup;
 			children = (
 				B84420B1238D3E2000462399 /* MessageView.swift */,
+				B8905C9624AE3DFA00306FAA /* MessageStackViewDelegate.swift */,
 				B84420D6238D3FAB00462399 /* MessageStackView.swift */,
 			);
 			path = Views;
@@ -164,6 +178,7 @@
 			children = (
 				B84420B5238D3E2600462399 /* Message.swift */,
 				B84420B6238D3E2600462399 /* MessageTime.swift */,
+				B84420BB238D3E3800462399 /* MessageLayout.swift */,
 				B84420DA238D444700462399 /* MessageConfiguration.swift */,
 				B84420B4238D3E2600462399 /* PostAnimation.swift */,
 			);
@@ -188,18 +203,9 @@
 			isa = PBXGroup;
 			children = (
 				B8905C9324AE3BDA00306FAA /* MessageView+Message.swift */,
+				B8F027F724AFD3DF00428B50 /* UIView+MessageConfiguration.swift */,
 			);
 			path = ViewModels;
-			sourceTree = "<group>";
-		};
-		B8905C9524AE3DE900306FAA /* Manager */ = {
-			isa = PBXGroup;
-			children = (
-				B84420BB238D3E3800462399 /* MessageLayout.swift */,
-				B84420BA238D3E3800462399 /* MessageManager.swift */,
-				B8905C9624AE3DFA00306FAA /* MessageManagerDelegate.swift */,
-			);
-			path = Manager;
 			sourceTree = "<group>";
 		};
 		B8BE92F42396C9DA0026E7AF /* Constraints */ = {
@@ -210,6 +216,23 @@
 				B8905C9C24AE850C00306FAA /* Constrainable.swift */,
 			);
 			path = Constraints;
+			sourceTree = "<group>";
+		};
+		B8F027ED24AFB0BA00428B50 /* Window */ = {
+			isa = PBXGroup;
+			children = (
+				B8F027EE24AFB0C700428B50 /* UIWindow+Message.swift */,
+			);
+			path = Window;
+			sourceTree = "<group>";
+		};
+		B8F027F024AFD0B600428B50 /* Events */ = {
+			isa = PBXGroup;
+			children = (
+				B8F027F124AFD0D000428B50 /* MessageStackView+Post.swift */,
+				B8F027F324AFD0DC00428B50 /* MessageStackView+Remove.swift */,
+			);
+			path = Events;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -325,11 +348,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B84420BC238D3E3800462399 /* MessageManager.swift in Sources */,
-				B8905C9724AE3DFA00306FAA /* MessageManagerDelegate.swift in Sources */,
+				B8905C9724AE3DFA00306FAA /* MessageStackViewDelegate.swift in Sources */,
 				B84420B9238D3E2600462399 /* MessageTime.swift in Sources */,
 				B8073B4C2397B4BF00D248A1 /* MessageConfigurable.swift in Sources */,
 				B84420DE238D46D600462399 /* UIView+Shadow.swift in Sources */,
+				B8F027F224AFD0D000428B50 /* MessageStackView+Post.swift in Sources */,
+				B8F027F424AFD0DC00428B50 /* MessageStackView+Remove.swift in Sources */,
+				B8F027EF24AFB0C700428B50 /* UIWindow+Message.swift in Sources */,
 				B8905C9424AE3BDA00306FAA /* MessageView+Message.swift in Sources */,
 				B8BE92F32396C9D00026E7AF /* SizeConstraints.swift in Sources */,
 				B8905C9B24AE3F9B00306FAA /* EdgeConstraints.swift in Sources */,
@@ -337,7 +362,10 @@
 				B84420D7238D3FAB00462399 /* MessageStackView.swift in Sources */,
 				B8905C9D24AE850C00306FAA /* Constrainable.swift in Sources */,
 				B84420AF238D3E1500462399 /* UIView+SafeArea.swift in Sources */,
+				B8F027F824AFD3DF00428B50 /* UIView+MessageConfiguration.swift in Sources */,
+				B8F027FA24AFD5E200428B50 /* DispatchQueue+Extensions.swift in Sources */,
 				B84420B7238D3E2600462399 /* PostAnimation.swift in Sources */,
+				B8F027F624AFD3A900428B50 /* UIView+Hidden.swift in Sources */,
 				B84420AC238D3E1500462399 /* String+Extensions.swift in Sources */,
 				B84420AD238D3E1500462399 /* UIColor+Extensions.swift in Sources */,
 				B84420B2238D3E2000462399 /* MessageView.swift in Sources */,
@@ -517,7 +545,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = MessageStackView/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -543,7 +571,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = MessageStackView/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

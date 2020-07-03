@@ -12,32 +12,30 @@ import MessageStackView
 /// - TODO: Build an interface with buttons for users to experiment with functionality
 class ViewController: UIViewController {
     
-    /// `MessageManager` to control
-    private lazy var messageManager: MessageManager = {
-        let messageManager = MessageManager()
-        messageManager.delegate = self
-        return messageManager
-    }()
+    /// `MessageStackView` to control
+    private lazy var messageStackView = MessageStackView()
 
     // MARK: - ViewController lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        messageManager.addTo(.top(view))
+        
+        messageStackView.delegate = self
+        messageStackView.addTo(.top(view))
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
 
         dispatchAfter(seconds: 2) { [weak self] in
-            self?.messageManager.post(message: Message(
+            self?.messageStackView.post(message: Message(
                 title: "This is a title",
                 subtitle: "This is a subtitle, with a left image",
                 leftImage: .information))
         }
         
         dispatchAfter(seconds: 4) { [weak self] in
-            let messageView = self?.messageManager.post(
+            let messageView = self?.messageStackView.post(
                 message: Message(
                     title: "This is another title",
                     subtitle: "And yes, this is another subtitle, but with the right image this time!",
@@ -49,22 +47,28 @@ class ViewController: UIViewController {
         }
         
         dispatchAfter(seconds: 6) { [weak self] in
-            self?.messageManager.post(view: CustomView(), dismiss: .onTap)
+            self?.messageStackView.post(view: CustomView(), dismiss: .onTap)
         }
     }
     
     // MARK: - Dispatch
     
     private func dispatchAfter(seconds: Int, closure: @escaping () -> Void) {
-        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(seconds), execute: closure)
+        DispatchQueue.main.asyncAfter(
+            deadline: .now() + .seconds(seconds),
+            execute: closure
+        )
     }
 }
 
 // MARK: - MessageManagerDelegate
 
-extension ViewController : MessageManagerDelegate {
+extension ViewController: MessageStackViewDelegate {
     
-    func messageManager(_ messageManager: MessageManager, willRemove view: UIView) {
+    func messageStackView(
+        _ messageStackView: MessageStackView,
+        willRemove view: UIView
+    ) {
         print("Will remove called!")
     }
     
@@ -72,7 +76,7 @@ extension ViewController : MessageManagerDelegate {
 
 // MARK: - CustomView
 
-fileprivate class CustomView: UIView, MessageConfigurable {
+fileprivate class CustomView: UIView {
     
     init() {
         super.init(frame: .zero)
@@ -89,11 +93,6 @@ fileprivate class CustomView: UIView, MessageConfigurable {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-    }
-    
-    func apply(configuration: MessageConfiguration) {
-        print("Called")
-        // do nothing
     }
 }
 // MARK: - Extensions

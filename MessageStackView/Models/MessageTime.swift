@@ -31,3 +31,9 @@ public extension MessageDismiss {
         return true
     }
 }
+
+extension MessageDismiss {
+    
+    /// Default `MessageDismiss`
+    public static let `default`: MessageDismiss = .after(3)
+}
