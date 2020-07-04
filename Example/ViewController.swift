@@ -41,13 +41,15 @@ class ViewController: UIViewController {
                     subtitle: "And yes, this is another subtitle, but with the right image this time!",
                     leftImage: .information,
                     rightImage: .cross),
-                dismiss: .after(8))
+                dismissAfter: 8)
             
             messageView?.rightImageViewSize = CGSize(width: 10, height: 10)
         }
         
         dispatchAfter(seconds: 6) { [weak self] in
-            self?.messageStackView.post(view: CustomView(), dismiss: .onTap)
+            let view = CustomView()
+            self?.messageStackView.post(view: view)
+            self?.messageStackView.addTapToRemoveGesture(to: view)
         }
     }
     

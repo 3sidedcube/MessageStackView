@@ -14,7 +14,7 @@ extension DispatchQueue {
     /// - Parameters:
     ///   - time: `DispatchTimeInterval`
     ///   - closure: Closure to execute
-    func dispatchAfter(
+    func asyncDispatchAfter(
         time: DispatchTimeInterval,
         closure: @escaping () -> Void
     ) {

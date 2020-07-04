@@ -31,6 +31,8 @@ public struct PostAnimation: OptionSet {
     public static let none: PostAnimation = []
 }
 
+// MARK: PostAnimation + Default
+
 extension PostAnimation {
     
     /// Default `PostAnimation`

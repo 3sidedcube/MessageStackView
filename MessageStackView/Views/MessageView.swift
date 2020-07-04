@@ -238,5 +238,3 @@ private extension UIImageView {
         return imageView
     }
 }
-
-
