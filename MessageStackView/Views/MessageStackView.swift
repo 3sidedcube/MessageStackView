@@ -40,8 +40,10 @@ open class MessageStackView: UIStackView {
             
             // If the `messageConfiguation` has updated, update
             // the current `UIView`s
-            arrangedSubviewsExcludingSpace.forEach {
-                configure(view: $0)
+            arrangedSubviewsExcludingSpace
+                .compactMap { $0 as? MessageConfigurable }
+                .forEach {
+                    apply(configuration: messageConfiguation)
             }
         }
     }
@@ -183,7 +185,7 @@ open class MessageStackView: UIStackView {
         animated: PostAnimation = .default
     ){
         // Time after post to dismiss, zero or `nil` to mean do not dismiss
-        let dismissTimeInterval = max(0, dismissAfter ?? 0)
+        let dismissAfterTimeInterval = max(0, dismissAfter ?? 0)
         
         // Remove from previous layout tree if it exists
         view.removeFromSuperview()
@@ -195,7 +197,7 @@ open class MessageStackView: UIStackView {
         addArrangedSubview(view)
         
         // Configure the message
-        configure(view: view)
+        view.apply(configuration: messageConfiguation)
         
         // Animate if required
         if animated.contains(.onPost) {
@@ -214,13 +216,13 @@ open class MessageStackView: UIStackView {
         }
         
         // Stop here if the caller does not want to dismiss this message
-        guard dismissTimeInterval > 0 else {
+        guard dismissAfterTimeInterval > 0 else {
             return
         }
         
         // Schedule timer to fire `remove` call
         timerMap[view] = Timer.scheduledTimer(
-            withTimeInterval: dismissTimeInterval,
+            withTimeInterval: dismissAfterTimeInterval,
             repeats: false
         ) { [weak view, weak self] timer in
             if let view = view, let self = self {
@@ -237,7 +239,10 @@ open class MessageStackView: UIStackView {
         guard tapGestureMap[view] == nil else {
             return
         }
-        let tap = UITapGestureRecognizer(target: self, action: #selector(viewTapped))
+        let tap = UITapGestureRecognizer(
+            target: self,
+            action: #selector(viewTapped)
+        )
         tapGestureMap[view] = tap
         view.addGestureRecognizer(tap)
     }
@@ -264,15 +269,16 @@ open class MessageStackView: UIStackView {
     
     // MARK: - Pan
     
-    // MARK: - Tap
-    
     /// Add `UIPanGestureRecognizer` to `view` to remove it from `self`
     /// - Parameter view: `UIView` to add gesture to
     public func addPanToRemoveGesture(to view: UIView) {
         guard panGestureMap[view] == nil else {
             return
         }
-        let tap = UIPanGestureRecognizer(target: self, action: #selector(viewPanned))
+        let tap = UIPanGestureRecognizer(
+            target: self,
+            action: #selector(viewPanned)
+        )
         panGestureMap[view] = tap
         view.addGestureRecognizer(tap)
     }
@@ -291,10 +297,37 @@ open class MessageStackView: UIStackView {
     /// When a `UIView` wants to be dismissed on pan.
     /// - Parameter sender: `UIPanGestureRecognizer`
     @objc private func viewPanned(_ sender: UIPanGestureRecognizer) {
-        guard sender.state == .ended, let view = sender.view else {
+        guard let view = sender.view else { return }
+        
+        switch sender.state {
+            
+        // Pan did update
+        case .changed:
+            view.transform = CGAffineTransform(
+                translationX: 0,
+                y: min(0, sender.translation(in: self).y)
+            )
             return
+            
+        // Pan did finish
+        case .ended:
+            let translateY = view.transform.ty
+            let centerY = view.center.y
+            
+            let finalY = centerY + translateY
+            if finalY < 0 {
+                remove(view: view, animated: true)
+                return
+            }
+            
+        // Other
+        default:
+            break
         }
-        remove(view: view, animated: true)
+        
+        UIView.animate(withDuration: .animationDuration) {
+            view.transform = .identity
+        }
     }
     
     // MARK: - Layout
@@ -311,17 +344,6 @@ open class MessageStackView: UIStackView {
         
         // Prevent the first animation also positioning the `messageStackView`
         layout.view.setNeedsLayout()
-    }
-    
-    // MARK: - Configuration
-    
-    /// Configure a `view` conforming to `MessageConfigurable` or provide a default implementation
-    public func configure(view: UIView) {
-        if let configurableView = view as? MessageConfigurable {
-            configurableView.apply(configuration: messageConfiguation)
-        } else {
-            view.defaultApply(configuration: messageConfiguation)
-        }
     }
 }
 

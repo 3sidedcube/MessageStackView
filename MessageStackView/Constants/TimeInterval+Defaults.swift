@@ -14,4 +14,8 @@ extension TimeInterval {
     
     /// Animation duration when showing/hiding the `MessageView`s
     static let animationDuration: TimeInterval = 0.25
+    
+    /// Amount of time after posting to dismiss a `UIView`.
+    /// When `nil`, do not dismiss.
+    static let defaultDismiss: TimeInterval? = nil
 }

@@ -10,7 +10,7 @@ import UIKit
 import MessageStackView
 
 /// - TODO: Build an interface with buttons for users to experiment with functionality
-class ViewController: UIViewController {
+class GeneralViewController: UIViewController {
     
     /// `MessageStackView` to control
     private lazy var messageStackView = MessageStackView()
@@ -65,7 +65,7 @@ class ViewController: UIViewController {
 
 // MARK: - MessageManagerDelegate
 
-extension ViewController: MessageStackViewDelegate {
+extension GeneralViewController: MessageStackViewDelegate {
     
     func messageStackView(
         _ messageStackView: MessageStackView,

@@ -9,15 +9,12 @@
 import Foundation
 import UIKit
 
-extension UIView {
+extension UIView: MessageConfigurable {
     
-    /// This is a default implemention of the `MessageConfigurable` protocol without actually
-    /// implementing it.
-    /// If we did implement it, then we would write an extension of `UIView` (a class) conforming to
-    /// it, but we would not be able to override that behavior in subclasses as you can not override
-    /// declarations in extensions.
-    /// As we can not provide the code in the `UIView` base class (and override that), declare here.
-    public func defaultApply(configuration: MessageConfiguration) {
+    /// Apply a `MessageConfiguration`
+    /// - Parameter configuration: `MessageConfiguration`
+    public func apply(configuration: MessageConfiguration) {
+        
         // backgroundColor
         backgroundColor = configuration.backgroundColor
         
@@ -30,14 +27,5 @@ extension UIView {
         } else {
             removeShadow()
         }
-    }
-}
-
-extension UIView: MessageConfigurable {
-    
-    /// Apply `configuration`
-    /// - Parameter configuration: `MessageConfiguration
-    public func apply(configuration: MessageConfiguration) {
-        defaultApply(configuration: configuration)
     }
 }
