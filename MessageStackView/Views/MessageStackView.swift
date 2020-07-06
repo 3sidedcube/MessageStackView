@@ -315,21 +315,4 @@ open class MessageStackView: UIStackView {
             view.transform = .identity
         }
     }
-    
-    // MARK: - Layout
-    
-    /// Layout the `MessageStackView` with a common `MessafeLayout` use case.
-    /// Custom layout is supported, simply add the `messageStackView` as a subview to a `UIView` and
-    /// constrain it accordingly.
-    public func addTo(_ layout: MessageLayout) {
-        // Remove from previous layout tree if exists
-        removeFromSuperview()
-        
-        // Constrain the `MessageStackView`
-        layout.constrain(subview: self)
-        
-        // Prevent the first animation also positioning the `messageStackView`
-        layout.view.setNeedsLayout()
-    }
 }
-

@@ -11,7 +11,7 @@ import UIKit
 // MARK: - ShakeViewDelegate
 
 /// Touch animation callbacks for `ShakeView`
-protocol ShakeViewDelegate: class {
+public protocol ShakeViewDelegate: class {
     
     /// Invoked when the touch animation starts
     /// - Parameter shakeView: `ShakeView`
@@ -33,7 +33,7 @@ protocol ShakeViewDelegate: class {
 }
 
 /// Implementation defaults for `ShakeViewDelegate`
-extension ShakeViewDelegate {
+public extension ShakeViewDelegate {
     
     func shakeViewAnimationDidStart(_ shakeView: ShakeView) {
         // do nothing
@@ -55,7 +55,7 @@ extension ShakeViewDelegate {
 // MARK: - ShakeView
 
 /// A `UIView` which "shakes" in response to touch and pulses when not touching
-class ShakeView: UIView {
+public class ShakeView: UIView {
     
     /// Fixed constants in `ShakeView`
     private struct Constants {
@@ -73,7 +73,7 @@ class ShakeView: UIView {
     // MARK: - Properties
     
     /// `ShakeViewDelegate` for touch animation related callbacks
-    weak var delegate: ShakeViewDelegate?
+    public weak var delegate: ShakeViewDelegate?
 
     /// `CADisplayLink` to sync selector when the screen updates
     private var displayLink: CADisplayLink?
@@ -155,12 +155,12 @@ class ShakeView: UIView {
     
     // MARK: - Lifecycle
     
-    override func didMoveToSuperview() {
+    public override func didMoveToSuperview() {
         super.didMoveToSuperview()
         startPulse()
     }
     
-    override func removeFromSuperview() {
+    public override func removeFromSuperview() {
         super.removeFromSuperview()
         invalidate()
     }
@@ -232,46 +232,34 @@ class ShakeView: UIView {
 
 extension ShakeView {
 
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+    public override func touchesBegan(
+        _ touches: Set<UITouch>,
+        with event: UIEvent?
+    ) {
         super.touchesBegan(touches, with: event)
         startAnimation()
     }
     
-    override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
+    public override func touchesCancelled(
+        _ touches: Set<UITouch>,
+        with event: UIEvent?
+    ) {
         super.touchesCancelled(touches, with: event)
         stopAnimation(complete: false)
     }
     
-    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+    public override func touchesEnded(
+        _ touches: Set<UITouch>,
+        with event: UIEvent?
+    ) {
         super.touchesEnded(touches, with: event)
         stopAnimation(complete: false)
     }
     
-    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
-        super.touchesMoved(touches, with: event)
-    }
-}
-
-// MARK: - Extensions
-
-extension UIView {
-    
-    /// Transform `self` in `x` and `y` by the given `scale`
-    /// - Parameters:
-    ///   - scale: Transform scale
-    ///   - duration: Duration of the animation
-    ///   - completion: Completion block to execute
-    func pulse(
-        scale: CGFloat = 1.1,
-        duration: TimeInterval = 0.5,
-        completion: ((Bool) -> Void)? = nil
+    public override func touchesMoved(
+        _ touches: Set<UITouch>,
+        with event: UIEvent?
     ) {
-        let from: [CGFloat] = [1, 1, 1]
-        let to = [scale, scale, scale]
-        let animation = layer.transformAnimation(duration: duration, from: from, to: to)
-        animation.autoreverses = true
-        animation.repeatCount = 1
-        layer.transform = CATransform3DIdentity // Reset back to identity matrix
-        layer.add(animation, forKey: #keyPath(layer.transform))
+        super.touchesMoved(touches, with: event)
     }
 }

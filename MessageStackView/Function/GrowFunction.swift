@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 /// `f(x) = M(1 - exp(-alpha * x))`
 /// `f -> M` as `x -> inf`

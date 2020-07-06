@@ -45,6 +45,9 @@
 		B8AA022B24B35DDE00F5BC4A /* CALayer+Animation.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8AA022A24B35DDE00F5BC4A /* CALayer+Animation.swift */; };
 		B8AA022D24B35EA800F5BC4A /* CGRect+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8AA022C24B35EA800F5BC4A /* CGRect+Extensions.swift */; };
 		B8AA022F24B35F7100F5BC4A /* UIEdgeInsets+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8AA022E24B35F7100F5BC4A /* UIEdgeInsets+Extensions.swift */; };
+		B8AA023224B360A700F5BC4A /* UIColor+Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8AA023124B360A700F5BC4A /* UIColor+Colors.swift */; };
+		B8AA023424B3619200F5BC4A /* UIView+Animation.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8AA023324B3619200F5BC4A /* UIView+Animation.swift */; };
+		B8AA023624B3620200F5BC4A /* UIView+MessageLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8AA023524B3620200F5BC4A /* UIView+MessageLayout.swift */; };
 		B8BE92F32396C9D00026E7AF /* SizeConstraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8BE92F22396C9D00026E7AF /* SizeConstraints.swift */; };
 		B8F027EF24AFB0C700428B50 /* UIView+MessageStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F027EE24AFB0C700428B50 /* UIView+MessageStackView.swift */; };
 		B8F027F224AFD0D000428B50 /* MessageStackView+Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F027F124AFD0D000428B50 /* MessageStackView+Message.swift */; };
@@ -128,6 +131,9 @@
 		B8AA022A24B35DDE00F5BC4A /* CALayer+Animation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CALayer+Animation.swift"; sourceTree = "<group>"; };
 		B8AA022C24B35EA800F5BC4A /* CGRect+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGRect+Extensions.swift"; sourceTree = "<group>"; };
 		B8AA022E24B35F7100F5BC4A /* UIEdgeInsets+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIEdgeInsets+Extensions.swift"; sourceTree = "<group>"; };
+		B8AA023124B360A700F5BC4A /* UIColor+Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Colors.swift"; sourceTree = "<group>"; };
+		B8AA023324B3619200F5BC4A /* UIView+Animation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Animation.swift"; sourceTree = "<group>"; };
+		B8AA023524B3620200F5BC4A /* UIView+MessageLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+MessageLayout.swift"; sourceTree = "<group>"; };
 		B8BE92F22396C9D00026E7AF /* SizeConstraints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SizeConstraints.swift; sourceTree = "<group>"; };
 		B8F027EE24AFB0C700428B50 /* UIView+MessageStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+MessageStackView.swift"; sourceTree = "<group>"; };
 		B8F027F124AFD0D000428B50 /* MessageStackView+Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MessageStackView+Message.swift"; sourceTree = "<group>"; };
@@ -189,6 +195,7 @@
 		B844209E238D3DF700462399 /* MessageStackView */ = {
 			isa = PBXGroup;
 			children = (
+				B8AA023024B3609B00F5BC4A /* Theme */,
 				B8AA021D24B35D0C00F5BC4A /* Function */,
 				B8FF3D4724B0873200426272 /* Constants */,
 				B8073B4A2397B4A700D248A1 /* Protocols */,
@@ -217,6 +224,7 @@
 				B8AA021224B33A4500F5BC4A /* UIViewController+MessageStackView.swift */,
 				B8AA021424B33E1700F5BC4A /* UIApplication+StatusBar.swift */,
 				B8AA022A24B35DDE00F5BC4A /* CALayer+Animation.swift */,
+				B8AA023324B3619200F5BC4A /* UIView+Animation.swift */,
 				B8AA022C24B35EA800F5BC4A /* CGRect+Extensions.swift */,
 				B8AA022E24B35F7100F5BC4A /* UIEdgeInsets+Extensions.swift */,
 			);
@@ -267,6 +275,7 @@
 				B8F027F124AFD0D000428B50 /* MessageStackView+Message.swift */,
 				B8905C9324AE3BDA00306FAA /* MessageView+Message.swift */,
 				B8F027F724AFD3DF00428B50 /* UIView+MessageConfiguration.swift */,
+				B8AA023524B3620200F5BC4A /* UIView+MessageLayout.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -297,6 +306,14 @@
 				B8AA022324B35DA300F5BC4A /* ShakeFunction.swift */,
 			);
 			path = Function;
+			sourceTree = "<group>";
+		};
+		B8AA023024B3609B00F5BC4A /* Theme */ = {
+			isa = PBXGroup;
+			children = (
+				B8AA023124B360A700F5BC4A /* UIColor+Colors.swift */,
+			);
+			path = Theme;
 			sourceTree = "<group>";
 		};
 		B8BE92F42396C9DA0026E7AF /* Constraints */ = {
@@ -432,9 +449,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				B8AA022F24B35F7100F5BC4A /* UIEdgeInsets+Extensions.swift in Sources */,
+				B8AA023224B360A700F5BC4A /* UIColor+Colors.swift in Sources */,
 				B8905C9724AE3DFA00306FAA /* MessageStackViewDelegate.swift in Sources */,
 				B8073B4C2397B4BF00D248A1 /* MessageConfigurable.swift in Sources */,
 				B8AA022824B35DA300F5BC4A /* ScaleFunction.swift in Sources */,
+				B8AA023424B3619200F5BC4A /* UIView+Animation.swift in Sources */,
 				B84420DE238D46D600462399 /* UIView+Shadow.swift in Sources */,
 				B8AA022D24B35EA800F5BC4A /* CGRect+Extensions.swift in Sources */,
 				B8F027F224AFD0D000428B50 /* MessageStackView+Message.swift in Sources */,
@@ -451,6 +470,7 @@
 				B84420D7238D3FAB00462399 /* MessageStackView.swift in Sources */,
 				B8905C9D24AE850C00306FAA /* Constrainable.swift in Sources */,
 				B84420AF238D3E1500462399 /* UIView+SafeArea.swift in Sources */,
+				B8AA023624B3620200F5BC4A /* UIView+MessageLayout.swift in Sources */,
 				B8FF3D4E24B13ACE00426272 /* MessageViewable.swift in Sources */,
 				B8F027F824AFD3DF00428B50 /* UIView+MessageConfiguration.swift in Sources */,
 				B8F027FA24AFD5E200428B50 /* DispatchQueue+Extensions.swift in Sources */,

@@ -9,7 +9,7 @@
 import UIKit
 
 /// `UIView` for displaying a badge.
-class BadgeView: BadgeContainerView {
+open class BadgeView: BadgeContainerView {
     
     /// Fixed constants for `BadgeView`
     private struct Constants {
@@ -30,7 +30,7 @@ class BadgeView: BadgeContainerView {
     // MARK: - Computed
     
     /// Shorthand for getting and setting `image` of `imageView`
-    var image: UIImage? {
+    public var image: UIImage? {
         get {
             return imageView.image
         }
@@ -40,7 +40,7 @@ class BadgeView: BadgeContainerView {
     }
     
     /// Drive `UIImageView`s `tintColor` from `tintColor` of `self`
-    override var tintColor: UIColor! {
+    public override var tintColor: UIColor! {
         get {
             return super.tintColor
         }
@@ -52,16 +52,16 @@ class BadgeView: BadgeContainerView {
 
     // MARK: - Init
     
-    convenience init() {
+    public convenience init() {
         self.init(frame: .zero)
     }
     
-    override init(frame: CGRect) {
+    public override init(frame: CGRect) {
         super.init(frame: frame)
         setup()
     }
     
-    required init?(coder aDecoder: NSCoder) {
+    public required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         setup()
     }

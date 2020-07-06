@@ -12,7 +12,7 @@ import UIKit
 ///
 /// - Note:
 /// Inherit `ShakeView` to add badge animations
-class BadgeContainerView: UIView {
+open class BadgeContainerView: UIView {
     
     /// Fixed constants
     private struct Constants {
@@ -31,29 +31,29 @@ class BadgeContainerView: UIView {
     }
     
     /// Amount the fill path is inset by from the `bounds`
-    var containerBorderWidth: CGFloat = 2 { didSet { setNeedsDisplay() } }
+    public var containerBorderWidth: CGFloat = 2 { didSet { setNeedsDisplay() } }
     
     /// The corner radius of the rounded rect path
-    var containerCornerRadius: CGFloat = 35 { didSet { setNeedsLayout() } }
+    public var containerCornerRadius: CGFloat = 35 { didSet { setNeedsLayout() } }
     
     /// The color of the border
-    var containerBorderColor: UIColor = .white { didSet { setNeedsDisplay() } }
+    public var containerBorderColor: UIColor = .white { didSet { setNeedsDisplay() } }
     
     /// The color to fill the view, rounded rect inset by `borderWidth` from `bounds`
-    var fillColor: UIColor = .arcRed { didSet { setNeedsDisplay() } }
+    public var fillColor: UIColor = .themeRed { didSet { setNeedsDisplay() } }
     
     // MARK: - Init
     
-    convenience init() {
+    public convenience init() {
         self.init(frame: .zero)
     }
     
-    override init(frame: CGRect) {
+    public override init(frame: CGRect) {
         super.init(frame: frame)
         setup()
     }
     
-    required init?(coder aDecoder: NSCoder) {
+    public required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         setup()
     }
@@ -65,12 +65,12 @@ class BadgeContainerView: UIView {
     
     // MARK: - Lifecycle
     
-    override func layoutSubviews() {
+    public override func layoutSubviews() {
         super.layoutSubviews()
         updateLayer()
     }
     
-    override var intrinsicContentSize: CGSize {
+    public override var intrinsicContentSize: CGSize {
         return CGSize(
             width: Constants.intrinsicSize,
             height: Constants.intrinsicSize
@@ -79,7 +79,7 @@ class BadgeContainerView: UIView {
     
     // MARK: - Draw
     
-    override func draw(_ rect: CGRect) {
+    public override func draw(_ rect: CGRect) {
         super.draw(rect)
         
         // Fill the whole bounds with the border color
