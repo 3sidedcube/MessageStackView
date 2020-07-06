@@ -27,7 +27,7 @@ open class BadgeMessageView: UIView {
         
         /// `UIEdgeInsets` of the `horizontalStackView` from self
         static let horizontalStackViewInsets = UIEdgeInsets(
-            top: 20, left: 15, bottom: 20, right: 15
+            top: 20, left: 15, bottom: 20, right: 15 - buttonInset.right
         )
         
         /// Fixed `CGSize` of the `badgeView`
@@ -41,6 +41,15 @@ open class BadgeMessageView: UIView {
     }
     
     // MARK: - Subviews
+    
+    /// Subview of `self` but container (super) `UIView` for all other subviews.
+    /// This is so this `UIView` can clip content but we can apply shadow on `self`.
+    private(set) lazy var containerView: UIView = {
+        let view = UIView()
+        view.backgroundColor = UIColor.clear
+        view.clipsToBounds = true
+        return view
+    }()
     
     /// Root, horizontally aligned `UIStackView`
     public private(set) lazy var horizontalStackView: UIStackView = {
@@ -123,6 +132,7 @@ open class BadgeMessageView: UIView {
         
         // cornerRadius
         layer.cornerRadius = Constants.cornerRadius
+        containerView.layer.cornerRadius = layer.cornerRadius
         
         // layer
         updateLayer()
@@ -143,17 +153,24 @@ open class BadgeMessageView: UIView {
         horizontalStackView.addArrangedSubview(verticalStackView)
         horizontalStackView.addArrangedSubview(button)
         
-        // self
-        addSubview(backgroundImageView)
-        addSubview(horizontalStackView)
+        // containerView
+        containerView.addSubview(backgroundImageView)
+        containerView.addSubview(horizontalStackView)
         
+        // self
+        addSubview(containerView)
+        
+        // Constrain
         addConstraints()
     }
     
     private func addConstraints() {
+        // containerView
+        containerView.edgeConstraints(to: self)
+        
         // horizontalStackView
-        var edgeConstraints = horizontalStackView.edgeConstraints(to: self)
-        edgeConstraints.insets = Constants.horizontalStackViewInsets
+        var edge = horizontalStackView.edgeConstraints(to: containerView)
+        edge.insets = Constants.horizontalStackViewInsets
         
         // badgeView
         let size = badgeView.sizeConstraints(size: Constants.badgeViewSize)
