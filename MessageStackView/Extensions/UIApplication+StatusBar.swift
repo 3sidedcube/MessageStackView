@@ -13,9 +13,11 @@ extension UIApplication {
     /// `CGRect` frame of the Status Bar
     var appStatusBarFrame: CGRect {
         guard #available(iOS 13, *) else {
+            // If not iOS 13 simply return `statusBarFrame`
             return statusBarFrame
         }
         
+        // Otherwise find the key window and get frame from the scene
         let window = windows.first { $0.isKeyWindow }
         return window?.windowScene?.statusBarManager?.statusBarFrame ?? .zero
     }
