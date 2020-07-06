@@ -9,11 +9,11 @@
 import Foundation
 import UIKit
 
-public extension MessageView {
+extension MessageView: MessageViewable {
     
     /// Apply `Message` to `MessageView`
     /// - Parameter message: `Message`
-    func apply(message: Message) {
+    public func apply(message: Message) {
         
         // Title
         titleLabel.text = message.title

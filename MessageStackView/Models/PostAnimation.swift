@@ -30,3 +30,11 @@ public struct PostAnimation: OptionSet {
     /// Don't animate on either post or remove
     public static let none: PostAnimation = []
 }
+
+// MARK: PostAnimation + Default
+
+extension PostAnimation {
+    
+    /// Default `PostAnimation`
+    public static let `default`: PostAnimation = .both
+}
