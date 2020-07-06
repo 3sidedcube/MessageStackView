@@ -17,30 +17,54 @@ open class BadgeContainerView: UIView {
     /// Fixed constants
     private struct Constants {
         
-        /// `UIColor` of the shadow
-        static let shadowColor: UIColor = .lightGray
-
-        /// `CGFloat` to determine the opacity/alpha of the shadow
-        static let shadowOpacity: Float = 0.6
-
-        /// `CGFloat` radius of the shadow
-        static let shadowRadius: CGFloat = 3
-
         /// Instrinsic width and height of `BadgeContainerView`
         static let intrinsicSize: CGFloat = 150
     }
     
     /// Amount the fill path is inset by from the `bounds`
-    public var containerBorderWidthScale: CGFloat = 2/150 { didSet { setNeedsDisplay() } }
+    public var containerBorderWidthScale: CGFloat = 1/75 {
+        didSet {
+            setNeedsDisplay()
+        }
+    }
     
     /// The corner radius of the rounded rect path
-    public var containerCornerRadiusScale: CGFloat = 35/150 { didSet { setNeedsLayout() } }
+    public var containerCornerRadiusScale: CGFloat = 7/30 {
+        didSet {
+            setNeedsLayout()
+        }
+    }
     
     /// The color of the border
-    public var containerBorderColor: UIColor = .white { didSet { setNeedsDisplay() } }
+    public var containerBorderColor: UIColor = .white {
+        didSet {
+            setNeedsDisplay()
+        }
+    }
     
     /// The color to fill the view, rounded rect inset by `borderWidth` from `bounds`
-    public var fillColor: UIColor = .themeRed { didSet { setNeedsDisplay() } }
+    public var fillColor: UIColor = .themeRed {
+        didSet {
+            setNeedsDisplay()
+        }
+    }
+    
+    // MARK: - Computed
+    
+    /// Min of the `bounds` width and height
+    private var size: CGFloat {
+        return min(bounds.size.width, bounds.size.height)
+    }
+    
+    /// Corner radius by scaling `size` according to `containerCornerRadiusScale`
+    private var cornerRadius: CGFloat {
+        return containerCornerRadiusScale * size
+    }
+    
+    /// Border width by scaling `size` according to `containerBorderWidthScale`
+    private var borderWidth: CGFloat {
+        return containerBorderWidthScale * size
+    }
     
     // MARK: - Init
     
@@ -116,26 +140,10 @@ open class BadgeContainerView: UIView {
         path.fill()
     }
     
-    // MARK: - Computed
-    
-    private var size: CGFloat {
-        return min(bounds.size.width, bounds.size.height)
-    }
-    
-    /// Corner radius by scaling `bounds` according to `containerCornerRadiusScale`
-    private var cornerRadius: CGFloat {
-        return containerCornerRadiusScale * size
-    }
-    
-    /// Border width by scaling `bounds` according to `containerBorderWidthScale`
-    private var borderWidth: CGFloat {
-        return containerBorderWidthScale * size
-    }
-    
     // MARK: - Layer
     
-    /// Update:
-    /// - corner radius
+    /// Update `layer`:
+    /// - cornerRadius
     /// - shadow
     private func updateLayer() {
         updateCornerRadius(cornerRadius)
