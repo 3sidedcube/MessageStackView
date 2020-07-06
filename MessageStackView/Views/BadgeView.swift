@@ -1,0 +1,84 @@
+//
+//  BadgeView.swift
+//  Ex
+//
+//  Created by Ben Shutt on 05/03/2020.
+//  Copyright © 2020 BenShutt. All rights reserved.
+//
+
+import UIKit
+
+/// `UIView` for displaying a badge.
+class BadgeView: BadgeContainerView {
+    
+    /// Fixed constants for `BadgeView`
+    private struct Constants {
+        
+        /// Width of `imageView` subview relative to `self`
+        static let imageViewWidthScale: CGFloat = 0.6
+    }
+    
+    /// `UIImageView` subview
+    private(set) lazy var imageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.image = nil
+        imageView.tintColor = .white
+        imageView.contentMode = .scaleAspectFill
+        return imageView
+    }()
+    
+    // MARK: - Computed
+    
+    /// Shorthand for getting and setting `image` of `imageView`
+    var image: UIImage? {
+        get {
+            return imageView.image
+        }
+        set {
+            imageView.image = newValue?.withRenderingMode(.alwaysTemplate)
+        }
+    }
+    
+    /// Drive `UIImageView`s `tintColor` from `tintColor` of `self`
+    override var tintColor: UIColor! {
+        get {
+            return super.tintColor
+        }
+        set {
+            super.tintColor = newValue
+            imageView.tintColor = newValue
+        }
+    }
+
+    // MARK: - Init
+    
+    convenience init() {
+        self.init(frame: .zero)
+    }
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        setup()
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        setup()
+    }
+    
+    // MARK: - Setup
+    
+    private func setup() {
+        addSubview(imageView)
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            imageView.centerXAnchor.constraint(equalTo: centerXAnchor),
+            imageView.centerYAnchor.constraint(equalTo: centerYAnchor),
+            imageView.widthAnchor.constraint(
+                equalTo: widthAnchor, multiplier:
+                Constants.imageViewWidthScale
+            ),
+            imageView.heightAnchor.constraint(equalTo: imageView.widthAnchor)
+        ])
+    }
+}

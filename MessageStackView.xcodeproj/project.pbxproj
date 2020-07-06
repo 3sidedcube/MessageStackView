@@ -35,6 +35,16 @@
 		B8AA020A24B31D6D00F5BC4A /* MessageStackView.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B844209C238D3DF700462399 /* MessageStackView.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		B8AA021324B33A4500F5BC4A /* UIViewController+MessageStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8AA021224B33A4500F5BC4A /* UIViewController+MessageStackView.swift */; };
 		B8AA021524B33E1700F5BC4A /* UIApplication+StatusBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8AA021424B33E1700F5BC4A /* UIApplication+StatusBar.swift */; };
+		B8AA021A24B35CAF00F5BC4A /* BadgeContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8AA021724B35CAF00F5BC4A /* BadgeContainerView.swift */; };
+		B8AA021B24B35CAF00F5BC4A /* BadgeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8AA021824B35CAF00F5BC4A /* BadgeView.swift */; };
+		B8AA021C24B35CAF00F5BC4A /* ShakeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8AA021924B35CAF00F5BC4A /* ShakeView.swift */; };
+		B8AA022424B35DA300F5BC4A /* Function.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8AA021E24B35DA300F5BC4A /* Function.swift */; };
+		B8AA022724B35DA300F5BC4A /* GrowFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8AA022124B35DA300F5BC4A /* GrowFunction.swift */; };
+		B8AA022824B35DA300F5BC4A /* ScaleFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8AA022224B35DA300F5BC4A /* ScaleFunction.swift */; };
+		B8AA022924B35DA300F5BC4A /* ShakeFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8AA022324B35DA300F5BC4A /* ShakeFunction.swift */; };
+		B8AA022B24B35DDE00F5BC4A /* CALayer+Animation.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8AA022A24B35DDE00F5BC4A /* CALayer+Animation.swift */; };
+		B8AA022D24B35EA800F5BC4A /* CGRect+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8AA022C24B35EA800F5BC4A /* CGRect+Extensions.swift */; };
+		B8AA022F24B35F7100F5BC4A /* UIEdgeInsets+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8AA022E24B35F7100F5BC4A /* UIEdgeInsets+Extensions.swift */; };
 		B8BE92F32396C9D00026E7AF /* SizeConstraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8BE92F22396C9D00026E7AF /* SizeConstraints.swift */; };
 		B8F027EF24AFB0C700428B50 /* UIView+MessageStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F027EE24AFB0C700428B50 /* UIView+MessageStackView.swift */; };
 		B8F027F224AFD0D000428B50 /* MessageStackView+Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F027F124AFD0D000428B50 /* MessageStackView+Message.swift */; };
@@ -108,6 +118,16 @@
 		B8926B9124B26A900084C2F4 /* PanViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PanViewController.swift; sourceTree = "<group>"; };
 		B8AA021224B33A4500F5BC4A /* UIViewController+MessageStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+MessageStackView.swift"; sourceTree = "<group>"; };
 		B8AA021424B33E1700F5BC4A /* UIApplication+StatusBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIApplication+StatusBar.swift"; sourceTree = "<group>"; };
+		B8AA021724B35CAF00F5BC4A /* BadgeContainerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BadgeContainerView.swift; sourceTree = "<group>"; };
+		B8AA021824B35CAF00F5BC4A /* BadgeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BadgeView.swift; sourceTree = "<group>"; };
+		B8AA021924B35CAF00F5BC4A /* ShakeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShakeView.swift; sourceTree = "<group>"; };
+		B8AA021E24B35DA300F5BC4A /* Function.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Function.swift; sourceTree = "<group>"; };
+		B8AA022124B35DA300F5BC4A /* GrowFunction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GrowFunction.swift; sourceTree = "<group>"; };
+		B8AA022224B35DA300F5BC4A /* ScaleFunction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScaleFunction.swift; sourceTree = "<group>"; };
+		B8AA022324B35DA300F5BC4A /* ShakeFunction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShakeFunction.swift; sourceTree = "<group>"; };
+		B8AA022A24B35DDE00F5BC4A /* CALayer+Animation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CALayer+Animation.swift"; sourceTree = "<group>"; };
+		B8AA022C24B35EA800F5BC4A /* CGRect+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGRect+Extensions.swift"; sourceTree = "<group>"; };
+		B8AA022E24B35F7100F5BC4A /* UIEdgeInsets+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIEdgeInsets+Extensions.swift"; sourceTree = "<group>"; };
 		B8BE92F22396C9D00026E7AF /* SizeConstraints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SizeConstraints.swift; sourceTree = "<group>"; };
 		B8F027EE24AFB0C700428B50 /* UIView+MessageStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+MessageStackView.swift"; sourceTree = "<group>"; };
 		B8F027F124AFD0D000428B50 /* MessageStackView+Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MessageStackView+Message.swift"; sourceTree = "<group>"; };
@@ -169,6 +189,7 @@
 		B844209E238D3DF700462399 /* MessageStackView */ = {
 			isa = PBXGroup;
 			children = (
+				B8AA021D24B35D0C00F5BC4A /* Function */,
 				B8FF3D4724B0873200426272 /* Constants */,
 				B8073B4A2397B4A700D248A1 /* Protocols */,
 				B8BE92F42396C9DA0026E7AF /* Constraints */,
@@ -195,6 +216,9 @@
 				B8F027EE24AFB0C700428B50 /* UIView+MessageStackView.swift */,
 				B8AA021224B33A4500F5BC4A /* UIViewController+MessageStackView.swift */,
 				B8AA021424B33E1700F5BC4A /* UIApplication+StatusBar.swift */,
+				B8AA022A24B35DDE00F5BC4A /* CALayer+Animation.swift */,
+				B8AA022C24B35EA800F5BC4A /* CGRect+Extensions.swift */,
+				B8AA022E24B35F7100F5BC4A /* UIEdgeInsets+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -205,6 +229,9 @@
 				B84420B1238D3E2000462399 /* MessageView.swift */,
 				B8905C9624AE3DFA00306FAA /* MessageStackViewDelegate.swift */,
 				B84420D6238D3FAB00462399 /* MessageStackView.swift */,
+				B8AA021724B35CAF00F5BC4A /* BadgeContainerView.swift */,
+				B8AA021824B35CAF00F5BC4A /* BadgeView.swift */,
+				B8AA021924B35CAF00F5BC4A /* ShakeView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -259,6 +286,17 @@
 			children = (
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		B8AA021D24B35D0C00F5BC4A /* Function */ = {
+			isa = PBXGroup;
+			children = (
+				B8AA021E24B35DA300F5BC4A /* Function.swift */,
+				B8AA022124B35DA300F5BC4A /* GrowFunction.swift */,
+				B8AA022224B35DA300F5BC4A /* ScaleFunction.swift */,
+				B8AA022324B35DA300F5BC4A /* ShakeFunction.swift */,
+			);
+			path = Function;
 			sourceTree = "<group>";
 		};
 		B8BE92F42396C9DA0026E7AF /* Constraints */ = {
@@ -393,16 +431,23 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B8AA022F24B35F7100F5BC4A /* UIEdgeInsets+Extensions.swift in Sources */,
 				B8905C9724AE3DFA00306FAA /* MessageStackViewDelegate.swift in Sources */,
 				B8073B4C2397B4BF00D248A1 /* MessageConfigurable.swift in Sources */,
+				B8AA022824B35DA300F5BC4A /* ScaleFunction.swift in Sources */,
 				B84420DE238D46D600462399 /* UIView+Shadow.swift in Sources */,
+				B8AA022D24B35EA800F5BC4A /* CGRect+Extensions.swift in Sources */,
 				B8F027F224AFD0D000428B50 /* MessageStackView+Message.swift in Sources */,
 				B8AA021524B33E1700F5BC4A /* UIApplication+StatusBar.swift in Sources */,
 				B8F027EF24AFB0C700428B50 /* UIView+MessageStackView.swift in Sources */,
+				B8AA022924B35DA300F5BC4A /* ShakeFunction.swift in Sources */,
 				B8905C9424AE3BDA00306FAA /* MessageView+Message.swift in Sources */,
 				B8BE92F32396C9D00026E7AF /* SizeConstraints.swift in Sources */,
+				B8AA021B24B35CAF00F5BC4A /* BadgeView.swift in Sources */,
+				B8AA022424B35DA300F5BC4A /* Function.swift in Sources */,
 				B8905C9B24AE3F9B00306FAA /* EdgeConstraints.swift in Sources */,
 				B84420DB238D444700462399 /* MessageConfiguration.swift in Sources */,
+				B8AA022B24B35DDE00F5BC4A /* CALayer+Animation.swift in Sources */,
 				B84420D7238D3FAB00462399 /* MessageStackView.swift in Sources */,
 				B8905C9D24AE850C00306FAA /* Constrainable.swift in Sources */,
 				B84420AF238D3E1500462399 /* UIView+SafeArea.swift in Sources */,
@@ -412,6 +457,9 @@
 				B84420B7238D3E2600462399 /* PostAnimation.swift in Sources */,
 				B8F027F624AFD3A900428B50 /* UIView+Hidden.swift in Sources */,
 				B84420AC238D3E1500462399 /* String+Extensions.swift in Sources */,
+				B8AA022724B35DA300F5BC4A /* GrowFunction.swift in Sources */,
+				B8AA021A24B35CAF00F5BC4A /* BadgeContainerView.swift in Sources */,
+				B8AA021C24B35CAF00F5BC4A /* ShakeView.swift in Sources */,
 				B8F027FC24AFDCD800428B50 /* Queue.swift in Sources */,
 				B84420AD238D3E1500462399 /* UIColor+Extensions.swift in Sources */,
 				B84420B2238D3E2000462399 /* MessageView.swift in Sources */,
