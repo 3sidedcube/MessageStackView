@@ -204,6 +204,7 @@ open class MessageView: UIView {
 
 private extension UILabel {
     
+    /// `UILabel` setting default properties
     static var defaultLabel: UILabel {
         let label = UILabel()
         label.text = ""
@@ -217,6 +218,7 @@ private extension UILabel {
 
 private extension UIStackView {
     
+    /// `UIStackView` setting default properties
     static var defaultStackView: UIStackView {
         let stackView = UIStackView()
         stackView.axis = .vertical
@@ -231,6 +233,7 @@ private extension UIStackView {
 
 private extension UIImageView {
     
+    /// `UIImageView` setting default properties
     static var defaultImageView: UIImageView {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFit

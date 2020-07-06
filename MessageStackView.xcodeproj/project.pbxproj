@@ -31,6 +31,10 @@
 		B8905C9F24AE90AD00306FAA /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = B8905C9E24AE90AD00306FAA /* README.md */; };
 		B8926B9024B26A200084C2F4 /* RootTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8926B8F24B26A200084C2F4 /* RootTableViewController.swift */; };
 		B8926B9224B26A900084C2F4 /* PanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8926B9124B26A900084C2F4 /* PanViewController.swift */; };
+		B8AA020924B31D6D00F5BC4A /* MessageStackView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B844209C238D3DF700462399 /* MessageStackView.framework */; };
+		B8AA020A24B31D6D00F5BC4A /* MessageStackView.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B844209C238D3DF700462399 /* MessageStackView.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		B8AA021324B33A4500F5BC4A /* UIViewController+MessageStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8AA021224B33A4500F5BC4A /* UIViewController+MessageStackView.swift */; };
+		B8AA021524B33E1700F5BC4A /* UIApplication+StatusBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8AA021424B33E1700F5BC4A /* UIApplication+StatusBar.swift */; };
 		B8BE92F32396C9D00026E7AF /* SizeConstraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8BE92F22396C9D00026E7AF /* SizeConstraints.swift */; };
 		B8F027EF24AFB0C700428B50 /* UIView+MessageStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F027EE24AFB0C700428B50 /* UIView+MessageStackView.swift */; };
 		B8F027F224AFD0D000428B50 /* MessageStackView+Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F027F124AFD0D000428B50 /* MessageStackView+Message.swift */; };
@@ -50,7 +54,28 @@
 			remoteGlobalIDString = B844209B238D3DF700462399;
 			remoteInfo = MessageStackView;
 		};
+		B8AA020B24B31D6D00F5BC4A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B8442093238D3DF700462399 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B844209B238D3DF700462399;
+			remoteInfo = MessageStackView;
+		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		B8AA020D24B31D6D00F5BC4A /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				B8AA020A24B31D6D00F5BC4A /* MessageStackView.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		B8073B4B2397B4BF00D248A1 /* MessageConfigurable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageConfigurable.swift; sourceTree = "<group>"; };
@@ -81,6 +106,8 @@
 		B8905C9E24AE90AD00306FAA /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = SOURCE_ROOT; };
 		B8926B8F24B26A200084C2F4 /* RootTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootTableViewController.swift; sourceTree = "<group>"; };
 		B8926B9124B26A900084C2F4 /* PanViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PanViewController.swift; sourceTree = "<group>"; };
+		B8AA021224B33A4500F5BC4A /* UIViewController+MessageStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+MessageStackView.swift"; sourceTree = "<group>"; };
+		B8AA021424B33E1700F5BC4A /* UIApplication+StatusBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIApplication+StatusBar.swift"; sourceTree = "<group>"; };
 		B8BE92F22396C9D00026E7AF /* SizeConstraints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SizeConstraints.swift; sourceTree = "<group>"; };
 		B8F027EE24AFB0C700428B50 /* UIView+MessageStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+MessageStackView.swift"; sourceTree = "<group>"; };
 		B8F027F124AFD0D000428B50 /* MessageStackView+Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MessageStackView+Message.swift"; sourceTree = "<group>"; };
@@ -104,6 +131,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B8AA020924B31D6D00F5BC4A /* MessageStackView.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -125,6 +153,7 @@
 				B844209E238D3DF700462399 /* MessageStackView */,
 				B84420C3238D3F0A00462399 /* Example */,
 				B844209D238D3DF700462399 /* Products */,
+				B8AA020824B31D6D00F5BC4A /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -164,6 +193,8 @@
 				B8F027F524AFD3A900428B50 /* UIView+Hidden.swift */,
 				B8F027F924AFD5E200428B50 /* DispatchQueue+Extensions.swift */,
 				B8F027EE24AFB0C700428B50 /* UIView+MessageStackView.swift */,
+				B8AA021224B33A4500F5BC4A /* UIViewController+MessageStackView.swift */,
+				B8AA021424B33E1700F5BC4A /* UIApplication+StatusBar.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -223,6 +254,13 @@
 			path = ViewControllers;
 			sourceTree = "<group>";
 		};
+		B8AA020824B31D6D00F5BC4A /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		B8BE92F42396C9DA0026E7AF /* Constraints */ = {
 			isa = PBXGroup;
 			children = (
@@ -280,11 +318,13 @@
 				B84420BE238D3F0A00462399 /* Sources */,
 				B84420BF238D3F0A00462399 /* Frameworks */,
 				B84420C0238D3F0A00462399 /* Resources */,
+				B8AA020D24B31D6D00F5BC4A /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 				B84420D9238D430C00462399 /* PBXTargetDependency */,
+				B8AA020C24B31D6D00F5BC4A /* PBXTargetDependency */,
 			);
 			name = Example;
 			productName = Example;
@@ -357,6 +397,7 @@
 				B8073B4C2397B4BF00D248A1 /* MessageConfigurable.swift in Sources */,
 				B84420DE238D46D600462399 /* UIView+Shadow.swift in Sources */,
 				B8F027F224AFD0D000428B50 /* MessageStackView+Message.swift in Sources */,
+				B8AA021524B33E1700F5BC4A /* UIApplication+StatusBar.swift in Sources */,
 				B8F027EF24AFB0C700428B50 /* UIView+MessageStackView.swift in Sources */,
 				B8905C9424AE3BDA00306FAA /* MessageView+Message.swift in Sources */,
 				B8BE92F32396C9D00026E7AF /* SizeConstraints.swift in Sources */,
@@ -375,6 +416,7 @@
 				B84420AD238D3E1500462399 /* UIColor+Extensions.swift in Sources */,
 				B84420B2238D3E2000462399 /* MessageView.swift in Sources */,
 				B8FF3D4924B0874200426272 /* TimeInterval+Defaults.swift in Sources */,
+				B8AA021324B33A4500F5BC4A /* UIViewController+MessageStackView.swift in Sources */,
 				B84420B8238D3E2600462399 /* Message.swift in Sources */,
 				B84420BD238D3E3800462399 /* MessageLayout.swift in Sources */,
 			);
@@ -399,6 +441,11 @@
 			isa = PBXTargetDependency;
 			target = B844209B238D3DF700462399 /* MessageStackView */;
 			targetProxy = B84420D8238D430C00462399 /* PBXContainerItemProxy */;
+		};
+		B8AA020C24B31D6D00F5BC4A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B844209B238D3DF700462399 /* MessageStackView */;
+			targetProxy = B8AA020B24B31D6D00F5BC4A /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 

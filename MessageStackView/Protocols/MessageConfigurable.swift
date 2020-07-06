@@ -16,10 +16,3 @@ public protocol MessageConfigurable {
     /// - Parameter configuration: The `MessageConfiguration`
     func apply(configuration: MessageConfiguration)
 }
-
-extension MessageConfigurable {
-    
-    var defaultApply: Bool {
-        return false
-    }
-}

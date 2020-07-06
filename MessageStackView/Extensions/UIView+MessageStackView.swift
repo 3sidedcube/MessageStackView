@@ -11,7 +11,13 @@ import UIKit
 
 public extension UIView {
     
-    /// Get the first `MessageStackView` or create and add to top of `self`
+    /// Get the first `MessageStackView` or create and add to top of `self`.
+    ///
+    /// - Note:
+    /// This is only desired when only `MessageStackView` exists as a subview of a `UIView`.
+    /// This is the common use case. But it may be practical to have one at the top and another at
+    /// the bottom. In this case one must keep a reference to the `MessageStackView`s.
+    ///
     /// - Returns: `MessageStackView`
     func messageStackViewOrCreate() -> MessageStackView {
         // Get first `MessageStackView`

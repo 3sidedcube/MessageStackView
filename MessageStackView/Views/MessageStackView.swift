@@ -30,24 +30,6 @@ open class MessageStackView: UIStackView {
     /// `MessageStackViewDelegate`
     public weak var delegate: MessageStackViewDelegate?
     
-    /// Default `MessageConfiguration` which describes the default
-    /// look and feel of `MessageView`s.
-    public var messageConfiguation = MessageConfiguration() {
-        didSet {
-            guard messageConfiguation.applyToAll else {
-                return
-            }
-            
-            // If the `messageConfiguation` has updated, update
-            // the current `UIView`s
-            arrangedSubviewsExcludingSpace
-                .compactMap { $0 as? MessageConfigurable }
-                .forEach {
-                    apply(configuration: messageConfiguation)
-            }
-        }
-    }
-    
     // MARK: - Views
     
     /// This view is for smooth animations when there are no `arrangedSubviews`
@@ -58,11 +40,12 @@ open class MessageStackView: UIStackView {
     public lazy var spaceView: UIView = {
         let view = UIView()
         view.backgroundColor = .clear
-        view.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            view.heightAnchor.constraint(equalToConstant: 0)
-        ])
         return view
+    }()
+    
+    /// `NSLayoutConstraint` setting the constant of the height on the `spaceView`
+    internal lazy var spaceViewHeightConstraint: NSLayoutConstraint = {
+        return spaceView.heightAnchor.constraint(equalToConstant: 0)
     }()
     
     // MARK: - Init
@@ -75,7 +58,7 @@ open class MessageStackView: UIStackView {
         distribution = .fill
         spacing = 0
         
-        addArrangedSubview(spaceView)
+        addSpaceView()
     }
     
     /// Invalidate on deinit
@@ -84,6 +67,12 @@ open class MessageStackView: UIStackView {
     }
     
     // MARK: - ArrangedSubviews
+    
+    /// Add `spaceView` to the `arrangedSubviews`
+    private func addSpaceView() {
+        spaceView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([spaceViewHeightConstraint])
+    }
     
     /// `arrangedSubviews` excluding `spaceView`
     public var arrangedSubviewsExcludingSpace: [UIView] {
@@ -195,9 +184,6 @@ open class MessageStackView: UIStackView {
         
         // Add to the `messageStackView`
         addArrangedSubview(view)
-        
-        // Configure the message
-        view.apply(configuration: messageConfiguation)
         
         // Animate if required
         if animated.contains(.onPost) {

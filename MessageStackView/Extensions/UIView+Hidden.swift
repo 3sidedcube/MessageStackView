@@ -9,6 +9,8 @@
 import Foundation
 import UIKit
 
+// MARK: - UIImageView + Image + Hidden
+
 extension UIImageView {
     
     /// Set the `UIImageView.image` and update `isHidden` by nullability of`image`
@@ -19,12 +21,19 @@ extension UIImageView {
     }
 }
 
+// MARK: - UILabel + Text + Hidden
+
 extension UILabel {
     
     /// Set the `UILabel.text` and update `isHidden` by nullability of `text`
-    /// - Parameter text: `String` text to set
-    func setTextAndHidden(_ text: String?) {
-        let labelText = text ?? ""
+    /// - Parameters:
+    ///   - text: `String` text to set
+    ///   - trim: `Bool`, trim `.whitespaceAndNewlines` from `text`
+    func setTextAndHidden(_ text: String?, trim: Bool = false) {
+        var labelText = text ?? ""
+        if trim {
+            labelText = labelText.trimmed
+        }
         self.text = text
         isHidden = labelText.isEmpty
     }
