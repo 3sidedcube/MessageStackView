@@ -79,15 +79,17 @@ open class MessageView: UIView {
     
     /// `UILabel`, last arrangedSubview of the horizontally oriented `UIStackView`
     public private(set) lazy var titleLabel: UILabel = {
-        let label: UILabel = .defaultLabel
+        let label: UILabel = .default
         label.font = Constants.titleFont
+        label.textColor = .black
         return label
     }()
     
     /// `UILabel`, last arrangedSubview of the horizontally oriented `UIStackView`
     public private(set) lazy var subtitleLabel: UILabel = {
-        let label: UILabel = .defaultLabel
+        let label: UILabel = .default
         label.font = Constants.detailFont
+        label.textColor = .darkGray
         return label
     }()
     
@@ -197,20 +199,6 @@ open class MessageView: UIView {
             subtitleLabel.textColor = tintColor
             rightImageView.tintColor = tintColor
         }
-    }
-}
-
-// MARK: - UILabel + Default
-
-private extension UILabel {
-    
-    /// `UILabel` setting default properties
-    static var defaultLabel: UILabel {
-        let label = UILabel()
-        label.text = ""
-        label.numberOfLines = 0
-        label.textAlignment = .left
-        return label
     }
 }
 

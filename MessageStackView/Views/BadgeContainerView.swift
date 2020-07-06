@@ -122,22 +122,7 @@ open class BadgeContainerView: UIView {
     /// - corner radius
     /// - shadow
     private func updateLayer() {
-        updateCorners()
-        updateShadow()
-    }
-    
-    /// Set the `layer` corner radius
-    private func updateCorners() {
-        layer.cornerRadius = containerCornerRadius
-        layer.allowsEdgeAntialiasing = true
-    }
-    
-    /// Configure the `layer` shadow
-    private func updateShadow() {
-        layer.shadowColor = Constants.shadowColor.cgColor
-        layer.shadowOffset = .zero
-        layer.shadowPath = roundedPath(for: bounds).cgPath
-        layer.shadowOpacity = Constants.shadowOpacity
-        layer.shadowRadius = Constants.shadowRadius
+        updateCornerRadius(containerCornerRadius)
+        updateRoundedShadow()
     }
 }
