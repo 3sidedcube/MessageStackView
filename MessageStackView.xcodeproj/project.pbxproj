@@ -51,6 +51,8 @@
 		B8AA023C24B3645A00F5BC4A /* UIImage+Images.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8AA023B24B3645A00F5BC4A /* UIImage+Images.swift */; };
 		B8AA023F24B364F600F5BC4A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B8AA023E24B364F600F5BC4A /* Images.xcassets */; };
 		B8AA024124B3675F00F5BC4A /* UILabel+Default.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8AA024024B3675F00F5BC4A /* UILabel+Default.swift */; };
+		B8AA024324B3752800F5BC4A /* BadgeMessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8AA024224B3752800F5BC4A /* BadgeMessageViewController.swift */; };
+		B8AA024524B3767200F5BC4A /* BadgeMessageView+UI.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8AA024424B3767200F5BC4A /* BadgeMessageView+UI.swift */; };
 		B8BE92F32396C9D00026E7AF /* SizeConstraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8BE92F22396C9D00026E7AF /* SizeConstraints.swift */; };
 		B8F027EF24AFB0C700428B50 /* UIView+MessageStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F027EE24AFB0C700428B50 /* UIView+MessageStackView.swift */; };
 		B8F027F224AFD0D000428B50 /* MessageStackView+Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F027F124AFD0D000428B50 /* MessageStackView+Message.swift */; };
@@ -140,6 +142,8 @@
 		B8AA023B24B3645A00F5BC4A /* UIImage+Images.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Images.swift"; sourceTree = "<group>"; };
 		B8AA023E24B364F600F5BC4A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		B8AA024024B3675F00F5BC4A /* UILabel+Default.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Default.swift"; sourceTree = "<group>"; };
+		B8AA024224B3752800F5BC4A /* BadgeMessageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BadgeMessageViewController.swift; sourceTree = "<group>"; };
+		B8AA024424B3767200F5BC4A /* BadgeMessageView+UI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BadgeMessageView+UI.swift"; sourceTree = "<group>"; };
 		B8BE92F22396C9D00026E7AF /* SizeConstraints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SizeConstraints.swift; sourceTree = "<group>"; };
 		B8F027EE24AFB0C700428B50 /* UIView+MessageStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+MessageStackView.swift"; sourceTree = "<group>"; };
 		B8F027F124AFD0D000428B50 /* MessageStackView+Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MessageStackView+Message.swift"; sourceTree = "<group>"; };
@@ -282,6 +286,7 @@
 				B8905C9324AE3BDA00306FAA /* MessageView+Message.swift */,
 				B8F027F724AFD3DF00428B50 /* UIView+MessageConfiguration.swift */,
 				B8AA023524B3620200F5BC4A /* UIView+MessageLayout.swift */,
+				B8AA024424B3767200F5BC4A /* BadgeMessageView+UI.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -292,6 +297,7 @@
 				B8926B8F24B26A200084C2F4 /* RootTableViewController.swift */,
 				B84420C8238D3F0A00462399 /* GeneralViewController.swift */,
 				B8926B9124B26A900084C2F4 /* PanViewController.swift */,
+				B8AA024224B3752800F5BC4A /* BadgeMessageViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -492,6 +498,7 @@
 				B8AA021A24B35CAF00F5BC4A /* BadgeContainerView.swift in Sources */,
 				B8AA021C24B35CAF00F5BC4A /* ShakeView.swift in Sources */,
 				B8AA023A24B363E200F5BC4A /* BadgeMessageView.swift in Sources */,
+				B8AA024524B3767200F5BC4A /* BadgeMessageView+UI.swift in Sources */,
 				B8F027FC24AFDCD800428B50 /* Queue.swift in Sources */,
 				B84420B2238D3E2000462399 /* MessageView.swift in Sources */,
 				B8FF3D4924B0874200426272 /* TimeInterval+Defaults.swift in Sources */,
@@ -506,6 +513,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B8AA024324B3752800F5BC4A /* BadgeMessageViewController.swift in Sources */,
 				B84420C9238D3F0A00462399 /* GeneralViewController.swift in Sources */,
 				B84420C5238D3F0A00462399 /* AppDelegate.swift in Sources */,
 				B84420C7238D3F0A00462399 /* SceneDelegate.swift in Sources */,

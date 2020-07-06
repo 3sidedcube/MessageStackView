@@ -17,7 +17,8 @@ class RootTableViewController: UITableViewController {
     /// `ExampleElement`
     private lazy var exampleElements: [ExampleElement] = [
         ("General", GeneralViewController.self),
-        ("Pan", PanViewController.self)
+        ("Pan", PanViewController.self),
+        ("Badge Message", BadgeMessageViewController.self)
     ]
     
     // MARK: - ViewController lifecycle

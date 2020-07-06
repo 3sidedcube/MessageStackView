@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-extension UIViewController {
+public extension UIViewController {
     
     /// `MessageStackView` or create and constrain
     func messageStackViewOrCreate() -> MessageStackView {

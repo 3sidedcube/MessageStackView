@@ -35,35 +35,42 @@ open class BadgeMessageView: UIView {
         
         /// `CALayer` `opacity` for `backgroundImageView`
         static let backgroundImageViewOpacity: Float = 0.06
+        
+        /// Translate the `backgroundImageView` in X by this amount
+        static let backgroundImageViewTranslationX: CGFloat = -8
     }
     
     // MARK: - Subviews
     
     /// Root, horizontally aligned `UIStackView`
-    private lazy var horizontalStackView: UIStackView = {
+    public private(set) lazy var horizontalStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .horizontal
         stackView.distribution = .fill
         stackView.alignment = .center
-        stackView.spacing = 20
+        stackView.spacing = 22
         return stackView
     }()
     
     /// `UIImageView` behind the `badgeView` for a background effect
-    private(set) lazy var backgroundImageView: UIImageView = {
+    public private(set) lazy var backgroundImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.image = nil
         imageView.contentMode = .scaleAspectFill
         imageView.layer.opacity = Constants.backgroundImageViewOpacity
+        imageView.transform = CGAffineTransform(
+            translationX: Constants.backgroundImageViewTranslationX,
+            y: 0
+        )
         return imageView
     }()
     
     /// `BadgeView` at the leading edge of the `horizontalStackView`
-    private lazy var badgeView = BadgeView()
+    public private(set) lazy var badgeView = BadgeView()
     
     /// Vertically aligned `UIStackView` for the `titleLabel` and `subtitleLabel`.
     /// Central between `badgeView` and `button`.
-    private lazy var verticalStackView: UIStackView = {
+    public private(set) lazy var verticalStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .vertical
         stackView.distribution = .fill
@@ -75,6 +82,7 @@ open class BadgeMessageView: UIView {
     /// `UILabel` at the top of `verticalStackView`
     public private(set) lazy var titleLabel: UILabel = {
         let label = UILabel.default
+        label.textColor = .black
         label.font = UIFont.systemFont(ofSize: 18, weight: .heavy)
         return label
     }()
@@ -165,9 +173,17 @@ open class BadgeMessageView: UIView {
                 equalTo: badgeView.centerYAnchor
             )
         ])
+        
+        // button
+        let axes: [NSLayoutConstraint.Axis] = [.vertical, .horizontal]
+        axes.forEach {
+            let priority = UILayoutPriority(800)
+            button.setContentHuggingPriority(priority, for: $0)
+            button.setContentCompressionResistancePriority(priority, for: $0)
+        }
     }
     
-    // MARK: - LAyout
+    // MARK: - Layout
     
     public override func layoutSubviews() {
         super.layoutSubviews()

@@ -31,10 +31,10 @@ open class BadgeContainerView: UIView {
     }
     
     /// Amount the fill path is inset by from the `bounds`
-    public var containerBorderWidth: CGFloat = 2 { didSet { setNeedsDisplay() } }
+    public var containerBorderWidthScale: CGFloat = 2/150 { didSet { setNeedsDisplay() } }
     
     /// The corner radius of the rounded rect path
-    public var containerCornerRadius: CGFloat = 35 { didSet { setNeedsLayout() } }
+    public var containerCornerRadiusScale: CGFloat = 35/150 { didSet { setNeedsLayout() } }
     
     /// The color of the border
     public var containerBorderColor: UIColor = .white { didSet { setNeedsDisplay() } }
@@ -90,7 +90,7 @@ open class BadgeContainerView: UIView {
         
         // On top of the whole bounds border color, fill the color
         fillRoundedPath(
-            rect: bounds.inset(by: containerBorderWidth),
+            rect: bounds.inset(by: borderWidth),
             fillColor: fillColor
         )
     }
@@ -102,7 +102,7 @@ open class BadgeContainerView: UIView {
     private func roundedPath(for rect: CGRect) -> UIBezierPath {
         return UIBezierPath(
             roundedRect: rect,
-            cornerRadius: containerCornerRadius
+            cornerRadius: cornerRadius
         )
     }
     
@@ -116,13 +116,29 @@ open class BadgeContainerView: UIView {
         path.fill()
     }
     
+    // MARK: - Computed
+    
+    private var size: CGFloat {
+        return min(bounds.size.width, bounds.size.height)
+    }
+    
+    /// Corner radius by scaling `bounds` according to `containerCornerRadiusScale`
+    private var cornerRadius: CGFloat {
+        return containerCornerRadiusScale * size
+    }
+    
+    /// Border width by scaling `bounds` according to `containerBorderWidthScale`
+    private var borderWidth: CGFloat {
+        return containerBorderWidthScale * size
+    }
+    
     // MARK: - Layer
     
     /// Update:
     /// - corner radius
     /// - shadow
     private func updateLayer() {
-        updateCornerRadius(containerCornerRadius)
+        updateCornerRadius(cornerRadius)
         updateRoundedShadow()
     }
 }
