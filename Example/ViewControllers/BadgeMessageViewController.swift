@@ -12,6 +12,8 @@ import MessageStackView
 
 class BadgeMessageViewController: UIViewController {
     
+    private lazy var messageStackView = MessageStackView()
+    
     /// `BadgeMessageView`
     private lazy var badgeMessageView: BadgeMessageView = {
         let badgeMessageView = BadgeMessageView()
@@ -33,25 +35,38 @@ class BadgeMessageViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        view.addSubview(messageStackView)
+        messageStackView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            messageStackView.leadingAnchor.constraint(
+                equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 10
+            ),
+            messageStackView.trailingAnchor.constraint(
+                equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -10
+            ),
+            messageStackView.topAnchor.constraint(
+                equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10
+            ),
+        ])
     }
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        let messageStackView = messageStackViewOrCreate()
         messageStackView.layoutIfNeeded()
         messageStackView.post(view: badgeMessageView)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        messageStackViewOrCreate().remove(view: badgeMessageView)
+        messageStackView.remove(view: badgeMessageView)
     }
     
     // MARK: - UIControlEvents
     
     @objc private func buttonTouchUpInside(_ sender: UIButton) {
-        messageStackViewOrCreate().remove(view: badgeMessageView)
+        messageStackView.remove(view: badgeMessageView)
     }
 }
 
