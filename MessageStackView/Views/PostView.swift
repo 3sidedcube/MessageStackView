@@ -9,8 +9,10 @@
 import Foundation
 import UIKit
 
+/// `UIView` to post `UIView`s on a `PostManager` in a serial manner
 open class PostView: UIView {
     
+    /// Fixed constants for `PostView`
     private struct Constants {
         
         /// `UIEdgeInsets` to inset subviews relative to `self`
@@ -44,9 +46,13 @@ open class PostView: UIView {
         clipsToBounds = true
     }
     
+    // MARK: - IntrinsicContentSize
+    
     open override var intrinsicContentSize: CGSize {
         return CGSize(width: UIView.noIntrinsicMetric, height: 0)
     }
+    
+    // MARK: - Animation
     
     private func setView(
         _ view: UIView,
@@ -84,6 +90,25 @@ open class PostView: UIView {
             y: -(view.bounds.size.height + Constants.edgeInsets.top)
         )
     }
+    
+    // MARK: - Subview
+    
+    /// Add posted `subview`, constraining accordingly and ensuring `transform` for animation
+    /// - Parameter subview: `UIView`
+    private func addPostSubview(_ subview: UIView) {
+        addSubview(subview)
+        subview.edgeConstraints(to: self, insets: Constants.edgeInsets)
+        layoutIfNeeded()
+        
+        subview.transform = Self.translationY(for: subview)
+    }
+    
+    /// Remove a previously posted `subview` and ensure layout
+    /// - Parameter subview: `UIView`
+    private func removePostSubview(_ subview: UIView) {
+        subview.removeFromSuperview()
+        layoutIfNeeded()
+    }
 }
 
 // MARK: - UIViewPoster
@@ -106,12 +131,7 @@ extension PostView: UIViewPoster {
         animated: Bool,
         completion: @escaping () -> Void
     ) {
-        addSubview(view)
-        var edge = view.edgeConstraints(to: self)
-        edge.insets = UIEdgeInsets(value: 10)
-        layoutIfNeeded()
-        
-        view.transform = Self.translationY(for: view)
+        addPostSubview(view)
         
         setView(
             view,
@@ -131,8 +151,7 @@ extension PostView: UIViewPoster {
             hidden: true,
             animated: animated,
             completion: {
-                view.removeFromSuperview()
-                self.layoutIfNeeded()
+                self.removePostSubview(view)
                 completion()
         })
     }

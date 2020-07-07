@@ -12,37 +12,34 @@ import MessageStackView
 
 class BadgeMessageViewController: UIViewController {
     
-    private let badges: [(title: String, subtitle: String)] = [
+    /// Arrray of titles for `badgeMessages` to demo
+    private let badgeTitles: [(title: String, subtitle: String)] = [
         ("Badge Earned!", "Hat Trick"),
         ("Badge Earned Again!", "Another Hat Trick"),
         ("Badge Earned Again And Again!", "Another Another Hat Trick")
     ]
     
-    private lazy var postView = PostView()
-    
-    /// `BadgeMessageView`
-    private func badgeMessageView(title: String, subtitle: String) -> BadgeMessageView {
-        let badgeMessageView = BadgeMessageView()
-        badgeMessageView.set(
-            title: title,
-            subtitle: subtitle,
-            image: UIImage(named: "donations"),
-            fillColor: .red
-        )
-        badgeMessageView.button.addTarget(
-            self,
-            action: #selector(buttonTouchUpInside),
-            for: .touchUpInside
-        )
-        return badgeMessageView
+    /// `BadgeMessage`s from ``badgeTitles`
+    private var badgeMessages: [BadgeMessage] {
+        return badgeTitles.map {
+            BadgeMessage(
+                title: $0.title,
+                subtitle: $0.subtitle,
+                image: UIImage(named: "donations"),
+                fillColor: .red
+            )
+        }
     }
+    
+    /// PostView
+    private lazy var postView = PostView()
     
     // MARK: - ViewController lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        postView.backgroundColor = .gray
+        //postView.backgroundColor = .gray
         
         view.addSubview(postView)
         postView.translatesAutoresizingMaskIntoConstraints = false
@@ -62,17 +59,17 @@ class BadgeMessageViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        badges.forEach {
-            let view = badgeMessageView(title: $0.title, subtitle: $0.subtitle)
-            
-            postView.postManager.post(postRequest: PostRequest(
-                view: view,
-                dismissAfter: 4,
-                animated: .both
-            ))
-            postView.postManager.gestureManager.addPanToRemoveGesture(
-                to: view
+        badgeMessages.forEach {
+            let badgeMessageView = postView.post(badgeMessage: $0)
+            badgeMessageView.button.addTarget(
+                self,
+                action: #selector(buttonTouchUpInside),
+                for: .touchUpInside
             )
+            
+            // Add pan gesture
+            let gestureManager = postView.postManager.gestureManager
+            gestureManager.addPanToRemoveGesture(to: badgeMessageView)
         }
     }
     

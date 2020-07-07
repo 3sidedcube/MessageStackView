@@ -72,25 +72,23 @@ extension UIView {
     @discardableResult
     func edgeConstraints(
         to view: UIView,
+        insets: UIEdgeInsets = .zero,
         activate: Bool = true
     ) -> EdgeConstraints {
         translatesAutoresizingMaskIntoConstraints = false
         
-        let edgeConstraints = EdgeConstraints(
-            leading: leadingAnchor.constraint(
-                equalTo: view.leadingAnchor
-            ),
-            top: topAnchor.constraint(
-                equalTo: view.topAnchor
-            ),
-            trailing: trailingAnchor.constraint(
-                equalTo: view.trailingAnchor
-            ),
-            bottom: bottomAnchor.constraint(
-                equalTo: view.bottomAnchor
-            )
+        // Create `NSLayoutConstraint`s to the edge anchors
+        var edgeConstraints = EdgeConstraints(
+            leading: leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            top: topAnchor.constraint(equalTo: view.topAnchor),
+            trailing: trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            bottom: bottomAnchor.constraint(equalTo: view.bottomAnchor)
         )
         
+        // Set `UIEdgeInsets` as provided
+        edgeConstraints.insets = insets
+        
+        // Activate `NSLayoutConstraint`s if required
         if activate {
             edgeConstraints.activate()
         }

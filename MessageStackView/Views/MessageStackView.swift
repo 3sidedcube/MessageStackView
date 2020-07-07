@@ -12,7 +12,11 @@ import UIKit
 open class MessageStackView: UIStackView {
     
     /// `PostManager` to manage posting, queueing, removing of `PostRequest`s
-    public private(set) lazy var postManager = PostManager(poster: self)
+    public private(set) lazy var postManager: PostManager = {
+        let postManager = PostManager(poster: self)
+        postManager.isSerialQueue = false
+        return postManager
+    }()
     
     // MARK: - Views
     

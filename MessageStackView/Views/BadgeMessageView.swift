@@ -169,8 +169,10 @@ open class BadgeMessageView: UIView {
         containerView.edgeConstraints(to: self)
         
         // horizontalStackView
-        var edge = horizontalStackView.edgeConstraints(to: containerView)
-        edge.insets = Constants.horizontalStackViewInsets
+        horizontalStackView.edgeConstraints(
+            to: containerView,
+            insets: Constants.horizontalStackViewInsets
+        )
         
         // badgeView
         let size = badgeView.sizeConstraints(size: Constants.badgeViewSize)
