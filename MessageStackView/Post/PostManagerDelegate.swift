@@ -58,23 +58,27 @@ public extension PostManagerDelegate {
         _ postManager: PostManager,
         willPost view: UIView
     ){
+        // by default do nothing
     }
     
     func postManager(
         _ postManager: PostManager,
         didPost view: UIView
     ){
+        // by default do nothing
     }
     
     func postManager(
         _ postManager: PostManager,
         willRemove view: UIView
     ){
+        // by default do nothing
     }
     
     func postManager(
         _ postManager: PostManager,
         didRemove view: UIView
     ){
+        // by default do nothing
     }
 }

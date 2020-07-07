@@ -149,6 +149,16 @@ public class PostManager {
     ///
     /// - Parameter postRequest: `PostRequest`
     private func completePost(postRequest: PostRequest) {
+        // Start dismiss timer if appropriate
+        startTimer(for: postRequest)
+        
+        // Execute `delegate` did post
+        delegate?.postManager(self, didPost: postRequest.view)
+    }
+    
+    /// Setup dismiss `Timer` for `postRequest`
+    /// - Parameter postRequest: `PostRequest`
+    private func startTimer(for postRequest: PostRequest) {
         // Time after post to dismiss, zero or `nil` to mean do not dismiss
         let dismissAfterTimeInterval = max(0, postRequest.dismissAfter ?? 0)
         
@@ -172,9 +182,6 @@ public class PostManager {
                 self.remove(view: view, animated: animateRemove)
             }
         }
-        
-        // Execute `delegate` did post
-        delegate?.postManager(self, didPost: view)
     }
     
     // MARK: - Remove
@@ -237,10 +244,31 @@ extension PostManager: PostGestureManagerDelegate {
         _ manager: PostGestureManager,
         didRequestToRemoveView view: UIView
     ) {
+        // Gesture requested the `view` be dismissed
         let first = currentPostRequests.first { $0.view == view }
         if let request = first {
             let animated = request.animated.contains(.onRemove)
             remove(view: request.view, animated: animated)
+        }
+    }
+    
+    func postGestureManager(
+        _ manager: PostGestureManager,
+        didStartPanGestureForView view: UIView
+    ) {
+        // Invalidate dismiss timer while the user is interacting with `view`
+        timerMap[view]?.invalidate()
+        timerMap[view] = nil
+    }
+    
+    func postGestureManager(
+        _ manager: PostGestureManager,
+        didEndPanGestureForView view: UIView
+    ) {
+        // Restart dismiss timer now the gesture has completed
+        let request = currentPostRequests.first { $0.view == view }
+        if let postRequest = request {
+            startTimer(for: postRequest)
         }
     }
 }

@@ -67,7 +67,7 @@ class BadgeMessageViewController: UIViewController {
             
             postView.postManager.post(postRequest: PostRequest(
                 view: view,
-                dismissAfter: 10,
+                dismissAfter: 4,
                 animated: .both
             ))
             postView.postManager.gestureManager.addPanToRemoveGesture(

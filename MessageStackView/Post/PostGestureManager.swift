@@ -15,6 +15,16 @@ protocol PostGestureManagerDelegate: class {
         _ manager: PostGestureManager,
         didRequestToRemoveView view: UIView
     )
+    
+    func postGestureManager(
+        _ manager: PostGestureManager,
+        didStartPanGestureForView view: UIView
+    )
+    
+    func postGestureManager(
+        _ manager: PostGestureManager,
+        didEndPanGestureForView view: UIView
+    )
 }
 
 public class PostGestureManager {
@@ -114,8 +124,24 @@ public class PostGestureManager {
     /// - Parameter sender: `UIPanGestureRecognizer`
     @objc private func viewPanned(_ sender: UIPanGestureRecognizer) {
         guard let view = sender.view else { return }
+        let state = sender.state
         
-        switch sender.state {
+        // Trigger delegate callback based for `boundaryState`
+        switch state.boundaryState {
+        case .started:
+            delegate?.postGestureManager(
+                self, didStartPanGestureForView: view
+            )
+        case .ended:
+            delegate?.postGestureManager(
+                self, didEndPanGestureForView: view
+            )
+        default:
+            break
+        }
+        
+        // Handle pan based on state
+        switch state {
             
         // Pan did update
         case .changed:
@@ -160,5 +186,29 @@ public class PostGestureManager {
     func remove(view: UIView) {
         tapGestureMap[view] = nil
         panGestureMap[view] = nil
+    }
+}
+
+// MARK: - UIGestureRecognizer.State + BoundaryState
+
+private extension UIGestureRecognizer.State {
+    
+    /// `State` can be started or finished
+    @frozen enum BoundaryState {
+        
+        /// `State` when the gesture started
+        case started
+        
+        /// `State` when the gesture end
+        case ended
+    }
+    
+    /// `BoundaryState`
+    var boundaryState: BoundaryState? {
+        switch self {
+        case .began: return .started
+        case .ended, .cancelled, .failed: return .ended
+        default: return nil // .possible, .changed
+        }
     }
 }

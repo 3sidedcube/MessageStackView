@@ -13,9 +13,8 @@ open class PostView: UIView {
     
     /// `PostManager` to manage posting, queueing, removing of `PostRequest`s
     public private(set) lazy var postManager = PostManager(poster: self)
-    
-    private var topAnchorMap = [UIView : NSLayoutConstraint]()
-    private var bottomAnchorMap = [UIView : NSLayoutConstraint]()
+
+    // MARK: - Init
     
     public convenience init() {
         self.init(frame: .zero)
@@ -35,6 +34,10 @@ open class PostView: UIView {
         clipsToBounds = true
     }
     
+    open override var intrinsicContentSize: CGSize {
+        return CGSize(width: UIView.noIntrinsicMetric, height: 0)
+    }
+    
     private func setView(
         _ view: UIView,
         hidden: Bool,
@@ -46,29 +49,31 @@ open class PostView: UIView {
             return
         }
     
-        layoutIfNeeded()
         UIView.animate(
             withDuration: .animationDuration,
             delay: 0,
-            usingSpringWithDamping: 0.8,
-            initialSpringVelocity: 0.15,
+            usingSpringWithDamping: 0.75,
+            initialSpringVelocity: 0.9,
             options: .curveEaseIn,
             animations: {
-                view.transform = hidden ? .translationY(for: view) : .identity
+                view.transform = hidden ?
+                    .init(translationX: 0, y: -view.frame.maxY) :
+                    .identity
         }) { _ in
             completion()
-            
         }
-
     }
 }
 
 private extension CGAffineTransform {
     
-    static func translationY(for view: UIView) -> CGAffineTransform {
+    static func translationY(
+        for view: UIView,
+        inset: CGFloat
+    ) -> CGAffineTransform {
         return CGAffineTransform(
             translationX: 0,
-            y: -view.bounds.size.height
+            y: -(view.bounds.size.height + inset)
         )
     }
 }
@@ -97,7 +102,8 @@ extension PostView: UIViewPoster {
         var edge = view.edgeConstraints(to: self)
         edge.insets = UIEdgeInsets(value: 10)
         layoutIfNeeded()
-        view.transform = .translationY(for: view)
+        
+        view.transform = .init(translationX: 0, y: -view.frame.maxY)
         
         setView(
             view,

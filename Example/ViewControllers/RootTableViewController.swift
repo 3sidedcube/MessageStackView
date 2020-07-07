@@ -30,6 +30,7 @@ class RootTableViewController: UITableViewController {
             UITableViewCell.self,
             forCellReuseIdentifier: "\(UITableViewCell.self)"
         )
+        tableView.tableFooterView = UIView()
     }
 
     // MARK: - UITableViewDataSource

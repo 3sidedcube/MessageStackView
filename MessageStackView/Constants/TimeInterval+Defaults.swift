@@ -13,7 +13,7 @@ import Foundation
 extension TimeInterval {
     
     /// Animation duration when posting and removing the `UIView`s from the `MessageStackView`
-    static let animationDuration: TimeInterval = 0.25
+    static let animationDuration: TimeInterval = 0.333
     
     /// Amount of time after posting to dismiss a `UIView`.
     /// When `nil`, do not dismiss by default.
