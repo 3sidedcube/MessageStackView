@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 /// `UIViewPoster` is sent messages to post and remove `UIView`s.
-/// It should handle any animation and execute a given closure on completion
+/// It should handle any animation and execute a given closure on completion.
 public protocol UIViewPoster: class {
     
     /// Should `view` be posted

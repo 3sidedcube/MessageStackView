@@ -12,14 +12,20 @@ import MessageStackView
 
 class BadgeMessageViewController: UIViewController {
     
+    private let badges: [(title: String, subtitle: String)] = [
+        ("Badge Earned!", "Hat Trick"),
+        ("Badge Earned Again!", "Another Hat Trick"),
+        ("Badge Earned Again And Again!", "Another Another Hat Trick")
+    ]
+    
     private lazy var postView = PostView()
     
     /// `BadgeMessageView`
-    private lazy var badgeMessageView: BadgeMessageView = {
+    private func badgeMessageView(title: String, subtitle: String) -> BadgeMessageView {
         let badgeMessageView = BadgeMessageView()
         badgeMessageView.set(
-            title: "Badge Earned!",
-            subtitle: "Hat Trick",
+            title: title,
+            subtitle: subtitle,
             image: UIImage(named: "donations"),
             fillColor: .red
         )
@@ -29,7 +35,7 @@ class BadgeMessageViewController: UIViewController {
             for: .touchUpInside
         )
         return badgeMessageView
-    }()
+    }
     
     // MARK: - ViewController lifecycle
     
@@ -56,25 +62,29 @@ class BadgeMessageViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        postView.postManager.post(postRequest: PostRequest(
-            view: badgeMessageView,
-            dismissAfter: 10,
-            animated: .both
-        ))
-        postView.postManager.gestureManager.addPanToRemoveGesture(
-            to: badgeMessageView
-        )
+        badges.forEach {
+            let view = badgeMessageView(title: $0.title, subtitle: $0.subtitle)
+            
+            postView.postManager.post(postRequest: PostRequest(
+                view: view,
+                dismissAfter: 10,
+                animated: .both
+            ))
+            postView.postManager.gestureManager.addPanToRemoveGesture(
+                to: view
+            )
+        }
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        postView.postManager.remove(view: badgeMessageView)
+        postView.postManager.invalidate()
     }
     
     // MARK: - UIControlEvents
     
     @objc private func buttonTouchUpInside(_ sender: UIButton) {
-        postView.postManager.remove(view: badgeMessageView)
+        postView.postManager.removeCurrent()
     }
 }
 

@@ -146,7 +146,13 @@ extension MessageStackView: UIViewPoster {
             view,
             hidden: true,
             animated: animated,
-            completion: completion
-        )
+            completion: {
+                
+                // Apple docs say the stackView will remove it from its
+                // arrangedSubviews list automatically when calling this method
+                view.removeFromSuperview()
+                
+                completion()
+        })
     }
 }

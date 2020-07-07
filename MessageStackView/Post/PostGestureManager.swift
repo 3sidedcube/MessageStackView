@@ -28,9 +28,13 @@ public class PostGestureManager {
     /// Map `UIView`s to their "pan to dismiss" `UIPanGestureRecognizer`
     private var panGestureMap = [UIView: UIPanGestureRecognizer]()
     
+    // MARK: - Deinit
+    
     deinit {
         invalidate()
     }
+    
+    // MARK: - Invalidate
     
     func invalidate() {
         tapGestureMap.forEach {
@@ -142,11 +146,17 @@ public class PostGestureManager {
         }
     }
     
+    // MARK: - Remove
+    
+    /// `UIView` should be removed based on gesture
+    /// - Parameter view: `UIView` to remove
     private func requestRemove(view: UIView) {
         remove(view: view)
         delegate?.postGestureManager(self, didRequestToRemoveView: view)
     }
     
+    /// Remove references to gestures for `view`
+    /// - Parameter view: `UIView`
     func remove(view: UIView) {
         tapGestureMap[view] = nil
         panGestureMap[view] = nil

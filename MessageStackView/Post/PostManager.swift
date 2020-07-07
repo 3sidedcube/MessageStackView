@@ -57,8 +57,8 @@ public class PostManager {
         }
     }
     
-    /// Currently executing `PostRequest`
-    private var currentPostRequest: PostRequest?
+    /// Currently executing `PostRequest`s
+    private var currentPostRequests: [PostRequest] = []
 
     // MARK: - Init
     
@@ -84,14 +84,14 @@ public class PostManager {
         gestureManager.invalidate()
         
         // Remove `currentPostRequest`
-        if let request = currentPostRequest {
-            remove(view: request.view, animated: false)
+        currentPostRequests.forEach {
+            remove(view: $0.view, animated: false) // force animated false
         }
-        currentPostRequest = nil
+        currentPostRequests = []
         
         // Empty and remove `queue`
         while let request = queue.dequeue() {
-            remove(view: request.view, animated: false)
+            remove(view: request.view, animated: false) // force animated false
         }
         
         // Invalidate timers
@@ -118,13 +118,13 @@ public class PostManager {
         }
         
         // Add to queue if `isSerialQueue` and there is a `currentPostRequest`
-        guard !isSerialQueue || currentPostRequest == nil else {
+        guard !isSerialQueue || currentPostRequests.count == 0 else {
             queue.enqueue(postRequest)
             return
         }
         
         // Set `currentPostRequest`
-        currentPostRequest = postRequest
+        currentPostRequests.append(postRequest)
         
         // Get `view` from the `postRequest`
         let view = postRequest.view
@@ -208,12 +208,8 @@ public class PostManager {
     /// Invoke on the completion of `poster` removing `view`.
     /// - Parameter view: `UIView`
     private func completeRemove(view: UIView) {
-        // Apple docs say the stackView will remove it from its
-        // arrangedSubviews list automatically when calling this method
-        view.removeFromSuperview()
-        
         // No current
-        currentPostRequest = nil
+        currentPostRequests.removeAll { $0.view == view }
         
         // Execute `delegate` did remove
         delegate?.postManager(self, didRemove: view)
@@ -221,6 +217,14 @@ public class PostManager {
         // If the queue is non-empty, post the next
         if let postRequest = queue.dequeue() {
             post(postRequest: postRequest)
+        }
+    }
+    
+    /// Remove the `currentPostRequest`
+    public func removeCurrent() {
+        currentPostRequests.forEach {
+            let animated = $0.animated.contains(.onRemove)
+            remove(view: $0.view, animated: animated)
         }
     }
 }
@@ -233,6 +237,10 @@ extension PostManager: PostGestureManagerDelegate {
         _ manager: PostGestureManager,
         didRequestToRemoveView view: UIView
     ) {
-        remove(view: view, animated: true) // TODO: PostRequest animated
+        let first = currentPostRequests.first { $0.view == view }
+        if let request = first {
+            let animated = request.animated.contains(.onRemove)
+            remove(view: request.view, animated: animated)
+        }
     }
 }

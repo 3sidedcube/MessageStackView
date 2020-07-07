@@ -116,7 +116,10 @@ extension PostView: UIViewPoster {
             view,
             hidden: true,
             animated: animated,
-            completion: completion
-        )
+            completion: {
+                view.removeFromSuperview()
+                self.layoutIfNeeded()
+                completion()
+        })
     }
 }

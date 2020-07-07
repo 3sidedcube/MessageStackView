@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 
+/// Request a `UIView` to be posted, it's lifetime, and how the animation should behave
 public struct PostRequest {
     
     /// A `UIView` to post
