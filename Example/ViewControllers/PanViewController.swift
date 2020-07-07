@@ -24,6 +24,7 @@ class PanViewController: UIViewController {
             subtitle: "Wassssssssssup"
         ))
         
-        messageStackView.addPanToRemoveGesture(to: messageView)
+        messageStackView.postManager.gestureManager
+            .addPanToRemoveGesture(to: messageView)
     }
 }

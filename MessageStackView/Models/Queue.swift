@@ -42,4 +42,19 @@ struct Queue<Element> {
     var count: Int {
         return elements.count
     }
+    
+    var isEmpty: Bool {
+        return elements.isEmpty
+    }
+}
+
+// MARK: - Sequence
+
+extension Queue: Sequence {
+    typealias Iterator = Array<Element>.Iterator
+    typealias Element = Element
+    
+    __consuming func makeIterator() -> Array<Element>.Iterator {
+        return elements.makeIterator()
+    }
 }

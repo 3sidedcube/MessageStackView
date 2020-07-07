@@ -53,6 +53,12 @@
 		B8AA024124B3675F00F5BC4A /* UILabel+Default.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8AA024024B3675F00F5BC4A /* UILabel+Default.swift */; };
 		B8AA024324B3752800F5BC4A /* BadgeMessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8AA024224B3752800F5BC4A /* BadgeMessageViewController.swift */; };
 		B8AA024524B3767200F5BC4A /* BadgeMessageView+UI.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8AA024424B3767200F5BC4A /* BadgeMessageView+UI.swift */; };
+		B8AA024724B3B90800F5BC4A /* PostManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8AA024624B3B90800F5BC4A /* PostManager.swift */; };
+		B8AA024924B3C19400F5BC4A /* PostGestureManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8AA024824B3C19400F5BC4A /* PostGestureManager.swift */; };
+		B8AA024C24B3CA7F00F5BC4A /* PostRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8AA024B24B3CA7F00F5BC4A /* PostRequest.swift */; };
+		B8AA024E24B3CB9B00F5BC4A /* PostManagerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8AA024D24B3CB9B00F5BC4A /* PostManagerDelegate.swift */; };
+		B8AA025024B3DB8200F5BC4A /* UIViewPoster.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8AA024F24B3DB8200F5BC4A /* UIViewPoster.swift */; };
+		B8AA025424B4AA7400F5BC4A /* PostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8AA025324B4AA7400F5BC4A /* PostView.swift */; };
 		B8BE92F32396C9D00026E7AF /* SizeConstraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8BE92F22396C9D00026E7AF /* SizeConstraints.swift */; };
 		B8F027EF24AFB0C700428B50 /* UIView+MessageStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F027EE24AFB0C700428B50 /* UIView+MessageStackView.swift */; };
 		B8F027F224AFD0D000428B50 /* MessageStackView+Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F027F124AFD0D000428B50 /* MessageStackView+Message.swift */; };
@@ -144,6 +150,12 @@
 		B8AA024024B3675F00F5BC4A /* UILabel+Default.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Default.swift"; sourceTree = "<group>"; };
 		B8AA024224B3752800F5BC4A /* BadgeMessageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BadgeMessageViewController.swift; sourceTree = "<group>"; };
 		B8AA024424B3767200F5BC4A /* BadgeMessageView+UI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BadgeMessageView+UI.swift"; sourceTree = "<group>"; };
+		B8AA024624B3B90800F5BC4A /* PostManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostManager.swift; sourceTree = "<group>"; };
+		B8AA024824B3C19400F5BC4A /* PostGestureManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostGestureManager.swift; sourceTree = "<group>"; };
+		B8AA024B24B3CA7F00F5BC4A /* PostRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostRequest.swift; sourceTree = "<group>"; };
+		B8AA024D24B3CB9B00F5BC4A /* PostManagerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostManagerDelegate.swift; sourceTree = "<group>"; };
+		B8AA024F24B3DB8200F5BC4A /* UIViewPoster.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewPoster.swift; sourceTree = "<group>"; };
+		B8AA025324B4AA7400F5BC4A /* PostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostView.swift; sourceTree = "<group>"; };
 		B8BE92F22396C9D00026E7AF /* SizeConstraints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SizeConstraints.swift; sourceTree = "<group>"; };
 		B8F027EE24AFB0C700428B50 /* UIView+MessageStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+MessageStackView.swift"; sourceTree = "<group>"; };
 		B8F027F124AFD0D000428B50 /* MessageStackView+Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MessageStackView+Message.swift"; sourceTree = "<group>"; };
@@ -205,6 +217,7 @@
 		B844209E238D3DF700462399 /* MessageStackView */ = {
 			isa = PBXGroup;
 			children = (
+				B8AA024A24B3CA6D00F5BC4A /* Post */,
 				B8AA023024B3609B00F5BC4A /* Theme */,
 				B8AA021D24B35D0C00F5BC4A /* Function */,
 				B8FF3D4724B0873200426272 /* Constants */,
@@ -250,6 +263,7 @@
 				B8AA021824B35CAF00F5BC4A /* BadgeView.swift */,
 				B8AA021924B35CAF00F5BC4A /* ShakeView.swift */,
 				B8AA023924B363E200F5BC4A /* BadgeMessageView.swift */,
+				B8AA025324B4AA7400F5BC4A /* PostView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -329,6 +343,18 @@
 				B8AA023E24B364F600F5BC4A /* Images.xcassets */,
 			);
 			path = Theme;
+			sourceTree = "<group>";
+		};
+		B8AA024A24B3CA6D00F5BC4A /* Post */ = {
+			isa = PBXGroup;
+			children = (
+				B8AA024F24B3DB8200F5BC4A /* UIViewPoster.swift */,
+				B8AA024D24B3CB9B00F5BC4A /* PostManagerDelegate.swift */,
+				B8AA024624B3B90800F5BC4A /* PostManager.swift */,
+				B8AA024824B3C19400F5BC4A /* PostGestureManager.swift */,
+				B8AA024B24B3CA7F00F5BC4A /* PostRequest.swift */,
+			);
+			path = Post;
 			sourceTree = "<group>";
 		};
 		B8BE92F42396C9DA0026E7AF /* Constraints */ = {
@@ -468,10 +494,13 @@
 				B8AA023224B360A700F5BC4A /* UIColor+Colors.swift in Sources */,
 				B8905C9724AE3DFA00306FAA /* MessageStackViewDelegate.swift in Sources */,
 				B8073B4C2397B4BF00D248A1 /* MessageConfigurable.swift in Sources */,
+				B8AA024E24B3CB9B00F5BC4A /* PostManagerDelegate.swift in Sources */,
 				B8AA022824B35DA300F5BC4A /* ScaleFunction.swift in Sources */,
 				B8AA023424B3619200F5BC4A /* UIView+Animation.swift in Sources */,
 				B84420DE238D46D600462399 /* UIView+Shadow.swift in Sources */,
+				B8AA024C24B3CA7F00F5BC4A /* PostRequest.swift in Sources */,
 				B8AA022D24B35EA800F5BC4A /* CGRect+Extensions.swift in Sources */,
+				B8AA025424B4AA7400F5BC4A /* PostView.swift in Sources */,
 				B8F027F224AFD0D000428B50 /* MessageStackView+Message.swift in Sources */,
 				B8AA021524B33E1700F5BC4A /* UIApplication+StatusBar.swift in Sources */,
 				B8F027EF24AFB0C700428B50 /* UIView+MessageStackView.swift in Sources */,
@@ -479,6 +508,7 @@
 				B8905C9424AE3BDA00306FAA /* MessageView+Message.swift in Sources */,
 				B8BE92F32396C9D00026E7AF /* SizeConstraints.swift in Sources */,
 				B8AA021B24B35CAF00F5BC4A /* BadgeView.swift in Sources */,
+				B8AA024924B3C19400F5BC4A /* PostGestureManager.swift in Sources */,
 				B8AA022424B35DA300F5BC4A /* Function.swift in Sources */,
 				B8905C9B24AE3F9B00306FAA /* EdgeConstraints.swift in Sources */,
 				B84420DB238D444700462399 /* MessageConfiguration.swift in Sources */,
@@ -486,6 +516,7 @@
 				B8AA022B24B35DDE00F5BC4A /* CALayer+Animation.swift in Sources */,
 				B84420D7238D3FAB00462399 /* MessageStackView.swift in Sources */,
 				B8905C9D24AE850C00306FAA /* Constrainable.swift in Sources */,
+				B8AA025024B3DB8200F5BC4A /* UIViewPoster.swift in Sources */,
 				B84420AF238D3E1500462399 /* UIView+SafeArea.swift in Sources */,
 				B8AA023624B3620200F5BC4A /* UIView+MessageLayout.swift in Sources */,
 				B8FF3D4E24B13ACE00426272 /* MessageViewable.swift in Sources */,
@@ -503,6 +534,7 @@
 				B84420B2238D3E2000462399 /* MessageView.swift in Sources */,
 				B8FF3D4924B0874200426272 /* TimeInterval+Defaults.swift in Sources */,
 				B8AA021324B33A4500F5BC4A /* UIViewController+MessageStackView.swift in Sources */,
+				B8AA024724B3B90800F5BC4A /* PostManager.swift in Sources */,
 				B84420B8238D3E2600462399 /* Message.swift in Sources */,
 				B84420BD238D3E3800462399 /* MessageLayout.swift in Sources */,
 				B8AA023C24B3645A00F5BC4A /* UIImage+Images.swift in Sources */,

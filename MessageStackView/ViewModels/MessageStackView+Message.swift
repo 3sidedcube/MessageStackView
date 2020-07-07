@@ -35,11 +35,11 @@ extension MessageStackView {
         messageView.apply(message: message)
         
         // Post the message like any other `UIView`
-        post(
+        postManager.post(postRequest: PostRequest(
             view: messageView,
             dismissAfter: dismissAfter,
             animated: animated
-        )
+        ))
         
         return messageView
     }

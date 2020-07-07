@@ -12,7 +12,7 @@ import MessageStackView
 
 class BadgeMessageViewController: UIViewController {
     
-    private lazy var messageStackView = MessageStackView()
+    private lazy var postView = PostView()
     
     /// `BadgeMessageView`
     private lazy var badgeMessageView: BadgeMessageView = {
@@ -36,17 +36,19 @@ class BadgeMessageViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.addSubview(messageStackView)
-        messageStackView.translatesAutoresizingMaskIntoConstraints = false
+        postView.backgroundColor = .gray
+        
+        view.addSubview(postView)
+        postView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            messageStackView.leadingAnchor.constraint(
-                equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 10
+            postView.leadingAnchor.constraint(
+                equalTo: view.safeAreaLayoutGuide.leadingAnchor
             ),
-            messageStackView.trailingAnchor.constraint(
-                equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -10
+            postView.trailingAnchor.constraint(
+                equalTo: view.safeAreaLayoutGuide.trailingAnchor
             ),
-            messageStackView.topAnchor.constraint(
-                equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10
+            postView.topAnchor.constraint(
+                equalTo: view.safeAreaLayoutGuide.topAnchor
             ),
         ])
     }
@@ -54,19 +56,25 @@ class BadgeMessageViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        messageStackView.layoutIfNeeded()
-        messageStackView.post(view: badgeMessageView)
+        postView.postManager.post(postRequest: PostRequest(
+            view: badgeMessageView,
+            dismissAfter: 10,
+            animated: .both
+        ))
+        postView.postManager.gestureManager.addPanToRemoveGesture(
+            to: badgeMessageView
+        )
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        messageStackView.remove(view: badgeMessageView)
+        postView.postManager.remove(view: badgeMessageView)
     }
     
     // MARK: - UIControlEvents
     
     @objc private func buttonTouchUpInside(_ sender: UIButton) {
-        messageStackView.remove(view: badgeMessageView)
+        postView.postManager.remove(view: badgeMessageView)
     }
 }
 

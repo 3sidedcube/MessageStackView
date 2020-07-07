@@ -20,7 +20,6 @@ class GeneralViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        messageStackView.delegate = self
         messageStackView.addTo(.top(view))
     }
     
@@ -49,7 +48,8 @@ class GeneralViewController: UIViewController {
         dispatchAfter(seconds: 6) { [weak self] in
             let view = CustomView()
             self?.messageStackView.post(view: view)
-            self?.messageStackView.addTapToRemoveGesture(to: view)
+            self?.messageStackView.postManager.gestureManager
+                .addTapToRemoveGesture(to: view)
         }
     }
     
@@ -61,19 +61,6 @@ class GeneralViewController: UIViewController {
             execute: closure
         )
     }
-}
-
-// MARK: - MessageManagerDelegate
-
-extension GeneralViewController: MessageStackViewDelegate {
-    
-    func messageStackView(
-        _ messageStackView: MessageStackView,
-        willRemove view: UIView
-    ) {
-        print("Will remove called!")
-    }
-    
 }
 
 // MARK: - CustomView
