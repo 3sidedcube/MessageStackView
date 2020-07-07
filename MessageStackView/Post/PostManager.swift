@@ -48,7 +48,7 @@ public class PostManager {
     
     /// Should the posted `UIView`s be handled by a serial `Queue`, i.e. one at a time.
     /// If `true`, queued `PostRequest`s are stored in `queue`.
-    private var isSerialQueue: Bool = true {
+    public var isSerialQueue: Bool = true {
         didSet {
             guard !isSerialQueue else { return }
             while let postRequest = queue.dequeue() {

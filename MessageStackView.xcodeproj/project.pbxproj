@@ -24,7 +24,6 @@
 		B84420DB238D444700462399 /* MessageConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = B84420DA238D444700462399 /* MessageConfiguration.swift */; };
 		B84420DE238D46D600462399 /* UIView+Shadow.swift in Sources */ = {isa = PBXBuildFile; fileRef = B84420DD238D46D600462399 /* UIView+Shadow.swift */; };
 		B8905C9424AE3BDA00306FAA /* MessageView+Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8905C9324AE3BDA00306FAA /* MessageView+Message.swift */; };
-		B8905C9724AE3DFA00306FAA /* MessageStackViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8905C9624AE3DFA00306FAA /* MessageStackViewDelegate.swift */; };
 		B8905C9B24AE3F9B00306FAA /* EdgeConstraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8905C9A24AE3F9B00306FAA /* EdgeConstraints.swift */; };
 		B8905C9D24AE850C00306FAA /* Constrainable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8905C9C24AE850C00306FAA /* Constrainable.swift */; };
 		B8905C9F24AE90AD00306FAA /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = B8905C9E24AE90AD00306FAA /* README.md */; };
@@ -123,7 +122,6 @@
 		B84420DA238D444700462399 /* MessageConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageConfiguration.swift; sourceTree = "<group>"; };
 		B84420DD238D46D600462399 /* UIView+Shadow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Shadow.swift"; sourceTree = "<group>"; };
 		B8905C9324AE3BDA00306FAA /* MessageView+Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MessageView+Message.swift"; sourceTree = "<group>"; };
-		B8905C9624AE3DFA00306FAA /* MessageStackViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageStackViewDelegate.swift; sourceTree = "<group>"; };
 		B8905C9A24AE3F9B00306FAA /* EdgeConstraints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EdgeConstraints.swift; sourceTree = "<group>"; };
 		B8905C9C24AE850C00306FAA /* Constrainable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constrainable.swift; sourceTree = "<group>"; };
 		B8905C9E24AE90AD00306FAA /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = SOURCE_ROOT; };
@@ -257,7 +255,6 @@
 			isa = PBXGroup;
 			children = (
 				B84420B1238D3E2000462399 /* MessageView.swift */,
-				B8905C9624AE3DFA00306FAA /* MessageStackViewDelegate.swift */,
 				B84420D6238D3FAB00462399 /* MessageStackView.swift */,
 				B8AA021724B35CAF00F5BC4A /* BadgeContainerView.swift */,
 				B8AA021824B35CAF00F5BC4A /* BadgeView.swift */,
@@ -492,7 +489,6 @@
 			files = (
 				B8AA022F24B35F7100F5BC4A /* UIEdgeInsets+Extensions.swift in Sources */,
 				B8AA023224B360A700F5BC4A /* UIColor+Colors.swift in Sources */,
-				B8905C9724AE3DFA00306FAA /* MessageStackViewDelegate.swift in Sources */,
 				B8073B4C2397B4BF00D248A1 /* MessageConfigurable.swift in Sources */,
 				B8AA024E24B3CB9B00F5BC4A /* PostManagerDelegate.swift in Sources */,
 				B8AA022824B35DA300F5BC4A /* ScaleFunction.swift in Sources */,

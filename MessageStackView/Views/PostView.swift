@@ -11,8 +11,18 @@ import UIKit
 
 open class PostView: UIView {
     
+    private struct Constants {
+        
+        /// `UIEdgeInsets` to inset subviews relative to `self`
+        static let edgeInsets = UIEdgeInsets(value: 10)
+    }
+    
     /// `PostManager` to manage posting, queueing, removing of `PostRequest`s
-    public private(set) lazy var postManager = PostManager(poster: self)
+    public private(set) lazy var postManager: PostManager = {
+        let postManager = PostManager(poster: self)
+        postManager.isSerialQueue = true
+        return postManager
+    }()
 
     // MARK: - Init
     
@@ -48,7 +58,7 @@ open class PostView: UIView {
             completion()
             return
         }
-    
+
         UIView.animate(
             withDuration: .animationDuration,
             delay: 0,
@@ -56,24 +66,22 @@ open class PostView: UIView {
             initialSpringVelocity: 0.9,
             options: .curveEaseIn,
             animations: {
-                view.transform = hidden ?
-                    .init(translationX: 0, y: -view.frame.maxY) :
-                    .identity
+                view.transform =
+                    hidden ? Self.translationY(for: view) : .identity
         }) { _ in
             completion()
         }
     }
-}
-
-private extension CGAffineTransform {
     
-    static func translationY(
-        for view: UIView,
-        inset: CGFloat
-    ) -> CGAffineTransform {
+    /// From the docs of `frame`:
+    /// "If the transform property is not the identity transform, the value of this property is undefined
+    /// and therefore should be ignored."
+    ///
+    /// - Parameter view: `UIView`
+    private static func translationY(for view: UIView) -> CGAffineTransform {
         return CGAffineTransform(
             translationX: 0,
-            y: -(view.bounds.size.height + inset)
+            y: -(view.bounds.size.height + Constants.edgeInsets.top)
         )
     }
 }
@@ -103,7 +111,7 @@ extension PostView: UIViewPoster {
         edge.insets = UIEdgeInsets(value: 10)
         layoutIfNeeded()
         
-        view.transform = .init(translationX: 0, y: -view.frame.maxY)
+        view.transform = Self.translationY(for: view)
         
         setView(
             view,
