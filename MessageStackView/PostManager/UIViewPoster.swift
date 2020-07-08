@@ -11,7 +11,7 @@ import UIKit
 
 /// `UIViewPoster` is sent messages to post and remove `UIView`s.
 /// It should handle any animation and execute a given closure on completion.
-public protocol UIViewPoster: class {
+internal protocol UIViewPoster: class {
     
     // MARK: - Post
     
@@ -50,7 +50,7 @@ public protocol UIViewPoster: class {
 
 // MARK: - UIViewPoster + Default
 
-public extension UIViewPoster {
+internal extension UIViewPoster {
     
     func shouldPost(view: UIView) -> Bool {
         return true // By default allow post

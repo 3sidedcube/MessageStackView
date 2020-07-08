@@ -64,7 +64,7 @@ public class PostManager {
     
     /// Initializer with `poster`
     /// - Parameter poster: `UIViewPoster`
-    public init (poster: UIViewPoster) {
+    internal init (poster: UIViewPoster) {
         self.poster = poster
     }
     
