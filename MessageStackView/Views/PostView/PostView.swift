@@ -54,6 +54,15 @@ open class PostView: UIView, Poster {
     
     // MARK: - Animation
     
+    /// Show or hide a subview (`view`) based on the `hidden`argument.
+    /// The transition may be animated.
+    ///
+    /// - Parameters:
+    ///   - view: `UIView` subview
+    ///   - hidden: `Bool` should the subview be hidden
+    ///   - animated: `Bool` should the transition be animated
+    ///   - completion: Closure to execute on completion of the animation if animated, or
+    /// at the end of scope.
     private func setView(
         _ view: UIView,
         hidden: Bool,
@@ -61,6 +70,7 @@ open class PostView: UIView, Poster {
         completion: @escaping () -> Void
     ) {
         guard animated else {
+            Self.setTransform(on: view, forHidden: hidden)
             completion()
             return
         }
@@ -72,19 +82,36 @@ open class PostView: UIView, Poster {
             initialSpringVelocity: 0.9,
             options: .curveEaseIn,
             animations: {
-                view.transform =
-                    hidden ? Self.translationY(for: view) : .identity
+                Self.setTransform(on: view, forHidden: hidden)
         }) { _ in
             completion()
         }
     }
     
+    // MARK: - Transform
+    
+    /// Consider "hidden" views as transformed out of the bounds above.
+    /// With `clipsToBounds = true` these views will not be visible.
+    /// We can then "show" them by animating their transform back to `.identity`
+    ///
+    /// - Parameters:
+    ///   - view: `UIView` to set `transform` on
+    ///   - hidden: Are we "hiding" the view
+    private static func setTransform(on view: UIView, forHidden hidden: Bool) {
+        view.transform = hidden ? hiddenTranslationY(for: view) : .identity
+    }
+    
+    /// `CGAffineTransform` to effectively "hide" a view off the top of `self`'s `bounds`
+    ///
+    /// - Note:
     /// From the docs of `frame`:
     /// "If the transform property is not the identity transform, the value of this property is undefined
     /// and therefore should be ignored."
     ///
     /// - Parameter view: `UIView`
-    private static func translationY(for view: UIView) -> CGAffineTransform {
+    private static func hiddenTranslationY(
+        for view: UIView
+    ) -> CGAffineTransform {
         return CGAffineTransform(
             translationX: 0,
             y: -(view.bounds.size.height + Constants.edgeInsets.top)
@@ -100,7 +127,7 @@ open class PostView: UIView, Poster {
         subview.edgeConstraints(to: self, insets: Constants.edgeInsets)
         layoutIfNeeded()
         
-        subview.transform = Self.translationY(for: subview)
+        Self.setTransform(on: subview, forHidden: true)
     }
     
     /// Remove a previously posted `subview` and ensure layout
@@ -115,24 +142,19 @@ open class PostView: UIView, Poster {
 
 extension PostView: UIViewPoster {
     
-    /// Only remove if `self` is the `view.superview`
-    /// - Parameter view: `UIView`
     public func shouldRemove(view: UIView) -> Bool {
         return view.superview == self
     }
     
-    /// - Note:
-    /// This `view` will be added to a `fill` distributed `UIStackView` so it's width will
-    /// be determined the `UIStackView`.
-    /// However it's height should be determined by the `view` itself.
-    /// E.g. intrinsicContentSize, autolayout, explicit height...
     public func post(
         view: UIView,
         animated: Bool,
         completion: @escaping () -> Void
     ) {
+        // Add `view` as a posted subview
         addPostSubview(view)
         
+        // Execute hide/show with animation if required
         setView(
             view,
             hidden: false,
@@ -146,11 +168,13 @@ extension PostView: UIViewPoster {
         animated: Bool,
         completion: @escaping () -> Void
     ) {
+        // Execute hide/show with animation if required
         setView(
             view,
             hidden: true,
             animated: animated,
             completion: {
+                // Remove `view` as a posted subview
                 self.removePostSubview(view)
                 completion()
         })

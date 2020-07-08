@@ -8,7 +8,7 @@
 
 import UIKit
 
-/// Define a default configuration to messages look and feel
+/// Define a default configuration to look and feel
 public struct MessageConfiguration {
     
     /// Background color of `MessageView`s
@@ -24,6 +24,11 @@ public struct MessageConfiguration {
     public var applyToAll: Bool
     
     /// Public default memberwise initializer.
+    /// - Parameters:
+    ///   - backgroundColor: `UIColor`
+    ///   - tintColor: `UIColor`
+    ///   - shadow: `Bool`
+    ///   - applyToAll: `Bool`
     public init(
         backgroundColor: UIColor = .defaultBackgroundColor,
         tintColor: UIColor = .defaultTintColor,
