@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 
+/// View-model applying model `BadgeMessage` to view `BadgeMessageView`
 extension BadgeMessageView: BadgeMessageViewable {
     
     /// Apply `badgeMessage` model to `self` (`UIView`)

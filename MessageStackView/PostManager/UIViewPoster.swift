@@ -13,15 +13,7 @@ import UIKit
 /// It should handle any animation and execute a given closure on completion.
 public protocol UIViewPoster: class {
     
-    /// Should `view` be posted
-    ///
-    /// - Parameter view: `UIView`
-    func shouldPost(view: UIView) -> Bool
-    
-    /// Should `view` be removed
-    ///
-    /// - Parameter view: `UIView`
-    func shouldRemove(view: UIView) -> Bool
+    // MARK: - Post
     
     /// Post `view` with animation if `animated`
     ///
@@ -33,6 +25,13 @@ public protocol UIViewPoster: class {
         view: UIView, animated: Bool, completion: @escaping () -> Void
     )
     
+    /// Should `view` be posted
+    ///
+    /// - Parameter view: `UIView`
+    func shouldPost(view: UIView) -> Bool
+    
+    // MARK: - Remove
+    
     /// Remove `view` with animation if `animated`
     ///
     /// - Parameters:
@@ -42,6 +41,11 @@ public protocol UIViewPoster: class {
     func remove(
         view: UIView, animated: Bool, completion: @escaping () -> Void
     )
+    
+    /// Should `view` be removed
+    ///
+    /// - Parameter view: `UIView`
+    func shouldRemove(view: UIView) -> Bool
 }
 
 // MARK: - UIViewPoster + Default

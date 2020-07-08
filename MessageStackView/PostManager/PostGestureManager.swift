@@ -27,6 +27,7 @@ protocol PostGestureManagerDelegate: class {
     )
 }
 
+/// Manage gestures for `UIView`s to trigger a
 public class PostGestureManager {
     
     /// `PostGestureManagerDelegate`

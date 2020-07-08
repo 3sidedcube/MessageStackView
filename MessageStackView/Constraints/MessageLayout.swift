@@ -12,48 +12,40 @@ import UIKit
 ///
 /// - Note:
 /// `MessageLayout` is not required, one may opt to constrain explicitly instead.
-public enum MessageLayout {
+public enum MessageLayout: Int {
     
-    /// Constrain `MessageStackView` to safe top, safe leading, and safe width of given `UIView`
-    case top(UIView)
+    /// Constrain a `UIView` to the top of `UIView`
+    case top
     
-    /// Constrain `MessageStackView` to safe bottom, safe leading, and safe width of given `UIView`
-    case bottom(UIView)
-}
-
-// MARK: - View
-
-public extension MessageLayout {
-    
-    /// Superview of the `MessageStackView`
-    var view: UIView {
-        switch self {
-        case .top(let view): return view
-        case .bottom(let view): return view
-        }
-    }
+    /// Constrain a `UIView` to the bottom of another `UIView`
+    case bottom
 }
 
 // MARK: - NSLayoutConstraint
 
 public extension MessageLayout {
 
-    /// Constrain `MessageStackView` based on `MessageLayout` value
-    /// - Parameter subview: `UIView` to add as a subview to `self.view`
-    func constrain(subview: UIView) {
-        let superview = self.view
-        
+    /// Constrain `subview` to `superview` based on `self` (`MessageLayout`).
+    /// - Parameters:
+    ///   - subview: `UIView` to add as a subview to `superview`
+    ///   - superview: `UIView` superivew of `subview`
+    ///   - safeAnchors: Constrain to safe anchors
+    func constrain(
+        subview: UIView,
+        to superview: UIView,
+        safeAnchors: Bool = true
+    ) {
         superview.addSubview(subview)
         subview.translatesAutoresizingMaskIntoConstraints = false
         
         switch self {
-        case .top(let viewToAddTo):
+        case .top:
             constrain(subview, superview: superview, including: [
-                subview.topAnchor.constraint(equalTo: viewToAddTo.safeTopAnchor)
+                subview.topAnchor.constraint(equalTo: superview.safeTopAnchor)
             ])
-        case .bottom(let viewToAddTo):
+        case .bottom:
             constrain(subview, superview: superview, including: [
-                subview.bottomAnchor.constraint(equalTo: viewToAddTo.safeBottomAnchor)
+                subview.bottomAnchor.constraint(equalTo: superview.safeBottomAnchor)
             ])
         }
     }
@@ -79,19 +71,28 @@ public extension MessageLayout {
 
 public extension UIView {
     
-    /// Layout the `UIView` with a common `MessageLayout` use case: `layout`.
+    /// Layout `self` with `layout` (a common `MessageLayout` use case).
     ///
     /// - Note:
     /// Custom layout is supported, simply add `self` as a subview to  a desired `UIView` and
     /// constrain it accordingly as you would any other view.
-    func addTo(_ layout: MessageLayout) {
+    ///
+    /// - Parameters:
+    ///   - view: `UIView` superview to add `self` to
+    ///   - layout: `MessageLayout`
+    ///   - safeAnchors: Constrain to safe anchors
+    func addTo(
+        view: UIView,
+        layout: MessageLayout,
+        safeAnchors: Bool = true
+    ) {
         // Remove from previous layout tree if exists
         removeFromSuperview()
         
         // Constrain `self`
-        layout.constrain(subview: self)
+        layout.constrain(subview: self, to: view)
         
         // Trigger a layout cycle
-        layout.view.setNeedsLayout()
+        view.setNeedsLayout()
     }
 }

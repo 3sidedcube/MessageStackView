@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 /// A `UIView` often toasted from the top of a screen to detail a message.
-/// This is a more comprehensive `MessageView`
+/// This is a more comprehensive `MessageView`.
 open class BadgeMessageView: UIView {
     
     /// Fixed constants for `BadgeMessageView`

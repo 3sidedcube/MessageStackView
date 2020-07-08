@@ -32,7 +32,7 @@ public extension UIView {
         
         // Otherwise create it and add to top
         let messageStackView = MessageStackView()
-        messageStackView.addTo(.top(self))
+        messageStackView.addTo(view: self, layout: .top)
         return messageStackView
     }
 }

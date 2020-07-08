@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 
+/// View-model applying model `Message` to view `MessageView`
 extension MessageView: MessageViewable {
     
     /// Apply `Message` to `MessageView`

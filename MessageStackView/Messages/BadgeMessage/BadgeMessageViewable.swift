@@ -8,7 +8,7 @@
 
 import Foundation
 
-/// Handle a `Message`
+/// Handle a `BadgeMessage`
 public protocol BadgeMessageViewable {
     
     /// Apply the given `BadgeMessage` model
