@@ -47,7 +47,7 @@ open class MessageStackView: UIStackView, Poster {
     
     /// `NSLayoutConstraint` setting the constant of the height on the `spaceView`
     internal lazy var spaceViewHeightConstraint: NSLayoutConstraint = {
-        return spaceView.heightAnchor.constraint(equalToConstant: 10)
+        return spaceView.heightAnchor.constraint(equalToConstant: 0)
     }()
     
     // MARK: - Init
@@ -74,6 +74,7 @@ open class MessageStackView: UIStackView, Poster {
     private func addSpaceView() {
         spaceView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([spaceViewHeightConstraint])
+        addArrangedSubview(spaceView)
     }
     
     /// `arrangedSubviews` excluding `spaceView`
@@ -97,6 +98,7 @@ open class MessageStackView: UIStackView, Poster {
         completion: @escaping () -> Void
     ) {
         guard animated else {
+            view.isHidden = hidden
             completion()
             return
         }

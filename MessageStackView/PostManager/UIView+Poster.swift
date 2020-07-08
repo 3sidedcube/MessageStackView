@@ -35,6 +35,8 @@ public extension UIView {
         // Otherwise create it and add to top
         let posterView = T()
         posterView.addTo(view: self, layout: .top)
+        layoutIfNeeded()
+        posterView.layoutIfNeeded()
         return posterView
     }
     
