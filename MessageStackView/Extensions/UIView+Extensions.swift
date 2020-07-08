@@ -1,0 +1,24 @@
+//
+//  UIView+Extensions.swift
+//  MessageStackView
+//
+//  Created by Ben Shutt on 08/07/2020.
+//  Copyright © 2020 Ben Shutt. All rights reserved.
+//
+
+import Foundation
+import UIKit
+
+extension UIView {
+    
+    /// Find the first superview (recursive) of type `T`.
+    /// - Parameters:
+    ///   - includeSelf: If `self` is of type `T` then return `self`
+    func firstSuperviewOfType<T>(includeSelf: Bool = true) -> T? {
+        if let view = self as? T, includeSelf {
+            return view
+        }
+        
+        return superview?.firstSuperviewOfType(includeSelf: true)
+    }
+}

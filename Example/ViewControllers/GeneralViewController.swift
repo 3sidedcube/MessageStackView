@@ -15,15 +15,13 @@ class GeneralViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
 
-        DispatchQueue.main.asyncAfterNow(time: .seconds(2)) { [weak self] in
-            self?.messageStackViewOrCreate().post(message: Message(
-                title: "This is a title",
-                subtitle: "This is a subtitle, with a left image",
-                leftImage: .information
-            ), dismissAfter: 6)
-        }
+        messageStackViewOrCreate().post(message: Message(
+            title: "This is a title",
+            subtitle: "This is a subtitle, with a left image",
+            leftImage: .information
+        ), dismissAfter: 6)
         
-        DispatchQueue.main.asyncAfterNow(time: .seconds(4)) { [weak self] in
+        DispatchQueue.main.asyncAfterNow(time: .seconds(2)) { [weak self] in
             let messageView = self?.messageStackViewOrCreate().post(
                 message: Message(
                     title: "This is another title",
@@ -37,7 +35,7 @@ class GeneralViewController: UIViewController {
             messageView?.rightImageViewSize = CGSize(width: 10, height: 10)
         }
         
-        DispatchQueue.main.asyncAfterNow(time: .seconds(6)) { [weak self] in
+        DispatchQueue.main.asyncAfterNow(time: .seconds(4)) { [weak self] in
             let view = CustomView()
             self?.messageStackViewOrCreate().post(view: view)
             self?.messageStackViewOrCreate().postManager.gestureManager

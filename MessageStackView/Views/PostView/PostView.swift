@@ -154,6 +154,9 @@ extension PostView: UIViewPoster {
         // Add `view` as a posted subview
         addPostSubview(view)
         
+        // Add pan gesture by default
+        postManager.gestureManager.addPanToRemoveGesture(to: view)
+        
         // Execute hide/show with animation if required
         setView(
             view,

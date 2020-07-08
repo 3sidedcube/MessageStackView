@@ -58,7 +58,7 @@ public class PostManager {
     }
     
     /// Currently executing `PostRequest`s
-    private var currentPostRequests: [PostRequest] = []
+    public private(set) var currentPostRequests: [PostRequest] = []
 
     // MARK: - Init
     
@@ -185,6 +185,15 @@ public class PostManager {
     }
     
     // MARK: - Remove
+    
+    /// Remove the given `postRequest`
+    /// - Parameter postRequest: `PostRequest`
+    public func remove(postRequest: PostRequest) {
+        remove(
+            view: postRequest.view,
+            animated: postRequest.animated.contains(.onRemove)
+        )
+    }
     
     /// Remove (unpost) a posted `view` invalidatating appropriate properties.
     /// - Parameters:

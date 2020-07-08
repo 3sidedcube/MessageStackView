@@ -16,7 +16,8 @@ import UIKit
 /// - `c`: Constant
 ///
 /// - Note:
-/// When talking about `UIEdgeInsets`, the value of `c` would refer to the opposite direction
+/// When talking about `UIEdgeInsets` for trailing and bottom, the value of `c` would refer to
+/// the opposite direction
 struct EdgeConstraints: Constrainable {
     
     /// Leading anchor

@@ -30,58 +30,18 @@ class BadgeMessageViewController: UIViewController {
             )
         }
     }
-    
-    /// PostView
-    private lazy var postView = PostView()
-    
-    // MARK: - ViewController lifecycle
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        //postView.backgroundColor = .gray
-        
-        view.addSubview(postView)
-        postView.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            postView.leadingAnchor.constraint(
-                equalTo: view.safeAreaLayoutGuide.leadingAnchor
-            ),
-            postView.trailingAnchor.constraint(
-                equalTo: view.safeAreaLayoutGuide.trailingAnchor
-            ),
-            postView.topAnchor.constraint(
-                equalTo: view.safeAreaLayoutGuide.topAnchor
-            ),
-        ])
-    }
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
         badgeMessages.forEach {
-            let badgeMessageView = postView.post(badgeMessage: $0)
-            badgeMessageView.button.addTarget(
-                self,
-                action: #selector(buttonTouchUpInside),
-                for: .touchUpInside
-            )
-            
-            // Add pan gesture
-            let gestureManager = postView.postManager.gestureManager
-            gestureManager.addPanToRemoveGesture(to: badgeMessageView)
+            postViewOrCreate().post(badgeMessage: $0)
         }
     }
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
-        postView.postManager.invalidate()
-    }
-    
-    // MARK: - UIControlEvents
-    
-    @objc private func buttonTouchUpInside(_ sender: UIButton) {
-        postView.postManager.removeCurrent()
+        postViewOrCreate().postManager.invalidate()
     }
 }
 

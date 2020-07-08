@@ -26,7 +26,8 @@ extension BadgeMessageView: BadgeMessageViewable {
         backgroundImageView.tintColor = badgeMessage.fillColor
         
         // image
-        badgeView.image = badgeMessage.image
-        backgroundImageView.image = badgeMessage.image
+        let image = badgeMessage.image?.withRenderingMode(.alwaysTemplate)
+        badgeView.image = image
+        backgroundImageView.image = image
     }
 }

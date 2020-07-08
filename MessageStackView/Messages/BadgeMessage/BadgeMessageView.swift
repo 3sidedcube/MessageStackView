@@ -139,6 +139,13 @@ open class BadgeMessageView: UIView {
         
         // Add subviews to `self` and add constraints
         addSubviewsAndConstrain()
+        
+        // Add target for dismiss on `.touchUpInside`
+        button.addTarget(
+            self,
+            action: #selector(buttonTouchUpInside),
+            for: .touchUpInside
+        )
     }
     
     // MARK: - Constraints
@@ -213,5 +220,20 @@ open class BadgeMessageView: UIView {
     private func updateLayer() {
         updateCornerRadius(Constants.cornerRadius)
         updateRoundedShadow()
+    }
+    
+    // MARK: - UIControlEvent
+    
+    /// On `sender` `.touchUpInside`, find the first `Poster` superview and call
+    /// remove
+    /// - Parameter sender: `UIButton`
+    @objc private func buttonTouchUpInside(_ sender: UIButton) {
+        let poster: Poster? = sender.firstSuperviewOfType()
+        let request = poster?.postManager.currentPostRequests
+            .first { $0.view == self }
+        
+        if let postRequest = request {
+            poster?.postManager.remove(postRequest: postRequest)
+        }
     }
 }
