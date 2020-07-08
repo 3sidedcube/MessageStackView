@@ -16,8 +16,8 @@ class PanViewController: UIViewController {
         super.viewDidAppear(animated)
         
         let messageView = messageStackViewOrCreate().post(message: Message(
-            title: "Yooooo",
-            subtitle: "Wassssssssssup"
+            title: "Pan me",
+            subtitle: "This view can be panned in negative y translation.\nGive it a try"
         ))
         
         messageStackViewOrCreate().postManager.gestureManager

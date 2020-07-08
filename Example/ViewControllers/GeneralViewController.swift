@@ -25,7 +25,7 @@ class GeneralViewController: UIViewController {
             let messageView = self?.messageStackViewOrCreate().post(
                 message: Message(
                     title: "This is another title",
-                    subtitle: "And yes, this is another subtitle, but with the right image this time!",
+                    subtitle: "This is another subtitle, but with the right image this time",
                     leftImage: .information,
                     rightImage: .cross
                 ),

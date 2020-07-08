@@ -14,9 +14,9 @@ class BadgeMessageViewController: UIViewController {
     
     /// Arrray of titles for `badgeMessages` to demo
     private let badgeTitles: [(title: String, subtitle: String)] = [
-        ("Badge Earned!", "Hat Trick"),
-        ("Badge Earned Again!", "Another Hat Trick"),
-        ("Badge Earned Again And Again!", "Another Another Hat Trick")
+        ("Badge Earned!", "That's a badge unlock"),
+        ("Badge Earned Again!", "That's another badge unlock"),
+        ("Badge Earned Again And Again!", "That's yet another badge unlock")
     ]
     
     /// `BadgeMessage`s from ``badgeTitles`

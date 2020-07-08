@@ -297,16 +297,16 @@
 			isa = PBXGroup;
 			children = (
 				B84420A8238D3E1500462399 /* String+Extensions.swift */,
-				B84420AB238D3E1500462399 /* UIView+SafeArea.swift */,
-				B84420DD238D46D600462399 /* UIView+Shadow.swift */,
-				B8F027F524AFD3A900428B50 /* UIView+Hidden.swift */,
 				B8F027F924AFD5E200428B50 /* DispatchQueue+Extensions.swift */,
 				B8AA021424B33E1700F5BC4A /* UIApplication+StatusBar.swift */,
 				B8AA022A24B35DDE00F5BC4A /* CALayer+Animation.swift */,
-				B8AA023324B3619200F5BC4A /* UIView+Animation.swift */,
 				B8AA022C24B35EA800F5BC4A /* CGRect+Extensions.swift */,
 				B8AA022E24B35F7100F5BC4A /* UIEdgeInsets+Extensions.swift */,
 				B811E93724B5DA4C00E337C3 /* UIView+Extensions.swift */,
+				B8AA023324B3619200F5BC4A /* UIView+Animation.swift */,
+				B8F027F524AFD3A900428B50 /* UIView+Hidden.swift */,
+				B84420AB238D3E1500462399 /* UIView+SafeArea.swift */,
+				B84420DD238D46D600462399 /* UIView+Shadow.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -386,11 +386,11 @@
 		B8AA024A24B3CA6D00F5BC4A /* PostManager */ = {
 			isa = PBXGroup;
 			children = (
+				B8AA024B24B3CA7F00F5BC4A /* PostRequest.swift */,
 				B8AA024F24B3DB8200F5BC4A /* UIViewPoster.swift */,
 				B8AA024D24B3CB9B00F5BC4A /* PostManagerDelegate.swift */,
 				B8AA024624B3B90800F5BC4A /* PostManager.swift */,
 				B8AA024824B3C19400F5BC4A /* PostGestureManager.swift */,
-				B8AA024B24B3CA7F00F5BC4A /* PostRequest.swift */,
 				B811E92824B5AD7000E337C3 /* Poster.swift */,
 				B8F027EE24AFB0C700428B50 /* UIView+Poster.swift */,
 			);

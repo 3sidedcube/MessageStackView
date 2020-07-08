@@ -47,7 +47,7 @@ open class MessageStackView: UIStackView, Poster {
     
     /// `NSLayoutConstraint` setting the constant of the height on the `spaceView`
     internal lazy var spaceViewHeightConstraint: NSLayoutConstraint = {
-        return spaceView.heightAnchor.constraint(equalToConstant: 0)
+        return spaceView.heightAnchor.constraint(equalToConstant: 10)
     }()
     
     // MARK: - Init
