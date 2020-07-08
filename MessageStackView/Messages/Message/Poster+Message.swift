@@ -11,7 +11,7 @@ import UIKit
 
 // MARK: - Post
 
-extension MessageStackView {
+extension Poster {
     
     /// Post a `Message` creating a `MessageView`
     ///
@@ -24,7 +24,7 @@ extension MessageStackView {
     @discardableResult
     public func post(
         message: Message,
-        dismissAfter: TimeInterval? = nil,
+        dismissAfter: TimeInterval? = .defaultMessageDismiss,
         animated: PostAnimation = .default
     ) -> MessageView {
         
@@ -32,14 +32,14 @@ extension MessageStackView {
         let messageView = MessageView()
         
         // Apply message
-        messageView.apply(message: message)
+        messageView.set(message: message)
         
-        // Post the message like any other `UIView`
-        post(
+        // Post the view
+        postManager.post(postRequest: PostRequest(
             view: messageView,
             dismissAfter: dismissAfter,
             animated: animated
-        )
+        ))
         
         return messageView
     }

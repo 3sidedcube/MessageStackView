@@ -8,13 +8,13 @@
 
 import Foundation
 
-extension DispatchQueue {
+public extension DispatchQueue {
     
     /// Execute `closure` after `time` from `.now()`
     /// - Parameters:
     ///   - time: `DispatchTimeInterval`
     ///   - closure: Closure to execute
-    func asyncDispatchAfter(
+    func asyncAfterNow(
         time: DispatchTimeInterval,
         closure: @escaping () -> Void
     ) {

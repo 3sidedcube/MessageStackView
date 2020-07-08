@@ -8,9 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		B8073B4C2397B4BF00D248A1 /* MessageConfigurable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8073B4B2397B4BF00D248A1 /* MessageConfigurable.swift */; };
+		B811E92924B5AD7000E337C3 /* Poster.swift in Sources */ = {isa = PBXBuildFile; fileRef = B811E92824B5AD7000E337C3 /* Poster.swift */; };
+		B811E92E24B5B14800E337C3 /* BadgeMessageViewable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B811E92D24B5B14800E337C3 /* BadgeMessageViewable.swift */; };
+		B811E93424B5D6D200E337C3 /* WindowViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B811E93324B5D6D200E337C3 /* WindowViewController.swift */; };
+		B811E93824B5DA4C00E337C3 /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B811E93724B5DA4C00E337C3 /* UIView+Extensions.swift */; };
+		B811E93A24B5FF2400E337C3 /* CenterConstraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = B811E93924B5FF2400E337C3 /* CenterConstraints.swift */; };
 		B84420A1238D3DF700462399 /* MessageStackView.h in Headers */ = {isa = PBXBuildFile; fileRef = B844209F238D3DF700462399 /* MessageStackView.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B84420AC238D3E1500462399 /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B84420A8238D3E1500462399 /* String+Extensions.swift */; };
-		B84420AD238D3E1500462399 /* UIColor+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B84420A9238D3E1500462399 /* UIColor+Extensions.swift */; };
 		B84420AF238D3E1500462399 /* UIView+SafeArea.swift in Sources */ = {isa = PBXBuildFile; fileRef = B84420AB238D3E1500462399 /* UIView+SafeArea.swift */; };
 		B84420B2238D3E2000462399 /* MessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B84420B1238D3E2000462399 /* MessageView.swift */; };
 		B84420B7238D3E2600462399 /* PostAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = B84420B4238D3E2600462399 /* PostAnimation.swift */; };
@@ -25,7 +29,6 @@
 		B84420DB238D444700462399 /* MessageConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = B84420DA238D444700462399 /* MessageConfiguration.swift */; };
 		B84420DE238D46D600462399 /* UIView+Shadow.swift in Sources */ = {isa = PBXBuildFile; fileRef = B84420DD238D46D600462399 /* UIView+Shadow.swift */; };
 		B8905C9424AE3BDA00306FAA /* MessageView+Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8905C9324AE3BDA00306FAA /* MessageView+Message.swift */; };
-		B8905C9724AE3DFA00306FAA /* MessageStackViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8905C9624AE3DFA00306FAA /* MessageStackViewDelegate.swift */; };
 		B8905C9B24AE3F9B00306FAA /* EdgeConstraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8905C9A24AE3F9B00306FAA /* EdgeConstraints.swift */; };
 		B8905C9D24AE850C00306FAA /* Constrainable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8905C9C24AE850C00306FAA /* Constrainable.swift */; };
 		B8905C9F24AE90AD00306FAA /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = B8905C9E24AE90AD00306FAA /* README.md */; };
@@ -33,7 +36,6 @@
 		B8926B9224B26A900084C2F4 /* PanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8926B9124B26A900084C2F4 /* PanViewController.swift */; };
 		B8AA020924B31D6D00F5BC4A /* MessageStackView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B844209C238D3DF700462399 /* MessageStackView.framework */; };
 		B8AA020A24B31D6D00F5BC4A /* MessageStackView.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B844209C238D3DF700462399 /* MessageStackView.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		B8AA021324B33A4500F5BC4A /* UIViewController+MessageStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8AA021224B33A4500F5BC4A /* UIViewController+MessageStackView.swift */; };
 		B8AA021524B33E1700F5BC4A /* UIApplication+StatusBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8AA021424B33E1700F5BC4A /* UIApplication+StatusBar.swift */; };
 		B8AA021A24B35CAF00F5BC4A /* BadgeContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8AA021724B35CAF00F5BC4A /* BadgeContainerView.swift */; };
 		B8AA021B24B35CAF00F5BC4A /* BadgeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8AA021824B35CAF00F5BC4A /* BadgeView.swift */; };
@@ -47,12 +49,25 @@
 		B8AA022F24B35F7100F5BC4A /* UIEdgeInsets+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8AA022E24B35F7100F5BC4A /* UIEdgeInsets+Extensions.swift */; };
 		B8AA023224B360A700F5BC4A /* UIColor+Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8AA023124B360A700F5BC4A /* UIColor+Colors.swift */; };
 		B8AA023424B3619200F5BC4A /* UIView+Animation.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8AA023324B3619200F5BC4A /* UIView+Animation.swift */; };
-		B8AA023624B3620200F5BC4A /* UIView+MessageLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8AA023524B3620200F5BC4A /* UIView+MessageLayout.swift */; };
+		B8AA023A24B363E200F5BC4A /* BadgeMessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8AA023924B363E200F5BC4A /* BadgeMessageView.swift */; };
+		B8AA023C24B3645A00F5BC4A /* UIImage+Images.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8AA023B24B3645A00F5BC4A /* UIImage+Images.swift */; };
+		B8AA023F24B364F600F5BC4A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B8AA023E24B364F600F5BC4A /* Images.xcassets */; };
+		B8AA024124B3675F00F5BC4A /* UILabel+Default.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8AA024024B3675F00F5BC4A /* UILabel+Default.swift */; };
+		B8AA024324B3752800F5BC4A /* BadgeMessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8AA024224B3752800F5BC4A /* BadgeMessageViewController.swift */; };
+		B8AA024524B3767200F5BC4A /* BadgeMessageView+BadgeMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8AA024424B3767200F5BC4A /* BadgeMessageView+BadgeMessage.swift */; };
+		B8AA024724B3B90800F5BC4A /* PostManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8AA024624B3B90800F5BC4A /* PostManager.swift */; };
+		B8AA024924B3C19400F5BC4A /* PostGestureManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8AA024824B3C19400F5BC4A /* PostGestureManager.swift */; };
+		B8AA024C24B3CA7F00F5BC4A /* PostRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8AA024B24B3CA7F00F5BC4A /* PostRequest.swift */; };
+		B8AA024E24B3CB9B00F5BC4A /* PostManagerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8AA024D24B3CB9B00F5BC4A /* PostManagerDelegate.swift */; };
+		B8AA025024B3DB8200F5BC4A /* UIViewPoster.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8AA024F24B3DB8200F5BC4A /* UIViewPoster.swift */; };
+		B8AA025424B4AA7400F5BC4A /* PostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8AA025324B4AA7400F5BC4A /* PostView.swift */; };
+		B8AA027A24B51B5100F5BC4A /* Poster+BadgeMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8AA027924B51B5100F5BC4A /* Poster+BadgeMessage.swift */; };
+		B8AA027C24B51B7D00F5BC4A /* BadgeMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8AA027B24B51B7D00F5BC4A /* BadgeMessage.swift */; };
 		B8BE92F32396C9D00026E7AF /* SizeConstraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8BE92F22396C9D00026E7AF /* SizeConstraints.swift */; };
-		B8F027EF24AFB0C700428B50 /* UIView+MessageStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F027EE24AFB0C700428B50 /* UIView+MessageStackView.swift */; };
-		B8F027F224AFD0D000428B50 /* MessageStackView+Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F027F124AFD0D000428B50 /* MessageStackView+Message.swift */; };
+		B8F027EF24AFB0C700428B50 /* UIView+Poster.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F027EE24AFB0C700428B50 /* UIView+Poster.swift */; };
+		B8F027F224AFD0D000428B50 /* Poster+Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F027F124AFD0D000428B50 /* Poster+Message.swift */; };
 		B8F027F624AFD3A900428B50 /* UIView+Hidden.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F027F524AFD3A900428B50 /* UIView+Hidden.swift */; };
-		B8F027F824AFD3DF00428B50 /* UIView+MessageConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F027F724AFD3DF00428B50 /* UIView+MessageConfiguration.swift */; };
+		B8F027F824AFD3DF00428B50 /* Message+MessageConfigurable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F027F724AFD3DF00428B50 /* Message+MessageConfigurable.swift */; };
 		B8F027FA24AFD5E200428B50 /* DispatchQueue+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F027F924AFD5E200428B50 /* DispatchQueue+Extensions.swift */; };
 		B8F027FC24AFDCD800428B50 /* Queue.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F027FB24AFDCD800428B50 /* Queue.swift */; };
 		B8FF3D4924B0874200426272 /* TimeInterval+Defaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8FF3D4824B0874200426272 /* TimeInterval+Defaults.swift */; };
@@ -92,11 +107,15 @@
 
 /* Begin PBXFileReference section */
 		B8073B4B2397B4BF00D248A1 /* MessageConfigurable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageConfigurable.swift; sourceTree = "<group>"; };
+		B811E92824B5AD7000E337C3 /* Poster.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Poster.swift; sourceTree = "<group>"; };
+		B811E92D24B5B14800E337C3 /* BadgeMessageViewable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BadgeMessageViewable.swift; sourceTree = "<group>"; };
+		B811E93324B5D6D200E337C3 /* WindowViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindowViewController.swift; sourceTree = "<group>"; };
+		B811E93724B5DA4C00E337C3 /* UIView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extensions.swift"; sourceTree = "<group>"; };
+		B811E93924B5FF2400E337C3 /* CenterConstraints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CenterConstraints.swift; sourceTree = "<group>"; };
 		B844209C238D3DF700462399 /* MessageStackView.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MessageStackView.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B844209F238D3DF700462399 /* MessageStackView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MessageStackView.h; sourceTree = "<group>"; };
 		B84420A0238D3DF700462399 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B84420A8238D3E1500462399 /* String+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
-		B84420A9238D3E1500462399 /* UIColor+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Extensions.swift"; sourceTree = "<group>"; };
 		B84420AB238D3E1500462399 /* UIView+SafeArea.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+SafeArea.swift"; sourceTree = "<group>"; };
 		B84420B1238D3E2000462399 /* MessageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageView.swift; sourceTree = "<group>"; };
 		B84420B4238D3E2600462399 /* PostAnimation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostAnimation.swift; sourceTree = "<group>"; };
@@ -113,13 +132,11 @@
 		B84420DA238D444700462399 /* MessageConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageConfiguration.swift; sourceTree = "<group>"; };
 		B84420DD238D46D600462399 /* UIView+Shadow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Shadow.swift"; sourceTree = "<group>"; };
 		B8905C9324AE3BDA00306FAA /* MessageView+Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MessageView+Message.swift"; sourceTree = "<group>"; };
-		B8905C9624AE3DFA00306FAA /* MessageStackViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageStackViewDelegate.swift; sourceTree = "<group>"; };
 		B8905C9A24AE3F9B00306FAA /* EdgeConstraints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EdgeConstraints.swift; sourceTree = "<group>"; };
 		B8905C9C24AE850C00306FAA /* Constrainable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constrainable.swift; sourceTree = "<group>"; };
 		B8905C9E24AE90AD00306FAA /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = SOURCE_ROOT; };
 		B8926B8F24B26A200084C2F4 /* RootTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootTableViewController.swift; sourceTree = "<group>"; };
 		B8926B9124B26A900084C2F4 /* PanViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PanViewController.swift; sourceTree = "<group>"; };
-		B8AA021224B33A4500F5BC4A /* UIViewController+MessageStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+MessageStackView.swift"; sourceTree = "<group>"; };
 		B8AA021424B33E1700F5BC4A /* UIApplication+StatusBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIApplication+StatusBar.swift"; sourceTree = "<group>"; };
 		B8AA021724B35CAF00F5BC4A /* BadgeContainerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BadgeContainerView.swift; sourceTree = "<group>"; };
 		B8AA021824B35CAF00F5BC4A /* BadgeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BadgeView.swift; sourceTree = "<group>"; };
@@ -133,12 +150,25 @@
 		B8AA022E24B35F7100F5BC4A /* UIEdgeInsets+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIEdgeInsets+Extensions.swift"; sourceTree = "<group>"; };
 		B8AA023124B360A700F5BC4A /* UIColor+Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Colors.swift"; sourceTree = "<group>"; };
 		B8AA023324B3619200F5BC4A /* UIView+Animation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Animation.swift"; sourceTree = "<group>"; };
-		B8AA023524B3620200F5BC4A /* UIView+MessageLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+MessageLayout.swift"; sourceTree = "<group>"; };
+		B8AA023924B363E200F5BC4A /* BadgeMessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BadgeMessageView.swift; sourceTree = "<group>"; };
+		B8AA023B24B3645A00F5BC4A /* UIImage+Images.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Images.swift"; sourceTree = "<group>"; };
+		B8AA023E24B364F600F5BC4A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		B8AA024024B3675F00F5BC4A /* UILabel+Default.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Default.swift"; sourceTree = "<group>"; };
+		B8AA024224B3752800F5BC4A /* BadgeMessageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BadgeMessageViewController.swift; sourceTree = "<group>"; };
+		B8AA024424B3767200F5BC4A /* BadgeMessageView+BadgeMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BadgeMessageView+BadgeMessage.swift"; sourceTree = "<group>"; };
+		B8AA024624B3B90800F5BC4A /* PostManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostManager.swift; sourceTree = "<group>"; };
+		B8AA024824B3C19400F5BC4A /* PostGestureManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostGestureManager.swift; sourceTree = "<group>"; };
+		B8AA024B24B3CA7F00F5BC4A /* PostRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostRequest.swift; sourceTree = "<group>"; };
+		B8AA024D24B3CB9B00F5BC4A /* PostManagerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostManagerDelegate.swift; sourceTree = "<group>"; };
+		B8AA024F24B3DB8200F5BC4A /* UIViewPoster.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewPoster.swift; sourceTree = "<group>"; };
+		B8AA025324B4AA7400F5BC4A /* PostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostView.swift; sourceTree = "<group>"; };
+		B8AA027924B51B5100F5BC4A /* Poster+BadgeMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Poster+BadgeMessage.swift"; sourceTree = "<group>"; };
+		B8AA027B24B51B7D00F5BC4A /* BadgeMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BadgeMessage.swift; sourceTree = "<group>"; };
 		B8BE92F22396C9D00026E7AF /* SizeConstraints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SizeConstraints.swift; sourceTree = "<group>"; };
-		B8F027EE24AFB0C700428B50 /* UIView+MessageStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+MessageStackView.swift"; sourceTree = "<group>"; };
-		B8F027F124AFD0D000428B50 /* MessageStackView+Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MessageStackView+Message.swift"; sourceTree = "<group>"; };
+		B8F027EE24AFB0C700428B50 /* UIView+Poster.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Poster.swift"; sourceTree = "<group>"; };
+		B8F027F124AFD0D000428B50 /* Poster+Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Poster+Message.swift"; sourceTree = "<group>"; };
 		B8F027F524AFD3A900428B50 /* UIView+Hidden.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Hidden.swift"; sourceTree = "<group>"; };
-		B8F027F724AFD3DF00428B50 /* UIView+MessageConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+MessageConfiguration.swift"; sourceTree = "<group>"; };
+		B8F027F724AFD3DF00428B50 /* Message+MessageConfigurable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Message+MessageConfigurable.swift"; sourceTree = "<group>"; };
 		B8F027F924AFD5E200428B50 /* DispatchQueue+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DispatchQueue+Extensions.swift"; sourceTree = "<group>"; };
 		B8F027FB24AFDCD800428B50 /* Queue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Queue.swift; sourceTree = "<group>"; };
 		B8FF3D4824B0874200426272 /* TimeInterval+Defaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TimeInterval+Defaults.swift"; sourceTree = "<group>"; };
@@ -164,13 +194,67 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		B8073B4A2397B4A700D248A1 /* Protocols */ = {
+		B811E92424B5ACD400E337C3 /* Badges */ = {
 			isa = PBXGroup;
 			children = (
-				B8073B4B2397B4BF00D248A1 /* MessageConfigurable.swift */,
-				B8FF3D4D24B13ACE00426272 /* MessageViewable.swift */,
+				B8AA021824B35CAF00F5BC4A /* BadgeView.swift */,
+				B8AA021724B35CAF00F5BC4A /* BadgeContainerView.swift */,
+				B8AA021924B35CAF00F5BC4A /* ShakeView.swift */,
 			);
-			path = Protocols;
+			path = Badges;
+			sourceTree = "<group>";
+		};
+		B811E92624B5ACE100E337C3 /* PostView */ = {
+			isa = PBXGroup;
+			children = (
+				B84420D6238D3FAB00462399 /* MessageStackView.swift */,
+				B8AA025324B4AA7400F5BC4A /* PostView.swift */,
+			);
+			path = PostView;
+			sourceTree = "<group>";
+		};
+		B811E92A24B5B08100E337C3 /* Messages */ = {
+			isa = PBXGroup;
+			children = (
+				B811E92B24B5B08F00E337C3 /* Message */,
+				B811E92C24B5B09300E337C3 /* BadgeMessage */,
+				B811E92F24B5B22600E337C3 /* MessageConfiguration */,
+			);
+			path = Messages;
+			sourceTree = "<group>";
+		};
+		B811E92B24B5B08F00E337C3 /* Message */ = {
+			isa = PBXGroup;
+			children = (
+				B84420B5238D3E2600462399 /* Message.swift */,
+				B84420B1238D3E2000462399 /* MessageView.swift */,
+				B8FF3D4D24B13ACE00426272 /* MessageViewable.swift */,
+				B8905C9324AE3BDA00306FAA /* MessageView+Message.swift */,
+				B8F027F124AFD0D000428B50 /* Poster+Message.swift */,
+			);
+			path = Message;
+			sourceTree = "<group>";
+		};
+		B811E92C24B5B09300E337C3 /* BadgeMessage */ = {
+			isa = PBXGroup;
+			children = (
+				B8AA027B24B51B7D00F5BC4A /* BadgeMessage.swift */,
+				B8AA023924B363E200F5BC4A /* BadgeMessageView.swift */,
+				B811E92D24B5B14800E337C3 /* BadgeMessageViewable.swift */,
+				B8AA024424B3767200F5BC4A /* BadgeMessageView+BadgeMessage.swift */,
+				B8AA027924B51B5100F5BC4A /* Poster+BadgeMessage.swift */,
+			);
+			path = BadgeMessage;
+			sourceTree = "<group>";
+		};
+		B811E92F24B5B22600E337C3 /* MessageConfiguration */ = {
+			isa = PBXGroup;
+			children = (
+				B84420DA238D444700462399 /* MessageConfiguration.swift */,
+				B8073B4B2397B4BF00D248A1 /* MessageConfigurable.swift */,
+				B8F027F724AFD3DF00428B50 /* Message+MessageConfigurable.swift */,
+			);
+			path = MessageConfiguration;
 			sourceTree = "<group>";
 		};
 		B8442092238D3DF700462399 = {
@@ -195,15 +279,15 @@
 		B844209E238D3DF700462399 /* MessageStackView */ = {
 			isa = PBXGroup;
 			children = (
-				B8AA023024B3609B00F5BC4A /* Theme */,
+				B811E92A24B5B08100E337C3 /* Messages */,
 				B8AA021D24B35D0C00F5BC4A /* Function */,
 				B8FF3D4724B0873200426272 /* Constants */,
-				B8073B4A2397B4A700D248A1 /* Protocols */,
 				B8BE92F42396C9DA0026E7AF /* Constraints */,
 				B84420A7238D3E1500462399 /* Extensions */,
 				B84420B0238D3E2000462399 /* Views */,
-				B8905C9224AE3BC300306FAA /* ViewModels */,
 				B84420B3238D3E2600462399 /* Models */,
+				B8AA024A24B3CA6D00F5BC4A /* PostManager */,
+				B8AA023024B3609B00F5BC4A /* Theme */,
 				B844209F238D3DF700462399 /* MessageStackView.h */,
 				B8905C9E24AE90AD00306FAA /* README.md */,
 				B84420A0238D3DF700462399 /* Info.plist */,
@@ -215,18 +299,16 @@
 			isa = PBXGroup;
 			children = (
 				B84420A8238D3E1500462399 /* String+Extensions.swift */,
-				B84420A9238D3E1500462399 /* UIColor+Extensions.swift */,
-				B84420AB238D3E1500462399 /* UIView+SafeArea.swift */,
-				B84420DD238D46D600462399 /* UIView+Shadow.swift */,
-				B8F027F524AFD3A900428B50 /* UIView+Hidden.swift */,
 				B8F027F924AFD5E200428B50 /* DispatchQueue+Extensions.swift */,
-				B8F027EE24AFB0C700428B50 /* UIView+MessageStackView.swift */,
-				B8AA021224B33A4500F5BC4A /* UIViewController+MessageStackView.swift */,
 				B8AA021424B33E1700F5BC4A /* UIApplication+StatusBar.swift */,
 				B8AA022A24B35DDE00F5BC4A /* CALayer+Animation.swift */,
-				B8AA023324B3619200F5BC4A /* UIView+Animation.swift */,
 				B8AA022C24B35EA800F5BC4A /* CGRect+Extensions.swift */,
 				B8AA022E24B35F7100F5BC4A /* UIEdgeInsets+Extensions.swift */,
+				B811E93724B5DA4C00E337C3 /* UIView+Extensions.swift */,
+				B8AA023324B3619200F5BC4A /* UIView+Animation.swift */,
+				B8F027F524AFD3A900428B50 /* UIView+Hidden.swift */,
+				B84420AB238D3E1500462399 /* UIView+SafeArea.swift */,
+				B84420DD238D46D600462399 /* UIView+Shadow.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -234,12 +316,8 @@
 		B84420B0238D3E2000462399 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				B84420B1238D3E2000462399 /* MessageView.swift */,
-				B8905C9624AE3DFA00306FAA /* MessageStackViewDelegate.swift */,
-				B84420D6238D3FAB00462399 /* MessageStackView.swift */,
-				B8AA021724B35CAF00F5BC4A /* BadgeContainerView.swift */,
-				B8AA021824B35CAF00F5BC4A /* BadgeView.swift */,
-				B8AA021924B35CAF00F5BC4A /* ShakeView.swift */,
+				B811E92624B5ACE100E337C3 /* PostView */,
+				B811E92424B5ACD400E337C3 /* Badges */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -247,9 +325,6 @@
 		B84420B3238D3E2600462399 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				B84420B5238D3E2600462399 /* Message.swift */,
-				B84420BB238D3E3800462399 /* MessageLayout.swift */,
-				B84420DA238D444700462399 /* MessageConfiguration.swift */,
 				B84420B4238D3E2600462399 /* PostAnimation.swift */,
 				B8F027FB24AFDCD800428B50 /* Queue.swift */,
 			);
@@ -269,23 +344,14 @@
 			path = Example;
 			sourceTree = "<group>";
 		};
-		B8905C9224AE3BC300306FAA /* ViewModels */ = {
-			isa = PBXGroup;
-			children = (
-				B8F027F124AFD0D000428B50 /* MessageStackView+Message.swift */,
-				B8905C9324AE3BDA00306FAA /* MessageView+Message.swift */,
-				B8F027F724AFD3DF00428B50 /* UIView+MessageConfiguration.swift */,
-				B8AA023524B3620200F5BC4A /* UIView+MessageLayout.swift */,
-			);
-			path = ViewModels;
-			sourceTree = "<group>";
-		};
 		B8926B9324B26C730084C2F4 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
 				B8926B8F24B26A200084C2F4 /* RootTableViewController.swift */,
 				B84420C8238D3F0A00462399 /* GeneralViewController.swift */,
 				B8926B9124B26A900084C2F4 /* PanViewController.swift */,
+				B8AA024224B3752800F5BC4A /* BadgeMessageViewController.swift */,
+				B811E93324B5D6D200E337C3 /* WindowViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -312,8 +378,25 @@
 			isa = PBXGroup;
 			children = (
 				B8AA023124B360A700F5BC4A /* UIColor+Colors.swift */,
+				B8AA023B24B3645A00F5BC4A /* UIImage+Images.swift */,
+				B8AA024024B3675F00F5BC4A /* UILabel+Default.swift */,
+				B8AA023E24B364F600F5BC4A /* Images.xcassets */,
 			);
 			path = Theme;
+			sourceTree = "<group>";
+		};
+		B8AA024A24B3CA6D00F5BC4A /* PostManager */ = {
+			isa = PBXGroup;
+			children = (
+				B8AA024B24B3CA7F00F5BC4A /* PostRequest.swift */,
+				B8AA024F24B3DB8200F5BC4A /* UIViewPoster.swift */,
+				B8AA024D24B3CB9B00F5BC4A /* PostManagerDelegate.swift */,
+				B8AA024624B3B90800F5BC4A /* PostManager.swift */,
+				B8AA024824B3C19400F5BC4A /* PostGestureManager.swift */,
+				B811E92824B5AD7000E337C3 /* Poster.swift */,
+				B8F027EE24AFB0C700428B50 /* UIView+Poster.swift */,
+			);
+			path = PostManager;
 			sourceTree = "<group>";
 		};
 		B8BE92F42396C9DA0026E7AF /* Constraints */ = {
@@ -321,6 +404,8 @@
 			children = (
 				B8BE92F22396C9D00026E7AF /* SizeConstraints.swift */,
 				B8905C9A24AE3F9B00306FAA /* EdgeConstraints.swift */,
+				B811E93924B5FF2400E337C3 /* CenterConstraints.swift */,
+				B84420BB238D3E3800462399 /* MessageLayout.swift */,
 				B8905C9C24AE850C00306FAA /* Constrainable.swift */,
 			);
 			path = Constraints;
@@ -429,6 +514,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B8905C9F24AE90AD00306FAA /* README.md in Resources */,
+				B8AA023F24B364F600F5BC4A /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -450,29 +536,37 @@
 			files = (
 				B8AA022F24B35F7100F5BC4A /* UIEdgeInsets+Extensions.swift in Sources */,
 				B8AA023224B360A700F5BC4A /* UIColor+Colors.swift in Sources */,
-				B8905C9724AE3DFA00306FAA /* MessageStackViewDelegate.swift in Sources */,
 				B8073B4C2397B4BF00D248A1 /* MessageConfigurable.swift in Sources */,
+				B8AA024E24B3CB9B00F5BC4A /* PostManagerDelegate.swift in Sources */,
 				B8AA022824B35DA300F5BC4A /* ScaleFunction.swift in Sources */,
 				B8AA023424B3619200F5BC4A /* UIView+Animation.swift in Sources */,
+				B811E93824B5DA4C00E337C3 /* UIView+Extensions.swift in Sources */,
 				B84420DE238D46D600462399 /* UIView+Shadow.swift in Sources */,
+				B8AA024C24B3CA7F00F5BC4A /* PostRequest.swift in Sources */,
 				B8AA022D24B35EA800F5BC4A /* CGRect+Extensions.swift in Sources */,
-				B8F027F224AFD0D000428B50 /* MessageStackView+Message.swift in Sources */,
+				B8AA025424B4AA7400F5BC4A /* PostView.swift in Sources */,
+				B8F027F224AFD0D000428B50 /* Poster+Message.swift in Sources */,
 				B8AA021524B33E1700F5BC4A /* UIApplication+StatusBar.swift in Sources */,
-				B8F027EF24AFB0C700428B50 /* UIView+MessageStackView.swift in Sources */,
+				B8F027EF24AFB0C700428B50 /* UIView+Poster.swift in Sources */,
 				B8AA022924B35DA300F5BC4A /* ShakeFunction.swift in Sources */,
+				B8AA027A24B51B5100F5BC4A /* Poster+BadgeMessage.swift in Sources */,
+				B8AA027C24B51B7D00F5BC4A /* BadgeMessage.swift in Sources */,
 				B8905C9424AE3BDA00306FAA /* MessageView+Message.swift in Sources */,
 				B8BE92F32396C9D00026E7AF /* SizeConstraints.swift in Sources */,
 				B8AA021B24B35CAF00F5BC4A /* BadgeView.swift in Sources */,
+				B8AA024924B3C19400F5BC4A /* PostGestureManager.swift in Sources */,
 				B8AA022424B35DA300F5BC4A /* Function.swift in Sources */,
 				B8905C9B24AE3F9B00306FAA /* EdgeConstraints.swift in Sources */,
 				B84420DB238D444700462399 /* MessageConfiguration.swift in Sources */,
+				B811E93A24B5FF2400E337C3 /* CenterConstraints.swift in Sources */,
+				B8AA024124B3675F00F5BC4A /* UILabel+Default.swift in Sources */,
 				B8AA022B24B35DDE00F5BC4A /* CALayer+Animation.swift in Sources */,
 				B84420D7238D3FAB00462399 /* MessageStackView.swift in Sources */,
 				B8905C9D24AE850C00306FAA /* Constrainable.swift in Sources */,
+				B8AA025024B3DB8200F5BC4A /* UIViewPoster.swift in Sources */,
 				B84420AF238D3E1500462399 /* UIView+SafeArea.swift in Sources */,
-				B8AA023624B3620200F5BC4A /* UIView+MessageLayout.swift in Sources */,
 				B8FF3D4E24B13ACE00426272 /* MessageViewable.swift in Sources */,
-				B8F027F824AFD3DF00428B50 /* UIView+MessageConfiguration.swift in Sources */,
+				B8F027F824AFD3DF00428B50 /* Message+MessageConfigurable.swift in Sources */,
 				B8F027FA24AFD5E200428B50 /* DispatchQueue+Extensions.swift in Sources */,
 				B84420B7238D3E2600462399 /* PostAnimation.swift in Sources */,
 				B8F027F624AFD3A900428B50 /* UIView+Hidden.swift in Sources */,
@@ -480,13 +574,17 @@
 				B8AA022724B35DA300F5BC4A /* GrowFunction.swift in Sources */,
 				B8AA021A24B35CAF00F5BC4A /* BadgeContainerView.swift in Sources */,
 				B8AA021C24B35CAF00F5BC4A /* ShakeView.swift in Sources */,
+				B8AA023A24B363E200F5BC4A /* BadgeMessageView.swift in Sources */,
+				B811E92924B5AD7000E337C3 /* Poster.swift in Sources */,
+				B8AA024524B3767200F5BC4A /* BadgeMessageView+BadgeMessage.swift in Sources */,
 				B8F027FC24AFDCD800428B50 /* Queue.swift in Sources */,
-				B84420AD238D3E1500462399 /* UIColor+Extensions.swift in Sources */,
 				B84420B2238D3E2000462399 /* MessageView.swift in Sources */,
 				B8FF3D4924B0874200426272 /* TimeInterval+Defaults.swift in Sources */,
-				B8AA021324B33A4500F5BC4A /* UIViewController+MessageStackView.swift in Sources */,
+				B811E92E24B5B14800E337C3 /* BadgeMessageViewable.swift in Sources */,
+				B8AA024724B3B90800F5BC4A /* PostManager.swift in Sources */,
 				B84420B8238D3E2600462399 /* Message.swift in Sources */,
 				B84420BD238D3E3800462399 /* MessageLayout.swift in Sources */,
+				B8AA023C24B3645A00F5BC4A /* UIImage+Images.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -494,6 +592,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B811E93424B5D6D200E337C3 /* WindowViewController.swift in Sources */,
+				B8AA024324B3752800F5BC4A /* BadgeMessageViewController.swift in Sources */,
 				B84420C9238D3F0A00462399 /* GeneralViewController.swift in Sources */,
 				B84420C5238D3F0A00462399 /* AppDelegate.swift in Sources */,
 				B84420C7238D3F0A00462399 /* SceneDelegate.swift in Sources */,

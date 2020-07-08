@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 /// `f(x) = M(1 - exp(-alpha * x))`
-/// `f -> M` as `x -> inf`
+/// `f -> M` as `x -> inf` for `alpha > 0`
 /// `f(0) = 0`
 /// At `x = X - xDelta` `f(x) = M - yDelta`.
 /// `xDelta`, `yDelta` defined as "close to" their respective values.

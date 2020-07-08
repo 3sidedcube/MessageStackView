@@ -17,7 +17,9 @@ class RootTableViewController: UITableViewController {
     /// `ExampleElement`
     private lazy var exampleElements: [ExampleElement] = [
         ("General", GeneralViewController.self),
-        ("Pan", PanViewController.self)
+        ("Pan", PanViewController.self),
+        ("Badge Message", BadgeMessageViewController.self),
+        ("Window", WindowViewController.self),
     ]
     
     // MARK: - ViewController lifecycle
@@ -29,6 +31,7 @@ class RootTableViewController: UITableViewController {
             UITableViewCell.self,
             forCellReuseIdentifier: "\(UITableViewCell.self)"
         )
+        tableView.tableFooterView = UIView()
     }
 
     // MARK: - UITableViewDataSource

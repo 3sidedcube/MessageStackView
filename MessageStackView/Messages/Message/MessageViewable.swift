@@ -13,5 +13,5 @@ public protocol MessageViewable {
     
     /// Apply the given `Message` model
     /// - Parameter message: `Message`
-    func apply(message: Message)
+    func set(message: Message)
 }

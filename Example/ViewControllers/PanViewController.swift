@@ -12,18 +12,15 @@ import MessageStackView
 
 class PanViewController: UIViewController {
     
-    private var messageStackView: MessageStackView {
-        return view.messageStackViewOrCreate()
-    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         
-        let messageView = messageStackView.post(message: Message(
-            title: "Yooooo",
-            subtitle: "Wassssssssssup"
+        let messageView = messageStackViewOrCreate().post(message: Message(
+            title: "Pan me",
+            subtitle: "This view can be panned in negative y translation.\nGive it a try"
         ))
         
-        messageStackView.addPanToRemoveGesture(to: messageView)
+        messageStackViewOrCreate().postManager.gestureManager
+            .addPanToRemoveGesture(to: messageView)
     }
 }

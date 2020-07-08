@@ -12,68 +12,36 @@ import MessageStackView
 /// - TODO: Build an interface with buttons for users to experiment with functionality
 class GeneralViewController: UIViewController {
     
-    /// `MessageStackView` to control
-    private lazy var messageStackView = MessageStackView()
-
-    // MARK: - ViewController lifecycle
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        messageStackView.delegate = self
-        messageStackView.addTo(.top(view))
-    }
-    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
 
-        dispatchAfter(seconds: 2) { [weak self] in
-            self?.messageStackView.post(message: Message(
-                title: "This is a title",
-                subtitle: "This is a subtitle, with a left image",
-                leftImage: .information))
-        }
+        messageStackViewOrCreate().post(message: Message(
+            title: "This is a title",
+            subtitle: "This is a subtitle, with a left image",
+            leftImage: .information
+        ), dismissAfter: 6)
         
-        dispatchAfter(seconds: 4) { [weak self] in
-            let messageView = self?.messageStackView.post(
+        DispatchQueue.main.asyncAfterNow(time: .seconds(2)) { [weak self] in
+            let messageView = self?.messageStackViewOrCreate().post(
                 message: Message(
                     title: "This is another title",
-                    subtitle: "And yes, this is another subtitle, but with the right image this time!",
+                    subtitle: "This is another subtitle, but with the right image this time",
                     leftImage: .information,
-                    rightImage: .cross),
-                dismissAfter: 8)
+                    rightImage: .cross
+                ),
+                dismissAfter: 8
+            )
             
             messageView?.rightImageViewSize = CGSize(width: 10, height: 10)
         }
         
-        dispatchAfter(seconds: 6) { [weak self] in
+        DispatchQueue.main.asyncAfterNow(time: .seconds(4)) { [weak self] in
             let view = CustomView()
-            self?.messageStackView.post(view: view)
-            self?.messageStackView.addTapToRemoveGesture(to: view)
+            self?.messageStackViewOrCreate().post(view: view)
+            self?.messageStackViewOrCreate().postManager.gestureManager
+                .addTapToRemoveGesture(to: view)
         }
     }
-    
-    // MARK: - Dispatch
-    
-    private func dispatchAfter(seconds: Int, closure: @escaping () -> Void) {
-        DispatchQueue.main.asyncAfter(
-            deadline: .now() + .seconds(seconds),
-            execute: closure
-        )
-    }
-}
-
-// MARK: - MessageManagerDelegate
-
-extension GeneralViewController: MessageStackViewDelegate {
-    
-    func messageStackView(
-        _ messageStackView: MessageStackView,
-        willRemove view: UIView
-    ) {
-        print("Will remove called!")
-    }
-    
 }
 
 // MARK: - CustomView
