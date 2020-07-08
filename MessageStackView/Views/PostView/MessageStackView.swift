@@ -8,7 +8,7 @@
 
 import UIKit
 
-/// Simply, a `UIStackView`, defined for type restriction
+/// A `UIStackView` with a `PostManager` for posting, queueing and removing `UIView`s
 open class MessageStackView: UIStackView, Poster {
     
     /// `PostManager` to manage posting, queueing, removing of `PostRequest`s
@@ -18,7 +18,7 @@ open class MessageStackView: UIStackView, Poster {
         return postManager
     }()
     
-    /// Default `MessageConfiguration` which describes the default look and feel of `MessageView`s.
+    /// Default `MessageConfiguration` to apply to posted `UIView`s
     public var messageConfiguation = MessageConfiguration() {
         didSet {
             guard messageConfiguation.applyToAll else {
@@ -122,11 +122,18 @@ extension MessageStackView: UIViewPoster {
         return view.superview == self
     }
     
+    /// Post `view`
+    ///
     /// - Note:
     /// This `view` will be added to a `fill` distributed `UIStackView` so it's width will
     /// be determined the `UIStackView`.
     /// However it's height should be determined by the `view` itself.
     /// E.g. intrinsicContentSize, autolayout, explicit height...
+    ///
+    /// - Parameters:
+    ///   - view: `UIView` to post
+    ///   - animated: `Bool` should animate post
+    ///   - completion: Closure to execute on completion
     public func post(
         view: UIView,
         animated: Bool,
@@ -140,6 +147,12 @@ extension MessageStackView: UIViewPoster {
         setView(view, hidden: false, animated: animated, completion: completion)
     }
     
+    /// Remove posted `view`
+    ///
+    /// - Parameters:
+    ///   - view: `UIView` to remove
+    ///   - animated: `Bool` should animate remove
+    ///   - completion: Closure to execute on completion
     public func remove(
         view: UIView,
         animated: Bool,

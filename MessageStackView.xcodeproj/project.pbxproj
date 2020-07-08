@@ -12,6 +12,7 @@
 		B811E92E24B5B14800E337C3 /* BadgeMessageViewable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B811E92D24B5B14800E337C3 /* BadgeMessageViewable.swift */; };
 		B811E93424B5D6D200E337C3 /* WindowViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B811E93324B5D6D200E337C3 /* WindowViewController.swift */; };
 		B811E93824B5DA4C00E337C3 /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B811E93724B5DA4C00E337C3 /* UIView+Extensions.swift */; };
+		B811E93A24B5FF2400E337C3 /* CenterConstraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = B811E93924B5FF2400E337C3 /* CenterConstraints.swift */; };
 		B84420A1238D3DF700462399 /* MessageStackView.h in Headers */ = {isa = PBXBuildFile; fileRef = B844209F238D3DF700462399 /* MessageStackView.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B84420AC238D3E1500462399 /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B84420A8238D3E1500462399 /* String+Extensions.swift */; };
 		B84420AF238D3E1500462399 /* UIView+SafeArea.swift in Sources */ = {isa = PBXBuildFile; fileRef = B84420AB238D3E1500462399 /* UIView+SafeArea.swift */; };
@@ -110,6 +111,7 @@
 		B811E92D24B5B14800E337C3 /* BadgeMessageViewable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BadgeMessageViewable.swift; sourceTree = "<group>"; };
 		B811E93324B5D6D200E337C3 /* WindowViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindowViewController.swift; sourceTree = "<group>"; };
 		B811E93724B5DA4C00E337C3 /* UIView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extensions.swift"; sourceTree = "<group>"; };
+		B811E93924B5FF2400E337C3 /* CenterConstraints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CenterConstraints.swift; sourceTree = "<group>"; };
 		B844209C238D3DF700462399 /* MessageStackView.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MessageStackView.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B844209F238D3DF700462399 /* MessageStackView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MessageStackView.h; sourceTree = "<group>"; };
 		B84420A0238D3DF700462399 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -402,6 +404,7 @@
 			children = (
 				B8BE92F22396C9D00026E7AF /* SizeConstraints.swift */,
 				B8905C9A24AE3F9B00306FAA /* EdgeConstraints.swift */,
+				B811E93924B5FF2400E337C3 /* CenterConstraints.swift */,
 				B84420BB238D3E3800462399 /* MessageLayout.swift */,
 				B8905C9C24AE850C00306FAA /* Constrainable.swift */,
 			);
@@ -555,6 +558,7 @@
 				B8AA022424B35DA300F5BC4A /* Function.swift in Sources */,
 				B8905C9B24AE3F9B00306FAA /* EdgeConstraints.swift in Sources */,
 				B84420DB238D444700462399 /* MessageConfiguration.swift in Sources */,
+				B811E93A24B5FF2400E337C3 /* CenterConstraints.swift in Sources */,
 				B8AA024124B3675F00F5BC4A /* UILabel+Default.swift in Sources */,
 				B8AA022B24B35DDE00F5BC4A /* CALayer+Animation.swift in Sources */,
 				B84420D7238D3FAB00462399 /* MessageStackView.swift in Sources */,
