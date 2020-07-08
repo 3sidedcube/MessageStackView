@@ -120,7 +120,7 @@ extension MessageStackView: UIViewPoster {
     
     /// Only remove if `self` is the `view.superview`
     /// - Parameter view: `UIView`
-    public func shouldRemove(view: UIView) -> Bool {
+    func shouldRemove(view: UIView) -> Bool {
         return view.superview == self
     }
     
@@ -136,7 +136,7 @@ extension MessageStackView: UIViewPoster {
     ///   - view: `UIView` to post
     ///   - animated: `Bool` should animate post
     ///   - completion: Closure to execute on completion
-    public func post(
+    func post(
         view: UIView,
         animated: Bool,
         completion: @escaping () -> Void
@@ -155,7 +155,7 @@ extension MessageStackView: UIViewPoster {
     ///   - view: `UIView` to remove
     ///   - animated: `Bool` should animate remove
     ///   - completion: Closure to execute on completion
-    public func remove(
+    func remove(
         view: UIView,
         animated: Bool,
         completion: @escaping () -> Void

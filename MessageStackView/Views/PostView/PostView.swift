@@ -142,11 +142,11 @@ open class PostView: UIView, Poster {
 
 extension PostView: UIViewPoster {
     
-    public func shouldRemove(view: UIView) -> Bool {
+    func shouldRemove(view: UIView) -> Bool {
         return view.superview == self
     }
     
-    public func post(
+    func post(
         view: UIView,
         animated: Bool,
         completion: @escaping () -> Void
@@ -166,7 +166,7 @@ extension PostView: UIViewPoster {
         )
     }
     
-    public func remove(
+    func remove(
         view: UIView,
         animated: Bool,
         completion: @escaping () -> Void
