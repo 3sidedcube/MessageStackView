@@ -11,7 +11,7 @@ import UIKit
 
 // MARK: - Post
 
-extension MessageStackView {
+extension Poster {
     
     /// Post a `Message` creating a `MessageView`
     ///
@@ -34,7 +34,7 @@ extension MessageStackView {
         // Apply message
         messageView.apply(message: message)
         
-        // Post the message like any other `UIView`
+        // Post the view
         postManager.post(postRequest: PostRequest(
             view: messageView,
             dismissAfter: dismissAfter,

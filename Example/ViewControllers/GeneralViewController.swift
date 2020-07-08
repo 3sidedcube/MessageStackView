@@ -26,40 +26,34 @@ class GeneralViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
 
-        dispatchAfter(seconds: 2) { [weak self] in
+        DispatchQueue.main.asyncAfterNow(time: .seconds(2)) { [weak self] in
             self?.messageStackView.post(message: Message(
                 title: "This is a title",
                 subtitle: "This is a subtitle, with a left image",
-                leftImage: .information))
+                leftImage: .information
+            ), dismissAfter: 6)
         }
         
-        dispatchAfter(seconds: 4) { [weak self] in
+        DispatchQueue.main.asyncAfterNow(time: .seconds(4)) { [weak self] in
             let messageView = self?.messageStackView.post(
                 message: Message(
                     title: "This is another title",
                     subtitle: "And yes, this is another subtitle, but with the right image this time!",
                     leftImage: .information,
-                    rightImage: .cross),
-                dismissAfter: 8)
+                    rightImage: .cross
+                ),
+                dismissAfter: 8
+            )
             
             messageView?.rightImageViewSize = CGSize(width: 10, height: 10)
         }
         
-        dispatchAfter(seconds: 6) { [weak self] in
+        DispatchQueue.main.asyncAfterNow(time: .seconds(6)) { [weak self] in
             let view = CustomView()
             self?.messageStackView.post(view: view)
             self?.messageStackView.postManager.gestureManager
                 .addTapToRemoveGesture(to: view)
         }
-    }
-    
-    // MARK: - Dispatch
-    
-    private func dispatchAfter(seconds: Int, closure: @escaping () -> Void) {
-        DispatchQueue.main.asyncAfter(
-            deadline: .now() + .seconds(seconds),
-            execute: closure
-        )
     }
 }
 

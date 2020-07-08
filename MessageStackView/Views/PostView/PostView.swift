@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 /// `UIView` to post `UIView`s on a `PostManager` in a serial manner
-open class PostView: UIView {
+open class PostView: UIView, Poster {
     
     /// Fixed constants for `PostView`
     private struct Constants {

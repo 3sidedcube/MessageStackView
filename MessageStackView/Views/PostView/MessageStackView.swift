@@ -9,7 +9,7 @@
 import UIKit
 
 /// Simply, a `UIStackView`, defined for type restriction
-open class MessageStackView: UIStackView {
+open class MessageStackView: UIStackView, Poster {
     
     /// `PostManager` to manage posting, queueing, removing of `PostRequest`s
     public private(set) lazy var postManager: PostManager = {

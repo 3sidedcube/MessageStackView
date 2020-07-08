@@ -10,12 +10,12 @@ import Foundation
 
 /// Define:
 /// `f(x) = alpha * x * x * sin(2 * pi * x / C)`
-/// Let `T` =  `"Max x"` where time should end
-/// Define `N` such that, `N` is a positive integer > 0 and `NC = T`
+/// Let `T` =  `"Max x"` where time should end.
+/// Define `N` such that, `N` is a positive integer `> 0` and `NC = T`
 /// where `C` is the duration of each cycle (cycle where `sin` repeats).
 /// Set `Y` such that `f(T) "attains" Y` if not for the `sin` factor.
 /// That is: `alpha * T * T = Y`
-struct ShakeFunction {
+struct ShakeFunction: Function {
     typealias ValueType = TimeInterval
 
     /// Time to acquire maximum function value

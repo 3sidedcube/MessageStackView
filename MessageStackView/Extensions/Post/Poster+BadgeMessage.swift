@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-public extension PostView {
+public extension Poster {
     
     /// Post a `badgeMessage`
     ///
@@ -23,9 +23,14 @@ public extension PostView {
         dismissAfter: TimeInterval? = 5,
         animated: PostAnimation = .both
     ) -> BadgeMessageView {
+        
+        // Create a `BadgeMessageView`
         let badgeMessageView = BadgeMessageView()
+        
+        // Apply `badgeMessage`
         badgeMessageView.set(badgeMessage: badgeMessage)
         
+        // Post the view
         postManager.post(postRequest: PostRequest(
             view: badgeMessageView,
             dismissAfter: dismissAfter,
