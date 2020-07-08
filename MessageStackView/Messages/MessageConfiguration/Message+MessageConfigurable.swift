@@ -1,5 +1,5 @@
 //
-//  UIView+MessageConfiguration.swift
+//  Message+MessageConfigurable.swift
 //  MessageStackView
 //
 //  Created by Ben Shutt on 03/07/2020.
@@ -9,11 +9,11 @@
 import Foundation
 import UIKit
 
-extension UIView: MessageConfigurable {
+extension MessageView: MessageConfigurable {
     
     /// Apply a `MessageConfiguration`
     /// - Parameter configuration: `MessageConfiguration`
-    public func apply(configuration: MessageConfiguration) {
+    public func set(configuration: MessageConfiguration) {
         
         // backgroundColor
         backgroundColor = configuration.backgroundColor

@@ -29,7 +29,9 @@ public protocol UIViewPoster: class {
     ///   - view: `UIView` to post
     ///   - animated: Should we animate the post
     ///   - completion: Closure to be executed on completion, animated or not
-    func post(view: UIView, animated: Bool, completion: @escaping () -> Void)
+    func post(
+        view: UIView, animated: Bool, completion: @escaping () -> Void
+    )
     
     /// Remove `view` with animation if `animated`
     ///
@@ -37,7 +39,9 @@ public protocol UIViewPoster: class {
     ///   - view: `UIView` to remove
     ///   - animated: Should we animate the removal
     ///   - completion: Closure to be executed on completion, animated or not
-    func remove(view: UIView, animated: Bool, completion: @escaping () -> Void)
+    func remove(
+        view: UIView, animated: Bool, completion: @escaping () -> Void
+    )
 }
 
 // MARK: - UIViewPoster + Default

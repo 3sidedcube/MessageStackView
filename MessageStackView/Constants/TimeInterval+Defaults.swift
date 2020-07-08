@@ -10,7 +10,7 @@ import Foundation
 
 // MARK: - TimeInterval + Defaults
 
-extension TimeInterval {
+public extension TimeInterval {
     
     /// Animation duration when posting and removing the `UIView`s from the `MessageStackView`
     static let animationDuration: TimeInterval = 0.333
@@ -18,4 +18,7 @@ extension TimeInterval {
     /// Amount of time after posting to dismiss a `UIView`.
     /// When `nil`, do not dismiss by default.
     static let defaultDismiss: TimeInterval? = nil
+    
+    /// Default `TimeInterval` from posting to dismiss a message view
+    static let defaultMessageDismiss: TimeInterval = 5
 }

@@ -24,7 +24,7 @@ extension Poster {
     @discardableResult
     public func post(
         message: Message,
-        dismissAfter: TimeInterval? = nil,
+        dismissAfter: TimeInterval? = .defaultMessageDismiss,
         animated: PostAnimation = .default
     ) -> MessageView {
         
@@ -32,7 +32,7 @@ extension Poster {
         let messageView = MessageView()
         
         // Apply message
-        messageView.apply(message: message)
+        messageView.set(message: message)
         
         // Post the view
         postManager.post(postRequest: PostRequest(

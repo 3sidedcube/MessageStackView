@@ -20,7 +20,7 @@ public extension Poster {
     @discardableResult
     func post(
         badgeMessage: BadgeMessage,
-        dismissAfter: TimeInterval? = 5,
+        dismissAfter: TimeInterval? = .defaultMessageDismiss,
         animated: PostAnimation = .both
     ) -> BadgeMessageView {
         

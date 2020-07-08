@@ -18,6 +18,20 @@ open class MessageStackView: UIStackView, Poster {
         return postManager
     }()
     
+    /// Default `MessageConfiguration` which describes the default look and feel of `MessageView`s.
+    public var messageConfiguation = MessageConfiguration() {
+        didSet {
+            guard messageConfiguation.applyToAll else {
+                return
+            }
+            
+            // If the `messageConfiguation` has updated, update the current `UIView`s
+            arrangedSubviewsExcludingSpace
+                .compactMap { $0 as? MessageConfigurable }
+                .forEach { $0.set(configuration: messageConfiguation) }
+        }
+    }
+    
     // MARK: - Views
     
     /// This view is for smooth animations when there are no `arrangedSubviews`
@@ -65,20 +79,6 @@ open class MessageStackView: UIStackView, Poster {
     /// `arrangedSubviews` excluding `spaceView`
     public var arrangedSubviewsExcludingSpace: [UIView] {
         return arrangedSubviews.filter { $0 != spaceView }
-    }
-    
-    // MARK: - Post
-    
-    public func post(view: UIView) {
-        postManager.post(postRequest: PostRequest(
-            view: view
-        ))
-    }
-    
-    // MARK: - Remove
-    
-    public func remove(view: UIView) {
-        postManager.remove(view: view)
     }
     
     // MARK: - Hidden
@@ -133,12 +133,11 @@ extension MessageStackView: UIViewPoster {
         completion: @escaping () -> Void
     ) {
         addArrangedSubview(view)
-        setView(
-            view,
-            hidden: false,
-            animated: animated,
-            completion: completion
-        )
+        if let configurable = view as? MessageConfigurable {
+            configurable.set(configuration: messageConfiguation)
+        }
+        
+        setView(view, hidden: false, animated: animated, completion: completion)
     }
     
     public func remove(
@@ -146,17 +145,12 @@ extension MessageStackView: UIViewPoster {
         animated: Bool,
         completion: @escaping () -> Void
     ) {
-        setView(
-            view,
-            hidden: true,
-            animated: animated,
-            completion: {
-                
-                // Apple docs say the stackView will remove it from its
-                // arrangedSubviews list automatically when calling this method
-                view.removeFromSuperview()
-                
-                completion()
-        })
+        setView(view, hidden: true, animated: animated) {
+            // Apple docs say the stackView will remove it from its
+            // arrangedSubviews list automatically when calling this method
+            view.removeFromSuperview()
+            
+            completion()
+        }
     }
 }

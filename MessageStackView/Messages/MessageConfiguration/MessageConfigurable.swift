@@ -14,5 +14,5 @@ public protocol MessageConfigurable {
     /// Allow a `MessageConfiguration` to be applied
     ///
     /// - Parameter configuration: The `MessageConfiguration`
-    func apply(configuration: MessageConfiguration)
+    func set(configuration: MessageConfiguration)
 }

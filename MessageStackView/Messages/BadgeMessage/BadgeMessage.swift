@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-/// Model structure for content of a `BadgeMessageView`
+/// Model structure for the view `BadgeMessageView`
 public struct BadgeMessage {
     
     /// `String` text for the `titleLabel`

@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		B8073B4C2397B4BF00D248A1 /* MessageConfigurable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8073B4B2397B4BF00D248A1 /* MessageConfigurable.swift */; };
 		B811E92924B5AD7000E337C3 /* Poster.swift in Sources */ = {isa = PBXBuildFile; fileRef = B811E92824B5AD7000E337C3 /* Poster.swift */; };
+		B811E92E24B5B14800E337C3 /* BadgeMessageViewable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B811E92D24B5B14800E337C3 /* BadgeMessageViewable.swift */; };
 		B84420A1238D3DF700462399 /* MessageStackView.h in Headers */ = {isa = PBXBuildFile; fileRef = B844209F238D3DF700462399 /* MessageStackView.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B84420AC238D3E1500462399 /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B84420A8238D3E1500462399 /* String+Extensions.swift */; };
 		B84420AF238D3E1500462399 /* UIView+SafeArea.swift in Sources */ = {isa = PBXBuildFile; fileRef = B84420AB238D3E1500462399 /* UIView+SafeArea.swift */; };
@@ -65,7 +66,7 @@
 		B8F027EF24AFB0C700428B50 /* UIView+MessageStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F027EE24AFB0C700428B50 /* UIView+MessageStackView.swift */; };
 		B8F027F224AFD0D000428B50 /* Poster+Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F027F124AFD0D000428B50 /* Poster+Message.swift */; };
 		B8F027F624AFD3A900428B50 /* UIView+Hidden.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F027F524AFD3A900428B50 /* UIView+Hidden.swift */; };
-		B8F027F824AFD3DF00428B50 /* UIView+MessageConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F027F724AFD3DF00428B50 /* UIView+MessageConfiguration.swift */; };
+		B8F027F824AFD3DF00428B50 /* Message+MessageConfigurable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F027F724AFD3DF00428B50 /* Message+MessageConfigurable.swift */; };
 		B8F027FA24AFD5E200428B50 /* DispatchQueue+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F027F924AFD5E200428B50 /* DispatchQueue+Extensions.swift */; };
 		B8F027FC24AFDCD800428B50 /* Queue.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F027FB24AFDCD800428B50 /* Queue.swift */; };
 		B8FF3D4924B0874200426272 /* TimeInterval+Defaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8FF3D4824B0874200426272 /* TimeInterval+Defaults.swift */; };
@@ -106,6 +107,7 @@
 /* Begin PBXFileReference section */
 		B8073B4B2397B4BF00D248A1 /* MessageConfigurable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageConfigurable.swift; sourceTree = "<group>"; };
 		B811E92824B5AD7000E337C3 /* Poster.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Poster.swift; sourceTree = "<group>"; };
+		B811E92D24B5B14800E337C3 /* BadgeMessageViewable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BadgeMessageViewable.swift; sourceTree = "<group>"; };
 		B844209C238D3DF700462399 /* MessageStackView.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MessageStackView.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B844209F238D3DF700462399 /* MessageStackView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MessageStackView.h; sourceTree = "<group>"; };
 		B84420A0238D3DF700462399 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -164,7 +166,7 @@
 		B8F027EE24AFB0C700428B50 /* UIView+MessageStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+MessageStackView.swift"; sourceTree = "<group>"; };
 		B8F027F124AFD0D000428B50 /* Poster+Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Poster+Message.swift"; sourceTree = "<group>"; };
 		B8F027F524AFD3A900428B50 /* UIView+Hidden.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Hidden.swift"; sourceTree = "<group>"; };
-		B8F027F724AFD3DF00428B50 /* UIView+MessageConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+MessageConfiguration.swift"; sourceTree = "<group>"; };
+		B8F027F724AFD3DF00428B50 /* Message+MessageConfigurable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Message+MessageConfigurable.swift"; sourceTree = "<group>"; };
 		B8F027F924AFD5E200428B50 /* DispatchQueue+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DispatchQueue+Extensions.swift"; sourceTree = "<group>"; };
 		B8F027FB24AFDCD800428B50 /* Queue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Queue.swift; sourceTree = "<group>"; };
 		B8FF3D4824B0874200426272 /* TimeInterval+Defaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TimeInterval+Defaults.swift"; sourceTree = "<group>"; };
@@ -190,15 +192,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		B8073B4A2397B4A700D248A1 /* Protocols */ = {
-			isa = PBXGroup;
-			children = (
-				B8073B4B2397B4BF00D248A1 /* MessageConfigurable.swift */,
-				B8FF3D4D24B13ACE00426272 /* MessageViewable.swift */,
-			);
-			path = Protocols;
-			sourceTree = "<group>";
-		};
 		B811E92424B5ACD400E337C3 /* Badges */ = {
 			isa = PBXGroup;
 			children = (
@@ -207,15 +200,6 @@
 				B8AA021924B35CAF00F5BC4A /* ShakeView.swift */,
 			);
 			path = Badges;
-			sourceTree = "<group>";
-		};
-		B811E92524B5ACDB00E337C3 /* Messages */ = {
-			isa = PBXGroup;
-			children = (
-				B84420B1238D3E2000462399 /* MessageView.swift */,
-				B8AA023924B363E200F5BC4A /* BadgeMessageView.swift */,
-			);
-			path = Messages;
 			sourceTree = "<group>";
 		};
 		B811E92624B5ACE100E337C3 /* PostView */ = {
@@ -232,10 +216,52 @@
 			children = (
 				B8F027EE24AFB0C700428B50 /* UIView+MessageStackView.swift */,
 				B8AA021224B33A4500F5BC4A /* UIViewController+MessageStackView.swift */,
-				B8AA027924B51B5100F5BC4A /* Poster+BadgeMessage.swift */,
-				B8F027F124AFD0D000428B50 /* Poster+Message.swift */,
 			);
 			path = Post;
+			sourceTree = "<group>";
+		};
+		B811E92A24B5B08100E337C3 /* Messages */ = {
+			isa = PBXGroup;
+			children = (
+				B811E92B24B5B08F00E337C3 /* Message */,
+				B811E92C24B5B09300E337C3 /* BadgeMessage */,
+				B811E92F24B5B22600E337C3 /* MessageConfiguration */,
+			);
+			path = Messages;
+			sourceTree = "<group>";
+		};
+		B811E92B24B5B08F00E337C3 /* Message */ = {
+			isa = PBXGroup;
+			children = (
+				B84420B5238D3E2600462399 /* Message.swift */,
+				B84420B1238D3E2000462399 /* MessageView.swift */,
+				B8FF3D4D24B13ACE00426272 /* MessageViewable.swift */,
+				B8905C9324AE3BDA00306FAA /* MessageView+Message.swift */,
+				B8F027F124AFD0D000428B50 /* Poster+Message.swift */,
+			);
+			path = Message;
+			sourceTree = "<group>";
+		};
+		B811E92C24B5B09300E337C3 /* BadgeMessage */ = {
+			isa = PBXGroup;
+			children = (
+				B8AA027B24B51B7D00F5BC4A /* BadgeMessage.swift */,
+				B8AA023924B363E200F5BC4A /* BadgeMessageView.swift */,
+				B811E92D24B5B14800E337C3 /* BadgeMessageViewable.swift */,
+				B8AA024424B3767200F5BC4A /* BadgeMessageView+BadgeMessage.swift */,
+				B8AA027924B51B5100F5BC4A /* Poster+BadgeMessage.swift */,
+			);
+			path = BadgeMessage;
+			sourceTree = "<group>";
+		};
+		B811E92F24B5B22600E337C3 /* MessageConfiguration */ = {
+			isa = PBXGroup;
+			children = (
+				B84420DA238D444700462399 /* MessageConfiguration.swift */,
+				B8073B4B2397B4BF00D248A1 /* MessageConfigurable.swift */,
+				B8F027F724AFD3DF00428B50 /* Message+MessageConfigurable.swift */,
+			);
+			path = MessageConfiguration;
 			sourceTree = "<group>";
 		};
 		B8442092238D3DF700462399 = {
@@ -260,16 +286,16 @@
 		B844209E238D3DF700462399 /* MessageStackView */ = {
 			isa = PBXGroup;
 			children = (
-				B8AA023024B3609B00F5BC4A /* Theme */,
+				B811E92A24B5B08100E337C3 /* Messages */,
 				B8AA021D24B35D0C00F5BC4A /* Function */,
 				B8FF3D4724B0873200426272 /* Constants */,
-				B8073B4A2397B4A700D248A1 /* Protocols */,
 				B8BE92F42396C9DA0026E7AF /* Constraints */,
 				B84420A7238D3E1500462399 /* Extensions */,
 				B84420B0238D3E2000462399 /* Views */,
 				B8905C9224AE3BC300306FAA /* ViewModels */,
 				B84420B3238D3E2600462399 /* Models */,
 				B8AA024A24B3CA6D00F5BC4A /* PostManager */,
+				B8AA023024B3609B00F5BC4A /* Theme */,
 				B844209F238D3DF700462399 /* MessageStackView.h */,
 				B8905C9E24AE90AD00306FAA /* README.md */,
 				B84420A0238D3DF700462399 /* Info.plist */,
@@ -299,7 +325,6 @@
 			isa = PBXGroup;
 			children = (
 				B811E92624B5ACE100E337C3 /* PostView */,
-				B811E92524B5ACDB00E337C3 /* Messages */,
 				B811E92424B5ACD400E337C3 /* Badges */,
 			);
 			path = Views;
@@ -308,12 +333,9 @@
 		B84420B3238D3E2600462399 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				B84420B5238D3E2600462399 /* Message.swift */,
 				B84420BB238D3E3800462399 /* MessageLayout.swift */,
-				B84420DA238D444700462399 /* MessageConfiguration.swift */,
 				B84420B4238D3E2600462399 /* PostAnimation.swift */,
 				B8F027FB24AFDCD800428B50 /* Queue.swift */,
-				B8AA027B24B51B7D00F5BC4A /* BadgeMessage.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -334,10 +356,7 @@
 		B8905C9224AE3BC300306FAA /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
-				B8905C9324AE3BDA00306FAA /* MessageView+Message.swift */,
-				B8F027F724AFD3DF00428B50 /* UIView+MessageConfiguration.swift */,
 				B8AA023524B3620200F5BC4A /* UIView+MessageLayout.swift */,
-				B8AA024424B3767200F5BC4A /* BadgeMessageView+BadgeMessage.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -559,7 +578,7 @@
 				B84420AF238D3E1500462399 /* UIView+SafeArea.swift in Sources */,
 				B8AA023624B3620200F5BC4A /* UIView+MessageLayout.swift in Sources */,
 				B8FF3D4E24B13ACE00426272 /* MessageViewable.swift in Sources */,
-				B8F027F824AFD3DF00428B50 /* UIView+MessageConfiguration.swift in Sources */,
+				B8F027F824AFD3DF00428B50 /* Message+MessageConfigurable.swift in Sources */,
 				B8F027FA24AFD5E200428B50 /* DispatchQueue+Extensions.swift in Sources */,
 				B84420B7238D3E2600462399 /* PostAnimation.swift in Sources */,
 				B8F027F624AFD3A900428B50 /* UIView+Hidden.swift in Sources */,
@@ -574,6 +593,7 @@
 				B84420B2238D3E2000462399 /* MessageView.swift in Sources */,
 				B8FF3D4924B0874200426272 /* TimeInterval+Defaults.swift in Sources */,
 				B8AA021324B33A4500F5BC4A /* UIViewController+MessageStackView.swift in Sources */,
+				B811E92E24B5B14800E337C3 /* BadgeMessageViewable.swift in Sources */,
 				B8AA024724B3B90800F5BC4A /* PostManager.swift in Sources */,
 				B84420B8238D3E2600462399 /* Message.swift in Sources */,
 				B84420BD238D3E3800462399 /* MessageLayout.swift in Sources */,

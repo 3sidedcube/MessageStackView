@@ -9,11 +9,11 @@
 import Foundation
 import UIKit
 
-public extension BadgeMessageView {
+extension BadgeMessageView: BadgeMessageViewable {
     
     /// Apply `badgeMessage` model to `self` (`UIView`)
     /// - Parameter badgeMessage: `BadgeMessage`
-    func set(badgeMessage: BadgeMessage) {
+    public func set(badgeMessage: BadgeMessage) {
         // title
         titleLabel.text = badgeMessage.title
         
