@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-public extension UIEdgeInsets {
+extension UIEdgeInsets {
     
     /// Set all properties:
     /// `top`, `left`, `bottom`, `right`

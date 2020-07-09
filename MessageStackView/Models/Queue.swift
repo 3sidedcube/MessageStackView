@@ -43,6 +43,8 @@ struct Queue<Element> {
         return elements.count
     }
     
+    /// Returns `true` if the `Queue` doesn't have any elements.
+    /// I.e. `elements` is empty.
     var isEmpty: Bool {
         return elements.isEmpty
     }

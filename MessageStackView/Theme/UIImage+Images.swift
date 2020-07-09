@@ -14,7 +14,6 @@ extension UIImage {
     
     /// Gray circle with a cross in the center
     static let iconClose = UIImage("iconClose")
-    
 }
 
 // MARK: - UIImage + Init

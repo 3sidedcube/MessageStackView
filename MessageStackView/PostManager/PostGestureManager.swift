@@ -27,7 +27,10 @@ protocol PostGestureManagerDelegate: class {
     )
 }
 
-/// Manage gestures for `UIView`s to trigger a
+/// Manage gestures for posted `UIView`s to trigger a removal of that posted `UIView`.
+/// 
+/// E.g. The user pans a view off the top wanting for it to be dimissed.
+/// E.g. T user tapped to dismiss
 public class PostGestureManager {
     
     /// `PostGestureManagerDelegate`
