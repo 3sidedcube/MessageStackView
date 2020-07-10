@@ -40,6 +40,9 @@ open class BadgeMessageView: UIView {
         static let backgroundImageViewTranslationX: CGFloat = -8
     }
     
+    /// Overrideable default shadow components for `BadgeMessageView`
+    public static var shadowComponents: UIView.ShadowComponents = .default
+    
     // MARK: - Subviews
     
     /// Subview of `self` but container (super) `UIView` for all other subviews.
@@ -133,6 +136,7 @@ open class BadgeMessageView: UIView {
         // cornerRadius
         layer.cornerRadius = Constants.cornerRadius
         containerView.layer.cornerRadius = layer.cornerRadius
+        shadow = BadgeMessageView.shadowComponents
         
         // layer
         updateLayer()
@@ -219,7 +223,7 @@ open class BadgeMessageView: UIView {
     /// Update cornerRadius and shadow
     private func updateLayer() {
         updateCornerRadius(Constants.cornerRadius)
-        updateRoundedShadow()
+        updateRoundedShadowPath()
     }
     
     // MARK: - UIControlEvent
