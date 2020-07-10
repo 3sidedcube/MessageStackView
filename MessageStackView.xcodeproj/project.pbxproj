@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B18849B724B8CE96004205E9 /* UIView+ShadowComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = B18849B624B8CE95004205E9 /* UIView+ShadowComponents.swift */; };
 		B8073B4C2397B4BF00D248A1 /* MessageConfigurable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8073B4B2397B4BF00D248A1 /* MessageConfigurable.swift */; };
 		B811E92924B5AD7000E337C3 /* Poster.swift in Sources */ = {isa = PBXBuildFile; fileRef = B811E92824B5AD7000E337C3 /* Poster.swift */; };
 		B811E92E24B5B14800E337C3 /* BadgeMessageViewable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B811E92D24B5B14800E337C3 /* BadgeMessageViewable.swift */; };
@@ -106,6 +107,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		B18849B624B8CE95004205E9 /* UIView+ShadowComponents.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+ShadowComponents.swift"; sourceTree = "<group>"; };
 		B8073B4B2397B4BF00D248A1 /* MessageConfigurable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageConfigurable.swift; sourceTree = "<group>"; };
 		B811E92824B5AD7000E337C3 /* Poster.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Poster.swift; sourceTree = "<group>"; };
 		B811E92D24B5B14800E337C3 /* BadgeMessageViewable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BadgeMessageViewable.swift; sourceTree = "<group>"; };
@@ -309,6 +311,7 @@
 				B8F027F524AFD3A900428B50 /* UIView+Hidden.swift */,
 				B84420AB238D3E1500462399 /* UIView+SafeArea.swift */,
 				B84420DD238D46D600462399 /* UIView+Shadow.swift */,
+				B18849B624B8CE95004205E9 /* UIView+ShadowComponents.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -550,6 +553,7 @@
 				B8F027EF24AFB0C700428B50 /* UIView+Poster.swift in Sources */,
 				B8AA022924B35DA300F5BC4A /* ShakeFunction.swift in Sources */,
 				B8AA027A24B51B5100F5BC4A /* Poster+BadgeMessage.swift in Sources */,
+				B18849B724B8CE96004205E9 /* UIView+ShadowComponents.swift in Sources */,
 				B8AA027C24B51B7D00F5BC4A /* BadgeMessage.swift in Sources */,
 				B8905C9424AE3BDA00306FAA /* MessageView+Message.swift in Sources */,
 				B8BE92F32396C9D00026E7AF /* SizeConstraints.swift in Sources */,
