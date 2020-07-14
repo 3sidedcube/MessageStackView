@@ -35,18 +35,6 @@ extension UIView {
 
 extension UIView {
     
-    private struct Constants {
-        
-        /// `UIColor` of the shadow
-        static let shadowColor: UIColor = .lightGray
-        
-        /// `CGFloat` to determine the opacity/alpha of the shadow
-        static let shadowOpacity: Float = 0.6
-        
-        /// `CGFloat` radius of the shadow
-        static let shadowRadius: CGFloat = 3
-    }
-    
     /// Set the `layer` corner radius
     func updateCornerRadius(_ cornerRadius: CGFloat) {
         layer.cornerRadius = cornerRadius
@@ -54,12 +42,8 @@ extension UIView {
     }
     
     /// Configure the `layer` shadow
-    func updateRoundedShadow() {
-        layer.shadowColor = Constants.shadowColor.cgColor
-        layer.shadowOffset = .zero
+    func updateRoundedShadowPath() {
         layer.shadowPath = roundedPath.cgPath
-        layer.shadowOpacity = Constants.shadowOpacity
-        layer.shadowRadius = Constants.shadowRadius
     }
     
     /// `UIBezierPath` to draw the shadow

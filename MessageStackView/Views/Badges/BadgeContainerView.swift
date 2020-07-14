@@ -14,6 +14,9 @@ import UIKit
 /// Inherit `ShakeView` to add badge animations
 open class BadgeContainerView: UIView {
     
+    /// Overrideable default shadow components for `BadgeContainerView`
+    static var shadowComponents: UIView.ShadowComponents = .default
+    
     /// Fixed constants
     private struct Constants {
         
@@ -84,6 +87,7 @@ open class BadgeContainerView: UIView {
     
     private func setup() {
         backgroundColor = .clear
+        shadow = BadgeContainerView.shadowComponents
         updateLayer()
     }
     
@@ -147,6 +151,6 @@ open class BadgeContainerView: UIView {
     /// - shadow
     private func updateLayer() {
         updateCornerRadius(cornerRadius)
-        updateRoundedShadow()
+        updateRoundedShadowPath()
     }
 }
