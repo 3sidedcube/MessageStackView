@@ -54,10 +54,10 @@ public extension UIView {
     var shadow: ShadowComponents? {
         set {
             guard let newValue = newValue else {
-                layer.shadowRadius = 0
+                layer.shadowColor = UIColor.black.cgColor
                 layer.shadowOpacity = 0
-                layer.shadowColor = nil
                 layer.shadowOffset = .zero
+                layer.shadowRadius = 0
                 return
             }
             layer.shadowRadius = newValue.radius
