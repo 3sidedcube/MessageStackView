@@ -19,11 +19,11 @@ open class BadgeView: BadgeContainerView {
     }
     
     /// `UIImageView` subview
-    private(set) lazy var imageView: UIImageView = {
+    public private(set) lazy var imageView: UIImageView = {
         let imageView = UIImageView()
         imageView.image = nil
         imageView.tintColor = .white
-        imageView.contentMode = .scaleAspectFill
+        imageView.contentMode = .scaleAspectFit
         return imageView
     }()
     

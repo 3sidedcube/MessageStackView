@@ -43,7 +43,7 @@ This is an exmple of a `BadgeMessageView` posted on a `PostView` like
         )
     )
     
-![Alt Text](https://github.com/3sidedcube/MessageStackView/blob/feature/update-readme/ReadMeRes/toastGif.gif)
+![Alt Text](https://github.com/3sidedcube/MessageStackView/blob/develop/ReadMeRes/toastGif.gif)
 
 ### Usage
 
