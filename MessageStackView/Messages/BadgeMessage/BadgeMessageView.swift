@@ -138,6 +138,11 @@ open class BadgeMessageView: UIView {
         containerView.layer.cornerRadius = layer.cornerRadius
         shadow = BadgeMessageView.shadowComponents
         
+        if #available(iOS 13.0, *) {
+            layer.cornerCurve = .continuous
+            containerView.layer.cornerRadius = layer.cornerRadius
+        }
+        
         // layer
         updateLayer()
         
