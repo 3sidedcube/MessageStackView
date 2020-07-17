@@ -140,7 +140,7 @@ open class BadgeMessageView: UIView {
         
         if #available(iOS 13.0, *) {
             layer.cornerCurve = .continuous
-            containerView.layer.cornerRadius = layer.cornerRadius
+            containerView.layer.cornerCurve = .continuous
         }
         
         // layer
