@@ -15,7 +15,7 @@ import UIKit
 open class BadgeContainerView: UIView {
     
     /// Overrideable default shadow components for `BadgeContainerView`
-    static var shadowComponents: UIView.ShadowComponents = .default
+    public static var shadowComponents: UIView.ShadowComponents = .default
     
     /// Fixed constants
     private struct Constants {
