@@ -23,7 +23,7 @@
 		B84420BD238D3E3800462399 /* MessageLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = B84420BB238D3E3800462399 /* MessageLayout.swift */; };
 		B84420C5238D3F0A00462399 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B84420C4238D3F0A00462399 /* AppDelegate.swift */; };
 		B84420C7238D3F0A00462399 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B84420C6238D3F0A00462399 /* SceneDelegate.swift */; };
-		B84420C9238D3F0A00462399 /* GeneralViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B84420C8238D3F0A00462399 /* GeneralViewController.swift */; };
+		B84420C9238D3F0A00462399 /* MessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B84420C8238D3F0A00462399 /* MessageViewController.swift */; };
 		B84420CE238D3F0D00462399 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B84420CD238D3F0D00462399 /* Assets.xcassets */; };
 		B84420D1238D3F0D00462399 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B84420CF238D3F0D00462399 /* LaunchScreen.storyboard */; };
 		B84420D7238D3FAB00462399 /* MessageStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B84420D6238D3FAB00462399 /* MessageStackView.swift */; };
@@ -35,6 +35,9 @@
 		B8905C9F24AE90AD00306FAA /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = B8905C9E24AE90AD00306FAA /* README.md */; };
 		B8926B9024B26A200084C2F4 /* RootTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8926B8F24B26A200084C2F4 /* RootTableViewController.swift */; };
 		B8926B9224B26A900084C2F4 /* PanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8926B9124B26A900084C2F4 /* PanViewController.swift */; };
+		B897F3A124C1AF5700C46F56 /* SimpleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B897F3A024C1AF5700C46F56 /* SimpleViewController.swift */; };
+		B897F3A424C1B2F900C46F56 /* UIImage+Images.swift in Sources */ = {isa = PBXBuildFile; fileRef = B897F3A324C1B2F900C46F56 /* UIImage+Images.swift */; };
+		B897F3A624C1B30100C46F56 /* UIColor+Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = B897F3A524C1B30100C46F56 /* UIColor+Colors.swift */; };
 		B8AA020924B31D6D00F5BC4A /* MessageStackView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B844209C238D3DF700462399 /* MessageStackView.framework */; };
 		B8AA020A24B31D6D00F5BC4A /* MessageStackView.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B844209C238D3DF700462399 /* MessageStackView.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		B8AA021524B33E1700F5BC4A /* UIApplication+StatusBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8AA021424B33E1700F5BC4A /* UIApplication+StatusBar.swift */; };
@@ -126,7 +129,7 @@
 		B84420C2238D3F0A00462399 /* Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B84420C4238D3F0A00462399 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B84420C6238D3F0A00462399 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		B84420C8238D3F0A00462399 /* GeneralViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralViewController.swift; sourceTree = "<group>"; };
+		B84420C8238D3F0A00462399 /* MessageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageViewController.swift; sourceTree = "<group>"; };
 		B84420CD238D3F0D00462399 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B84420D0238D3F0D00462399 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B84420D2238D3F0D00462399 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -139,6 +142,9 @@
 		B8905C9E24AE90AD00306FAA /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = SOURCE_ROOT; };
 		B8926B8F24B26A200084C2F4 /* RootTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootTableViewController.swift; sourceTree = "<group>"; };
 		B8926B9124B26A900084C2F4 /* PanViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PanViewController.swift; sourceTree = "<group>"; };
+		B897F3A024C1AF5700C46F56 /* SimpleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleViewController.swift; sourceTree = "<group>"; };
+		B897F3A324C1B2F900C46F56 /* UIImage+Images.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Images.swift"; sourceTree = "<group>"; };
+		B897F3A524C1B30100C46F56 /* UIColor+Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Colors.swift"; sourceTree = "<group>"; };
 		B8AA021424B33E1700F5BC4A /* UIApplication+StatusBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIApplication+StatusBar.swift"; sourceTree = "<group>"; };
 		B8AA021724B35CAF00F5BC4A /* BadgeContainerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BadgeContainerView.swift; sourceTree = "<group>"; };
 		B8AA021824B35CAF00F5BC4A /* BadgeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BadgeView.swift; sourceTree = "<group>"; };
@@ -338,6 +344,7 @@
 			isa = PBXGroup;
 			children = (
 				B8926B9324B26C730084C2F4 /* ViewControllers */,
+				B897F3A224C1B2EC00C46F56 /* Theme */,
 				B84420C4238D3F0A00462399 /* AppDelegate.swift */,
 				B84420C6238D3F0A00462399 /* SceneDelegate.swift */,
 				B84420CD238D3F0D00462399 /* Assets.xcassets */,
@@ -351,12 +358,22 @@
 			isa = PBXGroup;
 			children = (
 				B8926B8F24B26A200084C2F4 /* RootTableViewController.swift */,
-				B84420C8238D3F0A00462399 /* GeneralViewController.swift */,
+				B897F3A024C1AF5700C46F56 /* SimpleViewController.swift */,
+				B84420C8238D3F0A00462399 /* MessageViewController.swift */,
 				B8926B9124B26A900084C2F4 /* PanViewController.swift */,
 				B8AA024224B3752800F5BC4A /* BadgeMessageViewController.swift */,
 				B811E93324B5D6D200E337C3 /* WindowViewController.swift */,
 			);
 			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		B897F3A224C1B2EC00C46F56 /* Theme */ = {
+			isa = PBXGroup;
+			children = (
+				B897F3A324C1B2F900C46F56 /* UIImage+Images.swift */,
+				B897F3A524C1B30100C46F56 /* UIColor+Colors.swift */,
+			);
+			path = Theme;
 			sourceTree = "<group>";
 		};
 		B8AA020824B31D6D00F5BC4A /* Frameworks */ = {
@@ -598,10 +615,13 @@
 			files = (
 				B811E93424B5D6D200E337C3 /* WindowViewController.swift in Sources */,
 				B8AA024324B3752800F5BC4A /* BadgeMessageViewController.swift in Sources */,
-				B84420C9238D3F0A00462399 /* GeneralViewController.swift in Sources */,
+				B84420C9238D3F0A00462399 /* MessageViewController.swift in Sources */,
 				B84420C5238D3F0A00462399 /* AppDelegate.swift in Sources */,
 				B84420C7238D3F0A00462399 /* SceneDelegate.swift in Sources */,
+				B897F3A424C1B2F900C46F56 /* UIImage+Images.swift in Sources */,
 				B8926B9224B26A900084C2F4 /* PanViewController.swift in Sources */,
+				B897F3A624C1B30100C46F56 /* UIColor+Colors.swift in Sources */,
+				B897F3A124C1AF5700C46F56 /* SimpleViewController.swift in Sources */,
 				B8926B9024B26A200084C2F4 /* RootTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

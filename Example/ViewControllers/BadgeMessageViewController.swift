@@ -25,7 +25,7 @@ class BadgeMessageViewController: UIViewController {
             BadgeMessage(
                 title: $0.title,
                 subtitle: $0.subtitle,
-                image: UIImage(named: "donations"),
+                image: .donations,
                 fillColor: .red
             )
         }
@@ -43,14 +43,4 @@ class BadgeMessageViewController: UIViewController {
         super.viewDidDisappear(animated)
         postViewOrCreate().postManager.invalidate()
     }
-}
-
-// MARK: - UIColor + Colors
-
-private extension UIColor {
-    
-    /// Override `.red` color
-    static let red = UIColor(
-        red: 231/255, green: 19/255, blue: 36/255, alpha: 1
-    )
 }

@@ -46,7 +46,7 @@ class WindowViewController: UIViewController {
                 title: "This is a window notification",
                 subtitle: "This notification has been posted on the key window",
                 image: UIImage(named: "donations"),
-                fillColor: .green
+                fillColor: .red
             )
         )
     }
