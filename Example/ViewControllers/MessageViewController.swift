@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  MessageViewController.swift
 //  Example
 //
 //  Created by Ben Shutt on 26/11/2019.
@@ -10,7 +10,7 @@ import UIKit
 import MessageStackView
 
 /// - TODO: Build an interface with buttons for users to experiment with functionality
-class GeneralViewController: UIViewController {
+class MessageViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
@@ -64,10 +64,4 @@ fileprivate class CustomView: UIView {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-}
-// MARK: - Extensions
-
-extension UIImage {
-    static let information = UIImage(named: "information-32")
-    static let cross = UIImage(named: "cross-32")
 }
