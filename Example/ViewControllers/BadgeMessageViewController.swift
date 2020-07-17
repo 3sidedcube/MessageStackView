@@ -10,6 +10,7 @@ import Foundation
 import UIKit
 import MessageStackView
 
+/// `UIViewController` to demo posting a `BadgeMessage` on a `PostView`
 class BadgeMessageViewController: UIViewController {
     
     /// Arrray of titles for `badgeMessages` to demo

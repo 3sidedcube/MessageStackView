@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-/// `UIColor`s used in the framework
+/// Custom `UIColor`s used in the framework
 extension UIColor {
     
     /// Theme red color

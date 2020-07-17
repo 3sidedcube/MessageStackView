@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-/// `UIImage`s used in the framework
+/// Custom `UIImage`s used in the framework
 extension UIImage {
     
     /// Gray circle with a cross in the center
