@@ -3,7 +3,7 @@
 //  MessageStackView
 //
 //  Created by Simon Mitchell on 10/07/2020.
-//  Copyright © 2020 Ben Shutt. All rights reserved.
+//  Copyright © 2020 3 SIDED CUBE APP PRODUCTIONS LTD. All rights reserved.
 //
 
 import UIKit
@@ -56,8 +56,8 @@ public extension UIView {
             guard let newValue = newValue else {
                 layer.shadowColor = UIColor.black.cgColor
                 layer.shadowOpacity = 0
-                layer.shadowOffset = .zero
-                layer.shadowRadius = 0
+                layer.shadowOffset = CGSize(width: 0, height: -3)
+                layer.shadowRadius = 3
                 return
             }
             layer.shadowRadius = newValue.radius

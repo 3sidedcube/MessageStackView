@@ -1,9 +1,9 @@
 //
 //  ScaleFunction.swift
-//  Animation
+//  MessageStackView
 //
 //  Created by Ben Shutt on 03/03/2020.
-//  Copyright © 2020 Ben Shutt. All rights reserved.
+//  Copyright © 2020 3 SIDED CUBE APP PRODUCTIONS LTD. All rights reserved.
 //
 
 import Foundation
