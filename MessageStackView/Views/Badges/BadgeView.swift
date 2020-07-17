@@ -15,7 +15,7 @@ open class BadgeView: BadgeContainerView {
     private struct Constants {
         
         /// Width of `imageView` subview relative to `self`
-        static let imageViewWidthScale: CGFloat = 0.6
+        static let imageViewWidthScale: CGFloat = 0.65
     }
     
     /// `UIImageView` subview

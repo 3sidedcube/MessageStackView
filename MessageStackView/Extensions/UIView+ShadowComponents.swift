@@ -56,8 +56,8 @@ public extension UIView {
             guard let newValue = newValue else {
                 layer.shadowColor = UIColor.black.cgColor
                 layer.shadowOpacity = 0
-                layer.shadowOffset = .zero
-                layer.shadowRadius = 0
+                layer.shadowOffset = CGSize(width: 0, height: -3)
+                layer.shadowRadius = 3
                 return
             }
             layer.shadowRadius = newValue.radius
