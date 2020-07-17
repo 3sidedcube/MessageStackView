@@ -482,7 +482,7 @@
 			attributes = {
 				LastSwiftUpdateCheck = 1120;
 				LastUpgradeCheck = 1120;
-				ORGANIZATIONNAME = "Ben Shutt";
+				ORGANIZATIONNAME = "3 SIDED CUBE APP PRODUCTIONS LTD";
 				TargetAttributes = {
 					B844209B238D3DF700462399 = {
 						CreatedOnToolsVersion = 11.2.1;
