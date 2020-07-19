@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name = 'MessageStackView'
-  s.version = '1.0.0'
+  s.version = 'v2.0.0-rc1'
   s.license = 'MIT'
   s.summary = 'Simple wrapper of UIStackView for posting and removing messages'
   s.homepage = 'https://github.com/3sidedcube/MessageStackView'
