@@ -133,7 +133,6 @@
 
 /* Begin PBXFileReference section */
 		B8BB086D24C4BC23000E2E87 /* Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		B8BB086E24C4BC23000E2E87 /* SomeApp copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "SomeApp copy-Info.plist"; path = "/Users/benshutt/Desktop/3sc/iOS/MessageStackView/SomeApp copy-Info.plist"; sourceTree = "<absolute>"; };
 		B8BB087024C4BC46000E2E87 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B8BB087224C4BC46000E2E87 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B8BB087424C4BC46000E2E87 /* RootTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootTableViewController.swift; sourceTree = "<group>"; };
@@ -384,7 +383,6 @@
 				OBJ_80 /* Products */,
 				OBJ_84 /* Documentation */,
 				OBJ_85 /* README.md */,
-				B8BB086E24C4BC23000E2E87 /* SomeApp copy-Info.plist */,
 				B8BB088D24C4BCC2000E2E87 /* Frameworks */,
 			);
 			sourceTree = "<group>";
@@ -1007,7 +1005,7 @@
 					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
 				);
 				HEADER_SEARCH_PATHS = "$(inherited)";
-				INFOPLIST_FILE = MessageStackView.xcodeproj/MessageStackView_Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/Sources/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) $(TOOLCHAIN_DIR)/usr/lib/swift/macosx";
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
@@ -1037,7 +1035,7 @@
 					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
 				);
 				HEADER_SEARCH_PATHS = "$(inherited)";
-				INFOPLIST_FILE = MessageStackView.xcodeproj/MessageStackView_Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/Sources/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) $(TOOLCHAIN_DIR)/usr/lib/swift/macosx";
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
