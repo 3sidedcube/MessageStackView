@@ -41,7 +41,7 @@ open class BadgeMessageView: UIView {
     }
     
     /// Overrideable default shadow components for `BadgeMessageView`
-    public static var shadowComponents: UIView.ShadowComponents = .default
+    public static var shadowComponents: ShadowComponents = .default
     
     // MARK: - Subviews
     
