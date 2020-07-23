@@ -41,7 +41,7 @@ open class BadgeMessageView: UIView {
     }
     
     /// Overrideable default shadow components for `BadgeMessageView`
-    public static var shadowComponents: UIView.ShadowComponents = .default
+    public static var shadowComponents: ShadowComponents = .default
     
     // MARK: - Subviews
     
@@ -136,7 +136,7 @@ open class BadgeMessageView: UIView {
         // cornerRadius
         layer.cornerRadius = Constants.cornerRadius
         containerView.layer.cornerRadius = layer.cornerRadius
-        shadow = BadgeMessageView.shadowComponents
+        shadowComponents = BadgeMessageView.shadowComponents
         
         if #available(iOS 13.0, *) {
             layer.cornerCurve = .continuous

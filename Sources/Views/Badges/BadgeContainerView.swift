@@ -15,7 +15,7 @@ import UIKit
 open class BadgeContainerView: UIView {
     
     /// Overrideable default shadow components for `BadgeContainerView`
-    public static var shadowComponents: UIView.ShadowComponents = .default
+    public static var shadowComponents: ShadowComponents = .default
     
     /// Fixed constants
     private struct Constants {
@@ -87,7 +87,7 @@ open class BadgeContainerView: UIView {
     
     private func setup() {
         backgroundColor = .clear
-        shadow = BadgeContainerView.shadowComponents
+        shadowComponents = BadgeContainerView.shadowComponents
         updateLayer()
     }
     

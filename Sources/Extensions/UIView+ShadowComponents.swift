@@ -8,50 +8,50 @@
 
 import UIKit
 
-public extension UIView {
+/// Component representation of all properties required to render a shadow in UIKit
+public struct ShadowComponents {
     
-    /// Component representation of all properties required to render a shadow in UIKit
-    struct ShadowComponents {
-        
-        /// The blur radius of the shadow
-        let radius: CGFloat
-        
-        /// The opacity of the shadow
-        let opacity: Float
-        
-        /// The color of the shadow
-        let color: UIColor
-        
-        /// The offset of the shadow
-        let offset: CGSize
-        
-        /// Default public memberwise initialiser
-        /// - Parameters:
-        ///   - radius: The blur radius of the shadow
-        ///   - opacity: The opacity of the shadow
-        ///   - color: The color of the shadow
-        ///   - offset: The offset of the shadow
-        public init(
-            radius: CGFloat,
-            opacity: Float,
-            color: UIColor,
-            offset: CGSize
-        ) {
-            self.radius = radius
-            self.opacity = opacity
-            self.color = color
-            self.offset = offset
-        }
-        
-        static let `default` = ShadowComponents(
-            radius: 3,
-            opacity: 0.6,
-            color: .lightGray,
-            offset: .zero
-        )
+    /// The blur radius of the shadow
+    public let radius: CGFloat
+    
+    /// The opacity of the shadow
+    public let opacity: Float
+    
+    /// The color of the shadow
+    public let color: UIColor
+    
+    /// The offset of the shadow
+    public let offset: CGSize
+    
+    /// Default public memberwise initialiser
+    /// - Parameters:
+    ///   - radius: The blur radius of the shadow
+    ///   - opacity: The opacity of the shadow
+    ///   - color: The color of the shadow
+    ///   - offset: The offset of the shadow
+    public init(
+        radius: CGFloat,
+        opacity: Float,
+        color: UIColor,
+        offset: CGSize
+    ) {
+        self.radius = radius
+        self.opacity = opacity
+        self.color = color
+        self.offset = offset
     }
     
-    var shadow: ShadowComponents? {
+    public static let `default` = ShadowComponents(
+        radius: 3,
+        opacity: 0.6,
+        color: .lightGray,
+        offset: .zero
+    )
+}
+
+public extension UIView {
+    
+    var shadowComponents: ShadowComponents? {
         set {
             guard let newValue = newValue else {
                 layer.shadowColor = UIColor.black.cgColor
