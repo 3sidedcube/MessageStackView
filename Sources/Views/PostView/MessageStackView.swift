@@ -32,6 +32,13 @@ open class MessageStackView: UIStackView, Poster {
         }
     }
     
+    /// Is `spaceView` the first `arrangedSubview`
+    public var spaceViewIsFirst = true {
+        didSet {
+            updateSpaceView(updateArrangedSubviews: true)
+        }
+    }
+    
     // MARK: - Views
     
     /// This view is for smooth animations when there are no `arrangedSubviews`
@@ -70,7 +77,9 @@ open class MessageStackView: UIStackView, Poster {
         distribution = .fill
         spacing = 0
         
+        // Configure `spaceView`
         addSpaceView()
+        updateSpaceView(updateArrangedSubviews: true)
     }
     
     /// Invalidate on deinit
@@ -122,6 +131,34 @@ open class MessageStackView: UIStackView, Poster {
             completion()
         })
     }
+    
+    // MARK: - SpaceView
+    
+    /// Updates the `backgroundColor` of the `spaceView` based on the "next" arranged subview.
+    /// If the `spaceView` is the first in the `arrangedSubviews`, then "next" is the subview
+    /// after. Otherwise "next" is the subview before.
+    ///
+    /// - Parameters:
+    ///   - updateArrangedSubviews:
+    ///       `Bool` update the position of the `spaceView` in the `arrangedSubviews` based
+    ///        on the value of `spaceViewIsFirst`
+    private func updateSpaceView(updateArrangedSubviews: Bool = false) {
+        if updateArrangedSubviews {
+            spaceView.removeFromSuperview()
+            if spaceViewIsFirst {
+                insertArrangedSubview(spaceView, at: 0)
+            } else {
+                addArrangedSubview(spaceView)
+            }
+        }
+        
+        let isFirstInArrangedSubviews = arrangedSubviews.first === spaceView
+        let next = isFirstInArrangedSubviews ?
+            arrangedSubviews.elementAfterFirst(of: spaceView) :
+            arrangedSubviews.elementBeforeFirst(of: spaceView)
+        
+        spaceView.backgroundColor = next?.backgroundColor ?? .clear
+    }
 }
 
 // MARK: - UIViewPoster
@@ -152,6 +189,8 @@ extension MessageStackView: UIViewPoster {
         completion: @escaping () -> Void
     ) {
         addArrangedSubview(view)
+        updateSpaceView()
+        
         if let configurable = view as? MessageConfigurable {
             configurable.set(configuration: messageConfiguation)
         }
@@ -170,11 +209,11 @@ extension MessageStackView: UIViewPoster {
         animated: Bool,
         completion: @escaping () -> Void
     ) {
-        setView(view, hidden: true, animated: animated) {
+        setView(view, hidden: true, animated: animated) { [weak self] in
             // Apple docs say the stackView will remove it from its
             // arrangedSubviews list automatically when calling this method
             view.removeFromSuperview()
-            
+            self?.updateSpaceView()
             completion()
         }
     }

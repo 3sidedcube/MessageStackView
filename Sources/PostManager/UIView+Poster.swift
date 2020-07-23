@@ -58,10 +58,17 @@ public extension UIView {
         layout: MessageLayout = .default,
         constrainToSafeArea: Bool = true
     ) -> MessageStackView {
-        return posterViewOrCreate(
+        let messageStackView: MessageStackView = posterViewOrCreate(
             layout: layout,
             constrainToSafeArea: constrainToSafeArea
         )
+        
+        switch layout {
+        case .top: messageStackView.spaceViewIsFirst = true
+        case .bottom: messageStackView.spaceViewIsFirst = false
+        }
+        
+        return messageStackView
     }
     
     /// `PostView` or create and constrain
