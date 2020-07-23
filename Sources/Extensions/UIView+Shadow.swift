@@ -20,7 +20,7 @@ extension UIView {
             clipsToBounds = false
         }
         
-        shadow = ShadowComponents(
+        shadowComponents = ShadowComponents(
             radius: 1,
             opacity: 0.6,
             color: .lightGray,
@@ -35,7 +35,7 @@ extension UIView {
             layer.masksToBounds = false
             clipsToBounds = false
         }
-        shadow = nil
+        shadowComponents = nil
     }
 }
 

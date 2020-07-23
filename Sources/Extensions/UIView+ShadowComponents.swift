@@ -51,7 +51,7 @@ public struct ShadowComponents {
 
 public extension UIView {
     
-    var shadow: ShadowComponents? {
+    var shadowComponents: ShadowComponents? {
         set {
             guard let newValue = newValue else {
                 layer.shadowColor = UIColor.black.cgColor

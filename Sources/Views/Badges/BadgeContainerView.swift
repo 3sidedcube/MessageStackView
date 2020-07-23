@@ -87,7 +87,7 @@ open class BadgeContainerView: UIView {
     
     private func setup() {
         backgroundColor = .clear
-        shadow = BadgeContainerView.shadowComponents
+        shadowComponents = BadgeContainerView.shadowComponents
         updateLayer()
     }
     
