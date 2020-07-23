@@ -17,4 +17,9 @@ extension UIColor {
     static let red = UIColor(
         red: 231/255, green: 19/255, blue: 36/255, alpha: 1
     )
+
+    /// Override `.darkGray` color
+    static let darkGray = UIColor(
+        red: 109/255, green: 110/255, blue: 112/255, alpha: 1
+    )
 }

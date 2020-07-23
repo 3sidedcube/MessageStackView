@@ -21,6 +21,7 @@ class RootTableViewController: UITableViewController {
         ("Pan", PanViewController.self),
         ("Badge Message", BadgeMessageViewController.self),
         ("Window", WindowViewController.self),
+        ("No Internet", NoInternetViewController.self),
     ]
     
     // MARK: - ViewController lifecycle

@@ -50,6 +50,16 @@ open class MessageStackView: UIStackView, Poster {
         return spaceView.heightAnchor.constraint(equalToConstant: 0)
     }()
     
+    /// Height of the `spaceViewHeightConstraint`
+    public var spaceViewHeight: CGFloat {
+        get {
+            return spaceViewHeightConstraint.constant
+        }
+        set {
+            spaceViewHeightConstraint.constant = newValue
+        }
+    }
+    
     // MARK: - Init
     
     /// Default initializer

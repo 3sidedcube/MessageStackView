@@ -20,8 +20,14 @@ public extension UIView {
     /// This is the common use case. But it may be practical to have one at the top and another at
     /// the bottom. In this case one must keep a reference to the `MessageStackView`s.
     ///
+    /// - Parameters:
+    ///   - layout: `MessageLayout`
+    ///
     /// - Returns: `MessageStackView`
-    func posterViewOrCreate<T>() -> T where T : UIView, T : Poster {
+    func posterViewOrCreate<T>(
+        layout: MessageLayout = .default,
+        constrainToSafeArea: Bool = true
+    ) -> T where T : UIView, T : Poster {
         // Get first `T`
         let subview = subviews
             .compactMap { $0 as? T }
@@ -34,20 +40,36 @@ public extension UIView {
         
         // Otherwise create it and add to top
         let posterView = T()
-        posterView.addTo(view: self, layout: .top)
+        posterView.addTo(
+            view: self,
+            layout: layout,
+            constrainToSafeArea: constrainToSafeArea
+        )
         layoutIfNeeded()
         posterView.layoutIfNeeded()
         return posterView
     }
     
     /// `MessageStackView` or create and constrain
-    func messageStackViewOrCreate() -> MessageStackView {
-        return posterViewOrCreate()
+    /// - Parameters:
+    ///   - layout: `MessageLayout`
+    ///   - constrainToSafeArea: `Bool` constrain to the safe area
+    func messageStackViewOrCreate(
+        layout: MessageLayout = .default,
+        constrainToSafeArea: Bool = true
+    ) -> MessageStackView {
+        return posterViewOrCreate(
+            layout: layout,
+            constrainToSafeArea: constrainToSafeArea
+        )
     }
     
     /// `PostView` or create and constrain
-    func postViewOrCreate() -> PostView {
-        return posterViewOrCreate()
+    /// - Parameter layout: `MessageLayout`
+    func postViewOrCreate(
+        layout: MessageLayout = .default
+    ) -> PostView {
+        return posterViewOrCreate(layout: layout)
     }
 }
 
@@ -56,13 +78,26 @@ public extension UIView {
 public extension UIViewController {
     
     /// `MessageStackView` or create and constrain on `view`
-    func messageStackViewOrCreate() -> MessageStackView {
-        return view.messageStackViewOrCreate()
+    ///
+    /// - Parameters:
+    ///   - layout: `MessageLayout`
+    ///   - constrainToSafeArea: `Bool` constrain to the safe area
+    func messageStackViewOrCreate(
+        layout: MessageLayout = .default,
+        constrainToSafeArea: Bool = true
+    ) -> MessageStackView {
+        return view.messageStackViewOrCreate(
+            layout: layout,
+            constrainToSafeArea: constrainToSafeArea
+        )
     }
     
     /// `PostView` or create and constrain on `view`
-    func postViewOrCreate() -> PostView {
-        return view.posterViewOrCreate()
+    /// - Parameter layout: `MessageLayout`
+    func postViewOrCreate(
+        layout: MessageLayout = .default
+    ) -> PostView {
+        return view.posterViewOrCreate(layout: layout)
     }
 }
 
@@ -71,7 +106,17 @@ public extension UIViewController {
 public extension UIApplication {
     
     /// `MessageStackView` or create and constrain
-    func postViewOrCreate() -> PostView? {
-        return firstKeyWindow?.postViewOrCreate()
+    func postViewOrCreate(
+        layout: MessageLayout = .default
+    ) -> PostView? {
+        return firstKeyWindow?.postViewOrCreate(layout: layout)
     }
+}
+
+// MARK: - UIApplication + PostView
+
+public extension MessageLayout {
+    
+    /// The default `MessageLayout`
+    static let `default`: MessageLayout = .top
 }
