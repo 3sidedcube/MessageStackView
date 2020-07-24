@@ -11,11 +11,19 @@ import UIKit
 /// Define a default configuration to look and feel
 public struct MessageConfiguration {
     
+    /// A standard/default `MessageConfiguration`
+    public static var `default` = MessageConfiguration(
+        backgroundColor: .defaultBackgroundColor,
+        tintColor: .defaultTintColor,
+        shadow: true,
+        applyToAll: false
+    )
+    
     /// Background color of `MessageView`s
-    public var backgroundColor: UIColor
+    public var backgroundColor: UIColor?
     
     /// Tint color of `MessageView`s
-    public var tintColor: UIColor
+    public var tintColor: UIColor?
     
     /// If shadow is added below `MessageView`
     public var shadow: Bool
@@ -30,9 +38,9 @@ public struct MessageConfiguration {
     ///   - shadow: `Bool`
     ///   - applyToAll: `Bool`
     public init(
-        backgroundColor: UIColor = .defaultBackgroundColor,
-        tintColor: UIColor = .defaultTintColor,
-        shadow: Bool = true,
+        backgroundColor: UIColor? = nil,
+        tintColor: UIColor? = nil,
+        shadow: Bool = false,
         applyToAll: Bool = false
     ){
         self.backgroundColor = backgroundColor

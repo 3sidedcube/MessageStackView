@@ -64,8 +64,8 @@ public extension UIView {
         )
         
         switch layout {
-        case .top: messageStackView.spaceViewIsFirst = true
-        case .bottom: messageStackView.spaceViewIsFirst = false
+        case .top: messageStackView.order = .default
+        case .bottom: messageStackView.order = .reversed
         }
         
         return messageStackView

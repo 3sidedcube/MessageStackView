@@ -82,7 +82,7 @@
 		OBJ_141 /* MessageStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_74 /* MessageStackView.swift */; };
 		OBJ_142 /* PostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_75 /* PostView.swift */; };
 		OBJ_149 /* Package.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_6 /* Package.swift */; };
-		OBJ_160 /* MessageStackViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_78 /* MessageStackViewTests.swift */; };
+		OBJ_160 /* ArrayExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_78 /* ArrayExtensionTests.swift */; };
 		OBJ_161 /* XCTestManifests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_79 /* XCTestManifests.swift */; };
 		OBJ_163 /* MessageStackView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "MessageStackView::MessageStackView::Product" /* MessageStackView.framework */; };
 		OBJ_91 /* TimeInterval+Defaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_11 /* TimeInterval+Defaults.swift */; };
@@ -153,7 +153,7 @@
 		B8BB087E24C4BC46000E2E87 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B8BB087F24C4BC46000E2E87 /* SceneDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		"MessageStackView::MessageStackView::Product" /* MessageStackView.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = MessageStackView.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		"MessageStackView::MessageStackViewTests::Product" /* MessageStackViewTests.xctest */ = {isa = PBXFileReference; lastKnownFileType = file; path = MessageStackViewTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		"MessageStackView::MessageStackViewTests::Product" /* MessageStackViewTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; path = MessageStackViewTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		OBJ_11 /* TimeInterval+Defaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TimeInterval+Defaults.swift"; sourceTree = "<group>"; };
 		OBJ_13 /* CenterConstraints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CenterConstraints.swift; sourceTree = "<group>"; };
 		OBJ_14 /* Constrainable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constrainable.swift; sourceTree = "<group>"; };
@@ -207,7 +207,7 @@
 		OBJ_72 /* ShakeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShakeView.swift; sourceTree = "<group>"; };
 		OBJ_74 /* MessageStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageStackView.swift; sourceTree = "<group>"; };
 		OBJ_75 /* PostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostView.swift; sourceTree = "<group>"; };
-		OBJ_78 /* MessageStackViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageStackViewTests.swift; sourceTree = "<group>"; };
+		OBJ_78 /* ArrayExtensionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrayExtensionTests.swift; sourceTree = "<group>"; };
 		OBJ_79 /* XCTestManifests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XCTestManifests.swift; sourceTree = "<group>"; };
 		OBJ_8 /* MessageStackView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MessageStackView.h; sourceTree = "<group>"; };
 		OBJ_84 /* Documentation */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Documentation; sourceTree = SOURCE_ROOT; };
@@ -494,7 +494,7 @@
 		OBJ_77 /* MessageStackViewTests */ = {
 			isa = PBXGroup;
 			children = (
-				OBJ_78 /* MessageStackViewTests.swift */,
+				OBJ_78 /* ArrayExtensionTests.swift */,
 				OBJ_79 /* XCTestManifests.swift */,
 			);
 			name = MessageStackViewTests;
@@ -662,7 +662,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 0;
 			files = (
-				OBJ_160 /* MessageStackViewTests.swift in Sources */,
+				OBJ_160 /* ArrayExtensionTests.swift in Sources */,
 				OBJ_161 /* XCTestManifests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -926,7 +926,7 @@
 				);
 				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = MessageStackView.xcodeproj/MessageStackViewTests_Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/../Frameworks @loader_path/Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				OTHER_CFLAGS = "$(inherited)";
@@ -951,7 +951,7 @@
 				);
 				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = MessageStackView.xcodeproj/MessageStackViewTests_Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/../Frameworks @loader_path/Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				OTHER_CFLAGS = "$(inherited)";

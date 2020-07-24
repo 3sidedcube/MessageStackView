@@ -18,27 +18,19 @@ class NoInternetViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        messageStackView.messageConfiguation = MessageConfiguration(
-            backgroundColor: .darkGray
-        )
-        
+        messageStackView.spaceViewHeight = view.safeAreaInsets.bottom
         let messageView = messageStackView.post(message: Message(
             title: "No Internet Connection",
             subtitle: "Please check your connection and try again",
             leftImage: .noInternet
         ))
-        
-        messageView.leftImageViewSize = CGSize(width: 28, height: 28)
-        messageView.titleLabel.configure(ofSize: 15, weight: .semibold)
-        messageView.subtitleLabel.configure(ofSize: 13, weight: .regular)
+        messageView.configureNoInternet()
     }
     
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        
+    override func viewSafeAreaInsetsDidChange() {
+        super.viewSafeAreaInsetsDidChange()
         messageStackView.spaceViewHeight = view.safeAreaInsets.bottom
     }
-    
 }
 
 
@@ -47,5 +39,16 @@ private extension UILabel {
     func configure(ofSize size: CGFloat, weight: UIFont.Weight) {
         textColor = .white
         font = UIFont.systemFont(ofSize: size, weight: weight)
+    }
+}
+
+private extension MessageView {
+    
+    func configureNoInternet() {
+        backgroundColor = .darkGray
+        leftImageViewSize = leftImageView.image?.size ?? .zero
+        titleLabel.configure(ofSize: 15, weight: .semibold)
+        subtitleLabel.configure(ofSize: 13, weight: .regular)
+        shadowComponents = nil
     }
 }

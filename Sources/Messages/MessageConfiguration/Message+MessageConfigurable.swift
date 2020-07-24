@@ -16,10 +16,14 @@ extension MessageView: MessageConfigurable {
     public func set(configuration: MessageConfiguration) {
         
         // backgroundColor
-        backgroundColor = configuration.backgroundColor
+        if let backgroundColor = configuration.backgroundColor {
+            self.backgroundColor = backgroundColor
+        }
         
         // tintColor
-        tintColor = configuration.tintColor
+        if let tintColor = configuration.tintColor {
+            self.tintColor = tintColor
+        }
         
         // shadow
         if configuration.shadow {
