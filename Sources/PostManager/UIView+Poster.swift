@@ -13,7 +13,27 @@ import UIKit
 
 public extension UIView {
     
-    /// Get the first `MessageStackView` or create and add to top of `self`.
+    /// Create a `T` and constrain inline with the given arguments
+    ///
+    /// - Parameters:
+    ///   - layout: `MessageLayout`
+    ///   - constrainToSafeArea: `Bool` Contrain to the safe area
+    func createPosterView<T>(
+        layout: MessageLayout = .default,
+        constrainToSafeArea: Bool = true
+    ) -> T where T : UIView, T : Poster {
+        let posterView = T()
+        posterView.addTo(
+            view: self,
+            layout: layout,
+            constrainToSafeArea: constrainToSafeArea
+        )
+        layoutIfNeeded()
+        posterView.layoutIfNeeded()
+        return posterView
+    }
+    
+    /// Get the first `T` or create and add to top of `self`.
     ///
     /// - Note:
     /// This is only desired when only `MessageStackView` exists as a subview of a `UIView`.
@@ -22,8 +42,7 @@ public extension UIView {
     ///
     /// - Parameters:
     ///   - layout: `MessageLayout`
-    ///
-    /// - Returns: `MessageStackView`
+    ///   - constrainToSafeArea: `Bool` Contrain to the safe area
     func posterViewOrCreate<T>(
         layout: MessageLayout = .default,
         constrainToSafeArea: Bool = true
@@ -39,15 +58,10 @@ public extension UIView {
         }
         
         // Otherwise create it and add to top
-        let posterView = T()
-        posterView.addTo(
-            view: self,
+        return createPosterView(
             layout: layout,
             constrainToSafeArea: constrainToSafeArea
         )
-        layoutIfNeeded()
-        posterView.layoutIfNeeded()
-        return posterView
     }
     
     /// `MessageStackView` or create and constrain
@@ -63,11 +77,7 @@ public extension UIView {
             constrainToSafeArea: constrainToSafeArea
         )
         
-        switch layout {
-        case .top: messageStackView.order = .default
-        case .bottom: messageStackView.order = .reversed
-        }
-        
+        messageStackView.updateOrderForLayout(layout)
         return messageStackView
     }
     

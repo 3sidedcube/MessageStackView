@@ -53,6 +53,7 @@ open class MessageStackView: UIStackView, Poster {
             updateSpaceView(updateArrangedSubviews: true)
         }
     }
+    
     // MARK: - Views
     
     /// This view is for smooth animations when there are no `arrangedSubviews`
@@ -110,20 +111,12 @@ open class MessageStackView: UIStackView, Poster {
     
     // MARK: - ArrangedSubviews
     
-    /// Add `spaceView` to the `arrangedSubviews`
-    private func constrainSpaceView() {
-        spaceView.translatesAutoresizingMaskIntoConstraints = false
-        if !spaceViewHeightConstraint.isActive {
-            spaceViewHeightConstraint.isActive = true
-        }
-    }
-    
     /// `arrangedSubviews` excluding `spaceView`
     public var arrangedSubviewsExcludingSpace: [UIView] {
         return arrangedSubviews.filter { $0 != spaceView }
     }
     
-    // MARK: - Hidden
+    // MARK: - Animation
     
     /// Show or hide the given `view`
     ///
@@ -222,6 +215,25 @@ open class MessageStackView: UIStackView, Poster {
         
         // Set backgroundColor equivalent to adjacent arranged subview
         spaceView.backgroundColor = next?.backgroundColor ?? .clear
+    }
+    
+    /// Add `spaceView` to the `arrangedSubviews`
+    private func constrainSpaceView() {
+        spaceView.translatesAutoresizingMaskIntoConstraints = false
+        if !spaceViewHeightConstraint.isActive {
+            spaceViewHeightConstraint.isActive = true
+        }
+    }
+    
+    // MARK: - Order
+    
+    /// Update `order` given `layout`
+    /// - Parameter layout: `MessageLayout`
+    public func updateOrderForLayout(_ layout: MessageLayout) {
+        switch layout {
+        case .top: order = .default
+        case .bottom: order = .reversed
+        }
     }
     
     // MARK: - Post
