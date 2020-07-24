@@ -95,6 +95,12 @@ open class MessageStackView: UIStackView, Poster {
         
         // Configure `spaceView`
         updateSpaceView(updateArrangedSubviews: true)
+        
+        // Make sure `postManger` is instantiated. This is encase `deinit` is
+        // is the first instance to reference `postManager`, lazily
+        // instantiating it, referencing `self`, which is being
+        // de-initialized...
+        let _ = self.postManager.isSerialQueue
     }
     
     /// Invalidate on deinit

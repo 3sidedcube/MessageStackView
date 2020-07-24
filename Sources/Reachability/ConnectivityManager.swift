@@ -88,6 +88,7 @@ public class ConnectivityManager {
         }
         
         let status = reachability.currentReachabilityStatus()
+        debugPrint("INTERNET CONNECTION CHANGE \(status)")
         let state = status.state
         postNotification(for: state)
     }
