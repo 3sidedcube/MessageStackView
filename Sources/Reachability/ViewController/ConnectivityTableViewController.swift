@@ -9,47 +9,24 @@
 import Foundation
 import UIKit
 
-class SubViewController: UIViewController {
-    
-    let messageLayout: MessageLayout
-    
-    init(messageLayout: MessageLayout) {
-        self.messageLayout = messageLayout
-        super.init(nibName: nil, bundle: nil)
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    /// `MessageStackView` at the bottom of the screen
-    fileprivate lazy var messageStackView: MessageStackView = {
-        let messageStackView: MessageStackView = view.createPosterView(
-            layout: .bottom,
-            constrainToSafeArea: false
-        )
-        messageStackView.updateOrderForLayout(.bottom)
-        return messageStackView
-    }()
-    
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-    }
-}
-
-// MARK: - ConnectivityViewController
+// MARK: - ConnectivityTableViewController
 
 /// Base class for internet connection toasts in response to Reachability `Notification`s
 open class ConnectivityTableViewController: UITableViewController,
     InternetConnectionMessageable {
     
-    private lazy var subViewController = SubViewController(
-        messageLayout: messageLayout
-    )
+    /// Since we are in a `UITableViewController`, where `view` is a `UITableView`,
+    /// we need a child container `UIViewController` to layout the `messageStackView`
+    private lazy var containerViewController = UIViewController()
+    
+    /// Pass on the parent of `messageStackView` to the child `UIViewController`
+    public var messageParentView: UIView {
+        return containerViewController.view
+    }
 
     /// `MessageStackView` at the bottom of the screen
     public private(set) lazy var messageStackView: MessageStackView = {
-        return subViewController.messageStackView
+        return createMessageStackView()
     }()
     
     /// Observer for internet connectivity `Notification`s
@@ -60,9 +37,9 @@ open class ConnectivityTableViewController: UITableViewController,
     open override func viewDidLoad() {
         super.viewDidLoad()
         
-        addChild(subViewController)
-        view.addSubview(subViewController.view)
-        subViewController.didMove(toParent: self)
+        addChild(containerViewController)
+        view.addSubview(containerViewController.view)
+        containerViewController.didMove(toParent: self)
     }
     
     open override func viewWillAppear(_ animated: Bool) {
@@ -82,14 +59,28 @@ open class ConnectivityTableViewController: UITableViewController,
     
     open override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
+    
+        let safeInsets = view.safeAreaInsets
+        containerViewController.additionalSafeAreaInsets = safeInsets
         
-        var frame = subViewController.view.frame
+        guard let childView = containerViewController.view else {
+            return
+        }
         
+        var frame = childView.frame
         frame.size.height = messageStackView.frame.height
-        frame.origin.x = 0
-        frame.origin.y = view.bounds.height - frame.height - view.safeAreaInsets.t
         frame.size.width = view.bounds.width
+        frame.origin.x = 0
+        frame.origin.y = view.bounds.height - frame.height +
+            tableView.contentOffset.y
+        childView.frame = frame
+        childView.superview?.bringSubviewToFront(childView)
         
-        subViewController.view.frame = frame
+        tableView.contentInset = UIEdgeInsets(
+            top: 0,
+            left: 0,
+            bottom: frame.height,
+            right: 0
+        )
     }
 }
