@@ -32,6 +32,9 @@ public class ConnectivityManager {
     /// `Reachability` instance for internet connection
     private lazy var reachability = Reachability.forInternetConnection()
     
+    /// Observers listening on the `.default` `NotificationCenter`
+    internal var observers: [Any] = []
+    
     // MARK: - Init
     
     /// Default public initializer
@@ -93,7 +96,7 @@ public class ConnectivityManager {
 
 // MARK: - NetworkStatus + ConnectivityManager.State
 
-extension NetworkStatus {
+public extension NetworkStatus {
     
     /// `NetworkStatus` to `ConnectivityManager.State`
     var state: ConnectivityManager.State {

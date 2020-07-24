@@ -20,18 +20,21 @@ public extension Notification.Name {
 
 // MARK: - ConnectivityManager + Notification
 
+/// Closure to execute on `Notification`
+public typealias StateClosure = (ConnectivityManager.State) -> Void
+
 /// `Notification` related `ConnectivityManager` functionality
 public extension ConnectivityManager {
     
     /// `String` key in the `Notification` `userInfo` to find `State`
-    static let userInfoKey = "messageStackView.connectivityManager.state"
+    static let stateUserInfoKey = "messageStackView.connectivityManager.state"
     
     /// Post `Notification` on the `.default` `NotificationCenter` on
     /// `state` updated
     ///
     /// - Parameter state: `State`
     func postNotification(for state: State) {
-        let key = ConnectivityManager.userInfoKey
+        let key = ConnectivityManager.stateUserInfoKey
         
         NotificationCenter.default.post(
             name: .internetConnectivityChanged,
@@ -40,31 +43,56 @@ public extension ConnectivityManager {
         )
     }
     
-    /// Add `observer` to the `.default` `NotificationCenter` listening for
-    /// internet connectivity `Notifiction`s
+    /// Add an observer to the `.default` `NotificationCenter` listening for
+    /// internet connectivity `Notification`s. Execute `closure` on observation event.
     ///
     /// - Parameters:
-    ///   - observer: `Any`
-    ///   - selector: `Selector`
-    func addObserver(_ observer: Any, selector: Selector) {
-        NotificationCenter.default.addObserver(
-            observer,
-            selector: selector,
-            name: .internetConnectivityChanged,
-            object: self
-        )
+    ///   - closure: ``StateClosure` `
+    ///   - startListening: `Bool` invoke `startListening()`
+    func addObserver(
+        closure: @escaping StateClosure,
+        startListening: Bool = true
+    ) -> NSObjectProtocol {
+        let observer = NotificationCenter.default.addObserver(
+            forName: .internetConnectivityChanged,
+            object: self,
+            queue: .main
+        ) { sender in
+            let key = ConnectivityManager.stateUserInfoKey
+            if let state = sender.userInfo?[key] as? State {
+                closure(state)
+            }
+        }
+        observers.append(observer)
+        
+        if startListening {
+            self.startListening()
+        }
+        
+        return observer
     }
     
     /// Remove `observer` from the `.default` `NotificationCenter` listening for
-    /// internet connectivity `Notifiction`s
+    /// internet connectivity `Notification`s
     ///
     /// - Parameters:
-    ///   - observer: `Any`
-    func removeObserver(_ observer: Any) {
+    ///   - observer: `NSObjectProtocol`
+    ///   - stopListeningIfEmpty: `Bool` invoke `stopListening()` if there are no
+    ///   more oberserves
+    func removeObserver(
+        _ observer: NSObjectProtocol,
+        stopListeningIfEmpty: Bool = true
+    ) {
         NotificationCenter.default.removeObserver(
             observer,
             name: .internetConnectivityChanged,
             object: self
         )
+        
+        observers.removeAll { $0 as AnyObject === observer }
+        
+        if stopListeningIfEmpty, observers.isEmpty {
+            self.stopListening()
+        }
     }
 }

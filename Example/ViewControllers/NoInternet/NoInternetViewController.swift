@@ -10,14 +10,36 @@ import UIKit
 import MessageStackView
 
 class NoInternetViewController: UIViewController {
-
+    
     private var messageStackView: MessageStackView {
         return messageStackViewOrCreate(layout: .bottom, constrainToSafeArea: false)
     }
     
+    private var observer: NSObjectProtocol?
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        observer = ConnectivityManager.shared.addObserver { [unowned self] state in
+            if case .notConnected = state {
+                self.onNoInternet()
+            }
+        }
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        if let observer = observer {
+            ConnectivityManager.shared.removeObserver(observer)
+        }
+    }
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
+    }
+    
+    private func onNoInternet() {
         messageStackView.spaceViewHeight = view.safeAreaInsets.bottom
         let messageView = messageStackView.post(message: Message(
             title: "No Internet Connection",
