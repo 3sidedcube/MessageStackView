@@ -19,7 +19,4 @@ extension UIImage {
     
     /// Donations
     static let donations = UIImage(named: "donations")
-    
-    /// Icon when there's no internet connection
-    static let noInternet = UIImage(named: "noInternet")
 }

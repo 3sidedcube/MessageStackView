@@ -14,6 +14,9 @@ extension UIImage {
     
     /// Gray circle with a cross in the center
     static let iconClose = UIImage("iconClose")
+    
+    /// Icon for not connected to internet
+    static let noInternet = UIImage("noInternet")
 }
 
 // MARK: - UIImage + Init

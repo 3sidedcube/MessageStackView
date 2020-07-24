@@ -30,6 +30,8 @@ open class ConnectivityViewController: UIViewController {
         observer = ConnectivityManager.shared.addObserver { [unowned self] state in
             if case .notConnected = state {
                 self.postNoInternetMessage()
+            } else {
+                self.removeNoInternetMessage()
             }
         }
     }
@@ -58,9 +60,13 @@ open class ConnectivityViewController: UIViewController {
         let messageView = messageStackView.post(message: Message(
             title: "No Internet Connection",
             subtitle: "Please check your connection and try again",
-            leftImage: nil
+            leftImage: .noInternet
         ))
         messageView.configureNoInternet()
+    }
+    
+    private func removeNoInternetMessage() {
+        messageStackView.postManager.removeCurrent()
     }
 }
 
