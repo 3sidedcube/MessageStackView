@@ -30,12 +30,7 @@ class WindowViewController: UIViewController {
         super.viewDidLoad()
         
         view.addSubview(button)
-        button.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            button.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            button.centerYAnchor.constraint(equalTo: view.centerYAnchor)
-        ])
-        button.sizeToFit()
+        button.constrainToCenter(of: view)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -54,4 +49,19 @@ class WindowViewController: UIViewController {
     @objc private func buttonTouchUpInside(sender: UIButton) {
         navigationController?.popViewController(animated: true)
     }
+}
+
+// MARK: - UIButton + CenterConstraints
+
+extension UIView {
+    
+    func constrainToCenter(of view: UIView) {
+        translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            centerYAnchor.constraint(equalTo: view.centerYAnchor)
+        ])
+        //sizeToFit()
+    }
+    
 }

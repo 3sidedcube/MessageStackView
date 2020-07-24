@@ -31,6 +31,9 @@
 		B87CC98924CAF6D6002B697C /* ConnectivityManager+Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = B87CC98824CAF6D6002B697C /* ConnectivityManager+Notification.swift */; };
 		B87CC98B24CB02F8002B697C /* ConnectivityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B87CC98A24CB02F8002B697C /* ConnectivityViewController.swift */; };
 		B87CC99124CB2370002B697C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B87CC98E24CB21E1002B697C /* Assets.xcassets */; };
+		B87CC99324CB48DD002B697C /* InternetConnectionMessageable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B87CC99224CB48DD002B697C /* InternetConnectionMessageable.swift */; };
+		B87CC99524CB4A0E002B697C /* NoInternet+UI.swift in Sources */ = {isa = PBXBuildFile; fileRef = B87CC99424CB4A0D002B697C /* NoInternet+UI.swift */; };
+		B87CC99824CB4A50002B697C /* ConnectivityTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B87CC99724CB4A50002B697C /* ConnectivityTableViewController.swift */; };
 		B8BB088224C4BC46000E2E87 /* RootTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8BB087424C4BC46000E2E87 /* RootTableViewController.swift */; };
 		B8BB088324C4BC46000E2E87 /* SimpleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8BB087524C4BC46000E2E87 /* SimpleViewController.swift */; };
 		B8BB088424C4BC46000E2E87 /* WindowViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8BB087624C4BC46000E2E87 /* WindowViewController.swift */; };
@@ -151,6 +154,9 @@
 		B87CC98824CAF6D6002B697C /* ConnectivityManager+Notification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ConnectivityManager+Notification.swift"; sourceTree = "<group>"; };
 		B87CC98A24CB02F8002B697C /* ConnectivityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectivityViewController.swift; sourceTree = "<group>"; };
 		B87CC98E24CB21E1002B697C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		B87CC99224CB48DD002B697C /* InternetConnectionMessageable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InternetConnectionMessageable.swift; sourceTree = "<group>"; };
+		B87CC99424CB4A0D002B697C /* NoInternet+UI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NoInternet+UI.swift"; sourceTree = "<group>"; };
+		B87CC99724CB4A50002B697C /* ConnectivityTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectivityTableViewController.swift; sourceTree = "<group>"; };
 		B8BB086D24C4BC23000E2E87 /* Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B8BB087024C4BC46000E2E87 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B8BB087224C4BC46000E2E87 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -271,9 +277,20 @@
 				B87CC95024CAE56E002B697C /* Reachability.m */,
 				B87CC95224CAE5A5002B697C /* ConnectivityManager.swift */,
 				B87CC98824CAF6D6002B697C /* ConnectivityManager+Notification.swift */,
-				B87CC98A24CB02F8002B697C /* ConnectivityViewController.swift */,
+				B87CC99624CB4A3A002B697C /* ViewController */,
+				B87CC99224CB48DD002B697C /* InternetConnectionMessageable.swift */,
+				B87CC99424CB4A0D002B697C /* NoInternet+UI.swift */,
 			);
 			path = Reachability;
+			sourceTree = "<group>";
+		};
+		B87CC99624CB4A3A002B697C /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				B87CC98A24CB02F8002B697C /* ConnectivityViewController.swift */,
+				B87CC99724CB4A50002B697C /* ConnectivityTableViewController.swift */,
+			);
+			path = ViewController;
 			sourceTree = "<group>";
 		};
 		B8BB086F24C4BC46000E2E87 /* Example */ = {
@@ -729,6 +746,7 @@
 				OBJ_93 /* Constrainable.swift in Sources */,
 				OBJ_94 /* EdgeConstraints.swift in Sources */,
 				OBJ_95 /* MessageLayout.swift in Sources */,
+				B87CC99524CB4A0E002B697C /* NoInternet+UI.swift in Sources */,
 				OBJ_96 /* SizeConstraints.swift in Sources */,
 				OBJ_97 /* CALayer+Animation.swift in Sources */,
 				OBJ_98 /* CGRect+Extensions.swift in Sources */,
@@ -737,6 +755,7 @@
 				OBJ_101 /* UIApplication+StatusBar.swift in Sources */,
 				OBJ_102 /* UIEdgeInsets+Extensions.swift in Sources */,
 				OBJ_103 /* UIView+Animation.swift in Sources */,
+				B87CC99824CB4A50002B697C /* ConnectivityTableViewController.swift in Sources */,
 				OBJ_104 /* UIView+Extensions.swift in Sources */,
 				OBJ_105 /* UIView+Hidden.swift in Sources */,
 				OBJ_106 /* UIView+SafeArea.swift in Sources */,
@@ -746,6 +765,7 @@
 				OBJ_110 /* GrowFunction.swift in Sources */,
 				OBJ_111 /* ScaleFunction.swift in Sources */,
 				OBJ_112 /* ShakeFunction.swift in Sources */,
+				B87CC99324CB48DD002B697C /* InternetConnectionMessageable.swift in Sources */,
 				OBJ_113 /* BadgeMessage.swift in Sources */,
 				OBJ_114 /* BadgeMessageView+BadgeMessage.swift in Sources */,
 				OBJ_115 /* BadgeMessageView.swift in Sources */,

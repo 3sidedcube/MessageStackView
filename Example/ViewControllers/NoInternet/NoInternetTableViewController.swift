@@ -7,8 +7,9 @@
 
 import Foundation
 import UIKit
+import MessageStackView
 
-class NoInternetTableViewController: UITableViewController {
+class NoInternetTableViewController: ConnectivityTableViewController {
     
     
     
