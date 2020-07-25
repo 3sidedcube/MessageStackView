@@ -12,7 +12,7 @@ import UIKit
 /// Base `UINavigationController` for internet connection toasts in response to
 /// Reachability `Notification`s
 open class InternetConnectionNavigationController: UINavigationController,
-    InternetConnectionMessageable {
+    InternetConnectionMessageable, UINavigationControllerDelegate {
 
     /// `MessageStackView` at the bottom of the screen
     public private(set) lazy var messageStackView: MessageStackView = {
@@ -43,19 +43,17 @@ open class InternetConnectionNavigationController: UINavigationController,
         super.viewSafeAreaInsetsDidChange()
         onViewSafeAreaInsetsDidChange()
     }
-}
-
-extension InternetConnectionNavigationController:
-    UINavigationControllerDelegate {
     
-    public func navigationController(
+    // MARK: - UINavigationControllerDelegate
+    
+    open func navigationController(
         _ navigationController: UINavigationController,
         didShow viewController: UIViewController, animated: Bool
     ) {
         didUpdateSafeArea()
     }
     
-    public func navigationController(
+    open func navigationController(
         _ navigationController: UINavigationController,
         willShow viewController: UIViewController,
         animated: Bool
