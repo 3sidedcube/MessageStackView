@@ -34,6 +34,9 @@ public class ConnectivityManager {
     
     /// Observers listening on the `.default` `NotificationCenter`
     internal var observers: [Any] = []
+
+    /// Log on `reachabilityChanged(_:)` `Notifications`
+    public var logReachabilityChanged = false
     
     // MARK: - Init
     
@@ -88,11 +91,14 @@ public class ConnectivityManager {
         }
         
         let status = reachability.currentReachabilityStatus()
-        debugPrint("INTERNET CONNECTION CHANGE \(status)")
         let state = status.state
+        
+        if logReachabilityChanged {
+            debugPrint("\(ConnectivityManager.self) \(#function) \(state)")
+        }
+        
         postNotification(for: state)
     }
-    
 }
 
 // MARK: - NetworkStatus + ConnectivityManager.State
@@ -106,6 +112,30 @@ public extension NetworkStatus {
         case ReachableViaWiFi: return .connected(self)
         case ReachableViaWWAN: return .connected(self)
         default: return .notConnected
+        }
+    }
+    
+    /// Description of the connection
+    fileprivate var connectionDescription: String {
+        switch self {
+        case NotReachable: return "Not connected"
+        case ReachableViaWiFi: return "WIFI"
+        case ReachableViaWWAN: return "WWAN"
+        default: return "Unknown"
+        }
+    }
+}
+
+// MARK: - ConnectivityManager.State + CustomStringConvertible
+
+extension ConnectivityManager.State: CustomStringConvertible {
+    
+    public var description: String {
+        switch self {
+        case .connected(let networkStatus):
+            return "Connected via \(networkStatus.connectionDescription)"
+        case .notConnected:
+            return "Not connected"
         }
     }
 }

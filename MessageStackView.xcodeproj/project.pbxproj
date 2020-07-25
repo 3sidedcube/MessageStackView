@@ -34,6 +34,9 @@
 		B87CC99324CB48DD002B697C /* InternetConnectionMessageable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B87CC99224CB48DD002B697C /* InternetConnectionMessageable.swift */; };
 		B87CC99524CB4A0E002B697C /* NoInternet+UI.swift in Sources */ = {isa = PBXBuildFile; fileRef = B87CC99424CB4A0D002B697C /* NoInternet+UI.swift */; };
 		B87CC99824CB4A50002B697C /* ConnectivityTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B87CC99724CB4A50002B697C /* ConnectivityTableViewController.swift */; };
+		B87CC99B24CC2346002B697C /* InternetConnectionNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B87CC99A24CC2346002B697C /* InternetConnectionNavigationController.swift */; };
+		B87CC99D24CC263E002B697C /* NoInternetTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B87CC99C24CC263E002B697C /* NoInternetTabBarController.swift */; };
+		B87CC9A024CC2829002B697C /* UIButton+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B87CC99F24CC2829002B697C /* UIButton+Extensions.swift */; };
 		B8BB088224C4BC46000E2E87 /* RootTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8BB087424C4BC46000E2E87 /* RootTableViewController.swift */; };
 		B8BB088324C4BC46000E2E87 /* SimpleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8BB087524C4BC46000E2E87 /* SimpleViewController.swift */; };
 		B8BB088424C4BC46000E2E87 /* WindowViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8BB087624C4BC46000E2E87 /* WindowViewController.swift */; };
@@ -157,6 +160,9 @@
 		B87CC99224CB48DD002B697C /* InternetConnectionMessageable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InternetConnectionMessageable.swift; sourceTree = "<group>"; };
 		B87CC99424CB4A0D002B697C /* NoInternet+UI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NoInternet+UI.swift"; sourceTree = "<group>"; };
 		B87CC99724CB4A50002B697C /* ConnectivityTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectivityTableViewController.swift; sourceTree = "<group>"; };
+		B87CC99A24CC2346002B697C /* InternetConnectionNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InternetConnectionNavigationController.swift; sourceTree = "<group>"; };
+		B87CC99C24CC263E002B697C /* NoInternetTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoInternetTabBarController.swift; sourceTree = "<group>"; };
+		B87CC99F24CC2829002B697C /* UIButton+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Extensions.swift"; sourceTree = "<group>"; };
 		B8BB086D24C4BC23000E2E87 /* Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B8BB087024C4BC46000E2E87 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B8BB087224C4BC46000E2E87 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -266,6 +272,7 @@
 			children = (
 				B87CC94724C9D5F0002B697C /* NoInternetViewController.swift */,
 				B87CC94924C9D5FD002B697C /* NoInternetTableViewController.swift */,
+				B87CC99C24CC263E002B697C /* NoInternetTabBarController.swift */,
 			);
 			path = NoInternet;
 			sourceTree = "<group>";
@@ -287,10 +294,19 @@
 		B87CC99624CB4A3A002B697C /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				B87CC99A24CC2346002B697C /* InternetConnectionNavigationController.swift */,
 				B87CC98A24CB02F8002B697C /* ConnectivityViewController.swift */,
 				B87CC99724CB4A50002B697C /* ConnectivityTableViewController.swift */,
 			);
 			path = ViewController;
+			sourceTree = "<group>";
+		};
+		B87CC99E24CC2818002B697C /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				B87CC99F24CC2829002B697C /* UIButton+Extensions.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		B8BB086F24C4BC46000E2E87 /* Example */ = {
@@ -299,6 +315,7 @@
 				B8BB087024C4BC46000E2E87 /* Assets.xcassets */,
 				B8BB087124C4BC46000E2E87 /* LaunchScreen.storyboard */,
 				B8BB087324C4BC46000E2E87 /* ViewControllers */,
+				B87CC99E24CC2818002B697C /* Extensions */,
 				B8BB087A24C4BC46000E2E87 /* Theme */,
 				B8BB087D24C4BC46000E2E87 /* AppDelegate.swift */,
 				B8BB087E24C4BC46000E2E87 /* Info.plist */,
@@ -706,6 +723,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B87CC94824C9D5F0002B697C /* NoInternetViewController.swift in Sources */,
+				B87CC9A024CC2829002B697C /* UIButton+Extensions.swift in Sources */,
 				B8BB088524C4BC46000E2E87 /* PanViewController.swift in Sources */,
 				B8BB088924C4BC46000E2E87 /* UIColor+Colors.swift in Sources */,
 				B8BB088824C4BC46000E2E87 /* UIImage+Images.swift in Sources */,
@@ -717,6 +735,7 @@
 				B8BB088424C4BC46000E2E87 /* WindowViewController.swift in Sources */,
 				B8BB088724C4BC46000E2E87 /* MessageViewController.swift in Sources */,
 				B8BB088224C4BC46000E2E87 /* RootTableViewController.swift in Sources */,
+				B87CC99D24CC263E002B697C /* NoInternetTabBarController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -755,6 +774,7 @@
 				OBJ_101 /* UIApplication+StatusBar.swift in Sources */,
 				OBJ_102 /* UIEdgeInsets+Extensions.swift in Sources */,
 				OBJ_103 /* UIView+Animation.swift in Sources */,
+				B87CC99B24CC2346002B697C /* InternetConnectionNavigationController.swift in Sources */,
 				B87CC99824CB4A50002B697C /* ConnectivityTableViewController.swift in Sources */,
 				OBJ_104 /* UIView+Extensions.swift in Sources */,
 				OBJ_105 /* UIView+Hidden.swift in Sources */,

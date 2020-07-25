@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import MessageStackView
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
@@ -23,7 +24,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
  
         let window = UIWindow(windowScene: windowScene)
-        window.rootViewController = UINavigationController(
+        window.rootViewController = InternetConnectionNavigationController(
             rootViewController: RootTableViewController()
         )
         self.window = window

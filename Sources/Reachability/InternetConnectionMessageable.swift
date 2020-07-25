@@ -80,7 +80,7 @@ public extension InternetConnectionMessageable {
     // MARK: - SafeArea
     
     /// Update `spaceViewHeight` of `MessageStackView` with the `safeAreaInset`
-    private func didUpdateSafeArea() {
+    func didUpdateSafeArea() {
         messageStackView.spaceViewHeight = safeAreaInset
     }
     

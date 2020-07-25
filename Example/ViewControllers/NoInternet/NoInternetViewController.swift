@@ -9,21 +9,16 @@ import Foundation
 import UIKit
 import MessageStackView
 
-class NoInternetViewController: ConnectivityViewController {
-    
-    private lazy var button: UIButton = {
-        let button = UIButton()
-        button.setTitle("tableView", for: .normal)
-        button.addTarget(self, action: #selector(buttonTouchUpInside), for: .touchUpInside)
-        button.setTitleColor(.systemBlue, for: .normal)
-        return button
-    }()
+class NoInternetViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.addSubview(button)
-        button.constrainToCenter(of: view)
+        UIButton.addToCenter(
+            of: view,
+            title: "tabView",
+            selector: #selector(buttonTouchUpInside)
+        )
     }
     
     @objc private func buttonTouchUpInside(_ sender: UIButton) {

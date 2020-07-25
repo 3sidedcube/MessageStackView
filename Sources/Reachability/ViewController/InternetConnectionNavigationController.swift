@@ -1,19 +1,17 @@
 //
-//  ConnectivityViewController.swift
+//  InternetConnectionNavigationController.swift
 //  MessageStackView
 //
-//  Created by Ben Shutt on 24/07/2020.
+//  Created by Ben Shutt on 25/07/2020.
 //  Copyright © 2020 3 SIDED CUBE APP PRODUCTIONS LTD. All rights reserved.
 //
 
 import Foundation
 import UIKit
 
-// MARK: - ConnectivityViewController
-
-/// Base `UIViewController` for internet connection toasts in response to
+/// Base `UINavigationController` for internet connection toasts in response to
 /// Reachability `Notification`s
-open class ConnectivityViewController: UIViewController,
+open class InternetConnectionNavigationController: UINavigationController,
     InternetConnectionMessageable {
 
     /// `MessageStackView` at the bottom of the screen
@@ -25,6 +23,11 @@ open class ConnectivityViewController: UIViewController,
     public var observer: NSObjectProtocol? = nil
     
     // MARK: - ViewController lifecycle
+    
+    open override func viewDidLoad() {
+        super.viewDidLoad()
+        delegate = self
+    }
     
     open override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -39,5 +42,24 @@ open class ConnectivityViewController: UIViewController,
     open override func viewSafeAreaInsetsDidChange() {
         super.viewSafeAreaInsetsDidChange()
         onViewSafeAreaInsetsDidChange()
+    }
+}
+
+extension InternetConnectionNavigationController:
+    UINavigationControllerDelegate {
+    
+    public func navigationController(
+        _ navigationController: UINavigationController,
+        didShow viewController: UIViewController, animated: Bool
+    ) {
+        didUpdateSafeArea()
+    }
+    
+    public func navigationController(
+        _ navigationController: UINavigationController,
+        willShow viewController: UIViewController,
+        animated: Bool
+    ) {
+        // do nothing
     }
 }
