@@ -41,3 +41,13 @@ open class ConnectivityViewController: UIViewController,
         onViewSafeAreaInsetsDidChange()
     }
 }
+
+// MARK: - InternetConnectionMessageable + UIViewController
+
+extension InternetConnectionMessageable where Self: UIViewController {
+    
+    public var messageParentView: UIView {
+        return view
+    }
+}
+

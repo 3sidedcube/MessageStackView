@@ -31,6 +31,9 @@ public protocol InternetConnectionMessageable: class {
     /// Observer added the the `.default` `NotificationCenter` responding to
     /// `Reachability` notifications
     var observer: NSObjectProtocol? { get set }
+    
+    /// Inset to apply to `spaceView` of `messageStackView`
+    var safeAreaInset: CGFloat { get }
 }
 
 // MARK: - InternetConnectionMessageable + Functionality
@@ -71,7 +74,7 @@ public extension InternetConnectionMessageable {
         let superview = messageParentView
         let messageStackView: MessageStackView = superview.createPosterView(
             layout: messageLayout,
-            constrainToSafeArea: false
+            constrainToSafeArea: false // Insets `spaceView` in place of this
         )
         messageStackView.updateOrderForLayout(messageLayout)
         return messageStackView
@@ -79,17 +82,17 @@ public extension InternetConnectionMessageable {
     
     // MARK: - SafeArea
     
-    /// Update `spaceViewHeight` of `MessageStackView` with the `safeAreaInset`
-    func didUpdateSafeArea() {
-        messageStackView.spaceViewHeight = safeAreaInset
-    }
-    
     /// Safe area inset of `messageParentView`
-    private var safeAreaInset: CGFloat {
+    var safeAreaInset: CGFloat {
         switch messageLayout {
         case .top: return messageParentView.safeAreaInsets.top
         case .bottom: return messageParentView.safeAreaInsets.bottom
         }
+    }
+    
+    /// Update `spaceViewHeight` of `MessageStackView` with the `safeAreaInset`
+    func didUpdateSafeArea() {
+        messageStackView.spaceViewHeight = safeAreaInset
     }
     
     // MARK: - State
@@ -121,14 +124,5 @@ public extension InternetConnectionMessageable {
     /// Remove the "No Internet Connection" `Message`
     private func removeNoInternetMessage() {
         messageStackView.postManager.removeCurrent()
-    }
-}
-
-// MARK: - InternetConnectionMessageable + UIViewController
-
-extension InternetConnectionMessageable where Self: UIViewController {
-    
-    public var messageParentView: UIView {
-        return view
     }
 }

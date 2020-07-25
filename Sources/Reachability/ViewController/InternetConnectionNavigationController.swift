@@ -44,6 +44,17 @@ open class InternetConnectionNavigationController: UINavigationController,
         onViewSafeAreaInsetsDidChange()
     }
     
+    // MARK: - SafeArea
+    
+    public var safeAreaInset: CGFloat {
+        let view = visibleViewController?.view ?? messageParentView
+        
+        switch messageLayout {
+        case .top: return view.safeAreaInsets.top
+        case .bottom: return view.safeAreaInsets.bottom
+        }
+    }
+    
     // MARK: - UINavigationControllerDelegate
     
     open func navigationController(

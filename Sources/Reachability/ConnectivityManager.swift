@@ -110,6 +110,14 @@ public class ConnectivityManager {
         
         postNotification(for: state)
     }
+    
+    // MARK: - Observers
+    
+    /// Is the given `observer` contained in `observers`
+    /// - Parameter observer: `NSObjectProtocol`
+    public func isObserver(_ observer: NSObjectProtocol) -> Bool {
+        return observers.contains { $0 === observer }
+    }
 }
 
 // MARK: - NetworkStatus + ConnectivityManager.State
