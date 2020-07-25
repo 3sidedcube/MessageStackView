@@ -59,16 +59,21 @@ open class InternetConnectionNavigationController: UINavigationController,
     
     open func navigationController(
         _ navigationController: UINavigationController,
-        didShow viewController: UIViewController, animated: Bool
+        willShow viewController: UIViewController,
+        animated: Bool
     ) {
-        didUpdateSafeArea()
+        messageParentView.layoutIfNeeded()
+        transitionCoordinator?.animate(alongsideTransition: { context in
+            UIView.animate(withDuration: 0.3) {
+                self.didUpdateSafeArea()
+                self.messageParentView.layoutIfNeeded()
+            }
+        }, completion: nil)
     }
     
     open func navigationController(
         _ navigationController: UINavigationController,
-        willShow viewController: UIViewController,
-        animated: Bool
+        didShow viewController: UIViewController, animated: Bool
     ) {
-        // do nothing
     }
 }
