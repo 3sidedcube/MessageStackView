@@ -48,11 +48,7 @@ public extension ConnectivityManager {
     ///
     /// - Parameters:
     ///   - closure: ``StateClosure` `
-    ///   - startListening: `Bool` invoke `startListening()`
-    func addObserver(
-        closure: @escaping StateClosure,
-        startListening: Bool = true
-    ) -> NSObjectProtocol {
+    func addObserver(closure: @escaping StateClosure) -> NSObjectProtocol {
         let observer = NotificationCenter.default.addObserver(
             forName: .internetConnectivityChanged,
             object: self,
@@ -64,11 +60,6 @@ public extension ConnectivityManager {
             }
         }
         observers.append(observer)
-        
-        if startListening {
-            self.startListening()
-        }
-        
         return observer
     }
     
@@ -77,22 +68,13 @@ public extension ConnectivityManager {
     ///
     /// - Parameters:
     ///   - observer: `NSObjectProtocol`
-    ///   - stopListeningIfEmpty: `Bool` invoke `stopListening()` if there are no
-    ///   more oberserves
-    func removeObserver(
-        _ observer: NSObjectProtocol,
-        stopListeningIfEmpty: Bool = true
-    ) {
+    func removeObserver(_ observer: NSObjectProtocol) {
         NotificationCenter.default.removeObserver(
             observer,
             name: .internetConnectivityChanged,
             object: self
         )
         
-        observers.removeAll { $0 as AnyObject === observer }
-        
-        if stopListeningIfEmpty, observers.isEmpty {
-            self.stopListening()
-        }
+        observers.removeAll { $0 === observer }
     }
 }

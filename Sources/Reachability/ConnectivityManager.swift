@@ -33,10 +33,21 @@ public class ConnectivityManager {
     private lazy var reachability = Reachability.forInternetConnection()
     
     /// Observers listening on the `.default` `NotificationCenter`
-    internal var observers: [Any] = []
+    internal var observers: [NSObjectProtocol] = [] {
+        didSet {
+            if !observers.isEmpty {
+                startListening()
+            } else if stopOnEmptyObservers {
+                stopListening()
+            }
+        }
+    }
 
     /// Log on `reachabilityChanged(_:)` `Notifications`
     public var logReachabilityChanged = false
+    
+    /// Disconnect when `observers` is empty
+    public var stopOnEmptyObservers = true
     
     // MARK: - Init
     
