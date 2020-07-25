@@ -201,7 +201,7 @@ open class MessageStackView: UIStackView, Poster {
     private func updateSpaceView(updateArrangedSubviews: Bool = false) {
         if updateArrangedSubviews {
             spaceView.removeFromSuperview()
-            post(view: spaceView, order: order.switched)
+            postArrangedSubview(view: spaceView, order: order.switched)
             constrainSpaceView()
         }
         
@@ -238,11 +238,11 @@ open class MessageStackView: UIStackView, Poster {
     
     // MARK: - Post
     
-    /// `post(view:order:)` with `view` and `order`
+    /// `postArrangedSubview(view:order:)` with `view` and `order`
     ///
     /// - Parameter view: `UIView`
-    private func post(view: UIView) {
-        post(view: view, order: order)
+    private func postArrangedSubview(view: UIView) {
+        postArrangedSubview(view: view, order: order)
     }
     
     /// Post a `view` adding it to the `arrangedSubviews`
@@ -250,7 +250,7 @@ open class MessageStackView: UIStackView, Poster {
     /// - Parameters:
     ///   - view: `UIView`
     ///   - order: `Order`
-    private func post(view: UIView, order: Order) {
+    private func postArrangedSubview(view: UIView, order: Order) {
         switch order {
         case .default:
             addArrangedSubview(view)
@@ -287,7 +287,7 @@ extension MessageStackView: UIViewPoster {
         animated: Bool,
         completion: @escaping () -> Void
     ) {
-        post(view: view)
+        postArrangedSubview(view: view)
         (view as? MessageConfigurable)?.set(configuration: messageConfiguation)
         
         // Update spaceView here too incase properties on adjacent

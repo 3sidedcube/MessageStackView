@@ -21,8 +21,6 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
-		B87CC94824C9D5F0002B697C /* NoInternetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B87CC94724C9D5F0002B697C /* NoInternetViewController.swift */; };
-		B87CC94A24C9D5FD002B697C /* NoInternetTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B87CC94924C9D5FD002B697C /* NoInternetTableViewController.swift */; };
 		B87CC94D24C9FB80002B697C /* Array+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B87CC94B24C9F5A3002B697C /* Array+Extensions.swift */; };
 		B87CC95124CAE56E002B697C /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = B87CC95024CAE56E002B697C /* Reachability.m */; };
 		B87CC95324CAE5A5002B697C /* ConnectivityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B87CC95224CAE5A5002B697C /* ConnectivityManager.swift */; };
@@ -148,8 +146,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		B87CC94724C9D5F0002B697C /* NoInternetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoInternetViewController.swift; sourceTree = "<group>"; };
-		B87CC94924C9D5FD002B697C /* NoInternetTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoInternetTableViewController.swift; sourceTree = "<group>"; };
 		B87CC94B24C9F5A3002B697C /* Array+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Extensions.swift"; sourceTree = "<group>"; };
 		B87CC94F24CAE56E002B697C /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
 		B87CC95024CAE56E002B697C /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
@@ -267,16 +263,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		B87CC94624C9D5DF002B697C /* NoInternet */ = {
-			isa = PBXGroup;
-			children = (
-				B87CC94724C9D5F0002B697C /* NoInternetViewController.swift */,
-				B87CC94924C9D5FD002B697C /* NoInternetTableViewController.swift */,
-				B87CC99C24CC263E002B697C /* NoInternetTabBarController.swift */,
-			);
-			path = NoInternet;
-			sourceTree = "<group>";
-		};
 		B87CC94E24CAE52A002B697C /* Reachability */ = {
 			isa = PBXGroup;
 			children = (
@@ -328,12 +314,12 @@
 			isa = PBXGroup;
 			children = (
 				B8BB087424C4BC46000E2E87 /* RootTableViewController.swift */,
-				B87CC94624C9D5DF002B697C /* NoInternet */,
 				B8BB087524C4BC46000E2E87 /* SimpleViewController.swift */,
 				B8BB087624C4BC46000E2E87 /* WindowViewController.swift */,
 				B8BB087724C4BC46000E2E87 /* PanViewController.swift */,
 				B8BB087824C4BC46000E2E87 /* BadgeMessageViewController.swift */,
 				B8BB087924C4BC46000E2E87 /* MessageViewController.swift */,
+				B87CC99C24CC263E002B697C /* NoInternetTabBarController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -722,7 +708,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B87CC94824C9D5F0002B697C /* NoInternetViewController.swift in Sources */,
 				B87CC9A024CC2829002B697C /* UIButton+Extensions.swift in Sources */,
 				B8BB088524C4BC46000E2E87 /* PanViewController.swift in Sources */,
 				B8BB088924C4BC46000E2E87 /* UIColor+Colors.swift in Sources */,
@@ -730,7 +715,6 @@
 				B8BB088A24C4BC46000E2E87 /* AppDelegate.swift in Sources */,
 				B8BB088624C4BC46000E2E87 /* BadgeMessageViewController.swift in Sources */,
 				B8BB088C24C4BC46000E2E87 /* SceneDelegate.swift in Sources */,
-				B87CC94A24C9D5FD002B697C /* NoInternetTableViewController.swift in Sources */,
 				B8BB088324C4BC46000E2E87 /* SimpleViewController.swift in Sources */,
 				B8BB088424C4BC46000E2E87 /* WindowViewController.swift in Sources */,
 				B8BB088724C4BC46000E2E87 /* MessageViewController.swift in Sources */,

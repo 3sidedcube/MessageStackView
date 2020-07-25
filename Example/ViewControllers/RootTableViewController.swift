@@ -9,19 +9,23 @@
 import UIKit
 
 /// Element in the `UITableViewController` list
-typealias ExampleElement = (title: String, type: UIViewController.Type)
+typealias ExampleElement = (
+    title: String,
+    type: UIViewController.Type,
+    present: Bool
+)
 
 /// `UITableViewController` to choose an example `UIViewController`
 class RootTableViewController: UITableViewController {
     
     /// `ExampleElement`
     private lazy var exampleElements: [ExampleElement] = [
-        ("Simple", SimpleViewController.self),
-        ("Message", MessageViewController.self),
-        ("Pan", PanViewController.self),
-        ("Badge Message", BadgeMessageViewController.self),
-        ("Window", WindowViewController.self),
-        ("No Internet", NoInternetViewController.self),
+        ("Simple", SimpleViewController.self, false),
+        ("Message", MessageViewController.self, false),
+        ("Pan", PanViewController.self, false),
+        ("Badge Message", BadgeMessageViewController.self, false),
+        ("Window", WindowViewController.self, false),
+        ("No Internet", NoInternetTabBarController.self, true),
     ]
     
     // MARK: - ViewController lifecycle
@@ -79,10 +83,17 @@ class RootTableViewController: UITableViewController {
         
         let viewController = element.type.init()
         viewController.view.backgroundColor = .white
-        navigationController?.pushViewController(
-            viewController,
-            animated: true
-        )
+        
+        if element.present {
+            viewController.modalPresentationStyle = .fullScreen
+            present(viewController, animated: true)
+            
+        } else {
+            navigationController?.pushViewController(
+                viewController,
+                animated: true
+            )
+        }
     }
 
     // MARK: - Element

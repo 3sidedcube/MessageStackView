@@ -22,6 +22,7 @@ class WindowViewController: UIViewController {
         UIButton.addToCenter(
             of: view,
             title: "Pop",
+            target: self,
             selector: #selector(buttonTouchUpInside)
         )
     }
