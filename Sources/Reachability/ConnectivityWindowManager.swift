@@ -9,15 +9,17 @@
 import Foundation
 import UIKit
 
+/// Manage a `MessageStackView` to post "Not connected to internet" messages at the bottom of
+/// the key `UIWindow` inset by the visible `UIViewController`
 public class ConnectivityWindowManager {
     
     /// `ConnectivityWindowManager`
     public static let shared = ConnectivityWindowManager()
     
-    /// `NSObjectProtocol`
+    /// `NSObjectProtocol` observing internet connection updates
     private var observer: NSObjectProtocol?
     
-    /// `MessageStackView `
+    /// `MessageStackView ` to post messages
     private lazy var messageStackView: MessageStackView = {
         let messageStackView = MessageStackView()
         messageStackView.updateOrderForLayout(.bottom)
@@ -26,28 +28,23 @@ public class ConnectivityWindowManager {
     
     // MARK: - Init
     
-    init() {
+    deinit {
+        stopObserving()
+    }
+    
+    // MARK: - Connection Observer
+    
+    /// Add observer to `ConnectivityManager`
+    public func startObserving() {
+        guard observer == nil else { return }
+        
         NotificationCenter.default.addObserver(
             self,
             selector: #selector(viewWillDisappear),
             name: .viewWillDisappear,
             object: nil
         )
-    }
-    
-    deinit {
-        NotificationCenter.default.removeObserver(
-            self,
-            name: .viewWillDisappear,
-            object: nil
-        )
-    }
-    
-    // MARK: - Observer
-    
-    /// Add observer to `ConnectivityManager`
-    public func startObserving() {
-        guard observer == nil else { return }
+        
         observer = ConnectivityManager.shared.addObserver { [weak self] state in
             self?.didUpdateState(state)
         }
@@ -56,11 +53,20 @@ public class ConnectivityWindowManager {
     /// Remove observer from `ConnectivityManager`
     public func stopObserving() {
         guard let observer = observer else { return }
+        
         ConnectivityManager.shared.removeObserver(observer)
+        
+        NotificationCenter.default.removeObserver(
+            self,
+            name: .viewWillDisappear,
+            object: nil
+        )
     }
     
     // MARK: - State
     
+    /// `ConnectivityManager.State` did update
+    /// - Parameter state: `ConnectivityManager.State`
     private func didUpdateState(_ state: ConnectivityManager.State) {
         if state.isConnected {
             onConnected()
@@ -71,6 +77,7 @@ public class ConnectivityWindowManager {
     
     // MARK: - Connection Lifecycle
     
+    /// Handle internet connection disconnected
     private func onDisconnected() {
         self.messageStackView.postManager.removeCurrent()
         self.messageStackView.removeFromSuperview()
@@ -104,12 +111,15 @@ public class ConnectivityWindowManager {
         messageView.configureNoInternet()
     }
     
+    /// Handle internet connection connected
     private func onConnected() {
         removeMessageStackView(animated: true)
     }
     
     // MARK: - MessageStackView
     
+    /// Remove the `messageStackView` from its superview
+    /// - Parameter animated: `Bool`
     private func removeMessageStackView(animated: Bool) {
         guard let _ = messageStackView.superview else {
             messageStackView.postManager.removeCurrent()
@@ -127,6 +137,8 @@ public class ConnectivityWindowManager {
         }
     }
     
+    /// `UIViewController` lifecycle event
+    /// - Parameter sender: `Notification`
     @objc private func viewWillDisappear(_ sender: Notification) {
         removeMessageStackView(animated: true)
     }

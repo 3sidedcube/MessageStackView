@@ -6,8 +6,9 @@
 //  Copyright © 2020 3 SIDED CUBE APP PRODUCTIONS LTD. All rights reserved.
 //
 
-#import "UIViewController+Lifecycle.h"
 #import <objc/runtime.h>
+
+#import "UIViewController+Lifecycle.h"
 #import "SwizzledMethod.h"
 
 #define SWIZZLE_LOG 1

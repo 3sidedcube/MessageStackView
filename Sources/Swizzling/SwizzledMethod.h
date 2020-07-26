@@ -12,8 +12,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface SwizzledMethod : NSObject
 
-@property(nonatomic) SEL original;
-@property(nonatomic) SEL swizzled;
+@property (nonatomic, assign) SEL original;
+@property (nonatomic, assign) SEL swizzled;
 
 -(instancetype)initWithOriginal:(SEL)original swizzled:(SEL)swizzled;
 
