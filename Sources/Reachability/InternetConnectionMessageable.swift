@@ -101,7 +101,9 @@ public extension InternetConnectionMessageable {
     /// - Parameter state: `ConnectivityManager.State`
     func didUpdateState(state: ConnectivityManager.State) {
         if case .notConnected = state {
-            postNoInternetMessage()
+            if !isShowingMessage {
+                postNoInternetMessage()
+            }
         } else {
             removeNoInternetMessage()
         }
@@ -124,5 +126,10 @@ public extension InternetConnectionMessageable {
     /// Remove the "No Internet Connection" `Message`
     private func removeNoInternetMessage() {
         messageStackView.postManager.removeCurrent()
+    }
+    
+    /// Is already showing message
+    private var isShowingMessage: Bool {
+        return !messageStackView.postManager.currentPostRequests.isEmpty
     }
 }

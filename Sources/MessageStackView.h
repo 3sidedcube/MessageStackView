@@ -17,3 +17,4 @@ FOUNDATION_EXPORT const unsigned char MessageStackViewVersionString[];
 // In this header, you should import all the public headers of your framework using statements like #import <MessageStackView/PublicHeader.h>
 
 #import <MessageStackView/Reachability.h>
+#import <MessageStackView/UIViewController+Lifecycle.h>

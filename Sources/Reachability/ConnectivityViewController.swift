@@ -12,7 +12,17 @@ import UIKit
 // MARK: - ConnectivityViewController
 
 /// Base `UIViewController` for internet connection toasts in response to
-/// Reachability `Notification`s
+/// Reachability `Notification`s.
+///
+/// - Warning:
+/// While `UIViewController` is the base of a `UIViewController`s (obviously), subclassing
+/// `ConnectivityViewController` is not so straight forward, e.g. `UITableViewController`.
+///
+/// If you want the "No internet" message toast to persist between screens, you can use post on a
+/// `UIWindow` or a `UINavigationController` `view`.
+/// Of course persisting within these bounds. Animation can be achieved using:
+/// `transitionCoordinator?.animate(alongsideTransition:)`
+///
 open class ConnectivityViewController: UIViewController,
     InternetConnectionMessageable {
 

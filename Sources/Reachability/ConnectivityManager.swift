@@ -10,7 +10,7 @@ import Foundation
 // MARK: - ConnectivityManager
 
 /// Simple Swift wrapper of `Reachability`.
-/// Manage internet connection`Notification`s of connect and disconnect.
+/// Manage internet connection`Notification`s on connect and disconnect.
 public class ConnectivityManager {
     
     /// Internet connectivity state
@@ -157,4 +157,18 @@ extension ConnectivityManager.State: CustomStringConvertible {
             return "Not connected"
         }
     }
+}
+
+// MARK: - ConnectivityManager.State + Connected
+
+public extension ConnectivityManager.State {
+    
+    /// Is `ConnectivityManager.State` considered connected
+    var isConnected: Bool {
+        switch self {
+        case .connected: return true
+        case .notConnected: return false
+        }
+    }
+    
 }

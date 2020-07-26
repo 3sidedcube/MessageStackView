@@ -11,13 +11,7 @@ import UIKit
 import MessageStackView
 
 class NoInternetTabBarController: UITabBarController {
-    
-    override var selectedViewController: UIViewController? {
-        didSet {
-            didUpdateSelectedViewController()
-        }
-    }
-    
+
     // MARK: - Init
     
     init() {
@@ -32,7 +26,7 @@ class NoInternetTabBarController: UITabBarController {
         ]
         
         viewControllers = icons.enumerated().map {
-            InternetConnectionNavigationController(
+            UINavigationController(
                 rootViewController: TabViewController(
                     item: $0.element,
                     index: $0.offset
@@ -54,30 +48,14 @@ class NoInternetTabBarController: UITabBarController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        didUpdateSelectedViewController()
+        
+        ConnectivityWindowManager.shared.startObserving()
     }
     
-    // MARK: - Selected
-    
-    private func didUpdateSelectedViewController() {
-        guard let navigationController = selectedViewController as? UINavigationController,
-            let viewController = navigationController.viewControllers.last else {
-                return
-        }
-        viewController.navigationItem.rightBarButtonItem =
-            UIBarButtonItem(
-                barButtonSystemItem: .cancel,
-                target: self,
-                action: #selector(cancelBarButtonItemTouchUpInside)
-        )
-    }
-    
-    // MARK: - UIControlEvent
-    
-    @objc private func cancelBarButtonItemTouchUpInside(
-        _ sender: UIBarButtonItem
-    ){
-        presentingViewController?.dismiss(animated: true)
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        ConnectivityWindowManager.shared.stopObserving()
     }
 }
 
@@ -104,6 +82,25 @@ class TabViewController: UIViewController {
             target: self,
             selector: #selector(buttonTouchUpInside)
         )
+        
+        navigationItem.rightBarButtonItem =
+            UIBarButtonItem(
+                barButtonSystemItem: .cancel,
+                target: self,
+                action: #selector(cancelBarButtonItemTouchUpInside)
+        )
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+    }
+    
+    // MARK: - UIControlEvent
+    
+    @objc private func cancelBarButtonItemTouchUpInside(
+        _ sender: UIBarButtonItem
+    ){
+        presentingViewController?.dismiss(animated: true)
     }
     
     @objc private func buttonTouchUpInside(_ sender: UIButton) {
