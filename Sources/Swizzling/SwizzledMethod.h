@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface SwizzledMethod : NSObject
+@interface SwizzledMethod: NSObject
 
 @property (nonatomic, assign) SEL original;
 @property (nonatomic, assign) SEL swizzled;
