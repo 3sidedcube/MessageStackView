@@ -60,4 +60,3 @@ extension InternetConnectionMessageable where Self: UIViewController {
         return view
     }
 }
-

@@ -11,7 +11,7 @@
 #import "UIViewController+Lifecycle.h"
 #import "SwizzledMethod.h"
 
-#define SWIZZLE_LOG 1
+#define SWIZZLE_LOG 0
 #define SWIZZLE(X, Y) [[SwizzledMethod alloc] initWithOriginal:(X) swizzled:(Y)]
 
 NSString *kViewWillAppearNotification = @"kViewWillAppearNotification";

@@ -87,10 +87,7 @@ public class ConnectivityWindowManager {
             var visibleView = visibleViewController.view else {
                 return
         }
-        
-        debugPrint("Visible is \(visibleViewController)")
-        debugPrint("VisibleView is \(visibleView)")
-        
+
         // For `UITableViewController`, add to `view` of `navigationController`.
         // WARNING: This relies on having a `navigationController`
         if visibleViewController is UITableViewController {
