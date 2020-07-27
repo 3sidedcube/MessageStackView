@@ -100,7 +100,8 @@ public class ConnectivityWindowManager {
             layout: .bottom,
             constrainToSafeArea: false
         )
-        messageStackView.spaceViewHeight = visibleView.safeAreaInsets.bottom
+        messageStackView.spaceViewHeight =
+            visibleViewController.view.safeAreaInsets.bottom
         
         visibleView.layoutIfNeeded()
         messageStackView.layoutIfNeeded()
