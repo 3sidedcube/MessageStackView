@@ -88,6 +88,8 @@ public class ConnectivityWindowManager {
                 return
         }
         
+        // For `UITableViewController`, add to `view` of `navigationController`.
+        // WARNING: This relies on having a `navigationController`
         if visibleViewController is UITableViewController {
             visibleView = visibleViewController.navigationController?.view ??
             visibleView

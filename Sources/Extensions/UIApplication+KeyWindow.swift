@@ -12,13 +12,15 @@ import UIKit
 public extension UIApplication {
     
     /// First `UIWindow` where `isKeyWindow`
-    var keyWindow: UIWindow? {
+    /// - Note:
+    /// Named as such due to naming conflicts. TODO: Look to resolve
+    var appKeyWindow: UIWindow? {
         return windows.first { $0.isKeyWindow } ?? windows.first
     }
     
     /// `visibleViewController` on the `rootViewController` of `keyWindow`
     var visibleViewController: UIViewController? {
-        return keyWindow?.rootViewController?.visibleViewController
+        return appKeyWindow?.rootViewController?.visibleViewController
     }
 }
 

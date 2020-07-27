@@ -126,7 +126,7 @@ public extension UIApplication {
     func postViewOrCreate(
         layout: MessageLayout = .default
     ) -> PostView? {
-        return firstKeyWindow?.postViewOrCreate(layout: layout)
+        return appKeyWindow?.postViewOrCreate(layout: layout)
     }
 }
 
