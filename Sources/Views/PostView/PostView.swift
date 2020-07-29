@@ -45,7 +45,7 @@ open class PostView: UIView, Poster {
     private func setup() {
         clipsToBounds = true
         
-        // Make sure `postManger` is instantiated. This is encase `deinit` is
+        // Make sure `postManger` is instantiated. This is in case `deinit` is
         // is the first instance to reference `postManager`, lazily
         // instantiating it, referencing `self`, which is being
         // de-initialized...
