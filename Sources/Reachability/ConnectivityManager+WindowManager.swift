@@ -26,7 +26,7 @@ extension ConnectivityManager {
         }()
         
         /// `Configuration`
-        public private(set) var configuration = Configuration()
+        public var configuration = Configuration()
         
         // MARK: - Init
         
@@ -111,8 +111,8 @@ extension ConnectivityManager {
             messageStackView.layoutIfNeeded()
             
             let messageView = messageStackView.post(message: Message(
-                title: "No Internet Connection",
-                subtitle: "Please check your connection and try again",
+                title: noInternetTitle,
+                subtitle: noInternetSubtitle,
                 leftImage: .noInternet
             ))
             messageView.configureNoInternet()
@@ -175,5 +175,19 @@ extension ConnectivityManager {
                 self.noInternetSubtitle = noInternetSubtitle
             }
         }
+    }
+}
+
+// MARK: - ConnectivityManager.WindowManager + UI
+
+private extension ConnectivityManager.WindowManager {
+    
+    var noInternetTitle: String {
+        return configuration.noInternetTitle ?? "No Internet Connection"
+    }
+    
+    var noInternetSubtitle: String {
+        return configuration.noInternetSubtitle ??
+            "Please check your connection and try again"
     }
 }
