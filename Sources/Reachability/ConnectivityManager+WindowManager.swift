@@ -113,7 +113,7 @@ extension ConnectivityManager {
             let messageView = messageStackView.post(message: Message(
                 title: noInternetTitle,
                 subtitle: noInternetSubtitle,
-                leftImage: .noInternet
+                leftImage: noInternetImage
             ))
             messageView.configureNoInternet()
         }
@@ -165,18 +165,23 @@ extension ConnectivityManager.WindowManager {
         /// When non-`nil`, override default "No internet connection" toast subtitle
         public var noInternetSubtitle: String?
         
+        /// When non-`nil`, override default "No internet connection" toast image
+        public var noInternetImage: UIImage?
+        
         /// Default public memberwise initializer
         ///
         /// - Parameters:
-        ///   - logReachabilityChanged: `Bool`
-        ///   - noInternetTitle: `String`
-        ///   - noInternetSubtitle: `String`
+        ///   - noInternetTitle: `String?`
+        ///   - noInternetSubtitle: `String?`
+        ///   - noInternetImage: `UIImage?`
         public init(
             noInternetTitle: String? = nil,
-            noInternetSubtitle: String? = nil
+            noInternetSubtitle: String? = nil,
+            noInternetImage: UIImage? = nil
         ){
             self.noInternetTitle = noInternetTitle
             self.noInternetSubtitle = noInternetSubtitle
+            self.noInternetImage = noInternetImage
         }
     }
     
@@ -187,5 +192,9 @@ extension ConnectivityManager.WindowManager {
     private var noInternetSubtitle: String {
         return configuration.noInternetSubtitle ??
             "Please check your connection and try again"
+    }
+    
+    private var noInternetImage: UIImage? {
+        return configuration.noInternetImage ?? .noInternet
     }
 }
