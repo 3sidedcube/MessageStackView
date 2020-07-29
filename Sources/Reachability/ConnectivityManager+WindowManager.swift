@@ -149,44 +149,42 @@ extension ConnectivityManager {
         @objc private func viewWillDisappear(_ sender: Notification) {
             removeMessageStackView(animated: true)
         }
-        
-        // MARK: - Configuration
-        
-        /// Configuration of `ConnectivityManager`
-        public struct Configuration {
-            
-            /// When non-`nil`, override default "No internet connection" toast title
-            public var noInternetTitle: String?
-            
-            /// When non-`nil`, override default "No internet connection" toast subtitle
-            public var noInternetSubtitle: String?
-            
-            /// Default public memberwise initializer
-            ///
-            /// - Parameters:
-            ///   - logReachabilityChanged: `Bool`
-            ///   - noInternetTitle: `String`
-            ///   - noInternetSubtitle: `String`
-            public init(
-                noInternetTitle: String? = nil,
-                noInternetSubtitle: String? = nil
-            ){
-                self.noInternetTitle = noInternetTitle
-                self.noInternetSubtitle = noInternetSubtitle
-            }
-        }
     }
 }
 
-// MARK: - ConnectivityManager.WindowManager + UI
+// MARK: - Configuration
 
-private extension ConnectivityManager.WindowManager {
+extension ConnectivityManager.WindowManager {
     
-    var noInternetTitle: String {
+    /// Configuration of `ConnectivityManager`
+    public struct Configuration {
+        
+        /// When non-`nil`, override default "No internet connection" toast title
+        public var noInternetTitle: String?
+        
+        /// When non-`nil`, override default "No internet connection" toast subtitle
+        public var noInternetSubtitle: String?
+        
+        /// Default public memberwise initializer
+        ///
+        /// - Parameters:
+        ///   - logReachabilityChanged: `Bool`
+        ///   - noInternetTitle: `String`
+        ///   - noInternetSubtitle: `String`
+        public init(
+            noInternetTitle: String? = nil,
+            noInternetSubtitle: String? = nil
+        ){
+            self.noInternetTitle = noInternetTitle
+            self.noInternetSubtitle = noInternetSubtitle
+        }
+    }
+    
+    private var noInternetTitle: String {
         return configuration.noInternetTitle ?? "No Internet Connection"
     }
     
-    var noInternetSubtitle: String {
+    private var noInternetSubtitle: String {
         return configuration.noInternetSubtitle ??
             "Please check your connection and try again"
     }
