@@ -12,30 +12,19 @@ import MessageStackView
 
 class WindowViewController: UIViewController {
     
-    /// `UIButton` top pop this `UIViewController` from `navigationController`
-    /// To show posted `UIView` is on the window
-    private(set) lazy var button: UIButton = {
-        let button = UIButton()
-        button.setTitle("Pop", for: .normal)
-        button.addTarget(
-            self, action: #selector(buttonTouchUpInside), for: .touchUpInside
-        )
-        button.setTitleColor(.systemBlue, for: .normal) 
-        return button
-    }()
-    
     // MARK: - ViewController lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.addSubview(button)
-        button.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            button.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            button.centerYAnchor.constraint(equalTo: view.centerYAnchor)
-        ])
-        button.sizeToFit()
+        // `UIButton` top pop this `UIViewController` from `navigationController`
+        // To show posted `UIView` is on the window
+        UIButton.addToCenter(
+            of: view,
+            title: "Pop",
+            target: self,
+            selector: #selector(buttonTouchUpInside)
+        )
     }
     
     override func viewDidAppear(_ animated: Bool) {

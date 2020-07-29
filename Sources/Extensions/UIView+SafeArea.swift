@@ -8,6 +8,8 @@
 
 import UIKit
 
+// MARK: - UIView + SafeAnchor
+
 /// SafeArea support for pre iOS 11
 extension UIView {
     
@@ -69,5 +71,46 @@ extension UIView {
         } else {
             return self.heightAnchor
         }
+    }
+}
+
+// MARK: - UIView + Anchor
+
+extension UIView {
+    
+    /// `leadingAnchor`
+    /// - Parameter safe: `Bool` Use safe anchor
+    func leadingAnchor(safe: Bool) -> NSLayoutXAxisAnchor {
+        return safe ? safeLeadingAnchor : leadingAnchor
+    }
+    
+    /// `trailingAnchor`
+    /// - Parameter safe: `Bool` Use safe anchor
+    func trailingAnchor(safe: Bool) -> NSLayoutXAxisAnchor {
+        return safe ? safeTrailingAnchor : trailingAnchor
+    }
+    
+    /// `topAnchor`
+    /// - Parameter safe: `Bool` Use safe anchor
+    func topAnchor(safe: Bool) -> NSLayoutYAxisAnchor {
+        return safe ? safeTopAnchor : topAnchor
+    }
+    
+    /// `bottomAnchor`
+    /// - Parameter safe: `Bool` Use safe anchor
+    func bottomAnchor(safe: Bool) -> NSLayoutYAxisAnchor {
+        return safe ? safeBottomAnchor : bottomAnchor
+    }
+    
+    /// `widthAnchor`
+    /// - Parameter safe: `Bool` Use safe anchor
+    func widthAnchor(safe: Bool) -> NSLayoutDimension {
+        return safe ? safeWidthAnchor : widthAnchor
+    }
+    
+    /// `heightAnchor`
+    /// - Parameter safe: `Bool` Use safe anchor
+    func heightAnchor(safe: Bool) -> NSLayoutDimension {
+        return safe ? safeHeightAnchor : heightAnchor
     }
 }

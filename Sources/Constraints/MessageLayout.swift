@@ -40,13 +40,17 @@ public extension MessageLayout {
         
         switch self {
         case .top:
-            constrain(subview, superview: superview, including: [
-                subview.topAnchor.constraint(equalTo: superview.safeTopAnchor)
-            ])
+            constrain(subview, to: superview, including: [
+                subview.topAnchor.constraint(
+                    equalTo: superview.topAnchor(safe: safeAnchors)
+                )
+            ], safeAnchors: safeAnchors)
         case .bottom:
-            constrain(subview, superview: superview, including: [
-                subview.bottomAnchor.constraint(equalTo: superview.safeBottomAnchor)
-            ])
+            constrain(subview, to: superview, including: [
+                subview.bottomAnchor.constraint(
+                    equalTo: superview.bottomAnchor(safe: safeAnchors)
+                )
+            ], safeAnchors: safeAnchors)
         }
     }
     
@@ -57,12 +61,17 @@ public extension MessageLayout {
     ///   - constraints: Additional `NSLayoutConstraint`s
     private func constrain(
         _ subview: UIView,
-        superview: UIView,
-        including constraints: [NSLayoutConstraint]
+        to superview: UIView,
+        including constraints: [NSLayoutConstraint],
+        safeAnchors: Bool
     ){
         NSLayoutConstraint.activate(constraints + [
-            subview.leadingAnchor.constraint(equalTo: superview.safeLeadingAnchor),
-            subview.widthAnchor.constraint(equalTo: superview.safeWidthAnchor)
+            subview.leadingAnchor.constraint(
+                equalTo: superview.leadingAnchor(safe: safeAnchors)
+            ),
+            subview.widthAnchor.constraint(
+                equalTo: superview.widthAnchor(safe: safeAnchors)
+            )
         ])
     }
 }
@@ -80,17 +89,19 @@ public extension UIView {
     /// - Parameters:
     ///   - view: `UIView` superview to add `self` to
     ///   - layout: `MessageLayout`
-    ///   - safeAnchors: Constrain to safe anchors
+    ///   - constrainToSafeArea: Constrain to safe area anchors
     func addTo(
         view: UIView,
         layout: MessageLayout,
-        safeAnchors: Bool = true
+        constrainToSafeArea: Bool = true
     ) {
         // Remove from previous layout tree if exists
         removeFromSuperview()
         
         // Constrain `self`
-        layout.constrain(subview: self, to: view)
+        layout.constrain(
+            subview: self, to: view, safeAnchors: constrainToSafeArea
+        )
         
         // Trigger a layout cycle
         view.setNeedsLayout()

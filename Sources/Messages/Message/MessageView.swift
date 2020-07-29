@@ -25,7 +25,7 @@ open class MessageView: UIView {
         
         /// Inset of the `UIStackView` relative to the `MessageView`
         static let stackViewInsets = UIEdgeInsets(
-            top: 10, left: 15, bottom: 10, right: 15
+            top: 10, left: 16, bottom: 10, right: 16
         )
         
         /// Vertical `UIStackView` spacing

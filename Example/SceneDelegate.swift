@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import MessageStackView
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 

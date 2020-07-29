@@ -9,12 +9,7 @@
 import UIKit
 
 extension UIApplication {
-    
-    /// First in `windows` where `isKeyWindow`
-    var firstKeyWindow: UIWindow? {
-        return windows.first { $0.isKeyWindow }
-    }
-    
+
     /// `CGRect` frame of the Status Bar
     var appStatusBarFrame: CGRect {
         guard #available(iOS 13, *) else {
@@ -23,7 +18,7 @@ extension UIApplication {
         }
         
         // Otherwise find the key window and get frame from the scene
-        return firstKeyWindow?.windowScene?.statusBarManager?
+        return appKeyWindow?.windowScene?.statusBarManager?
             .statusBarFrame ?? .zero
     }
 }
