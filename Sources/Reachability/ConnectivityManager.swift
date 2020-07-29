@@ -49,6 +49,9 @@ public class ConnectivityManager {
     /// Disconnect when `observers` is empty
     public var stopOnEmptyObservers = true
     
+    /// `WindowManager` instance
+    public private(set) var windowManager = WindowManager()
+    
     // MARK: - Init
     
     /// Default public initializer

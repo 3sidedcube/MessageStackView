@@ -9,7 +9,8 @@ import Foundation
 
 public extension Array where Element: Equatable {
     
-    /// Get the next `Element` after the first instance of `element`
+    /// Get the next `Element` after the first instance equal to `element`, where equal to is
+    /// defined by `Equatable`
     ///
     /// - Parameter element: `Element`
     func elementAfterFirst(of element: Element) -> Element? {
@@ -21,7 +22,8 @@ public extension Array where Element: Equatable {
         return self[newIndex]
     }
     
-    /// Get the previous `Element` before the first instance of `element`
+    /// Get the previous `Element` before the first instance equal to `element`, where equal to is
+    /// defined by `Equatable`
     ///
     /// - Parameter element: `Element`
     func elementBeforeFirst(of element: Element) -> Element? {

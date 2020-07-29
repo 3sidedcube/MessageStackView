@@ -49,13 +49,13 @@ class NoInternetTabBarController: UITabBarController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        ConnectivityWindowManager.shared.startObserving()
+        ConnectivityManager.shared.windowManager.startObserving()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         
-        ConnectivityWindowManager.shared.stopObserving()
+        ConnectivityManager.shared.windowManager.stopObserving()
     }
 }
 

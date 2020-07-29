@@ -47,7 +47,7 @@
 		B8BB088F24C4BCC2000E2E87 /* MessageStackView.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = "MessageStackView::MessageStackView::Product" /* MessageStackView.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		B8BB089324C4BD01000E2E87 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B8BB087024C4BC46000E2E87 /* Assets.xcassets */; };
 		B8BB089524C4BD09000E2E87 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B8BB087124C4BC46000E2E87 /* LaunchScreen.storyboard */; };
-		B8BCDA8324CD8E920067F26C /* ConnectivityWindowManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8BCDA8224CD8E920067F26C /* ConnectivityWindowManager.swift */; };
+		B8BCDA8324CD8E920067F26C /* ConnectivityManager+WindowManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8BCDA8224CD8E920067F26C /* ConnectivityManager+WindowManager.swift */; };
 		B8BCDA8524CD8EB20067F26C /* UIApplication+KeyWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8BCDA8424CD8EB10067F26C /* UIApplication+KeyWindow.swift */; };
 		B8BCDA8B24CDB55B0067F26C /* UIViewController+Lifecycle.h in Headers */ = {isa = PBXBuildFile; fileRef = B8BCDA8924CDB55B0067F26C /* UIViewController+Lifecycle.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B8BCDA8C24CDB55B0067F26C /* UIViewController+Lifecycle.m in Sources */ = {isa = PBXBuildFile; fileRef = B8BCDA8A24CDB55B0067F26C /* UIViewController+Lifecycle.m */; };
@@ -175,7 +175,7 @@
 		B8BB087D24C4BC46000E2E87 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B8BB087E24C4BC46000E2E87 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B8BB087F24C4BC46000E2E87 /* SceneDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		B8BCDA8224CD8E920067F26C /* ConnectivityWindowManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectivityWindowManager.swift; sourceTree = "<group>"; };
+		B8BCDA8224CD8E920067F26C /* ConnectivityManager+WindowManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ConnectivityManager+WindowManager.swift"; sourceTree = "<group>"; };
 		B8BCDA8424CD8EB10067F26C /* UIApplication+KeyWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication+KeyWindow.swift"; sourceTree = "<group>"; };
 		B8BCDA8924CDB55B0067F26C /* UIViewController+Lifecycle.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIViewController+Lifecycle.h"; sourceTree = "<group>"; };
 		B8BCDA8A24CDB55B0067F26C /* UIViewController+Lifecycle.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+Lifecycle.m"; sourceTree = "<group>"; };
@@ -278,7 +278,7 @@
 				B87CC95024CAE56E002B697C /* Reachability.m */,
 				B87CC95224CAE5A5002B697C /* ConnectivityManager.swift */,
 				B87CC98824CAF6D6002B697C /* ConnectivityManager+Notification.swift */,
-				B8BCDA8224CD8E920067F26C /* ConnectivityWindowManager.swift */,
+				B8BCDA8224CD8E920067F26C /* ConnectivityManager+WindowManager.swift */,
 				B87CC99224CB48DD002B697C /* InternetConnectionMessageable.swift */,
 				B87CC98A24CB02F8002B697C /* ConnectivityViewController.swift */,
 				B87CC99424CB4A0D002B697C /* NoInternet+UI.swift */,
@@ -786,7 +786,7 @@
 				B87CC99324CB48DD002B697C /* InternetConnectionMessageable.swift in Sources */,
 				OBJ_113 /* BadgeMessage.swift in Sources */,
 				OBJ_114 /* BadgeMessageView+BadgeMessage.swift in Sources */,
-				B8BCDA8324CD8E920067F26C /* ConnectivityWindowManager.swift in Sources */,
+				B8BCDA8324CD8E920067F26C /* ConnectivityManager+WindowManager.swift in Sources */,
 				OBJ_115 /* BadgeMessageView.swift in Sources */,
 				OBJ_116 /* BadgeMessageViewable.swift in Sources */,
 				OBJ_117 /* Poster+BadgeMessage.swift in Sources */,
