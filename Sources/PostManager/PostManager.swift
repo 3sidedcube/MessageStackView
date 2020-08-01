@@ -44,7 +44,7 @@ public class PostManager {
     /// `Queue` of `PostRequest`s when `isSerialQueue` is `true`.
     /// If `isSerialQueue` is set to `false`, `queue` is emptied and posts all
     /// pending `PostRequest`s.
-    private var queue = Queue<PostRequest>()
+    private(set) var queue = Queue<PostRequest>()
     
     /// Should the posted `UIView`s be handled by a serial `Queue`, i.e. one at a time.
     /// If `true`, queued `PostRequest`s are stored in `queue`.
@@ -132,6 +132,9 @@ public class PostManager {
         // Remove from previous layout tree if it exists
         view.removeFromSuperview()
         
+        // Execute `delegate` will post if `poster` is a `PostManagerDelegate`
+        (poster as? PostManagerDelegate)?.postManager(self, willPost: view)
+        
         // Execute `delegate` will post
         delegate?.postManager(self, willPost: view)
         
@@ -152,8 +155,14 @@ public class PostManager {
         // Start dismiss timer if appropriate
         startTimer(for: postRequest)
         
+        // `view` of the `postRequest`
+        let view = postRequest.view
+        
+        // Execute `delegate` did post if `poster` is a `PostManagerDelegate`
+        (poster as? PostManagerDelegate)?.postManager(self, didPost: view)
+        
         // Execute `delegate` did post
-        delegate?.postManager(self, didPost: postRequest.view)
+        delegate?.postManager(self, didPost: view)
     }
     
     /// Setup dismiss `Timer` for `postRequest`
@@ -212,6 +221,9 @@ public class PostManager {
             return
         }
         
+        // Execute `delegate` will remove if `poster` is a `PostManagerDelegate`
+        (poster as? PostManagerDelegate)?.postManager(self, willRemove: view)
+        
         // Execute `delegate` will remove
         delegate?.postManager(self, willRemove: view)
         
@@ -226,6 +238,9 @@ public class PostManager {
     private func completeRemove(view: UIView) {
         // No current
         currentPostRequests.removeAll { $0.view == view }
+        
+        // Execute `delegate` did remove if `poster` is a `PostManagerDelegate`
+        (poster as? PostManagerDelegate)?.postManager(self, didRemove: view)
         
         // Execute `delegate` did remove
         delegate?.postManager(self, didRemove: view)

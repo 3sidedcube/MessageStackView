@@ -26,6 +26,10 @@ open class PostView: UIView, Poster {
         return postManager
     }()
 
+    /// Invoke `removeFromSuperview()` on `self` when there are no more items in the
+    /// `postManager`
+    public var removeFromSuperviewOnEmpty = false
+
     // MARK: - Init
     
     public convenience init() {
@@ -187,5 +191,28 @@ extension PostView: UIViewPoster {
                 self.removePostSubview(view)
                 completion()
         })
+    }
+}
+
+// MARK: - PostManagerDelegate
+
+extension PostView: PostManagerDelegate {
+
+    public func postManager(
+        _ postManager: PostManager,
+        didRemove view: UIView
+    ){
+        // Should check to remove self
+        guard removeFromSuperviewOnEmpty,
+            
+            // Nothing showing atm
+            postManager.currentPostRequests.isEmpty,
+            
+            // Nothing scheduled to show in the future
+            postManager.queue.isEmpty else {
+                return
+        }
+        
+        removeFromSuperview()
     }
 }
