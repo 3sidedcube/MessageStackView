@@ -122,11 +122,9 @@ public extension UIViewController {
 
 public extension UIApplication {
     
-    /// `MessageStackView` or create and constrain
-    func postViewOrCreate(
-        layout: MessageLayout = .default
-    ) -> PostView? {
-        return appKeyWindow?.postViewOrCreate(layout: layout)
+    /// `UIApplication` shared singleton `PostView`
+    var postView: PostView {
+        return ApplicationPostView.shared
     }
 }
 

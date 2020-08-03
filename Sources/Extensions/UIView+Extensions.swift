@@ -21,4 +21,9 @@ extension UIView {
         
         return superview?.firstSuperviewOfType(includeSelf: true)
     }
+    
+    /// Bring `self` to front of `superview` `subviews` stack
+    func bringToFront() {
+        superview?.bringSubviewToFront(self)
+    }
 }

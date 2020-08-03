@@ -23,14 +23,22 @@ class WindowViewController: UIViewController {
             of: view,
             title: "Pop",
             target: self,
-            selector: #selector(buttonTouchUpInside)
+            selector: #selector(popButtonTouchUpInside)
         )
+        
+        let button = UIButton.addToCenter(
+            of: view,
+            title: "Present",
+            target: self,
+            selector: #selector(presentButtonTouchUpInside)
+        )
+        button.transform = CGAffineTransform(translationX: 0, y: 30)
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        UIApplication.shared.postViewOrCreate()?.post(badgeMessage:
+        UIApplication.shared.postView.post(badgeMessage:
             BadgeMessage(
                 title: "This is a window notification",
                 subtitle: "This notification has been posted on the key window",
@@ -40,7 +48,27 @@ class WindowViewController: UIViewController {
         )
     }
     
-    @objc private func buttonTouchUpInside(sender: UIButton) {
+    @objc private func popButtonTouchUpInside(_ sender: UIButton) {
         navigationController?.popViewController(animated: true)
+    }
+    
+    @objc private func presentButtonTouchUpInside(_ sender: UIButton) {
+        let viewController = UIViewController()
+        viewController.view.backgroundColor = UIColor.gray
+        viewController.navigationItem.rightBarButtonItem = UIBarButtonItem(
+            barButtonSystemItem: .cancel,
+            target: self,
+            action: #selector(cancelBarButtonItemTouchUpInside)
+        )
+        
+        let navigationController = UINavigationController(
+            rootViewController: viewController
+        )
+        
+        present(navigationController, animated: true)
+    }
+    
+    @objc private func cancelBarButtonItemTouchUpInside(_ sender: UIBarButtonItem) {
+        dismiss(animated: true)
     }
 }

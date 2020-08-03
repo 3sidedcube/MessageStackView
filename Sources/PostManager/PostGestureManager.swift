@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 
+/// Delegate callbacks for `PostGestureManager`
 protocol PostGestureManagerDelegate: class {
     
     func postGestureManager(
