@@ -26,13 +26,19 @@ class WindowViewController: UIViewController {
             selector: #selector(popButtonTouchUpInside)
         )
         
-        let button = UIButton.addToCenter(
+        UIButton.addToCenter(
             of: view,
             title: "Present",
             target: self,
             selector: #selector(presentButtonTouchUpInside)
-        )
-        button.transform = CGAffineTransform(translationX: 0, y: 30)
+        ).transform = CGAffineTransform(translationX: 0, y: 30)
+        
+        UIButton.addToCenter(
+            of: view,
+            title: "Set Key Window",
+            target: self,
+            selector: #selector(keyWindowButtonTouchUpInside)
+        ).transform = CGAffineTransform(translationX: 0, y: 60)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -68,7 +74,53 @@ class WindowViewController: UIViewController {
         present(navigationController, animated: true)
     }
     
+    @objc private func keyWindowButtonTouchUpInside(_ sender: UIButton) {
+        let connectedScenes = UIApplication.shared.connectedScenes
+        guard let windowScene = connectedScenes.first as? UIWindowScene,
+            let sceneDelegate = windowScene.delegate as? SceneDelegate else {
+                return
+        }
+        
+        let oldWindow = sceneDelegate.window
+        let viewController = WindowRootViewController()
+        
+        let newWindow = UIWindow(windowScene: windowScene)
+        newWindow.rootViewController = viewController
+        sceneDelegate.window = newWindow
+        newWindow.makeKeyAndVisible()
+        
+        viewController.completion = { [weak newWindow] in
+            newWindow?.resignKey()
+            
+            sceneDelegate.window = oldWindow
+            oldWindow?.makeKeyAndVisible()
+        }
+    }
+    
     @objc private func cancelBarButtonItemTouchUpInside(_ sender: UIBarButtonItem) {
         dismiss(animated: true)
+    }
+}
+
+// MARK: - WindowRootViewController
+
+class WindowRootViewController: UIViewController {
+    
+    var completion: (() -> Void)?
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        view.backgroundColor = .white
+        
+        UIButton.addToCenter(
+            of: view,
+            title: "Resign Key Window",
+            target: self,
+            selector: #selector(buttonTouchUpInside)
+        )
+    }
+    
+    @objc private func buttonTouchUpInside(_ sender: UIButton) {
+        completion?()
     }
 }
