@@ -45,6 +45,12 @@ class ApplicationPostView: PostView {
             name: UIWindow.didBecomeKeyNotification,
             object: nil
         )
+        
+        NotificationCenter.default.removeObserver(
+            self,
+            name: .viewWillAppear,
+            object: nil
+        )
     }
     
     // MARK: - Setup
@@ -56,6 +62,13 @@ class ApplicationPostView: PostView {
             self,
             selector: #selector(windowDidBecomeKeyNotification),
             name: UIWindow.didBecomeKeyNotification,
+            object: nil
+        )
+        
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(viewWillAppearNotification),
+            name: .viewWillAppear,
             object: nil
         )
     }
@@ -98,6 +111,12 @@ class ApplicationPostView: PostView {
     ){
         guard isActive else { return }
         updateSuperviewIfRequired(force: true)
+    }
+    
+    @objc private func viewWillAppearNotification(
+        _ sender: Notification
+    ){
+        bringToFront()
     }
     
     // MARK: - PostManagerDelegate
