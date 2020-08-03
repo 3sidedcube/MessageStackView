@@ -56,8 +56,6 @@ class ApplicationPostView: PostView {
     // MARK: - Setup
     
     private func setup() {
-        layer.zPosition = 1
-        
         NotificationCenter.default.addObserver(
             self,
             selector: #selector(windowDidBecomeKeyNotification),
