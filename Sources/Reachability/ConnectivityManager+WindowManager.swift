@@ -11,9 +11,9 @@ import UIKit
 
 extension ConnectivityManager {
  
-    /// Manage a `MessageStackView` to post "Not connected to internet" messages at the bottom of
-    /// the key `UIWindow` inset by the visible `UIViewController`
-    public class WindowManager {
+    /// Manage a `MessageStackView` to post "Not connected to internet" messages at the bottom
+    /// of the `visibleViewController`s view.
+    public class InternetMessageManager {
 
         /// `NSObjectProtocol` observing internet connection updates
         private var observer: NSObjectProtocol?
@@ -25,8 +25,8 @@ extension ConnectivityManager {
             return messageStackView
         }()
         
-        /// `Configuration`
-        public var configuration = Configuration()
+        /// `MessageConfiguration`
+        public var configuration = MessageConfiguration()
         
         // MARK: - Init
         
@@ -154,47 +154,47 @@ extension ConnectivityManager {
 
 // MARK: - Configuration
 
-extension ConnectivityManager.WindowManager {
+extension ConnectivityManager.InternetMessageManager {
     
     /// Configuration of `ConnectivityManager`
-    public struct Configuration {
+    public struct MessageConfiguration {
         
         /// When non-`nil`, override default "No internet connection" toast title
-        public var noInternetTitle: String?
+        public var title: String?
         
         /// When non-`nil`, override default "No internet connection" toast subtitle
-        public var noInternetSubtitle: String?
+        public var subtitle: String?
         
         /// When non-`nil`, override default "No internet connection" toast image
-        public var noInternetImage: UIImage?
+        public var image: UIImage?
         
         /// Default public memberwise initializer
         ///
         /// - Parameters:
-        ///   - noInternetTitle: `String?`
-        ///   - noInternetSubtitle: `String?`
-        ///   - noInternetImage: `UIImage?`
+        ///   - title: `String?`
+        ///   - subtitle: `String?`
+        ///   - image: `UIImage?`
         public init(
-            noInternetTitle: String? = nil,
-            noInternetSubtitle: String? = nil,
-            noInternetImage: UIImage? = nil
+            title: String? = nil,
+            subtitle: String? = nil,
+            image: UIImage? = nil
         ){
-            self.noInternetTitle = noInternetTitle
-            self.noInternetSubtitle = noInternetSubtitle
-            self.noInternetImage = noInternetImage
+            self.title = title
+            self.subtitle = subtitle
+            self.image = image
         }
     }
     
     private var noInternetTitle: String {
-        return configuration.noInternetTitle ?? "No Internet Connection"
+        return configuration.title ?? "No Internet Connection"
     }
     
     private var noInternetSubtitle: String {
-        return configuration.noInternetSubtitle ??
+        return configuration.subtitle ??
             "Please check your connection and try again"
     }
     
     private var noInternetImage: UIImage? {
-        return configuration.noInternetImage ?? .noInternet
+        return configuration.image ?? .noInternet
     }
 }
