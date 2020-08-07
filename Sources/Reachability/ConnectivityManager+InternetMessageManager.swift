@@ -1,5 +1,5 @@
 //
-//  WindowManager.swift
+//  InternetMessageManager.swift
 //  MessageStackView
 //
 //  Created by Ben Shutt on 26/07/2020.
