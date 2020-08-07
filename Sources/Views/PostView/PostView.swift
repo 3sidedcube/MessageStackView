@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 /// `UIView` to post `UIView`s on a `PostManager` in a serial manner
-open class PostView: UIView, Poster {
+open class PostView: UIView, Poster, UIViewPoster, PostManagerDelegate {
     
     /// Fixed constants for `PostView`
     private struct Constants {
@@ -25,6 +25,10 @@ open class PostView: UIView, Poster {
         postManager.isSerialQueue = true
         return postManager
     }()
+
+    /// Invoke `removeFromSuperview()` on `self` when there are no more items in the
+    /// `postManager`
+    public var removeFromSuperviewOnEmpty = false
 
     // MARK: - Init
     
@@ -50,6 +54,19 @@ open class PostView: UIView, Poster {
         // instantiating it, referencing `self`, which is being
         // de-initialized...
         let _ = self.postManager.isSerialQueue
+    }
+    
+    // MARK: - Computed
+    
+    /// Is the `PostView` posting or scheduled to post
+    public var isActive: Bool {
+        // A post is showing atm
+        let isPosting = postManager.currentPostRequests.count > 0
+                  
+        // A post is scheduled to show in the future
+        let isQueued = postManager.queue.count > 0
+        
+        return isPosting || isQueued
     }
     
     // MARK: - IntrinsicContentSize
@@ -142,12 +159,9 @@ open class PostView: UIView, Poster {
         subview.removeFromSuperview()
         layoutIfNeeded()
     }
-}
-
-// MARK: - UIViewPoster
-
-extension PostView: UIViewPoster {
     
+    // MARK: - UIViewPoster
+
     func shouldRemove(view: UIView) -> Bool {
         return view.superview == self
     }
@@ -187,5 +201,44 @@ extension PostView: UIViewPoster {
                 self.removePostSubview(view)
                 completion()
         })
+    }
+
+    // MARK: - PostManagerDelegate
+
+    public func postManager(
+        _ postManager: PostManager,
+        willPost view: UIView
+    ){
+    }
+    
+    /// Called when a `view` was posted
+    /// - Parameters:
+    ///   - postManager: `PostManager`
+    ///   - view: The `UIView` that was posted
+    public func postManager(
+        _ postManager: PostManager,
+        didPost view: UIView
+    ){
+    }
+    
+    /// Called when a `view` will be removed
+    /// - Parameters:
+    ///   - postManager: `PostManager`
+    ///   - view: The `UIView` that will be removed
+    public func postManager(
+        _ postManager: PostManager,
+        willRemove view: UIView
+    ){
+    }
+    
+    public func postManager(
+        _ postManager: PostManager,
+        didRemove view: UIView
+    ){
+        // Should check to remove self
+        guard removeFromSuperviewOnEmpty, !isActive else {
+            return
+        }
+        removeFromSuperview()
     }
 }
