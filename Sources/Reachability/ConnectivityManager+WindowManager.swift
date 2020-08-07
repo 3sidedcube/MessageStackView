@@ -26,7 +26,7 @@ extension ConnectivityManager {
         }()
         
         /// `MessageConfiguration`
-        public var configuration = MessageConfiguration()
+        public var messsageConfiguration = MessageConfiguration()
         
         // MARK: - Init
         
@@ -186,15 +186,15 @@ extension ConnectivityManager.InternetMessageManager {
     }
     
     private var noInternetTitle: String {
-        return configuration.title ?? "No Internet Connection"
+        return messsageConfiguration.title ?? "No Internet Connection"
     }
     
     private var noInternetSubtitle: String {
-        return configuration.subtitle ??
+        return messsageConfiguration.subtitle ??
             "Please check your connection and try again"
     }
     
     private var noInternetImage: UIImage? {
-        return configuration.image ?? .noInternet
+        return messsageConfiguration.image ?? .noInternet
     }
 }

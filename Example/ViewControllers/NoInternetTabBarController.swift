@@ -49,16 +49,16 @@ class NoInternetTabBarController: UITabBarController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        let windowManager = ConnectivityManager.shared.windowManager
-        windowManager.startObserving()
-        windowManager.configuration.noInternetSubtitle =
+        let manager = ConnectivityManager.shared.internetMessageManager
+        manager.startObserving()
+        manager.messsageConfiguration.subtitle =
             "Sorry, please check your connection and try again"
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         
-        ConnectivityManager.shared.windowManager.stopObserving()
+        ConnectivityManager.shared.internetMessageManager.stopObserving()
     }
 }
 
