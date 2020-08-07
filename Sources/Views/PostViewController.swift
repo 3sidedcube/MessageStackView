@@ -63,7 +63,7 @@ extension PostViewController: PostManagerDelegate {
         _ postManager: PostManager,
         didRemove view: UIView
     ) {
-        guard !postView.isActive else { return }
+        guard !postView.postManager.isActive else { return }
         window.isHidden = true
     }
 }
