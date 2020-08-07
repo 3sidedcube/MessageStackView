@@ -322,13 +322,10 @@ extension MessageStackView: UIViewPoster {
 
 // MARK: - Order + Extensions
 
-/// Local shorthand of `MessageStackView.Order`
-private typealias Order = MessageStackView.Order
-
-private extension Order {
+private extension MessageStackView.Order {
     
     /// Other `Order` (opposite direction)
-    var switched: Order {
+    var switched: Self {
         switch self {
         case .default: return .reversed
         case .reversed: return .default

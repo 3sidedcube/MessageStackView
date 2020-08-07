@@ -21,8 +21,7 @@ class NoInternetTabBarController: UITabBarController {
             .bookmarks,
             .contacts,
             .downloads,
-            .favorites,
-            .history
+            .favorites
         ]
         
         viewControllers = icons.enumerated().map {
@@ -33,6 +32,10 @@ class NoInternetTabBarController: UITabBarController {
                 )
             )
         }
+        
+        viewControllers?.append(UINavigationController(
+            rootViewController: TabConnectivityViewController()
+        ))
     }
     
     required init?(coder: NSCoder) {
@@ -49,16 +52,16 @@ class NoInternetTabBarController: UITabBarController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        let manager = ConnectivityManager.shared.internetMessageManager
+        let manager = ConnectivityManager.shared.messageManager
         manager.startObserving()
-        manager.messsageConfiguration.subtitle =
+        manager.message.subtitle =
             "Sorry, please check your connection and try again"
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         
-        ConnectivityManager.shared.internetMessageManager.stopObserving()
+        ConnectivityManager.shared.messageManager.stopObserving()
     }
 }
 
@@ -83,8 +86,15 @@ class TabViewController: UIViewController {
             of: view,
             title: "tableView",
             target: self,
-            selector: #selector(buttonTouchUpInside)
+            selector: #selector(tableViewButtonTouchUpInside)
         )
+        
+        UIButton.addToCenter(
+            of: view,
+            title: "alert",
+            target: self,
+            selector: #selector(alertButtonTouchUpInside)
+        ).transform = CGAffineTransform(translationX: 0, y: 30)
         
         navigationItem.rightBarButtonItem =
             UIBarButtonItem(
@@ -106,12 +116,87 @@ class TabViewController: UIViewController {
         presentingViewController?.dismiss(animated: true)
     }
     
-    @objc private func buttonTouchUpInside(_ sender: UIButton) {
+    @objc private func tableViewButtonTouchUpInside(_ sender: UIButton) {
         let viewController = UITableViewController()
         viewController.hidesBottomBarWhenPushed = true
         navigationController?.pushViewController(
             viewController,
             animated: true
         )
+    }
+    
+    @objc private func alertButtonTouchUpInside(_ sender: UIButton) {
+        let alertController = UIAlertController(
+            title: "Alert title",
+            message: "Alert Message",
+            preferredStyle: .alert
+        )
+        
+        alertController.addAction(UIAlertAction(
+            title: "Cancel",
+            style: .cancel
+        ))
+        
+        present(alertController, animated: true)
+    }
+}
+
+class TabConnectivityViewController: ConnectivityViewController {
+    
+    /// Post a `Message` on the `messageStackView` only one, flag to determine if
+    /// the message has already been posted
+    private var didPostMessage = false
+    
+    /// `Timer` for posting delayed message
+    weak var timer: Timer?
+    
+    // MARK: - Init
+    
+    init() {
+        super.init(nibName: nil, bundle: nil)
+        
+        tabBarItem.image = .add
+        tabBarItem.title = "Connect"
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    deinit {
+        timer?.invalidate()
+    }
+    
+    // MARK: - ViewController lifecycle
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        guard !didPostMessage else { return }
+        
+        let messageView = messageStackView.post(message: Message(
+            title: "Hello there!",
+            subtitle: "Welcome to \(Self.self)",
+            leftImage: .noInternet
+        ), dismissAfter: nil)
+        messageView.configureNoInternet()
+        
+        timer = Timer.scheduledTimer(
+            withTimeInterval: 3,
+            repeats: false
+        ) { [weak self] timer in
+            self?.messageStackView.post(message: Message(
+                title: "Another message",
+                subtitle: "This is another message posted later"
+            ))
+        }
+        
+        didPostMessage = true
+    }
+    
+    // MARK: - Message
+    
+    override var messageLayout: MessageLayout {
+        return .top
     }
 }

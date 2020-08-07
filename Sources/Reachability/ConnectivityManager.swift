@@ -49,8 +49,12 @@ public class ConnectivityManager {
     /// Disconnect when `observers` is empty
     public var stopOnEmptyObservers = true
     
-    /// `InternetMessageManager` instance
-    public private(set) var internetMessageManager = InternetMessageManager()
+    /// `MessageManager` instance.
+    ///
+    /// The `MessageManager` manages a `MessageStackView` to add and
+    /// remove from the `visibleViewController` on Reachability internet connectivity
+    /// events.
+    public private(set) var messageManager = MessageManager()
     
     // MARK: - Init
     
@@ -173,5 +177,4 @@ public extension ConnectivityManager.State {
         case .notConnected: return false
         }
     }
-    
 }

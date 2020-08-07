@@ -11,52 +11,42 @@ import UIKit
 
 // MARK: - ConnectivityViewController
 
-/// Base `UIViewController` for internet connection toasts in response to
-/// Reachability `Notification`s.
-///
-/// - Warning:
-/// While `UIViewController` is the base of a `UIViewController`s (obviously), subclassing
-/// `ConnectivityViewController` is not so straight forward, e.g. `UITableViewController`.
-///
-/// If you want the "No internet" message toast to persist between screens, you can use post on a
-/// `UIWindow` or a `UINavigationController` `view`.
-/// Of course persisting within these bounds. Animation can be achieved using:
-/// `transitionCoordinator?.animate(alongsideTransition:)`
-///
+/// `UIViewController` which conforms to `InternetConnectivityMessageable`
 open class ConnectivityViewController: UIViewController,
-    InternetConnectionMessageable {
+    InternetConnectivityMessageable {
 
+    /// `MessageLayout` when creating `messageStackView`
+    open var messageLayout: MessageLayout {
+        return .bottom
+    }
+    
     /// `MessageStackView` at the bottom of the screen
     public private(set) lazy var messageStackView: MessageStackView = {
-        return createMessageStackView()
+        return view.createPosterView(
+            layout: messageLayout,
+            constrainToSafeArea: false // Insets `spaceView` in place of this
+        )
     }()
     
-    /// Observer for internet connectivity `Notification`s
-    public var observer: NSObjectProtocol? = nil
+    open override func viewDidLoad() {
+        super.viewDidLoad()
+        _ = messageStackView.postManager
+    }
     
     // MARK: - ViewController lifecycle
-    
-    open override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        onViewWillAppear()
-    }
-    
-    open override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        onViewWillDisappear()
-    }
 
     open override func viewSafeAreaInsetsDidChange() {
         super.viewSafeAreaInsetsDidChange()
-        onViewSafeAreaInsetsDidChange()
+        messageStackView.spaceViewHeight = safeAreaInset
     }
-}
-
-// MARK: - InternetConnectionMessageable + UIViewController
-
-extension InternetConnectionMessageable where Self: UIViewController {
     
-    public var messageParentView: UIView {
-        return view
+    // MARK: - SafeArea
+    
+    /// Safe area inset of `messageParentView`
+    var safeAreaInset: CGFloat {
+        switch messageLayout {
+        case .top: return view.safeAreaInsets.top
+        case .bottom: return view.safeAreaInsets.bottom
+        }
     }
 }
