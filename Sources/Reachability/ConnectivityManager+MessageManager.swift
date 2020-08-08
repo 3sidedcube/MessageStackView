@@ -97,16 +97,12 @@ extension ConnectivityManager {
         private func onDisconnected() {
             invalidateMessageStackView()
             
-            guard var visibleViewController =
+            guard let visibleViewController =
                 UIApplication.shared.visibleViewController,
                 var visibleView = visibleViewController.view else {
                     return
             }
-            
-            // Map a system `UIViewController` if required
-            visibleViewController =
-                visibleViewController.mapVisibleSystemViewController
-            
+        
             // If the `visibleViewController` conforms to
             // `InternetConnectivityMessageable` then send the message there!
             if let messageable = visibleViewController as? InternetConnectivityMessageable {
@@ -218,19 +214,5 @@ public extension Message {
             leftImage: .noInternet,
             rightImage: nil
         )
-    }
-}
-
-// MARK: - UIViewController + Visible
-
-extension UIViewController {
-    
-    /// If `self` is the `visibleViewController`, and `self` is a system
-    /// `UIViewController`, divert to another `UIViewController`
-    ///
-    /// - TODO: Improve this
-    var mapVisibleSystemViewController: UIViewController {
-        guard self is UIAlertController else { return self }
-        return presentingViewController ?? self
     }
 }

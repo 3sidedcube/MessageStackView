@@ -29,9 +29,13 @@ public extension UIApplication {
 public extension UIViewController {
     
     /// Visible `UIViewController` on `viewController`
-    /// - Parameter viewController: `UIViewController`
+    /// - Parameters:
+    ///   - viewController: `UIViewController`
+    ///   - includeSystemViewControllers: `Bool` include `UIViewController`s which
+    ///   are presented and return `true` to `isSystemViewController`
     func visibleViewController(
-        _ viewController: UIViewController
+        _ viewController: UIViewController,
+        includeSystemViewControllers: Bool = false
     ) -> UIViewController {
         
         // splitViewController
@@ -54,11 +58,18 @@ public extension UIViewController {
         }
         
         // presentedViewController
-        if let presentedViewController = viewController.presentedViewController {
+        if let presentedViewController = viewController.presentedViewController,
+            (includeSystemViewControllers || !presentedViewController.isSystemViewController) {
             return visibleViewController(presentedViewController)
         }
         
         return viewController
+    }
+    
+    /// Is `self` a presented system `UIViewController`
+    /// - TODO: Add greater support
+    private var isSystemViewController: Bool {
+        return self is UIAlertController
     }
     
     /// `visibleViewController(_:)` with `self`
