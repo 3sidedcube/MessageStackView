@@ -22,7 +22,7 @@ The animation of posted `UIView`s is via a `translation` from the top.
 
 Commonly, `PostView` is constrained to the top, leading, trailing edges of a `UIView` e.g. `UIWindow`.
 When a subview is posted, the `PostView` constrains its edges to the added subview.
-So, in this case, a posted `UIView` would define it's height either intrinsically or via explicit constraints, with its width determined by the `PostView`.
+So, in this case, a posted `UIView` would define its height either intrinsically or via explicit constraints, with its width determined by the `PostView`.
 
 ## MessageStackView
 

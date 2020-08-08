@@ -58,8 +58,8 @@ open class MessageStackView: UIStackView, Poster {
     
     /// This view is for smooth animations when there are no `arrangedSubviews`
     /// in the `UIStackView`.
-    /// Otherwise the `UIStackView` can not determine it's width/height.
-    /// With "no arranged subviews", we want to fix the width according to it's constraints,
+    /// Otherwise the `UIStackView` can not determine its width/height.
+    /// With "no arranged subviews", we want to fix the width according to its constraints,
     /// but have 0 height
     public lazy var spaceView: UIView = {
         let view = UIView()
@@ -154,7 +154,7 @@ open class MessageStackView: UIStackView, Poster {
     /// Prepare `spaceView` if the animating is either:
     /// - adding the first arrangedSubview
     /// - removing the last arrangedSubview
-    /// by updating it's height accordingly
+    /// by updating its height accordingly
     ///
     /// - Parameter hidden: `Bool` Is the first/last arranged subview being hidden
     private func animationWillStart(hidden: Bool) -> CGFloat? {
@@ -273,9 +273,9 @@ extension MessageStackView: UIViewPoster {
     /// Post `view`
     ///
     /// - Note:
-    /// This `view` will be added to a `fill` distributed `UIStackView` so it's width will
+    /// This `view` will be added to a `fill` distributed `UIStackView` so its width will
     /// be determined the `UIStackView`.
-    /// However it's height should be determined by the `view` itself.
+    /// However its height should be determined by the `view` itself.
     /// E.g. intrinsicContentSize, autolayout, explicit height...
     ///
     /// - Parameters:

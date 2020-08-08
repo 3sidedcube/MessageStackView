@@ -19,7 +19,7 @@ extension ConnectivityManager {
         private var observer: NSObjectProtocol?
         
         /// `MessageStackView ` to post messages
-        public lazy var messageStackView: MessageStackView = {
+        public private(set) lazy var messageStackView: MessageStackView = {
             let messageStackView = MessageStackView()
             messageStackView.updateOrderForLayout(.bottom)
             messageStackView.postManager.delegate = self

@@ -12,9 +12,9 @@ import UIKit
 // MARK: - ConnectivityMessageable
 
 /// An entity which conforms to `ConnectivityMessageable` defines a behavior to
-/// recieve internet connected/disconnected messages in responce to `Reachability` notifications.
+/// recieve internet connected/disconnected messages in response to `Reachability` notifications.
 ///
-/// E.g. A `UIViewController` may already have a `MessageStackView` in it's view hierarchy,
+/// E.g. A `UIViewController` may already have a `MessageStackView` in its view hierarchy,
 /// so doesn't want another `MessageStackView` added by the shared `MessageManager`
 public protocol ConnectivityMessageable: class {
     
