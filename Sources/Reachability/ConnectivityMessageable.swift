@@ -9,14 +9,14 @@
 import Foundation
 import UIKit
 
-// MARK: - InternetConnectionMessageable
+// MARK: - ConnectivityMessageable
 
-/// An entity which conforms to `InternetConnectivityMessageable` defines a behavior to
+/// An entity which conforms to `ConnectivityMessageable` defines a behavior to
 /// recieve internet connected/disconnected messages in responce to `Reachability` notifications.
 ///
 /// E.g. A `UIViewController` may already have a `MessageStackView` in it's view hierarchy,
 /// so doesn't want another `MessageStackView` added by the shared `MessageManager`
-public protocol InternetConnectivityMessageable: class {
+public protocol ConnectivityMessageable: class {
     
     /// The `MessageStackView` to post `Message`s on
     var messageStackView: MessageStackView { get }
@@ -48,9 +48,9 @@ public protocol InternetConnectivityMessageable: class {
     )
 }
 
-// MARK: - InternetConnectivityMessageable + Functionality
+// MARK: - ConnectivityMessageable + Functionality
 
-public extension InternetConnectivityMessageable {
+public extension ConnectivityMessageable {
   
     var message: Message {
         return .noInternet

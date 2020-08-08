@@ -11,9 +11,8 @@ import UIKit
 
 // MARK: - ConnectivityViewController
 
-/// `UIViewController` which conforms to `InternetConnectivityMessageable`
-open class ConnectivityViewController: UIViewController,
-    InternetConnectivityMessageable {
+/// `UIViewController` which conforms to `ConnectivityMessageable`
+open class ConnectivityViewController: UIViewController, ConnectivityMessageable {
 
     /// `MessageLayout` when creating `messageStackView`
     open var messageLayout: MessageLayout {
