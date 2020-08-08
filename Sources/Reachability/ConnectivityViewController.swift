@@ -20,12 +20,7 @@ open class ConnectivityViewController: UIViewController, ConnectivityMessageable
     }
     
     /// `MessageStackView` at the bottom of the screen
-    public private(set) lazy var messageStackView: MessageStackView = {
-        return view.createPosterView(
-            layout: messageLayout,
-            constrainToSafeArea: false // Insets `spaceView` in place of this
-        )
-    }()
+    public private(set) lazy var messageStackView = MessageStackView()
     
     // MARK: - Deinit
     
@@ -37,7 +32,14 @@ open class ConnectivityViewController: UIViewController, ConnectivityMessageable
     
     open override func viewDidLoad() {
         super.viewDidLoad()
-        _ = messageStackView.postManager
+        
+        messageStackView.addTo(
+            view: view,
+            layout: messageLayout,
+            constrainToSafeArea: false // Inset spaceView height
+        )
+        messageStackView.updateOrderForLayout(messageLayout)
+        view.setNeedsLayout()
     }
 
     open override func viewSafeAreaInsetsDidChange() {

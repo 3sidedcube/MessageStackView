@@ -12,7 +12,7 @@ import UIKit
 public struct Message {
     
     /// Title of the message
-    public var title: String
+    public var title: String? = nil
     
     /// Subtitle of the message
     public var subtitle: String? = nil
@@ -30,7 +30,7 @@ public struct Message {
     ///   - leftImage: `UIImage` on left
     ///   - rightImage: `UIImage` on right
     public init(
-        title: String,
+        title: String? = nil,
         subtitle: String? = nil,
         leftImage: UIImage? = nil,
         rightImage: UIImage? = nil
