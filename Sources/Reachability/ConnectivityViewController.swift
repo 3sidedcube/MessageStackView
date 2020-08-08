@@ -29,7 +29,7 @@ open class ConnectivityViewController: UIViewController, ConnectivityMessageable
     }
     
     // MARK: - ViewController lifecycle
-    
+
     open override func viewDidLoad() {
         super.viewDidLoad()
         

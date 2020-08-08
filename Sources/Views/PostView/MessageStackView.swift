@@ -74,13 +74,17 @@ open class MessageStackView: UIStackView, Poster {
         )
     }()
     
-    /// Height of the `spaceViewHeightConstraint`
-    public var spaceViewHeight: CGFloat {
-        get {
-            return spaceViewHeightConstraint.constant
-        }
-        set {
-            spaceViewHeightConstraint.constant = newValue
+    /// Height of the `spaceViewHeightConstraint`.
+    ///
+    /// - Note:
+    /// This is only **not** a computed property because the `spaceViewHeightConstraint`
+    /// `.constant` may not always be equal to this value.
+    /// Specifically, when the `MessageStackView` is animating the removal of it's last posted view,
+    /// it will also animate the height of the `spaceView` to zero.
+    public var spaceViewHeight: CGFloat = 0 {
+        didSet {
+            guard arrangedSubviewsExcludingSpace.count > 0 else { return }
+            spaceViewHeightConstraint.constant = spaceViewHeight
         }
     }
     
@@ -158,7 +162,8 @@ open class MessageStackView: UIStackView, Poster {
     ///
     /// - Parameter hidden: `Bool` Is the first/last arranged subview being hidden
     private func animationWillStart(hidden: Bool) -> CGFloat? {
-        guard arrangedSubviews.count == 2 else {
+        // Only 1 other arrangedSubview in addition to the space (2 overall)
+        guard arrangedSubviewsExcludingSpace.count == 1 else {
             return nil
         }
         
@@ -169,7 +174,9 @@ open class MessageStackView: UIStackView, Poster {
         } else {
             // Adding first arrangedSubview
             heightAfterAnimation = spaceViewHeight
-            spaceViewHeight = .leastNormalMagnitude
+            
+            // Don't overrite spaceViewHeight
+            spaceViewHeightConstraint.constant = .leastNormalMagnitude
         }
         
         return heightAfterAnimation
@@ -185,7 +192,8 @@ open class MessageStackView: UIStackView, Poster {
             return
         }
         
-        self.spaceViewHeight = spaceViewHeight
+        // Don't overrite spaceViewHeight
+        spaceViewHeightConstraint.constant = spaceViewHeight
     }
     
     // MARK: - SpaceView

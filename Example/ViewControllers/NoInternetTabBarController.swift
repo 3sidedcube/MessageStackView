@@ -152,9 +152,25 @@ class TabConnectivityViewController: ConnectivityViewController {
     /// `Timer` for posting delayed message
     weak var timer: Timer?
     
-    // MARK: - Init
+    /// Root `TabConnectivityViewController`.
+    /// The root can push another `TabConnectivityViewController` with a different
+    /// `MessageLayout`
+    private var isRoot = false
     
-    init() {
+    /// `MessageLayout`
+    override var messageLayout: MessageLayout {
+        return isRoot ? .top : .bottom
+    }
+    
+    // MARK: - Init
+
+    convenience init() {
+        self.init(isRoot: true)
+    }
+    
+    private init(isRoot: Bool) {
+        self.isRoot = isRoot
+        
         super.init(nibName: nil, bundle: nil)
         
         tabBarItem.image = .add
@@ -171,6 +187,19 @@ class TabConnectivityViewController: ConnectivityViewController {
     
     // MARK: - ViewController lifecycle
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        view.backgroundColor = .white
+        
+        guard isRoot else { return }
+        UIButton.addToCenter(
+            of: view,
+            title: "Bottom \(MessageLayout.self)",
+            target: self,
+            selector: #selector(buttonTouchUpInside)
+        )
+    }
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
@@ -182,6 +211,9 @@ class TabConnectivityViewController: ConnectivityViewController {
             leftImage: .noInternet
         ), dismissAfter: nil)
         messageView.configureNoInternet()
+        
+        messageStackView.postManager.gestureManager
+            .addTapToRemoveGesture(to: messageView)
         
         timer = Timer.scheduledTimer(
             withTimeInterval: 3,
@@ -196,9 +228,15 @@ class TabConnectivityViewController: ConnectivityViewController {
         didPostMessage = true
     }
     
-    // MARK: - Message
+    // MARK: - Actions
     
-    override var messageLayout: MessageLayout {
-        return .top
+    @objc private func buttonTouchUpInside(_ sender: UIButton) {
+        let viewController = TabConnectivityViewController(isRoot: false)
+        viewController.hidesBottomBarWhenPushed = true
+        
+        navigationController?.pushViewController(
+            viewController,
+            animated: true
+        )
     }
 }
