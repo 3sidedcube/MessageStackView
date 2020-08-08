@@ -105,9 +105,7 @@ extension ConnectivityManager {
             // If the `visibleViewController` conforms to `ConnectivityMessageable`
             // then send the message there!
             if let messageable = visibleViewController as? ConnectivityMessageable {
-                guard messageable.messageManagerShouldPost(self) else { return }
-                let messageView = post(to: messageable)
-                messageable.messageManager(self, didPostMessageView: messageView)
+                post(to: messageable)
                 return
             }
             
@@ -174,8 +172,11 @@ extension ConnectivityManager {
         /// Post internet connectivity lost on the given `messageable`
         /// 
         /// - Parameter messageable: `ConnectivityMessageable`
-        @discardableResult
-        private func post(to messageable: ConnectivityMessageable) -> MessageView {
+        private func post(to messageable: ConnectivityMessageable) {
+            guard messageable.messageManagerShouldPost(self) else {
+                return
+            }
+            
             let messageView = messageable.messageStackView.post(
                 message: messageable.message,
                 dismissAfter: messageable.dismissAfter,
@@ -184,7 +185,8 @@ extension ConnectivityManager {
             
             messageView.configureNoInternet()
             self.messageView = messageView
-            return messageView
+            
+            messageable.messageManager(self, didPostMessageView: messageView)
         }
         
         // MARK: - PostManagerDelegate
