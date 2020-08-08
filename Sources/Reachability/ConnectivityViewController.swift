@@ -27,12 +27,18 @@ open class ConnectivityViewController: UIViewController, ConnectivityMessageable
         )
     }()
     
+    // MARK: - Deinit
+    
+    deinit {
+        messageStackView.postManager.invalidate()
+    }
+    
+    // MARK: - ViewController lifecycle
+    
     open override func viewDidLoad() {
         super.viewDidLoad()
         _ = messageStackView.postManager
     }
-    
-    // MARK: - ViewController lifecycle
 
     open override func viewSafeAreaInsetsDidChange() {
         super.viewSafeAreaInsetsDidChange()

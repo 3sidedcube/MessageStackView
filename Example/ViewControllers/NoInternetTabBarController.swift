@@ -141,6 +141,8 @@ class TabViewController: UIViewController {
     }
 }
 
+// MARK: - TabConnectivityViewController
+
 class TabConnectivityViewController: ConnectivityViewController {
     
     /// Post a `Message` on the `messageStackView` only one, flag to determine if
