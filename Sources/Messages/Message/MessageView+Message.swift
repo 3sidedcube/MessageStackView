@@ -17,7 +17,7 @@ extension MessageView: MessageViewable {
     public func set(message: Message) {
         
         // Title
-        titleLabel.text = message.title
+        titleLabel.setTextAndHidden(message.title)
         
         // Detail
         subtitleLabel.setTextAndHidden(message.subtitle)

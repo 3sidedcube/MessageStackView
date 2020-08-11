@@ -11,7 +11,7 @@ import UIKit
 
 // MARK: - MessageView + Configure
 
-extension MessageView {
+public extension MessageView {
     
     /// Configure UI properties for the no internet `MessageView`
     func configureNoInternet() {

@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 /// Custom `UIImage`s used in the framework
-extension UIImage {
+public extension UIImage {
     
     /// Gray circle with a cross in the center
     static let iconClose = UIImage("iconClose")

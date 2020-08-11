@@ -107,7 +107,7 @@ class ApplicationPostView: PostView {
     @objc private func windowDidBecomeKeyNotification(
         _ sender: Notification
     ){
-        guard isActive else { return }
+        guard postManager.isActive else { return }
         updateSuperviewIfRequired(force: true)
     }
     

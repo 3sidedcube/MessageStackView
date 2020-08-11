@@ -103,6 +103,19 @@ public class PostManager {
         timerMap = [UIView: Timer]()
     }
     
+    // MARK: - Active
+    
+    /// Is the `PostManager` posting or scheduled to post
+    public var isActive: Bool {
+        // A post is showing atm
+        let isPosting = currentPostRequests.count > 0
+                  
+        // A post is scheduled to show in the future
+        let isQueued = queue.count > 0
+        
+        return isPosting || isQueued
+    }
+    
     // MARK: - Post
     
     /// Post the given `postRequest`.

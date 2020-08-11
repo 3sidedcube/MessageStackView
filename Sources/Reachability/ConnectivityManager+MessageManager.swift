@@ -1,5 +1,5 @@
 //
-//  WindowManager.swift
+//  MessageManager.swift
 //  MessageStackView
 //
 //  Created by Ben Shutt on 26/07/2020.
@@ -11,22 +11,35 @@ import UIKit
 
 extension ConnectivityManager {
  
-    /// Manage a `MessageStackView` to post "Not connected to internet" messages at the bottom of
-    /// the key `UIWindow` inset by the visible `UIViewController`
-    public class WindowManager {
+    /// Manage a `MessageStackView` to post "Not connected to internet" messages at the bottom
+    /// of the `visibleViewController`s view.
+    public class MessageManager: ConnectivityMessageable, PostManagerDelegate {
 
         /// `NSObjectProtocol` observing internet connection updates
         private var observer: NSObjectProtocol?
         
         /// `MessageStackView ` to post messages
-        private lazy var messageStackView: MessageStackView = {
+        public private(set) lazy var messageStackView: MessageStackView = {
             let messageStackView = MessageStackView()
             messageStackView.updateOrderForLayout(.bottom)
+            messageStackView.postManager.delegate = self
             return messageStackView
         }()
         
-        /// `Configuration`
-        public var configuration = Configuration()
+        /// `Message` to post when internet connectivity is lost
+        public var message: Message = .noInternet {
+            didSet {
+                messageView?.set(message: message)
+            }
+        }
+        
+        /// `MessageView` posted when internet connectivity was lost
+        ///
+        /// - Warning:
+        /// `messageView` is not necessarily posted on `messageStackView`,
+        /// if the `visibleViewController` conforms to `InternetConnectivityMessageable`
+        /// then it will post on there instead
+        private weak var messageView: MessageView?
         
         // MARK: - Init
         
@@ -81,17 +94,23 @@ extension ConnectivityManager {
         
         /// Handle internet connection disconnected
         private func onDisconnected() {
-            self.messageStackView.postManager.removeCurrent()
-            self.messageStackView.removeFromSuperview()
+            invalidateMessageStackView()
             
             guard let visibleViewController =
                 UIApplication.shared.visibleViewController,
                 var visibleView = visibleViewController.view else {
                     return
             }
+        
+            // If the `visibleViewController` conforms to `ConnectivityMessageable`
+            // then send the message there!
+            if let messageable = visibleViewController as? ConnectivityMessageable {
+                post(to: messageable)
+                return
+            }
             
-            // TODO: Handle visible system viewControllers like `UIAlertController`
-
+            // TODO: Can we avoid? Usually would have a `UITableViewController`
+            // child inside a `UIViewController` parent.
             // For `UITableViewController`, add to `view` of `navigationController`.
             // WARNING: This relies on having a `navigationController`
             if visibleViewController is UITableViewController {
@@ -110,12 +129,7 @@ extension ConnectivityManager {
             visibleView.layoutIfNeeded()
             messageStackView.layoutIfNeeded()
             
-            let messageView = messageStackView.post(message: Message(
-                title: noInternetTitle,
-                subtitle: noInternetSubtitle,
-                leftImage: noInternetImage
-            ))
-            messageView.configureNoInternet()
+            post(to: self)
         }
         
         /// Handle internet connection connected
@@ -128,20 +142,23 @@ extension ConnectivityManager {
         /// Remove the `messageStackView` from its superview
         /// - Parameter animated: `Bool`
         private func removeMessageStackView(animated: Bool) {
-            guard let _ = messageStackView.superview else {
-                messageStackView.postManager.removeCurrent()
-                return
+            guard let messageView = messageView,
+                let messageStackView = messageView.superview as? MessageStackView else {
+                    invalidateMessageStackView()
+                    return
             }
             
-            messageStackView.layoutIfNeeded()
-            UIView.animate(
-                withDuration: animated ? .animationDuration : 0,
-                animations: {
-                    self.messageStackView.postManager.removeCurrent()
-                    self.messageStackView.layoutIfNeeded()
-            }) { _ in
-                self.messageStackView.removeFromSuperview()
-            }
+            messageStackView.postManager.remove(
+                view: messageView,
+                animated: animated
+            )
+        }
+        
+        /// - Invalidate `postManager` of `messageStackView`
+        /// - Remove `messageStackView` from its superview
+        private func invalidateMessageStackView() {
+            messageStackView.postManager.invalidate()
+            messageStackView.removeFromSuperview()
         }
         
         /// `UIViewController` lifecycle event
@@ -149,52 +166,52 @@ extension ConnectivityManager {
         @objc private func viewWillDisappear(_ sender: Notification) {
             removeMessageStackView(animated: true)
         }
+        
+        // MARK: - Post
+        
+        /// Post internet connectivity lost on the given `messageable`
+        /// 
+        /// - Parameter messageable: `ConnectivityMessageable`
+        private func post(to messageable: ConnectivityMessageable) {
+            guard messageable.messageManagerShouldPost(self) else {
+                return
+            }
+            
+            let messageView = messageable.messageStackView.post(
+                message: messageable.message,
+                dismissAfter: messageable.dismissAfter,
+                animated: messageable.postAnimation
+            )
+            
+            messageView.configureNoInternet()
+            self.messageView = messageView
+            
+            messageable.messageManager(self, didPostMessageView: messageView)
+        }
+        
+        // MARK: - PostManagerDelegate
+        
+        public func postManager(
+            _ postManager: PostManager,
+            didRemove view: UIView
+        ) {
+            guard !postManager.isActive else { return }
+            invalidateMessageStackView()
+        }
     }
 }
 
-// MARK: - Configuration
+// MARK: - Message + ConnectivityManager.MessageManager
 
-extension ConnectivityManager.WindowManager {
+public extension Message {
     
-    /// Configuration of `ConnectivityManager`
-    public struct Configuration {
-        
-        /// When non-`nil`, override default "No internet connection" toast title
-        public var noInternetTitle: String?
-        
-        /// When non-`nil`, override default "No internet connection" toast subtitle
-        public var noInternetSubtitle: String?
-        
-        /// When non-`nil`, override default "No internet connection" toast image
-        public var noInternetImage: UIImage?
-        
-        /// Default public memberwise initializer
-        ///
-        /// - Parameters:
-        ///   - noInternetTitle: `String?`
-        ///   - noInternetSubtitle: `String?`
-        ///   - noInternetImage: `UIImage?`
-        public init(
-            noInternetTitle: String? = nil,
-            noInternetSubtitle: String? = nil,
-            noInternetImage: UIImage? = nil
-        ){
-            self.noInternetTitle = noInternetTitle
-            self.noInternetSubtitle = noInternetSubtitle
-            self.noInternetImage = noInternetImage
-        }
-    }
-    
-    private var noInternetTitle: String {
-        return configuration.noInternetTitle ?? "No Internet Connection"
-    }
-    
-    private var noInternetSubtitle: String {
-        return configuration.noInternetSubtitle ??
-            "Please check your connection and try again"
-    }
-    
-    private var noInternetImage: UIImage? {
-        return configuration.noInternetImage ?? .noInternet
+    /// Default `Message` to post when internet connectivity is lost
+    static var noInternet: Message {
+        return Message(
+            title: "No Internet Connection",
+            subtitle: "Please check your connection and try again",
+            leftImage: .noInternet,
+            rightImage: nil
+        )
     }
 }

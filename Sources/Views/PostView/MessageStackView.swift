@@ -58,8 +58,8 @@ open class MessageStackView: UIStackView, Poster {
     
     /// This view is for smooth animations when there are no `arrangedSubviews`
     /// in the `UIStackView`.
-    /// Otherwise the `UIStackView` can not determine it's width/height.
-    /// With "no arranged subviews", we want to fix the width according to it's constraints,
+    /// Otherwise the `UIStackView` can not determine its width/height.
+    /// With "no arranged subviews", we want to fix the width according to its constraints,
     /// but have 0 height
     public lazy var spaceView: UIView = {
         let view = UIView()
@@ -74,13 +74,17 @@ open class MessageStackView: UIStackView, Poster {
         )
     }()
     
-    /// Height of the `spaceViewHeightConstraint`
-    public var spaceViewHeight: CGFloat {
-        get {
-            return spaceViewHeightConstraint.constant
-        }
-        set {
-            spaceViewHeightConstraint.constant = newValue
+    /// Height of the `spaceViewHeightConstraint`.
+    ///
+    /// - Note:
+    /// This is only **not** a computed property because the `spaceViewHeightConstraint`
+    /// `.constant` may not always be equal to this value.
+    /// Specifically, when the `MessageStackView` is animating the removal of it's last posted view,
+    /// it will also animate the height of the `spaceView` to zero.
+    public var spaceViewHeight: CGFloat = 0 {
+        didSet {
+            guard arrangedSubviewsExcludingSpace.count > 0 else { return }
+            spaceViewHeightConstraint.constant = spaceViewHeight
         }
     }
     
@@ -154,11 +158,12 @@ open class MessageStackView: UIStackView, Poster {
     /// Prepare `spaceView` if the animating is either:
     /// - adding the first arrangedSubview
     /// - removing the last arrangedSubview
-    /// by updating it's height accordingly
+    /// by updating its height accordingly
     ///
     /// - Parameter hidden: `Bool` Is the first/last arranged subview being hidden
     private func animationWillStart(hidden: Bool) -> CGFloat? {
-        guard arrangedSubviews.count == 2 else {
+        // Only 1 other arrangedSubview in addition to the space (2 overall)
+        guard arrangedSubviewsExcludingSpace.count == 1 else {
             return nil
         }
         
@@ -169,7 +174,9 @@ open class MessageStackView: UIStackView, Poster {
         } else {
             // Adding first arrangedSubview
             heightAfterAnimation = spaceViewHeight
-            spaceViewHeight = .leastNormalMagnitude
+            
+            // Don't overrite spaceViewHeight
+            spaceViewHeightConstraint.constant = .leastNormalMagnitude
         }
         
         return heightAfterAnimation
@@ -185,7 +192,8 @@ open class MessageStackView: UIStackView, Poster {
             return
         }
         
-        self.spaceViewHeight = spaceViewHeight
+        // Don't overrite spaceViewHeight
+        spaceViewHeightConstraint.constant = spaceViewHeight
     }
     
     // MARK: - SpaceView
@@ -273,9 +281,9 @@ extension MessageStackView: UIViewPoster {
     /// Post `view`
     ///
     /// - Note:
-    /// This `view` will be added to a `fill` distributed `UIStackView` so it's width will
+    /// This `view` will be added to a `fill` distributed `UIStackView` so its width will
     /// be determined the `UIStackView`.
-    /// However it's height should be determined by the `view` itself.
+    /// However its height should be determined by the `view` itself.
     /// E.g. intrinsicContentSize, autolayout, explicit height...
     ///
     /// - Parameters:
@@ -322,13 +330,10 @@ extension MessageStackView: UIViewPoster {
 
 // MARK: - Order + Extensions
 
-/// Local shorthand of `MessageStackView.Order`
-private typealias Order = MessageStackView.Order
-
-private extension Order {
+private extension MessageStackView.Order {
     
     /// Other `Order` (opposite direction)
-    var switched: Order {
+    var switched: Self {
         switch self {
         case .default: return .reversed
         case .reversed: return .default

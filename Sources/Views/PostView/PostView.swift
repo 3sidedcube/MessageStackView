@@ -56,19 +56,6 @@ open class PostView: UIView, Poster, UIViewPoster, PostManagerDelegate {
         let _ = self.postManager.isSerialQueue
     }
     
-    // MARK: - Computed
-    
-    /// Is the `PostView` posting or scheduled to post
-    public var isActive: Bool {
-        // A post is showing atm
-        let isPosting = postManager.currentPostRequests.count > 0
-                  
-        // A post is scheduled to show in the future
-        let isQueued = postManager.queue.count > 0
-        
-        return isPosting || isQueued
-    }
-    
     // MARK: - IntrinsicContentSize
     
     open override var intrinsicContentSize: CGSize {
@@ -236,7 +223,7 @@ open class PostView: UIView, Poster, UIViewPoster, PostManagerDelegate {
         didRemove view: UIView
     ){
         // Should check to remove self
-        guard removeFromSuperviewOnEmpty, !isActive else {
+        guard removeFromSuperviewOnEmpty, !postManager.isActive else {
             return
         }
         removeFromSuperview()
