@@ -22,6 +22,11 @@
 
 /* Begin PBXBuildFile section */
 		B81727F024D6CC9F0062282B /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B81727EF24D6CC9F0062282B /* PostViewController.swift */; };
+		B81AEE4A24FFED230068CE23 /* Corner.swift in Sources */ = {isa = PBXBuildFile; fileRef = B81AEE4924FFED230068CE23 /* Corner.swift */; };
+		B81AEE4C24FFEE520068CE23 /* FloatingPoint+Equals.swift in Sources */ = {isa = PBXBuildFile; fileRef = B81AEE4B24FFEE520068CE23 /* FloatingPoint+Equals.swift */; };
+		B81AEE4E24FFF2650068CE23 /* ShadowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B81AEE4D24FFF2650068CE23 /* ShadowView.swift */; };
+		B81AEE5024FFF27A0068CE23 /* ShadowLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B81AEE4F24FFF27A0068CE23 /* ShadowLayer.swift */; };
+		B81AEE5224FFFB2E0068CE23 /* ParentShadowLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B81AEE5124FFFB2E0068CE23 /* ParentShadowLayer.swift */; };
 		B87CC94D24C9FB80002B697C /* Array+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B87CC94B24C9F5A3002B697C /* Array+Extensions.swift */; };
 		B87CC95124CAE56E002B697C /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = B87CC95024CAE56E002B697C /* Reachability.m */; };
 		B87CC95324CAE5A5002B697C /* ConnectivityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B87CC95224CAE5A5002B697C /* ConnectivityManager.swift */; };
@@ -153,6 +158,11 @@
 
 /* Begin PBXFileReference section */
 		B81727EF24D6CC9F0062282B /* PostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewController.swift; sourceTree = "<group>"; };
+		B81AEE4924FFED230068CE23 /* Corner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Corner.swift; sourceTree = "<group>"; };
+		B81AEE4B24FFEE520068CE23 /* FloatingPoint+Equals.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FloatingPoint+Equals.swift"; sourceTree = "<group>"; };
+		B81AEE4D24FFF2650068CE23 /* ShadowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShadowView.swift; sourceTree = "<group>"; };
+		B81AEE4F24FFF27A0068CE23 /* ShadowLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShadowLayer.swift; sourceTree = "<group>"; };
+		B81AEE5124FFFB2E0068CE23 /* ParentShadowLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParentShadowLayer.swift; sourceTree = "<group>"; };
 		B87CC94B24C9F5A3002B697C /* Array+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Extensions.swift"; sourceTree = "<group>"; };
 		B87CC94F24CAE56E002B697C /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
 		B87CC95024CAE56E002B697C /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
@@ -275,6 +285,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B81AEE4824FFEBF60068CE23 /* Shadow */ = {
+			isa = PBXGroup;
+			children = (
+				B81AEE4924FFED230068CE23 /* Corner.swift */,
+				B81AEE4F24FFF27A0068CE23 /* ShadowLayer.swift */,
+				B81AEE5124FFFB2E0068CE23 /* ParentShadowLayer.swift */,
+				B81AEE4D24FFF2650068CE23 /* ShadowView.swift */,
+			);
+			path = Shadow;
+			sourceTree = "<group>";
+		};
 		B87CC94E24CAE52A002B697C /* Reachability */ = {
 			isa = PBXGroup;
 			children = (
@@ -391,6 +412,7 @@
 				OBJ_30 /* UIView+ShadowComponents.swift */,
 				B87CC94B24C9F5A3002B697C /* Array+Extensions.swift */,
 				B8BCDA8424CD8EB10067F26C /* UIApplication+KeyWindow.swift */,
+				B81AEE4B24FFEE520068CE23 /* FloatingPoint+Equals.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -501,6 +523,7 @@
 		OBJ_68 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				B81AEE4824FFEBF60068CE23 /* Shadow */,
 				OBJ_69 /* Badges */,
 				OBJ_73 /* PostView */,
 				B81727EF24D6CC9F0062282B /* PostViewController.swift */,
@@ -765,6 +788,7 @@
 			buildActionMask = 0;
 			files = (
 				OBJ_91 /* TimeInterval+Defaults.swift in Sources */,
+				B81AEE5224FFFB2E0068CE23 /* ParentShadowLayer.swift in Sources */,
 				OBJ_92 /* CenterConstraints.swift in Sources */,
 				OBJ_93 /* Constrainable.swift in Sources */,
 				OBJ_94 /* EdgeConstraints.swift in Sources */,
@@ -799,6 +823,7 @@
 				OBJ_116 /* BadgeMessageViewable.swift in Sources */,
 				OBJ_117 /* Poster+BadgeMessage.swift in Sources */,
 				OBJ_118 /* Message.swift in Sources */,
+				B81AEE4E24FFF2650068CE23 /* ShadowView.swift in Sources */,
 				B87CC95324CAE5A5002B697C /* ConnectivityManager.swift in Sources */,
 				OBJ_119 /* MessageView+Message.swift in Sources */,
 				OBJ_120 /* MessageView.swift in Sources */,
@@ -806,13 +831,16 @@
 				OBJ_122 /* Poster+Message.swift in Sources */,
 				OBJ_123 /* Message+MessageConfigurable.swift in Sources */,
 				OBJ_124 /* MessageConfigurable.swift in Sources */,
+				B81AEE4C24FFEE520068CE23 /* FloatingPoint+Equals.swift in Sources */,
 				OBJ_125 /* MessageConfiguration.swift in Sources */,
 				OBJ_126 /* PostAnimation.swift in Sources */,
 				B87CC98924CAF6D6002B697C /* ConnectivityManager+Notification.swift in Sources */,
 				OBJ_127 /* Queue.swift in Sources */,
+				B81AEE5024FFF27A0068CE23 /* ShadowLayer.swift in Sources */,
 				OBJ_128 /* PostGestureManager.swift in Sources */,
 				OBJ_129 /* PostManager.swift in Sources */,
 				B87CC98B24CB02F8002B697C /* ConnectivityViewController.swift in Sources */,
+				B81AEE4A24FFED230068CE23 /* Corner.swift in Sources */,
 				OBJ_130 /* PostManagerDelegate.swift in Sources */,
 				OBJ_131 /* PostRequest.swift in Sources */,
 				OBJ_132 /* Poster.swift in Sources */,
