@@ -113,6 +113,21 @@ open class BadgeMessageView: UIView {
         return button
     }()
     
+    // MARK: - horizontalStackViewInsets
+    
+    /// `UIEdgeInsets` of `horizontalStackViewEdgeConstraints`
+    public var horizontalStackViewInsets: UIEdgeInsets {
+        get {
+            return horizontalStackViewEdgeConstraints.insets
+        }
+        set {
+            horizontalStackViewEdgeConstraints.insets = newValue
+        }
+    }
+    
+    /// `EdgeConstraints` constraining `horizontalStackView` to `containerView`
+    private var horizontalStackViewEdgeConstraints: EdgeConstraints!
+    
     // MARK: - Init
     
     public convenience init() {
@@ -185,7 +200,7 @@ open class BadgeMessageView: UIView {
         containerView.edgeConstraints(to: self)
         
         // horizontalStackView
-        horizontalStackView.edgeConstraints(
+        horizontalStackViewEdgeConstraints = horizontalStackView.edgeConstraints(
             to: containerView,
             insets: Constants.horizontalStackViewInsets
         )
