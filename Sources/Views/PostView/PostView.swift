@@ -19,6 +19,9 @@ open class PostView: UIView, Poster, UIViewPoster, PostManagerDelegate {
         static let edgeInsets = UIEdgeInsets(value: 10)
     }
     
+    /// `UIEdgeInsets` of subviews from `self`
+    public var edgeInsets: UIEdgeInsets = Constants.edgeInsets
+    
     /// `PostManager` to manage posting, queueing, removing of `PostRequest`s
     public private(set) lazy var postManager: PostManager = {
         let postManager = PostManager(poster: self)
@@ -80,7 +83,7 @@ open class PostView: UIView, Poster, UIViewPoster, PostManagerDelegate {
         completion: @escaping () -> Void
     ) {
         guard animated else {
-            Self.setTransform(on: view, forHidden: hidden)
+            setTransform(on: view, forHidden: hidden)
             completion()
             return
         }
@@ -92,7 +95,7 @@ open class PostView: UIView, Poster, UIViewPoster, PostManagerDelegate {
             initialSpringVelocity: 0.9,
             options: .curveEaseIn,
             animations: {
-                Self.setTransform(on: view, forHidden: hidden)
+                self.setTransform(on: view, forHidden: hidden)
         }) { _ in
             completion()
         }
@@ -107,7 +110,7 @@ open class PostView: UIView, Poster, UIViewPoster, PostManagerDelegate {
     /// - Parameters:
     ///   - view: `UIView` to set `transform` on
     ///   - hidden: Are we "hiding" the view
-    private static func setTransform(on view: UIView, forHidden hidden: Bool) {
+    private func setTransform(on view: UIView, forHidden hidden: Bool) {
         view.transform = hidden ? hiddenTranslationY(for: view) : .identity
     }
     
@@ -119,12 +122,12 @@ open class PostView: UIView, Poster, UIViewPoster, PostManagerDelegate {
     /// and therefore should be ignored."
     ///
     /// - Parameter view: `UIView`
-    private static func hiddenTranslationY(
+    private func hiddenTranslationY(
         for view: UIView
     ) -> CGAffineTransform {
         return CGAffineTransform(
             translationX: 0,
-            y: -(view.bounds.size.height + Constants.edgeInsets.top)
+            y: -(view.bounds.size.height + edgeInsets.top)
         )
     }
     
@@ -134,10 +137,10 @@ open class PostView: UIView, Poster, UIViewPoster, PostManagerDelegate {
     /// - Parameter subview: `UIView`
     private func addPostSubview(_ subview: UIView) {
         addSubview(subview)
-        subview.edgeConstraints(to: self, insets: Constants.edgeInsets)
+        subview.edgeConstraints(to: self, insets: edgeInsets)
         layoutIfNeeded()
         
-        Self.setTransform(on: subview, forHidden: true)
+        setTransform(on: subview, forHidden: true)
     }
     
     /// Remove a previously posted `subview` and ensure layout
