@@ -19,7 +19,7 @@ extension UIColor {
     static let themeDarkGray = UIColor(red255: 109, green255: 110, blue255: 112)
     
     /// Shadow color
-    static let shadowGray = UIColor(red255: 51, green255: 51, blue255: 51)
+    static let shadowGray = UIColor(red255: 63, green255: 63, blue255: 63)
 }
 
 // MARK: - UIColor + RGB-255

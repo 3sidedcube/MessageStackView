@@ -39,17 +39,49 @@ public extension UIView {
         ])
     }
     
+    /// Remove sublayers of type `ShadowLayer`
     func removeShadowLayers() {
         layer.forEachShadowLayer { $0.removeFromSuperlayer() }
     }
     
-    func setShadowComponents(_ components: [ShadowComponents]) {
-        removeShadowLayers()
+    
+    /// Add `ShadowLayer` sublayers mapped by the given `components`
+    ///
+    /// - Parameters:
+    ///   - components:
+    ///   `[ShadowComponents]` to map to `ShadowLayer`s
+    ///
+    ///   - createSubview:
+    ///   If `true`, add `ShadowLayer`s to the first `ShadowView` subview's `layer`.
+    ///   If the `ShadowView` doesn't exist, create and add as a subview at the root subview index.
+    ///   This allows for setting an `autoresizingMask`.
+    ///   If `false` then the `ShadowLayer`s are added to `self`'s `layer`.
+    func setShadowComponents(
+        _ components: [ShadowComponents],
+        createSubview: Bool = true
+    ) {
+        // view to add shadow layers tos
+        var view = self
+        
+        // If `createSubview`, find or create a `ShadowView` to add the
+        // shadow layers to.
+        // Setting this to `true` allows setting an `autoresizingMask`
+        if createSubview {
+            var shadowView: ShadowView! = firstSubviewOfType()
+            if shadowView == nil {
+                shadowView = ShadowView(frame: bounds)
+                shadowView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+                insertSubview(shadowView, at: 0)
+            }
+            view = shadowView
+        }
+        
+        view.removeShadowLayers()
         
         components.forEach {
             let shadowLayer = ShadowLayer(shadowComponents: $0)
-            layer.insertSublayer(shadowLayer, at: 0)
-            shadowLayer.superLayerDidUpdate()
+            view.layer.insertSublayer(shadowLayer, at: 0)
+            shadowLayer.superlayerDidUpdate()
         }
     }
 }

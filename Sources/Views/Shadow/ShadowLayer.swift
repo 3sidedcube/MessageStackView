@@ -17,7 +17,7 @@ internal class ShadowLayer: CALayer {
     ///
     /// - Parameters:
     ///   - shadowComponents: `ShadowComponents`
-    init (shadowComponents: ShadowComponents = .default) {
+    init (shadowComponents: ShadowComponents) {
         super.init()
         self.shadowComponents = shadowComponents
     }
@@ -27,7 +27,7 @@ internal class ShadowLayer: CALayer {
     }
     
     /// Copy shadow relevant properties of `superlayer` to `self`
-    func superLayerDidUpdate() {
+    func superlayerDidUpdate() {
         guard let superlayer = superlayer else { return }
         
         // cornerRadius

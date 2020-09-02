@@ -51,12 +51,12 @@ public struct ShadowComponents {
     )
     
     /// Default shadow gray
-    /*public static let defaultGray = ShadowComponents(
+    public static let defaultBlack = ShadowComponents(
         radius: 3,
-        opacity: 0.6,
-        color: .shadowGray,
-        offset: .zero
-    )*/
+        opacity: 0.15,
+        color: .black,
+        offset: CGSize(width: 0, height: 1.5)
+    )
 }
 
 // MARK: - CALayer + ShadowComponents
