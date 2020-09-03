@@ -27,6 +27,7 @@
 		B81AEE4E24FFF2650068CE23 /* ShadowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B81AEE4D24FFF2650068CE23 /* ShadowView.swift */; };
 		B81AEE5024FFF27A0068CE23 /* ShadowLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B81AEE4F24FFF27A0068CE23 /* ShadowLayer.swift */; };
 		B81AEE5224FFFB2E0068CE23 /* ParentShadowLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B81AEE5124FFFB2E0068CE23 /* ParentShadowLayer.swift */; };
+		B81AEE5425003F270068CE23 /* ShadowViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B81AEE5325003F270068CE23 /* ShadowViewController.swift */; };
 		B87CC94D24C9FB80002B697C /* Array+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B87CC94B24C9F5A3002B697C /* Array+Extensions.swift */; };
 		B87CC95124CAE56E002B697C /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = B87CC95024CAE56E002B697C /* Reachability.m */; };
 		B87CC95324CAE5A5002B697C /* ConnectivityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B87CC95224CAE5A5002B697C /* ConnectivityManager.swift */; };
@@ -59,6 +60,8 @@
 		B8BCDA8C24CDB55B0067F26C /* UIViewController+Lifecycle.m in Sources */ = {isa = PBXBuildFile; fileRef = B8BCDA8A24CDB55B0067F26C /* UIViewController+Lifecycle.m */; };
 		B8BCDA8F24CDB8580067F26C /* SwizzledMethod.h in Headers */ = {isa = PBXBuildFile; fileRef = B8BCDA8D24CDB8580067F26C /* SwizzledMethod.h */; };
 		B8BCDA9024CDB8580067F26C /* SwizzledMethod.m in Sources */ = {isa = PBXBuildFile; fileRef = B8BCDA8E24CDB8580067F26C /* SwizzledMethod.m */; };
+		B8E1CEE92500DA37002BFE77 /* UIColor+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8E1CEE82500DA37002BFE77 /* UIColor+Hex.swift */; };
+		B8E1CEEB2500DEA0002BFE77 /* UIView+ShadowLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8E1CEEA2500DEA0002BFE77 /* UIView+ShadowLayer.swift */; };
 		B8F1C76324D8198E007C2712 /* ApplicationPostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F1C76224D8198E007C2712 /* ApplicationPostView.swift */; };
 		OBJ_100 /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_22 /* String+Extensions.swift */; };
 		OBJ_101 /* UIApplication+StatusBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_23 /* UIApplication+StatusBar.swift */; };
@@ -163,6 +166,7 @@
 		B81AEE4D24FFF2650068CE23 /* ShadowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShadowView.swift; sourceTree = "<group>"; };
 		B81AEE4F24FFF27A0068CE23 /* ShadowLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShadowLayer.swift; sourceTree = "<group>"; };
 		B81AEE5124FFFB2E0068CE23 /* ParentShadowLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParentShadowLayer.swift; sourceTree = "<group>"; };
+		B81AEE5325003F270068CE23 /* ShadowViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShadowViewController.swift; sourceTree = "<group>"; };
 		B87CC94B24C9F5A3002B697C /* Array+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Extensions.swift"; sourceTree = "<group>"; };
 		B87CC94F24CAE56E002B697C /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
 		B87CC95024CAE56E002B697C /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
@@ -194,6 +198,8 @@
 		B8BCDA8A24CDB55B0067F26C /* UIViewController+Lifecycle.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+Lifecycle.m"; sourceTree = "<group>"; };
 		B8BCDA8D24CDB8580067F26C /* SwizzledMethod.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SwizzledMethod.h; sourceTree = "<group>"; };
 		B8BCDA8E24CDB8580067F26C /* SwizzledMethod.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SwizzledMethod.m; sourceTree = "<group>"; };
+		B8E1CEE82500DA37002BFE77 /* UIColor+Hex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Hex.swift"; sourceTree = "<group>"; };
+		B8E1CEEA2500DEA0002BFE77 /* UIView+ShadowLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+ShadowLayer.swift"; sourceTree = "<group>"; };
 		B8F1C76224D8198E007C2712 /* ApplicationPostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationPostView.swift; sourceTree = "<group>"; };
 		"MessageStackView::MessageStackView::Product" /* MessageStackView.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = MessageStackView.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		"MessageStackView::MessageStackViewTests::Product" /* MessageStackViewTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; path = MessageStackViewTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -292,6 +298,7 @@
 				B81AEE4F24FFF27A0068CE23 /* ShadowLayer.swift */,
 				B81AEE5124FFFB2E0068CE23 /* ParentShadowLayer.swift */,
 				B81AEE4D24FFF2650068CE23 /* ShadowView.swift */,
+				B8E1CEEA2500DEA0002BFE77 /* UIView+ShadowLayer.swift */,
 			);
 			path = Shadow;
 			sourceTree = "<group>";
@@ -344,6 +351,7 @@
 				B8BB087824C4BC46000E2E87 /* BadgeMessageViewController.swift */,
 				B8BB087924C4BC46000E2E87 /* MessageViewController.swift */,
 				B87CC99C24CC263E002B697C /* NoInternetTabBarController.swift */,
+				B81AEE5325003F270068CE23 /* ShadowViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -413,6 +421,7 @@
 				B87CC94B24C9F5A3002B697C /* Array+Extensions.swift */,
 				B8BCDA8424CD8EB10067F26C /* UIApplication+KeyWindow.swift */,
 				B81AEE4B24FFEE520068CE23 /* FloatingPoint+Equals.swift */,
+				B8E1CEE82500DA37002BFE77 /* UIColor+Hex.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -755,6 +764,7 @@
 				B8BB088524C4BC46000E2E87 /* PanViewController.swift in Sources */,
 				B8BB088924C4BC46000E2E87 /* UIColor+Colors.swift in Sources */,
 				B8BB088824C4BC46000E2E87 /* UIImage+Images.swift in Sources */,
+				B81AEE5425003F270068CE23 /* ShadowViewController.swift in Sources */,
 				B8BB088A24C4BC46000E2E87 /* AppDelegate.swift in Sources */,
 				B8BB088624C4BC46000E2E87 /* BadgeMessageViewController.swift in Sources */,
 				B8BB088C24C4BC46000E2E87 /* SceneDelegate.swift in Sources */,
@@ -806,6 +816,7 @@
 				B8BCDA8524CD8EB20067F26C /* UIApplication+KeyWindow.swift in Sources */,
 				OBJ_104 /* UIView+Extensions.swift in Sources */,
 				OBJ_105 /* UIView+Hidden.swift in Sources */,
+				B8E1CEE92500DA37002BFE77 /* UIColor+Hex.swift in Sources */,
 				OBJ_106 /* UIView+SafeArea.swift in Sources */,
 				OBJ_107 /* UIView+Shadow.swift in Sources */,
 				OBJ_108 /* UIView+ShadowComponents.swift in Sources */,
@@ -840,6 +851,7 @@
 				OBJ_128 /* PostGestureManager.swift in Sources */,
 				OBJ_129 /* PostManager.swift in Sources */,
 				B87CC98B24CB02F8002B697C /* ConnectivityViewController.swift in Sources */,
+				B8E1CEEB2500DEA0002BFE77 /* UIView+ShadowLayer.swift in Sources */,
 				B81AEE4A24FFED230068CE23 /* Corner.swift in Sources */,
 				OBJ_130 /* PostManagerDelegate.swift in Sources */,
 				OBJ_131 /* PostRequest.swift in Sources */,

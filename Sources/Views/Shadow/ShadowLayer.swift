@@ -13,37 +13,23 @@ internal class ShadowLayer: CALayer {
     
     // MARK: - Init
     
-    /// Initialize `ShadowLayer`
-    ///
-    /// - Parameters:
-    ///   - shadowComponents: `ShadowComponents`
-    init (shadowComponents: ShadowComponents) {
+    public override init() {
         super.init()
-        self.shadowComponents = shadowComponents
+        setup()
     }
     
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+    public override init(layer: Any) {
+        super.init(layer: layer)
+        setup()
     }
     
-    /// Copy shadow relevant properties of `superlayer` to `self`
-    func superlayerDidUpdate() {
-        guard let superlayer = superlayer else { return }
-        
-        // cornerRadius
-        cornerRadius = superlayer.cornerRadius
-        
-        // This is important because layers with no background colour
-        // cannot render shadows
-        // backgroundColor
-        backgroundColor = superlayer.backgroundColor
-        
-        // frame
-        frame = superlayer.bounds
-        
-        if #available(iOS 13, *) {
-            // cornerCurve
-            cornerCurve = superlayer.cornerCurve
-        }
+    required public init?(coder: NSCoder) {
+        super.init(coder: coder)
+        setup()
+    }
+    
+    func setup() {
+        masksToBounds = false
+        backgroundColor = UIColor.clear.cgColor
     }
 }

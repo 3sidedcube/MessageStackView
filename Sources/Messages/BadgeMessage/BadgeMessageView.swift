@@ -40,9 +40,6 @@ open class BadgeMessageView: UIView {
         static let backgroundImageViewTranslationX: CGFloat = -8
     }
     
-    /// Overrideable default shadow components for `BadgeMessageView`
-    public static var shadowComponents: ShadowComponents = .defaultBlack
-    
     // MARK: - Subviews
     
     /// Subview of `self` but container (super) `UIView` for all other subviews.
@@ -151,12 +148,14 @@ open class BadgeMessageView: UIView {
         // cornerRadius
         layer.cornerRadius = Constants.cornerRadius
         containerView.layer.cornerRadius = layer.cornerRadius
-        shadowComponents = BadgeMessageView.shadowComponents
         
         if #available(iOS 13.0, *) {
             layer.cornerCurve = .continuous
             containerView.layer.cornerCurve = .continuous
         }
+        
+        // shadow
+        containerView.setNeuomorphicShadow()
         
         // layer
         updateLayer()
