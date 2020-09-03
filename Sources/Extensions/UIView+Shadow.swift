@@ -39,26 +39,26 @@ extension UIView {
     }
 }
 
-// MARK: - UIView + RoundedShadow
+// MARK: - CALayer + RoundedShadow
 
-extension UIView {
+extension CALayer {
     
     /// Set the `layer` corner radius
     func updateCornerRadius(_ cornerRadius: CGFloat) {
-        layer.cornerRadius = cornerRadius
-        layer.allowsEdgeAntialiasing = true
+        self.cornerRadius = cornerRadius
+        allowsEdgeAntialiasing = true
     }
     
     /// Configure the `layer` shadow
     func updateRoundedShadowPath() {
-        layer.shadowPath = roundedPath.cgPath
+        shadowPath = roundedPath.cgPath
     }
     
     /// `UIBezierPath` to draw the shadow
     var roundedPath: UIBezierPath {
         return UIBezierPath(
             roundedRect: bounds,
-            cornerRadius: layer.cornerRadius
+            cornerRadius: cornerRadius
         )
     }
 }

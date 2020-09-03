@@ -12,28 +12,15 @@ import UIKit
 public extension UIView {
     
     /// Set a Neuomorphic Shadow on the `UIView` instance
-    /// - Parameter createSubview: `Bool`
-    func setNeuomorphicShadow(createSubview: Bool = false) {
-        setShadowComponents([
-            .init(
-                radius: 2,
-                opacity: 0.05,
-                color: .shadowGray,
-                offset: .init(width: 0, height: 1)
-            ),
-            .init(
-                radius: 2,
-                opacity: 0.03,
-                color: .shadowGray,
-                offset: .init(width: 0, height: -1)
-            ),
-            .init(
-                radius: 8,
-                opacity: 0.05,
-                color: .shadowGray,
-                offset: .init(width: 0, height: 2)
-            )
-        ], createSubview: createSubview)
+    ///
+    /// - Parameters:
+    ///   - shadow: `NeuomorphicShadow`
+    ///   - createSubview: `Bool`
+    func setNeuomorphicShadow(
+        _ shadow: NeuomorphicShadow = .center,
+        createSubview: Bool = false
+    ) {
+        setShadowComponents(shadow.components, createSubview: createSubview)
     }
     
     /// Remove sublayers of type `ShadowLayer`

@@ -150,7 +150,7 @@ open class BadgeContainerView: UIView {
     /// - cornerRadius
     /// - shadow
     private func updateLayer() {
-        updateCornerRadius(cornerRadius)
-        updateRoundedShadowPath()
+        layer.updateCornerRadius(cornerRadius)
+        layer.updateRoundedShadowPath()
     }
 }

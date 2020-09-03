@@ -20,6 +20,12 @@ extension UIColor {
     
     /// Shadow color
     static let shadowGray = UIColor(red255: 63, green255: 63, blue255: 63)
+    
+    /// First part of neomorphic shadow
+    static let neomorphicGray1 = UIColor(red255: 149, green255: 150, blue255: 177)
+    
+    /// Second part of neomorphic shadow
+    static let neomorphicGray2 = UIColor(red255: 143, green255: 147, blue255: 150)
 }
 
 // MARK: - UIColor + RGB-255

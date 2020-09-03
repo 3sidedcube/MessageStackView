@@ -62,6 +62,8 @@
 		B8BCDA9024CDB8580067F26C /* SwizzledMethod.m in Sources */ = {isa = PBXBuildFile; fileRef = B8BCDA8E24CDB8580067F26C /* SwizzledMethod.m */; };
 		B8E1CEE92500DA37002BFE77 /* UIColor+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8E1CEE82500DA37002BFE77 /* UIColor+Hex.swift */; };
 		B8E1CEEB2500DEA0002BFE77 /* UIView+ShadowLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8E1CEEA2500DEA0002BFE77 /* UIView+ShadowLayer.swift */; };
+		B8E1CEEF2500F88C002BFE77 /* NeuomorphicShadow.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8E1CEEE2500F88C002BFE77 /* NeuomorphicShadow.swift */; };
+		B8E1CEF1250117A2002BFE77 /* CALayer+SketchShadow.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8E1CEF0250117A2002BFE77 /* CALayer+SketchShadow.swift */; };
 		B8F1C76324D8198E007C2712 /* ApplicationPostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F1C76224D8198E007C2712 /* ApplicationPostView.swift */; };
 		OBJ_100 /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_22 /* String+Extensions.swift */; };
 		OBJ_101 /* UIApplication+StatusBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_23 /* UIApplication+StatusBar.swift */; };
@@ -200,6 +202,8 @@
 		B8BCDA8E24CDB8580067F26C /* SwizzledMethod.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SwizzledMethod.m; sourceTree = "<group>"; };
 		B8E1CEE82500DA37002BFE77 /* UIColor+Hex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Hex.swift"; sourceTree = "<group>"; };
 		B8E1CEEA2500DEA0002BFE77 /* UIView+ShadowLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+ShadowLayer.swift"; sourceTree = "<group>"; };
+		B8E1CEEE2500F88C002BFE77 /* NeuomorphicShadow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NeuomorphicShadow.swift; sourceTree = "<group>"; };
+		B8E1CEF0250117A2002BFE77 /* CALayer+SketchShadow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CALayer+SketchShadow.swift"; sourceTree = "<group>"; };
 		B8F1C76224D8198E007C2712 /* ApplicationPostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationPostView.swift; sourceTree = "<group>"; };
 		"MessageStackView::MessageStackView::Product" /* MessageStackView.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = MessageStackView.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		"MessageStackView::MessageStackViewTests::Product" /* MessageStackViewTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; path = MessageStackViewTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -295,10 +299,12 @@
 			isa = PBXGroup;
 			children = (
 				B81AEE4924FFED230068CE23 /* Corner.swift */,
+				B8E1CEEE2500F88C002BFE77 /* NeuomorphicShadow.swift */,
 				B81AEE4F24FFF27A0068CE23 /* ShadowLayer.swift */,
 				B81AEE5124FFFB2E0068CE23 /* ParentShadowLayer.swift */,
 				B81AEE4D24FFF2650068CE23 /* ShadowView.swift */,
 				B8E1CEEA2500DEA0002BFE77 /* UIView+ShadowLayer.swift */,
+				B8E1CEF0250117A2002BFE77 /* CALayer+SketchShadow.swift */,
 			);
 			path = Shadow;
 			sourceTree = "<group>";
@@ -532,7 +538,6 @@
 		OBJ_68 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				B81AEE4824FFEBF60068CE23 /* Shadow */,
 				OBJ_69 /* Badges */,
 				OBJ_73 /* PostView */,
 				B81727EF24D6CC9F0062282B /* PostViewController.swift */,
@@ -565,6 +570,7 @@
 				OBJ_53 /* Models */,
 				OBJ_56 /* PostManager */,
 				OBJ_64 /* Theme */,
+				B81AEE4824FFEBF60068CE23 /* Shadow */,
 				OBJ_68 /* Views */,
 			);
 			path = Sources;
@@ -830,6 +836,7 @@
 				B8BCDA8324CD8E920067F26C /* ConnectivityManager+MessageManager.swift in Sources */,
 				B8F1C76324D8198E007C2712 /* ApplicationPostView.swift in Sources */,
 				B81727F024D6CC9F0062282B /* PostViewController.swift in Sources */,
+				B8E1CEEF2500F88C002BFE77 /* NeuomorphicShadow.swift in Sources */,
 				OBJ_115 /* BadgeMessageView.swift in Sources */,
 				OBJ_116 /* BadgeMessageViewable.swift in Sources */,
 				OBJ_117 /* Poster+BadgeMessage.swift in Sources */,
@@ -861,6 +868,7 @@
 				OBJ_135 /* UIColor+Colors.swift in Sources */,
 				OBJ_136 /* UIImage+Images.swift in Sources */,
 				OBJ_137 /* UILabel+Default.swift in Sources */,
+				B8E1CEF1250117A2002BFE77 /* CALayer+SketchShadow.swift in Sources */,
 				OBJ_138 /* BadgeContainerView.swift in Sources */,
 				B87CC94D24C9FB80002B697C /* Array+Extensions.swift in Sources */,
 				OBJ_139 /* BadgeView.swift in Sources */,

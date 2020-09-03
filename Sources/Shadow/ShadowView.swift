@@ -36,6 +36,7 @@ open class ShadowView: UIView {
     }
     
     private func setup() {
+        backgroundColor = .white
         clipsToBounds = false
     }
 }
