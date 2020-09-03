@@ -39,7 +39,7 @@ class BadgeMessageViewController: UIViewController {
         
         UIButton.addToCenter(
             of: view,
-            title: "Post with Zero insets",
+            title: "Post with updated insets",
             target: self,
             selector: #selector(buttonTouchUpInside)
         )
