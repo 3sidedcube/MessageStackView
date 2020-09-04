@@ -40,6 +40,14 @@ open class BadgeMessageView: UIView {
         static let backgroundImageViewTranslationX: CGFloat = -8
     }
     
+    /// Overrideable default shadow components for `BadgeMessageView`
+    public static var shadowComponents = ShadowComponents(
+        radius: 8,
+        opacity: 0.3,
+        color: .black,
+        offset: CGSize(width: 0, height: 3)
+    )
+
     // MARK: - Subviews
     
     /// `ShadowView` container `UIView` of `containerView` so `containerView`
@@ -256,14 +264,7 @@ open class BadgeMessageView: UIView {
             }
         }
         
-        shadowView.layer.applySketchShadow(
-            color: .black,
-            alpha: 0.3,
-            x: 0,
-            y: 3,
-            blur: 16,
-            spread: 0
-        )
+        shadowView.layer.setSketchShadow(Self.shadowComponents.sketchShadow)
     }
     
     // MARK: - UIControlEvent

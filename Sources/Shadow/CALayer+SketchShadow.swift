@@ -9,42 +9,69 @@
 import Foundation
 import UIKit
 
+/// Model based on Sketch properties.
+struct SketchShadow {
+    
+    /// Shadow color
+    var color: UIColor
+    
+    /// Shadow opacity
+    var alpha: Float
+    
+    /// Shadow offset in x
+    var x: CGFloat
+    
+    /// Shadow offset in y
+    var y: CGFloat
+    
+    /// Shadow blur (2 * shadow radius)
+    var blur: CGFloat
+    
+    /// Shadow spread
+    var spread: CGFloat
+}
+
+// MARK: - ShadowComponents + SketchShadow
+
+extension ShadowComponents {
+    
+    /// `ShadowComponents` to `SketchShadow`
+    var sketchShadow: SketchShadow {
+        return SketchShadow(
+            color: color,
+            alpha: opacity,
+            x: offset.width,
+            y: offset.height,
+            blur: radius * 2,
+            spread: 0
+        )
+    }
+}
+
+// MARK: - CALayer + SketchShadow
+
 extension CALayer {
     
-    /// Apply shadow to `CALayer` based on the Sketch properties.
+    /// Apply `sketchShadow` to `CALayer`
     ///
     /// - Warning:
     /// This function sets the `shadowPath` based on the `bounds` of the layer
     ///
-    /// - Parameters:
-    ///   - color: `UIColor`
-    ///   - alpha: `Float`
-    ///   - x: `CGFloat`
-    ///   - y: `CGFloat`
-    ///   - blur: `CGFloat`
-    ///   - spread: `CGFloat`
-    func applySketchShadow(
-        color: UIColor = .black,
-        alpha: Float = 0.5,
-        x: CGFloat = 0,
-        y: CGFloat = 2,
-        blur: CGFloat = 4,
-        spread: CGFloat = 0
-    ){
-        shadowColor = color.cgColor
-        shadowOpacity = alpha
-        shadowOffset = CGSize(width: x, height: y)
-        shadowRadius = blur / 2.0
-        if spread == 0 {
+    /// - Parameter sketchShadow: `SketchShadow`
+    func setSketchShadow(_ sketchShadow: SketchShadow) {
+        shadowColor = sketchShadow.color.cgColor
+        shadowOpacity = sketchShadow.alpha
+        shadowOffset = CGSize(width: sketchShadow.x, height: sketchShadow.y)
+        shadowRadius = sketchShadow.blur * 0.5
+        if sketchShadow.spread == 0 {
             shadowPath = nil
         } else {
-            let dx = -spread
+            let dx = -sketchShadow.spread
             let rect = bounds.insetBy(dx: dx, dy: dx)
             shadowPath = UIBezierPath(
                 roundedRect: rect,
                 cornerRadius: cornerRadius
             ).cgPath
-            
         }
     }
 }
