@@ -40,16 +40,20 @@ open class BadgeMessageView: UIView {
         static let backgroundImageViewTranslationX: CGFloat = -8
     }
     
-    /// Overrideable default shadow components for `BadgeMessageView`
-    public static var shadowComponents: ShadowComponents = .default
-    
     // MARK: - Subviews
+    
+    /// `ShadowView` container `UIView` of `containerView` so `containerView`
+    /// can clip subview content but we can also apply shadow
+    private(set) lazy var shadowView: UIView = {
+        let shadowView = UIView()
+        return shadowView
+    }()
     
     /// Subview of `self` but container (super) `UIView` for all other subviews.
     /// This is so this `UIView` can clip content but we can apply shadow on `self`.
     private(set) lazy var containerView: UIView = {
         let view = UIView()
-        view.backgroundColor = UIColor.clear
+        view.backgroundColor = UIColor.white
         view.clipsToBounds = true
         return view
     }()
@@ -146,23 +150,14 @@ open class BadgeMessageView: UIView {
     
     private func setup() {
         // backgroundColor
-        backgroundColor = .white
-        
-        // cornerRadius
-        layer.cornerRadius = Constants.cornerRadius
-        containerView.layer.cornerRadius = layer.cornerRadius
-        shadowComponents = BadgeMessageView.shadowComponents
-        
-        if #available(iOS 13.0, *) {
-            layer.cornerCurve = .continuous
-            containerView.layer.cornerCurve = .continuous
-        }
-        
-        // layer
-        updateLayer()
+        backgroundColor = .clear
+        clipsToBounds = false
         
         // Add subviews to `self` and add constraints
         addSubviewsAndConstrain()
+        
+        // layer
+        updateCornersAndShadow()
         
         // Add target for dismiss on `.touchUpInside`
         button.addTarget(
@@ -188,14 +183,20 @@ open class BadgeMessageView: UIView {
         containerView.addSubview(backgroundImageView)
         containerView.addSubview(horizontalStackView)
         
+        // shadowView
+        shadowView.addSubview(containerView)
+        
         // self
-        addSubview(containerView)
+        addSubview(shadowView)
         
         // Constrain
         addConstraints()
     }
     
     private func addConstraints() {
+        // shadowView
+        shadowView.edgeConstraints(to: containerView)
+        
         // containerView
         containerViewEdgeConstraints = containerView.edgeConstraints(to: self)
         
@@ -237,13 +238,32 @@ open class BadgeMessageView: UIView {
     
     public override func layoutSubviews() {
         super.layoutSubviews()
-        updateLayer()
+        updateCornersAndShadow()
     }
     
     /// Update cornerRadius and shadow
-    private func updateLayer() {
-        updateCornerRadius(Constants.cornerRadius)
-        updateRoundedShadowPath()
+    private func updateCornersAndShadow() {
+        let layers = [layer, containerView.layer, shadowView.layer]
+        
+        // cornerRadius
+        layers.forEach {
+            $0.updateCornerRadius(Constants.cornerRadius)
+        }
+        
+        if #available(iOS 13.0, *) {
+            layers.forEach {
+                $0.cornerCurve = .continuous
+            }
+        }
+        
+        shadowView.layer.applySketchShadow(
+            color: .black,
+            alpha: 0.3,
+            x: 0,
+            y: 3,
+            blur: 16,
+            spread: 0
+        )
     }
     
     // MARK: - UIControlEvent

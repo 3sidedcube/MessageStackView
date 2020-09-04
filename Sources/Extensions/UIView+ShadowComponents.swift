@@ -41,41 +41,70 @@ public struct ShadowComponents {
         self.offset = offset
     }
     
+    /// Default shadow properties on  `CALayer` from UIKit
+    /// - Note: This won't show any shadow
     public static let `default` = ShadowComponents(
         radius: 3,
-        opacity: 0.6,
-        color: .lightGray,
-        offset: .zero
+        opacity: 0,
+        color: .black,
+        offset: CGSize(width: 0, height: -3)
+    )
+    
+    /// Default shadow gray
+    public static let defaultBlack = ShadowComponents(
+        radius: 3,
+        opacity: 0.15,
+        color: .black,
+        offset: CGSize(width: 0, height: 1.5)
     )
 }
 
-public extension UIView {
+// MARK: - CALayer + ShadowComponents
+
+public extension CALayer {
     
     var shadowComponents: ShadowComponents? {
         set {
             guard let newValue = newValue else {
-                layer.shadowColor = UIColor.black.cgColor
-                layer.shadowOpacity = 0
-                layer.shadowOffset = CGSize(width: 0, height: -3)
-                layer.shadowRadius = 3
+                setShadowComponents(.default)
                 return
             }
-            layer.shadowRadius = newValue.radius
-            layer.shadowOpacity = newValue.opacity
-            layer.shadowColor = newValue.color.cgColor
-            layer.shadowOffset = newValue.offset
+            setShadowComponents(newValue)
         }
         get {
-            guard let shadowColor = layer.shadowColor else {
+            guard let shadowColor = shadowColor else {
                 return nil
             }
             let color = UIColor(cgColor: shadowColor)
             return ShadowComponents(
-                radius: layer.shadowRadius,
-                opacity: layer.shadowOpacity,
+                radius: shadowRadius,
+                opacity: shadowOpacity,
                 color: color,
-                offset: layer.shadowOffset
+                offset: shadowOffset
             )
+        }
+    }
+    
+    /// Set properties on the `CALayer` given by `components`
+    /// - Parameter components: `ShadowComponents`
+    private func setShadowComponents(_ components: ShadowComponents) {
+        shadowRadius = components.radius
+        shadowOpacity = components.opacity
+        shadowColor = components.color.cgColor
+        shadowOffset = components.offset
+    }
+}
+
+// MARK: - UIView + ShadowComponents
+
+public extension UIView {
+    
+    var shadowComponents: ShadowComponents? {
+        get {
+            return layer.shadowComponents
+        }
+        set {
+            layer.shadowComponents = newValue
         }
     }
 }

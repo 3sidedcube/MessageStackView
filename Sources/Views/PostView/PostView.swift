@@ -16,7 +16,9 @@ open class PostView: UIView, Poster, UIViewPoster, PostManagerDelegate {
     private struct Constants {
         
         /// `UIEdgeInsets` to inset subviews relative to `self`
-        static let edgeInsets = UIEdgeInsets(value: 10)
+        static let edgeInsets = UIEdgeInsets(
+            top: 20, left: 10, bottom: 20, right: 10
+        )
     }
     
     /// `UIEdgeInsets` of subviews from `self`
