@@ -113,6 +113,21 @@ open class BadgeMessageView: UIView {
         return button
     }()
     
+    // MARK: - containerViewInsets
+    
+    /// `UIEdgeInsets` of `containerViewEdgeConstraints`
+    public var containerViewInsets: UIEdgeInsets {
+        get {
+            return containerViewEdgeConstraints.insets
+        }
+        set {
+            containerViewEdgeConstraints.insets = newValue
+        }
+    }
+    
+    /// `EdgeConstraints` constraining `containerView` to `self`
+    private var containerViewEdgeConstraints: EdgeConstraints!
+    
     // MARK: - Init
     
     public convenience init() {
@@ -182,7 +197,7 @@ open class BadgeMessageView: UIView {
     
     private func addConstraints() {
         // containerView
-        containerView.edgeConstraints(to: self)
+        containerViewEdgeConstraints = containerView.edgeConstraints(to: self)
         
         // horizontalStackView
         horizontalStackView.edgeConstraints(

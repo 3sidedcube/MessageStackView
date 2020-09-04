@@ -31,6 +31,19 @@ class BadgeMessageViewController: UIViewController {
             )
         }
     }
+    
+    // MARK: - ViewController lifecycle
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        UIButton.addToCenter(
+            of: view,
+            title: "Post with updated insets",
+            target: self,
+            selector: #selector(buttonTouchUpInside)
+        )
+    }
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
@@ -42,6 +55,22 @@ class BadgeMessageViewController: UIViewController {
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
+        
         postViewOrCreate().postManager.invalidate()
+    }
+    
+    // MARK: - Actions
+    
+    @objc private func buttonTouchUpInside(_ sender: UIButton) {
+        postViewOrCreate().edgeInsets = UIEdgeInsets(
+            top: 3, left: 10, bottom: 3, right: 10
+        )
+        
+        let _ = postViewOrCreate().post(badgeMessage: BadgeMessage(
+            title: "\(PostView.self) Insets Updated",
+            subtitle: "The insets (margins) have been updated on the \(PostView.self)",
+            image: .donations,
+            fillColor: .blue
+        ))
     }
 }
