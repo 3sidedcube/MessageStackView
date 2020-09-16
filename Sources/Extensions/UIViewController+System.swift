@@ -32,6 +32,9 @@ extension UIViewController {
             CNContactViewController.self,
             UIDocumentPickerViewController.self,
             AVPlayerViewController.self
+            // Health kit
+            // Address book
+            // Bluetooth, NFC?
         ]
     }
     
