@@ -23,11 +23,9 @@ class SystemViewControllerTests: XCTestCase {
     func test_isSystemViewController() throws {
         XCTAssertTrue(UIAlertController().isSystemViewController)
         XCTAssertTrue(SFSafariViewController(url: .sample).isSystemViewController)
-        
         if MFMailComposeViewController.canSendMail() {
             XCTAssertTrue(MFMailComposeViewController().isSystemViewController)
         }
-        
         if MFMessageComposeViewController.canSendText() {
             XCTAssertTrue(MFMessageComposeViewController().isSystemViewController)
         }
