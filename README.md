@@ -2,21 +2,52 @@
 
 This is an example of posting a message from the top of the window:
 
-    UIApplication.shared.postView.post(badgeMessage:
-        BadgeMessage(
-            title: "This is a window notification",
-            subtitle: "This notification has been posted on the key window",
-            image: UIImage(named: "donations"),
-            fillColor: .red
-        )
+```swift
+UIApplication.shared.postView.post(badgeMessage:
+    BadgeMessage(
+        title: "This is a window notification",
+        subtitle: "This notification has been posted on the key window",
+        image: UIImage(named: "donations"),
+        fillColor: .red
     )
+)
+```
     
 ![Alt Text](https://github.com/3sidedcube/MessageStackView/blob/develop/Documentation/toastGif.gif)
 
-Here:
-1. The `badgeMessage` model defines what the message should look like
-2. A `BadgeMessageView` is created with properties defined by the `badgeMessage`
-3. The `BadgeMessageView` is posted on a `PostView` on the key window
+1. The `BadgeMessage` model defines what the message should look like
+2. A `BadgeMessageView` is created with properties defined by the `BadgeMessage`
+3. The `BadgeMessageView` is posted on a `PostView` on the `keyWindow`
+
+This `PostView` adds and removes itself from the `keyWindow` dynamically based on what is in its queue.
+
+## Installation
+
+### CocoaPods
+
+[CocoaPods](https://cocoapods.org) is a dependency manager for Cocoa projects. To integrate MessageStackView into your Xcode project using CocoaPods, specify it in your `Podfile`:
+
+```ruby
+pod 'MessageStackView', :git => 'https://github.com/3sidedcube/MessageStackView.git', :tag ~> '2.0.0'
+```
+
+### Carthage
+
+[Carthage](https://github.com/Carthage/Carthage) is a decentralized dependency manager that builds your dependencies and provides you with binary frameworks. To integrate MessageStackView into your Xcode project using Carthage, specify it in your `Cartfile`:
+
+```ogdl
+github "3sidedcube/MessageStackView" ~> 2.0.0
+```
+
+### Swift Package Manager
+
+The [Swift Package Manager](https://swift.org/package-manager/) is a tool for automating the distribution of Swift code and is integrated into the `swift` compiler. To integrate MessageStackView into your project using Swift Package Manager, specify it in the `dependencies` of your `Package.swift`:
+
+```swift
+dependencies: [
+    .package(url: "https://github.com/3sidedcube/MessageStackView.git", .upToNextMajor(from: "2.0.0"))
+]
+```
 
 ## Core Entities
 
@@ -56,20 +87,22 @@ The animation of posted `UIView`s is handled via the `UIStackView` by setting `i
 
 There is an Example project in the repository, but a simple use case would be:  
 
-    class ViewController: UIViewController {
+```swift
+class ViewController: UIViewController {
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         
-        override func viewDidAppear(_ animated: Bool) {
-            super.viewDidAppear(animated)
-            
-            // A `PostView` is created on the `UIViewController` instance if required
-            postViewOrCreate().post(message: Message(
-                title: "Message Title",
-                subtitle: "This is message subtitle for detail",
-                leftImage: .information,
-                rightImage: nil
-            ))
-        }
+        // A `PostView` is created on the `UIViewController` instance if required
+        postViewOrCreate().post(message: Message(
+            title: "Message Title",
+            subtitle: "This is message subtitle for detail",
+            leftImage: .information,
+            rightImage: nil
+        ))
     }
+}
+```
     
 ## Models
 
