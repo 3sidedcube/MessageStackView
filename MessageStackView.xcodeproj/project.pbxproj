@@ -44,9 +44,7 @@
 		B87CC99D24CC263E002B697C /* NoInternetTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B87CC99C24CC263E002B697C /* NoInternetTabBarController.swift */; };
 		B87CC9A024CC2829002B697C /* UIButton+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B87CC99F24CC2829002B697C /* UIButton+Extensions.swift */; };
 		B8BB088224C4BC46000E2E87 /* RootTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8BB087424C4BC46000E2E87 /* RootTableViewController.swift */; };
-		B8BB088324C4BC46000E2E87 /* SimpleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8BB087524C4BC46000E2E87 /* SimpleViewController.swift */; };
 		B8BB088424C4BC46000E2E87 /* WindowViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8BB087624C4BC46000E2E87 /* WindowViewController.swift */; };
-		B8BB088524C4BC46000E2E87 /* PanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8BB087724C4BC46000E2E87 /* PanViewController.swift */; };
 		B8BB088624C4BC46000E2E87 /* BadgeMessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8BB087824C4BC46000E2E87 /* BadgeMessageViewController.swift */; };
 		B8BB088724C4BC46000E2E87 /* MessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8BB087924C4BC46000E2E87 /* MessageViewController.swift */; };
 		B8BB088824C4BC46000E2E87 /* UIImage+Images.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8BB087B24C4BC46000E2E87 /* UIImage+Images.swift */; };
@@ -190,9 +188,7 @@
 		B8BB087024C4BC46000E2E87 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B8BB087224C4BC46000E2E87 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B8BB087424C4BC46000E2E87 /* RootTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootTableViewController.swift; sourceTree = "<group>"; };
-		B8BB087524C4BC46000E2E87 /* SimpleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SimpleViewController.swift; sourceTree = "<group>"; };
 		B8BB087624C4BC46000E2E87 /* WindowViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WindowViewController.swift; sourceTree = "<group>"; };
-		B8BB087724C4BC46000E2E87 /* PanViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PanViewController.swift; sourceTree = "<group>"; };
 		B8BB087824C4BC46000E2E87 /* BadgeMessageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BadgeMessageViewController.swift; sourceTree = "<group>"; };
 		B8BB087924C4BC46000E2E87 /* MessageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageViewController.swift; sourceTree = "<group>"; };
 		B8BB087B24C4BC46000E2E87 /* UIImage+Images.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Images.swift"; sourceTree = "<group>"; };
@@ -357,9 +353,7 @@
 			isa = PBXGroup;
 			children = (
 				B8BB087424C4BC46000E2E87 /* RootTableViewController.swift */,
-				B8BB087524C4BC46000E2E87 /* SimpleViewController.swift */,
 				B8BB087624C4BC46000E2E87 /* WindowViewController.swift */,
-				B8BB087724C4BC46000E2E87 /* PanViewController.swift */,
 				B8BB087824C4BC46000E2E87 /* BadgeMessageViewController.swift */,
 				B8BB087924C4BC46000E2E87 /* MessageViewController.swift */,
 				B87CC99C24CC263E002B697C /* NoInternetTabBarController.swift */,
@@ -776,14 +770,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				B87CC9A024CC2829002B697C /* UIButton+Extensions.swift in Sources */,
-				B8BB088524C4BC46000E2E87 /* PanViewController.swift in Sources */,
 				B8BB088924C4BC46000E2E87 /* UIColor+Colors.swift in Sources */,
 				B8BB088824C4BC46000E2E87 /* UIImage+Images.swift in Sources */,
 				B81AEE5425003F270068CE23 /* ShadowViewController.swift in Sources */,
 				B8BB088A24C4BC46000E2E87 /* AppDelegate.swift in Sources */,
 				B8BB088624C4BC46000E2E87 /* BadgeMessageViewController.swift in Sources */,
 				B8BB088C24C4BC46000E2E87 /* SceneDelegate.swift in Sources */,
-				B8BB088324C4BC46000E2E87 /* SimpleViewController.swift in Sources */,
 				B8BB088424C4BC46000E2E87 /* WindowViewController.swift in Sources */,
 				B8BB088724C4BC46000E2E87 /* MessageViewController.swift in Sources */,
 				B8BB088224C4BC46000E2E87 /* RootTableViewController.swift in Sources */,
