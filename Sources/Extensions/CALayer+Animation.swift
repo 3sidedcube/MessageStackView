@@ -20,23 +20,20 @@ extension CALayer {
     ///   - to: End state
     func transformAnimation(
         duration: TimeInterval,
-        from: [CGFloat] = [0, 0, 0],
-        to: [CGFloat] = [1, 1, 1]
+        from: Vector3<CGFloat> = .zero,
+        to: Vector3<CGFloat> = Vector3(x: 1, y: 1, z: 1)
     ) -> CABasicAnimation {
-        
-        guard from.count == 3 else { fatalError("Invalid from argument") }
-        guard to.count == 3 else { fatalError("Invalid to argument") }
-        
+
         let keyPath = #keyPath(transform)
         let animation = CABasicAnimation(keyPath: keyPath)
         animation.duration = duration
         animation.valueFunction = CAValueFunction(name: .scale)
-        animation.fromValue = from
-        animation.toValue = to
+        animation.fromValue = from.array
+        animation.toValue = to.array
         animation.timingFunction = CAMediaTimingFunction(name: .easeInEaseOut)
         
         // Change the actual data value in the layer to the final value.
-        transform = CATransform3DScale(transform, to[0], to[1], to[2])
+        transform = CATransform3DScale(transform, to.x, to.y, to.z)
         
         return animation
     }
