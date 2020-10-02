@@ -21,8 +21,8 @@ extension UIView {
         duration: TimeInterval = 0.5,
         completion: ((Bool) -> Void)? = nil
     ) {
-        let from: [CGFloat] = [1, 1, 1]
-        let to = [scale, scale, scale]
+        let from = Vector3<CGFloat>(x: 1, y: 1, z: 1)
+        let to = Vector3(x: scale, y: scale, z: scale)
         let animation = layer.transformAnimation(
             duration: duration,
             from: from,
