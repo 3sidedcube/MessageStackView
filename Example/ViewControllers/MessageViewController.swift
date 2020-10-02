@@ -38,7 +38,7 @@ class MessageViewController: UIViewController {
             let messageView = self.messageStackView.post(
                 message: Message(
                     title: "This is another title",
-                    subtitle: "This is another subtitle, with and left and right image",
+                    subtitle: "This is another subtitle, with a left and right image",
                     leftImage: .information,
                     rightImage: .cross
                 ),
