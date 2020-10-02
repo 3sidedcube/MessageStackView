@@ -20,6 +20,7 @@ UIApplication.shared.postView.post(badgeMessage:
 3. The `BadgeMessageView` is posted on a `PostView` on the `keyWindow`
 
 This `PostView` adds and removes itself from the `keyWindow` dynamically based on what is in its queue.
+See the Example project for more on what this framework can do! 
 
 ## Installation
 
@@ -82,27 +83,6 @@ So, in this case, a posted `UIView` would define its height either intrinsically
 A simple wrapper of a vertical `UIStackView` for posting and removing `UIView`s.
 These `UIView`s, being a `UIStackView`, are part of the `arrangedSubviews`.
 The animation of posted `UIView`s is handled via the `UIStackView` by setting `isHidden`.
-
-## Usage
-
-There is an Example project in the repository, but a simple use case would be:  
-
-```swift
-class ViewController: UIViewController {
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        
-        // A `PostView` is created on the `UIViewController` instance if required
-        postViewOrCreate().post(message: Message(
-            title: "Message Title",
-            subtitle: "This is message subtitle for detail",
-            leftImage: .information,
-            rightImage: nil
-        ))
-    }
-}
-```
     
 ## Models
 
