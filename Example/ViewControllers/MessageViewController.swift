@@ -9,38 +9,60 @@
 import UIKit
 import MessageStackView
 
-/// - TODO: Build an interface with buttons for users to experiment with functionality
 class MessageViewController: UIViewController {
+    
+    private lazy var messageStackView: MessageStackView = {
+        let messageStackView: MessageStackView = view.createMessageStackView()
+        messageStackView.messageConfiguation = MessageConfiguration(
+            backgroundColor: .systemGroupedBackground,
+            tintColor: .gray,
+            shadow: true,
+            applyToAll: true
+        )
+        return messageStackView
+    }()
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
 
-        messageStackViewOrCreate().post(message: Message(
+        // Post first message
+        messageStackView.post(message: Message(
             title: "This is a title",
             subtitle: "This is a subtitle, with a left image",
             leftImage: .information
         ), dismissAfter: 6)
         
+        // Post another message after delay
         DispatchQueue.main.asyncAfterNow(time: .seconds(2)) { [weak self] in
-            let messageView = self?.messageStackViewOrCreate().post(
+            guard let self = self else { return }
+            let messageView = self.messageStackView.post(
                 message: Message(
                     title: "This is another title",
-                    subtitle: "This is another subtitle, but with the right image this time",
+                    subtitle: "This is another subtitle, with a left and right image",
                     leftImage: .information,
                     rightImage: .cross
                 ),
                 dismissAfter: 8
             )
             
-            messageView?.rightImageViewSize = CGSize(width: 10, height: 10)
+            messageView.rightImageViewSize = CGSize(width: 10, height: 10)
+            self.addTapToRemoveGesture(to: messageView)
         }
         
+        // Post a custom view after delay
         DispatchQueue.main.asyncAfterNow(time: .seconds(4)) { [weak self] in
             let view = CustomView()
-            self?.messageStackViewOrCreate().post(view: view)
-            self?.messageStackViewOrCreate().postManager.gestureManager
-                .addTapToRemoveGesture(to: view)
+            self?.messageStackView.post(view: view)
+            self?.addTapToRemoveGesture(to: view)
         }
+    }
+    
+    /// Add ability to remove `view` from `messageStackView` by tap
+    ///
+    /// - Parameter view: `UIView`
+    private func addTapToRemoveGesture(to view: UIView) {
+        messageStackView.postManager.gestureManager
+            .addTapToRemoveGesture(to: view)
     }
 }
 

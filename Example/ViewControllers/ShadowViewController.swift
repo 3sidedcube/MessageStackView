@@ -12,6 +12,7 @@ import MessageStackView
 
 class ShadowViewController: UIViewController {
     
+    /// `UIStackView` container of views
     private(set) lazy var stackView: UIStackView = {
         let stackView = UIStackView()
         

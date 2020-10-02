@@ -20,13 +20,11 @@ class RootTableViewController: UITableViewController {
     
     /// `ExampleElement`
     private lazy var exampleElements: [ExampleElement] = [
-        ("Simple", SimpleViewController.self, false),
-        ("Message", MessageViewController.self, false),
-        ("Pan", PanViewController.self, false),
-        ("Badge Message", BadgeMessageViewController.self, false),
         ("Window", WindowViewController.self, false),
+        ("Badge Message", BadgeMessageViewController.self, false),
+        ("Message", MessageViewController.self, false),
         ("No Internet", NoInternetTabBarController.self, true),
-        ("Shadow", ShadowViewController.self, false),
+        ("Shadow", ShadowViewController.self, false)
     ]
     
     // MARK: - ViewController lifecycle
