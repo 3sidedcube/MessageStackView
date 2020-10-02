@@ -66,12 +66,6 @@ public extension UIViewController {
         return viewController
     }
     
-    /// Is `self` a presented system `UIViewController`
-    /// - TODO: Add greater support
-    private var isSystemViewController: Bool {
-        return self is UIAlertController
-    }
-    
     /// `visibleViewController(_:)` with `self`
     var visibleViewController: UIViewController {
         return visibleViewController(self)
