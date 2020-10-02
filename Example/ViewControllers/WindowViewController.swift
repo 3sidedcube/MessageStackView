@@ -17,8 +17,8 @@ class WindowViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // `UIButton` top pop this `UIViewController` from `navigationController`
-        // To show posted `UIView` is on the window
+        // `UIButton` to pop this `UIViewController` on
+        // the `navigationController`
         UIButton.addToCenter(
             of: view,
             title: "Pop",
@@ -26,6 +26,8 @@ class WindowViewController: UIViewController {
             selector: #selector(popButtonTouchUpInside)
         )
         
+        // `UIButton` to present another `UIViewController` on top
+        // of this one
         UIButton.addToCenter(
             of: view,
             title: "Present",
@@ -33,6 +35,8 @@ class WindowViewController: UIViewController {
             selector: #selector(presentButtonTouchUpInside)
         ).transform = CGAffineTransform(translationX: 0, y: 30)
         
+        // `UIButton` to set another `UIViewController` as the
+        // `rootViewController` on the window
         UIButton.addToCenter(
             of: view,
             title: "Set Key Window",
@@ -53,6 +57,8 @@ class WindowViewController: UIViewController {
             )
         )
     }
+    
+    // MARK: - Actions
     
     @objc private func popButtonTouchUpInside(_ sender: UIButton) {
         navigationController?.popViewController(animated: true)

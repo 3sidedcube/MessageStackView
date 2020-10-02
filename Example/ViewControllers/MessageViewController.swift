@@ -9,20 +9,21 @@
 import UIKit
 import MessageStackView
 
-/// - TODO: Build an interface with buttons for users to experiment with functionality
 class MessageViewController: UIViewController {
+    
+    private lazy var messageStackView = view.createMessageStackView()
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
 
-        messageStackViewOrCreate().post(message: Message(
+        messageStackView.post(message: Message(
             title: "This is a title",
             subtitle: "This is a subtitle, with a left image",
             leftImage: .information
         ), dismissAfter: 6)
         
         DispatchQueue.main.asyncAfterNow(time: .seconds(2)) { [weak self] in
-            let messageView = self?.messageStackViewOrCreate().post(
+            let messageView = self?.messageStackView.post(
                 message: Message(
                     title: "This is another title",
                     subtitle: "This is another subtitle, but with the right image this time",
@@ -37,8 +38,8 @@ class MessageViewController: UIViewController {
         
         DispatchQueue.main.asyncAfterNow(time: .seconds(4)) { [weak self] in
             let view = CustomView()
-            self?.messageStackViewOrCreate().post(view: view)
-            self?.messageStackViewOrCreate().postManager.gestureManager
+            self?.messageStackView.post(view: view)
+            self?.messageStackView.postManager.gestureManager
                 .addTapToRemoveGesture(to: view)
         }
     }

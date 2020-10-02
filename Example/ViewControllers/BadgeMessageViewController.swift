@@ -13,6 +13,9 @@ import MessageStackView
 /// `UIViewController` to demo posting a `BadgeMessage` on a `PostView`
 class BadgeMessageViewController: UIViewController {
     
+    /// `PostView` for posting messages
+    private lazy var postView = view.createPostView()
+    
     /// Arrray of titles for `badgeMessages` to demo
     private let badgeTitles: [(title: String, subtitle: String)] = [
         ("Badge Earned!", "That's a badge unlock"),
@@ -49,24 +52,24 @@ class BadgeMessageViewController: UIViewController {
         super.viewDidAppear(animated)
         
         badgeMessages.forEach {
-            postViewOrCreate().post(badgeMessage: $0)
+            postView.post(badgeMessage: $0)
         }
     }
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         
-        postViewOrCreate().postManager.invalidate()
+        postView.postManager.invalidate()
     }
     
     // MARK: - Actions
     
     @objc private func buttonTouchUpInside(_ sender: UIButton) {
-        postViewOrCreate().edgeInsets = UIEdgeInsets(
+        postView.edgeInsets = UIEdgeInsets(
             top: 3, left: 10, bottom: 3, right: 10
         )
         
-        let _ = postViewOrCreate().post(badgeMessage: BadgeMessage(
+        let _ = postView.post(badgeMessage: BadgeMessage(
             title: "\(PostView.self) Insets Updated",
             subtitle: "The insets (margins) have been updated on the \(PostView.self)",
             image: .donations,

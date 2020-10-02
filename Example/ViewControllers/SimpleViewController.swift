@@ -12,10 +12,12 @@ import MessageStackView
 
 class SimpleViewController: UIViewController {
     
+    private lazy var postView = view.createPostView()
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        postViewOrCreate().post(message: Message(
+        postView.post(message: Message(
             title: "Message Title",
             subtitle: "This is message subtitle for detail",
             leftImage: .information,
