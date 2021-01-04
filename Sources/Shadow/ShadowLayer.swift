@@ -13,17 +13,17 @@ internal class ShadowLayer: CALayer {
 
     // MARK: - Init
 
-    public override init() {
+    override internal init() {
         super.init()
         setup()
     }
 
-    public override init(layer: Any) {
+    override internal init(layer: Any) {
         super.init(layer: layer)
         setup()
     }
 
-    required public init?(coder: NSCoder) {
+    internal required init?(coder: NSCoder) {
         super.init(coder: coder)
         setup()
     }

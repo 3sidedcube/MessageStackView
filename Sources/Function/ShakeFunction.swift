@@ -27,7 +27,7 @@ struct ShakeFunction: Function {
     /// A `sin(x)` curve repeats after a given cycle, define the number of cycles before `T`
     let N: Int
 
-    public init(
+    init(
         T: ValueType,
         Y: ValueType,
         N: Int

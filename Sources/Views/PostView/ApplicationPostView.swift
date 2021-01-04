@@ -106,14 +106,16 @@ class ApplicationPostView: PostView {
 
     // MARK: - Notification
 
-    @objc private func windowDidBecomeKeyNotification(
+    @objc
+    private func windowDidBecomeKeyNotification(
         _ sender: Notification
     ) {
         guard postManager.isActive else { return }
         updateSuperviewIfRequired(force: true)
     }
 
-    @objc private func viewWillAppearNotification(
+    @objc
+    private func viewWillAppearNotification(
         _ sender: Notification
     ) {
         bringToFront()

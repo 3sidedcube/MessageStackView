@@ -15,13 +15,13 @@ open class ShadowView: UIView {
 
     // MARK: - Layer
 
-    public override class var layerClass: AnyClass {
+    override public class var layerClass: AnyClass {
         return ParentShadowLayer.self
     }
 
     // MARK: - Init
 
-    convenience public init() {
+    public convenience init() {
         self.init(frame: .zero)
     }
 
@@ -30,7 +30,7 @@ open class ShadowView: UIView {
         setup()
     }
 
-    required public init?(coder aDecoder: NSCoder) {
+    public required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         setup()
     }

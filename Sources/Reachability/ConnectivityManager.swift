@@ -103,7 +103,8 @@ public class ConnectivityManager {
 
     /// `sender` sent when `NetworkStatus` changed on `reachability`
     /// - Parameter sender: `Notification`
-    @objc private func reachabilityChanged(_ sender: Notification) {
+    @objc
+    private func reachabilityChanged(_ sender: Notification) {
         guard let reachability = sender.object as? Reachability else {
             return
         }

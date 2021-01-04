@@ -30,7 +30,7 @@ open class ConnectivityViewController: UIViewController, ConnectivityMessageable
 
     // MARK: - ViewController lifecycle
 
-    open override func viewDidLoad() {
+    override open func viewDidLoad() {
         super.viewDidLoad()
 
         messageStackView.addTo(
@@ -42,7 +42,7 @@ open class ConnectivityViewController: UIViewController, ConnectivityMessageable
         view.setNeedsLayout()
     }
 
-    open override func viewSafeAreaInsetsDidChange() {
+    override open func viewSafeAreaInsetsDidChange() {
         super.viewSafeAreaInsetsDidChange()
         messageStackView.spaceViewHeight = safeAreaInset
     }

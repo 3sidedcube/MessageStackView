@@ -40,7 +40,7 @@ open class BadgeView: BadgeContainerView {
     }
 
     /// Drive `UIImageView`s `tintColor` from `tintColor` of `self`
-    public override var tintColor: UIColor! {
+    override public var tintColor: UIColor! {
         get {
             return super.tintColor
         }
@@ -56,7 +56,7 @@ open class BadgeView: BadgeContainerView {
         self.init(frame: .zero)
     }
 
-    public override init(frame: CGRect) {
+    override public init(frame: CGRect) {
         super.init(frame: frame)
         setup()
     }

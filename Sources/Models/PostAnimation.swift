@@ -33,8 +33,8 @@ public struct PostAnimation: OptionSet {
 
 // MARK: PostAnimation + Default
 
-extension PostAnimation {
+public extension PostAnimation {
 
     /// Default `PostAnimation`
-    public static let `default`: PostAnimation = .both
+    static let `default`: PostAnimation = .both
 }

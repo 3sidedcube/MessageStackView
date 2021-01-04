@@ -64,7 +64,8 @@ class BadgeMessageViewController: UIViewController {
 
     // MARK: - Actions
 
-    @objc private func buttonTouchUpInside(_ sender: UIButton) {
+    @objc
+    private func buttonTouchUpInside(_ sender: UIButton) {
         postView.edgeInsets = UIEdgeInsets(
             top: 3, left: 10, bottom: 3, right: 10
         )

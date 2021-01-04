@@ -33,5 +33,4 @@ public extension Array where Element: Equatable {
         let newIndex = self.index(before: index)
         return self[newIndex]
     }
-
 }

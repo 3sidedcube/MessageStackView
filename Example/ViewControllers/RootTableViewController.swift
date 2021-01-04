@@ -86,7 +86,6 @@ class RootTableViewController: UITableViewController {
         if element.present {
             viewController.modalPresentationStyle = .fullScreen
             present(viewController, animated: true)
-
         } else {
             navigationController?.pushViewController(
                 viewController,

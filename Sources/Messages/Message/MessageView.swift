@@ -21,7 +21,7 @@ open class MessageView: UIView {
     public struct Constants {
 
         /// Size of the `UIImageView`
-        static let imageViewSize: CGSize = CGSize(width: 20, height: 20)
+        static let imageViewSize = CGSize(width: 20, height: 20)
 
         /// Inset of the `UIStackView` relative to the `MessageView`
         static let stackViewInsets = UIEdgeInsets(
@@ -126,7 +126,7 @@ open class MessageView: UIView {
     }
 
     /// Create with explicit frame - `CGRect`
-    public override init(frame: CGRect) {
+    override public init(frame: CGRect) {
         super.init(frame: frame)
         setup()
     }
@@ -192,7 +192,7 @@ open class MessageView: UIView {
 
     // MARK: - Override
 
-    public override var tintColor: UIColor! {
+    override public var tintColor: UIColor! {
         didSet {
             leftImageView.tintColor = tintColor
             titleLabel.textColor = tintColor

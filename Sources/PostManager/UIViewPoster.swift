@@ -11,7 +11,7 @@ import UIKit
 
 /// `UIViewPoster` is sent messages to post and remove `UIView`s.
 /// It should handle any animation and execute a given closure on completion.
-internal protocol UIViewPoster: class {
+internal protocol UIViewPoster: AnyObject {
 
     // MARK: - Post
 

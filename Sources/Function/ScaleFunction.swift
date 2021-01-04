@@ -30,7 +30,7 @@ struct ScaleFunction: Function {
     /// - Parameters:
     ///   - T: `ValueType`
     ///   - Y: `ValueType`
-    public init(
+    init(
         T: ValueType,
         Y: ValueType
     ) {

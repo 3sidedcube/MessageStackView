@@ -156,6 +156,7 @@ private class SampleView: UIView {
         setup(withView: view, text: text)
     }
 
+    @available(*, unavailable)
     required init? (coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }

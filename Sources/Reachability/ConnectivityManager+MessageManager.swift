@@ -9,11 +9,11 @@
 import Foundation
 import UIKit
 
-extension ConnectivityManager {
+public extension ConnectivityManager {
 
     /// Manage a `MessageStackView` to post "Not connected to internet" messages at the bottom
     /// of the `visibleViewController`s view.
-    public class MessageManager: ConnectivityMessageable, PostManagerDelegate {
+    class MessageManager: ConnectivityMessageable, PostManagerDelegate {
 
         /// `NSObjectProtocol` observing internet connection updates
         private var observer: NSObjectProtocol?
@@ -163,7 +163,8 @@ extension ConnectivityManager {
 
         /// `UIViewController` lifecycle event
         /// - Parameter sender: `Notification`
-        @objc private func viewWillDisappear(_ sender: Notification) {
+        @objc
+        private func viewWillDisappear(_ sender: Notification) {
             removeMessageStackView(animated: true)
         }
 

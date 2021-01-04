@@ -146,7 +146,7 @@ open class BadgeMessageView: UIView {
         self.init(frame: .zero)
     }
 
-    public override init(frame: CGRect) {
+    override public init(frame: CGRect) {
         super.init(frame: frame)
         setup()
     }
@@ -244,7 +244,7 @@ open class BadgeMessageView: UIView {
 
     // MARK: - Layout
 
-    public override func layoutSubviews() {
+    override public func layoutSubviews() {
         super.layoutSubviews()
         updateCornersAndShadow()
     }
@@ -272,7 +272,8 @@ open class BadgeMessageView: UIView {
     /// On `sender` `.touchUpInside`, find the first `Poster` superview and call
     /// remove
     /// - Parameter sender: `UIButton`
-    @objc private func buttonTouchUpInside(_ sender: UIButton) {
+    @objc
+    private func buttonTouchUpInside(_ sender: UIButton) {
         let poster: Poster? = sender.firstSuperviewOfType()
         let request = poster?.postManager.currentPostRequests
             .first { $0.view == self }

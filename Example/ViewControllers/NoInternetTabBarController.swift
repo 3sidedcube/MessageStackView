@@ -38,6 +38,7 @@ class NoInternetTabBarController: UITabBarController {
         ))
     }
 
+    @available(*, unavailable)
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -74,6 +75,7 @@ class TabViewController: UIViewController {
         tabBarItem = UITabBarItem(tabBarSystemItem: item, tag: index)
     }
 
+    @available(*, unavailable)
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -110,13 +112,15 @@ class TabViewController: UIViewController {
 
     // MARK: - UIControlEvent
 
-    @objc private func cancelBarButtonItemTouchUpInside(
+    @objc
+    private func cancelBarButtonItemTouchUpInside(
         _ sender: UIBarButtonItem
     ) {
         presentingViewController?.dismiss(animated: true)
     }
 
-    @objc private func tableViewButtonTouchUpInside(_ sender: UIButton) {
+    @objc
+    private func tableViewButtonTouchUpInside(_ sender: UIButton) {
         let viewController = UITableViewController()
         viewController.hidesBottomBarWhenPushed = true
         navigationController?.pushViewController(
@@ -125,7 +129,8 @@ class TabViewController: UIViewController {
         )
     }
 
-    @objc private func alertButtonTouchUpInside(_ sender: UIButton) {
+    @objc
+    private func alertButtonTouchUpInside(_ sender: UIButton) {
         let alertController = UIAlertController(
             title: "Alert title",
             message: "Alert Message",
@@ -177,6 +182,7 @@ class TabConnectivityViewController: ConnectivityViewController {
         tabBarItem.title = "Connect"
     }
 
+    @available(*, unavailable)
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -230,7 +236,8 @@ class TabConnectivityViewController: ConnectivityViewController {
 
     // MARK: - Actions
 
-    @objc private func buttonTouchUpInside(_ sender: UIButton) {
+    @objc
+    private func buttonTouchUpInside(_ sender: UIButton) {
         let viewController = TabConnectivityViewController(isRoot: false)
         viewController.hidesBottomBarWhenPushed = true
 

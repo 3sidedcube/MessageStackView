@@ -108,10 +108,10 @@ public class PostManager {
     /// Is the `PostManager` posting or scheduled to post
     public var isActive: Bool {
         // A post is showing atm
-        let isPosting = currentPostRequests.count > 0
+        let isPosting = !currentPostRequests.isEmpty
 
         // A post is scheduled to show in the future
-        let isQueued = queue.count > 0
+        let isQueued = !queue.isEmpty
 
         return isPosting || isQueued
     }
@@ -131,7 +131,7 @@ public class PostManager {
         }
 
         // Add to queue if `isSerialQueue` and there is a `currentPostRequest`
-        guard !isSerialQueue || currentPostRequests.count == 0 else {
+        guard !isSerialQueue || currentPostRequests.isEmpty else {
             queue.enqueue(postRequest)
             return
         }
@@ -157,7 +157,7 @@ public class PostManager {
             animated: postRequest.animated.contains(.onPost),
             completion: {
                 self.completePost(postRequest: postRequest)
-        })
+            })
     }
 
     /// Invoke on the completion of `poster` posting a `view` of a `postRequest`.

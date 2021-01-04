@@ -83,7 +83,7 @@ open class MessageStackView: UIStackView, Poster {
     /// it will also animate the height of the `spaceView` to zero.
     public var spaceViewHeight: CGFloat = 0 {
         didSet {
-            guard arrangedSubviewsExcludingSpace.count > 0 else { return }
+            guard !arrangedSubviewsExcludingSpace.isEmpty else { return }
             spaceViewHeightConstraint.constant = spaceViewHeight
         }
     }

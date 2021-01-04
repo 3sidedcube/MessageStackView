@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 /// Delegate callbacks for `PostGestureManager`
-protocol PostGestureManagerDelegate: class {
+protocol PostGestureManagerDelegate: AnyObject {
 
     func postGestureManager(
         _ manager: PostGestureManager,
@@ -92,7 +92,8 @@ public class PostGestureManager {
 
     /// When a `UIView` wants to be dismissed on tap.
     /// - Parameter sender: `UITapGestureRecognizer`
-    @objc private func viewTapped(_ sender: UITapGestureRecognizer) {
+    @objc
+    private func viewTapped(_ sender: UITapGestureRecognizer) {
         if sender.state == .ended, let view = sender.view {
             requestRemove(view: view)
         }
@@ -127,7 +128,8 @@ public class PostGestureManager {
 
     /// When a `UIView` wants to be dismissed on pan.
     /// - Parameter sender: `UIPanGestureRecognizer`
-    @objc private func viewPanned(_ sender: UIPanGestureRecognizer) {
+    @objc
+    private func viewPanned(_ sender: UIPanGestureRecognizer) {
         guard let view = sender.view else { return }
         let state = sender.state
 
@@ -199,7 +201,8 @@ public class PostGestureManager {
 private extension UIGestureRecognizer.State {
 
     /// `State` can be started or finished
-    @frozen enum BoundaryState {
+    @frozen
+    enum BoundaryState {
 
         /// `State` when the gesture started
         case started

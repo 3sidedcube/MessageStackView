@@ -60,11 +60,13 @@ class WindowViewController: UIViewController {
 
     // MARK: - Actions
 
-    @objc private func popButtonTouchUpInside(_ sender: UIButton) {
+    @objc
+    private func popButtonTouchUpInside(_ sender: UIButton) {
         navigationController?.popViewController(animated: true)
     }
 
-    @objc private func presentButtonTouchUpInside(_ sender: UIButton) {
+    @objc
+    private func presentButtonTouchUpInside(_ sender: UIButton) {
         let viewController = UIViewController()
         viewController.view.backgroundColor = UIColor.gray
         viewController.navigationItem.rightBarButtonItem = UIBarButtonItem(
@@ -80,7 +82,8 @@ class WindowViewController: UIViewController {
         present(navigationController, animated: true)
     }
 
-    @objc private func keyWindowButtonTouchUpInside(_ sender: UIButton) {
+    @objc
+    private func keyWindowButtonTouchUpInside(_ sender: UIButton) {
         let connectedScenes = UIApplication.shared.connectedScenes
         guard let windowScene = connectedScenes.first as? UIWindowScene,
             let sceneDelegate = windowScene.delegate as? SceneDelegate else {
@@ -103,7 +106,8 @@ class WindowViewController: UIViewController {
         }
     }
 
-    @objc private func cancelBarButtonItemTouchUpInside(_ sender: UIBarButtonItem) {
+    @objc
+    private func cancelBarButtonItemTouchUpInside(_ sender: UIBarButtonItem) {
         dismiss(animated: true)
     }
 }
@@ -126,7 +130,8 @@ class WindowRootViewController: UIViewController {
         )
     }
 
-    @objc private func buttonTouchUpInside(_ sender: UIButton) {
+    @objc
+    private func buttonTouchUpInside(_ sender: UIButton) {
         completion?()
     }
 }

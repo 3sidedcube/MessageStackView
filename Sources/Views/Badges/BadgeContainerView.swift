@@ -25,14 +25,14 @@ open class BadgeContainerView: UIView {
     }
 
     /// Amount the fill path is inset by from the `bounds`
-    public var containerBorderWidthScale: CGFloat = 1/75 {
+    public var containerBorderWidthScale: CGFloat = 1 / 75 {
         didSet {
             setNeedsDisplay()
         }
     }
 
     /// The corner radius of the rounded rect path
-    public var containerCornerRadiusScale: CGFloat = 7/30 {
+    public var containerCornerRadiusScale: CGFloat = 7 / 30 {
         didSet {
             setNeedsLayout()
         }
@@ -75,7 +75,7 @@ open class BadgeContainerView: UIView {
         self.init(frame: .zero)
     }
 
-    public override init(frame: CGRect) {
+    override public init(frame: CGRect) {
         super.init(frame: frame)
         setup()
     }
@@ -93,12 +93,12 @@ open class BadgeContainerView: UIView {
 
     // MARK: - Lifecycle
 
-    public override func layoutSubviews() {
+    override public func layoutSubviews() {
         super.layoutSubviews()
         updateLayer()
     }
 
-    public override var intrinsicContentSize: CGSize {
+    override public var intrinsicContentSize: CGSize {
         return CGSize(
             width: Constants.intrinsicSize,
             height: Constants.intrinsicSize
@@ -107,7 +107,7 @@ open class BadgeContainerView: UIView {
 
     // MARK: - Draw
 
-    public override func draw(_ rect: CGRect) {
+    override public func draw(_ rect: CGRect) {
         super.draw(rect)
 
         // Fill the whole bounds with the border color

@@ -16,7 +16,7 @@ import UIKit
 ///
 /// E.g. A `UIViewController` may already have a `MessageStackView` in its view hierarchy,
 /// so doesn't want another `MessageStackView` added by the shared `MessageManager`
-public protocol ConnectivityMessageable: class {
+public protocol ConnectivityMessageable: AnyObject {
 
     /// The `MessageStackView` to post `Message`s on
     var messageStackView: MessageStackView { get }

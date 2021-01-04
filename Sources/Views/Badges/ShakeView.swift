@@ -11,7 +11,7 @@ import UIKit
 // MARK: - ShakeViewDelegate
 
 /// Touch animation callbacks for `ShakeView`
-public protocol ShakeViewDelegate: class {
+public protocol ShakeViewDelegate: AnyObject {
 
     /// Invoked when the touch animation starts
     /// - Parameter shakeView: `ShakeView`
@@ -127,16 +127,17 @@ public class ShakeView: UIView {
             withTimeInterval: timeInterval,
             repeats: true,
             block: { [weak self] timer in
-            guard let self = self else { return }
+                guard let self = self else { return }
 
-            self.executePulse()
-            if self.isFirstPulse {
-                timer.invalidate()
-                self.isFirstPulse = false
+                self.executePulse()
+                if self.isFirstPulse {
+                    timer.invalidate()
+                    self.isFirstPulse = false
 
-                self.startPulseTimer()
+                    self.startPulseTimer()
+                }
             }
-        })
+        )
     }
 
     /// Stop the pulse animation
@@ -154,12 +155,12 @@ public class ShakeView: UIView {
 
     // MARK: - Lifecycle
 
-    public override func didMoveToSuperview() {
+    override public func didMoveToSuperview() {
         super.didMoveToSuperview()
         startPulse()
     }
 
-    public override func removeFromSuperview() {
+    override public func removeFromSuperview() {
         super.removeFromSuperview()
         invalidate()
     }
@@ -206,7 +207,8 @@ public class ShakeView: UIView {
     }
 
     /// `CADisplayLink` step function
-    @objc private func step(displaylink: CADisplayLink) {
+    @objc
+    private func step(displaylink: CADisplayLink) {
         guard let animationStart = animationStart else {
             stopAnimation(complete: false)
             return
@@ -225,13 +227,10 @@ public class ShakeView: UIView {
             .rotated(by: rotation)
             .scaledBy(x: scale, y: scale)
     }
-}
 
-// MARK: - Touch Events
+    // MARK: - Touch Events
 
-extension ShakeView {
-
-    public override func touchesBegan(
+    override public func touchesBegan(
         _ touches: Set<UITouch>,
         with event: UIEvent?
     ) {
@@ -239,7 +238,7 @@ extension ShakeView {
         startAnimation()
     }
 
-    public override func touchesCancelled(
+    override public func touchesCancelled(
         _ touches: Set<UITouch>,
         with event: UIEvent?
     ) {
@@ -247,7 +246,7 @@ extension ShakeView {
         stopAnimation(complete: false)
     }
 
-    public override func touchesEnded(
+    override public func touchesEnded(
         _ touches: Set<UITouch>,
         with event: UIEvent?
     ) {
@@ -255,7 +254,7 @@ extension ShakeView {
         stopAnimation(complete: false)
     }
 
-    public override func touchesMoved(
+    override public func touchesMoved(
         _ touches: Set<UITouch>,
         with event: UIEvent?
     ) {

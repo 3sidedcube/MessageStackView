@@ -18,17 +18,17 @@ open class ParentShadowLayer: CALayer {
 
     // MARK: - Init
 
-    public override init() {
+    override public init() {
         super.init()
         setup()
     }
 
-    public override init(layer: Any) {
+    override public init(layer: Any) {
         super.init(layer: layer)
         setup()
     }
 
-    required public init?(coder: NSCoder) {
+    public required init?(coder: NSCoder) {
         super.init(coder: coder)
         setup()
     }
@@ -41,7 +41,7 @@ open class ParentShadowLayer: CALayer {
     // MARK: - Observable Properties
 
     @available(iOS 13, *)
-    public override var cornerCurve: CALayerCornerCurve {
+    override public var cornerCurve: CALayerCornerCurve {
         didSet {
             forEachShadowLayer {
                 $0.cornerCurve = cornerCurve
@@ -49,7 +49,7 @@ open class ParentShadowLayer: CALayer {
         }
     }
 
-    public override var cornerRadius: CGFloat {
+    override public var cornerRadius: CGFloat {
         didSet {
             forEachShadowLayer {
                 $0.cornerRadius = cornerRadius
@@ -57,7 +57,7 @@ open class ParentShadowLayer: CALayer {
         }
     }
 
-    public override var backgroundColor: CGColor? {
+    override public var backgroundColor: CGColor? {
         didSet {
             forEachShadowLayer {
                 $0.backgroundColor = backgroundColor
@@ -67,7 +67,7 @@ open class ParentShadowLayer: CALayer {
 
     // MARK: - Sublayer
 
-    open override func insertSublayer(_ layer: CALayer, at idx: UInt32) {
+    override open func insertSublayer(_ layer: CALayer, at idx: UInt32) {
         super.insertSublayer(layer, at: idx)
 
         if let shadow = layer as? ShadowLayer {
@@ -77,7 +77,7 @@ open class ParentShadowLayer: CALayer {
 
     // MARK: - Layout
 
-    public override func layoutSublayers() {
+    override public func layoutSublayers() {
         super.layoutSublayers()
 
         forEachShadowLayer {

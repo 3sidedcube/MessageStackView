@@ -41,7 +41,7 @@ open class PostView: UIView, Poster, UIViewPoster, PostManagerDelegate {
         self.init(frame: .zero)
     }
 
-    public override init(frame: CGRect) {
+    override public init(frame: CGRect) {
         super.init(frame: frame)
         setup()
     }
@@ -63,7 +63,7 @@ open class PostView: UIView, Poster, UIViewPoster, PostManagerDelegate {
 
     // MARK: - IntrinsicContentSize
 
-    open override var intrinsicContentSize: CGSize {
+    override open var intrinsicContentSize: CGSize {
         return CGSize(width: UIView.noIntrinsicMetric, height: 0)
     }
 
@@ -98,9 +98,10 @@ open class PostView: UIView, Poster, UIViewPoster, PostManagerDelegate {
             options: .curveEaseIn,
             animations: {
                 self.setTransform(on: view, forHidden: hidden)
-        }, completion: { _ in
-            completion()
-        })
+            }, completion: { _ in
+                completion()
+            }
+        )
     }
 
     // MARK: - Transform
@@ -192,7 +193,8 @@ open class PostView: UIView, Poster, UIViewPoster, PostManagerDelegate {
                 // Remove `view` as a posted subview
                 self.removePostSubview(view)
                 completion()
-        })
+            }
+        )
     }
 
     // MARK: - PostManagerDelegate

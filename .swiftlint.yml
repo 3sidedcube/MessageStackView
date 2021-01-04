@@ -1,24 +1,6 @@
 excluded:
   - Carthage
   - Pods
-force_cast: warning
-force_try:
-  severity: error
-line_length: 
-  warning: 100
-  ignores_comments: true
-  ignores_urls: true
-reporter: "xcode"
-number_separator:
-  minimum_length: 5
-file_name:
-  excluded:
-    - main.swift
-    - LinuxMain.swift
-type_name:
-  min_length: 3
-  max_length: 50
-
 disabled_rules:
   - file_header
   - identifier_name
@@ -66,9 +48,8 @@ opt_in_rules:
   - pattern_matching_keywords
   - prefer_self_type_over_type_of_self
   - private_action
-  - private_outlet:
-    - allows_public_getter: true
-#  - prohibited_interface_builder
+  - private_outlet
+  - prohibited_interface_builder
   - prohibited_super_call
   - quick_discouraged_call
   - quick_discouraged_focused_test
@@ -91,3 +72,21 @@ opt_in_rules:
 #  - vertical_whitespace_opening_braces
   - xct_specific_matcher
   - yoda_condition
+
+force_cast: warning
+force_try:
+  severity: error
+line_length: 
+  warning: 100
+  ignores_comments: true
+  ignores_urls: true
+reporter: "xcode"
+number_separator:
+  minimum_length: 5
+file_name:
+  excluded:
+    - main.swift
+    - LinuxMain.swift
+type_name:
+  min_length: 3
+  max_length: 50
