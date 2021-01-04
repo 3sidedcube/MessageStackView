@@ -10,40 +10,40 @@ import UIKit
 
 /// A `UIStackView` with a `PostManager` for posting, queueing and removing `UIView`s
 open class MessageStackView: UIStackView, Poster {
-    
+
     /// How posted `UIView`s are ordered in the `arrangedSubviews`.
     public enum Order {
-        
+
         /// Natural order of `UIStackView`s. Posted `UIView`s get appended to the
         /// `arrangedSubviews` array appearing below/after the previous.
         case `default` // topToBottom
-        
+
         /// Reverese order of `UIStackView`s. Posted `UIView`s get inserted at the start of the
         /// `arrangedSubviews` array appearing above/before the previous.
         case reversed // bottomToTop
     }
-    
+
     /// `PostManager` to manage posting, queueing, removing of `PostRequest`s
     public private(set) lazy var postManager: PostManager = {
         let postManager = PostManager(poster: self)
         postManager.isSerialQueue = false
         return postManager
     }()
-    
+
     /// Default `MessageConfiguration` to apply to posted `UIView`s
     public var messageConfiguation = MessageConfiguration() {
         didSet {
             guard messageConfiguation.applyToAll else {
                 return
             }
-            
+
             // If the `messageConfiguation` has updated, update the current `UIView`s
             arrangedSubviewsExcludingSpace
                 .compactMap { $0 as? MessageConfigurable }
                 .forEach { $0.set(configuration: messageConfiguation) }
         }
     }
-    
+
     /// Order of the posted `UIView`s in the `arrangedSubviews`
     ///
     /// When `.default`, `spaceView` will be the first `arrangedSubview`.
@@ -53,9 +53,9 @@ open class MessageStackView: UIStackView, Poster {
             updateSpaceView(updateArrangedSubviews: true)
         }
     }
-    
+
     // MARK: - Views
-    
+
     /// This view is for smooth animations when there are no `arrangedSubviews`
     /// in the `UIStackView`.
     /// Otherwise the `UIStackView` can not determine its width/height.
@@ -66,14 +66,14 @@ open class MessageStackView: UIStackView, Poster {
         view.backgroundColor = .clear
         return view
     }()
-    
+
     /// `NSLayoutConstraint` setting the constant of the height on the `spaceView`
     internal lazy var spaceViewHeightConstraint: NSLayoutConstraint = {
         return spaceView.heightAnchor.constraint(
             equalToConstant: .leastNormalMagnitude
         )
     }()
-    
+
     /// Height of the `spaceViewHeightConstraint`.
     ///
     /// - Note:
@@ -87,9 +87,9 @@ open class MessageStackView: UIStackView, Poster {
             spaceViewHeightConstraint.constant = spaceViewHeight
         }
     }
-    
+
     // MARK: - Init
-    
+
     /// Default initializer
     public convenience init() {
         self.init(arrangedSubviews: [])
@@ -97,31 +97,31 @@ open class MessageStackView: UIStackView, Poster {
         alignment = .fill
         distribution = .fill
         spacing = 0
-        
+
         // Configure `spaceView`
         updateSpaceView(updateArrangedSubviews: true)
-        
+
         // Make sure `postManger` is instantiated. This is in case `deinit` is
         // is the first instance to reference `postManager`, lazily
         // instantiating it, referencing `self`, which is being
         // de-initialized...
-        let _ = self.postManager.isSerialQueue
+        _ = self.postManager.isSerialQueue
     }
-    
+
     /// Invalidate on deinit
     deinit {
         postManager.invalidate()
     }
-    
+
     // MARK: - ArrangedSubviews
-    
+
     /// `arrangedSubviews` excluding `spaceView`
     public var arrangedSubviewsExcludingSpace: [UIView] {
         return arrangedSubviews.filter { $0 != spaceView }
     }
-    
+
     // MARK: - Animation
-    
+
     /// Show or hide the given `view`
     ///
     /// - Parameters:
@@ -140,12 +140,12 @@ open class MessageStackView: UIStackView, Poster {
             completion()
             return
         }
-        
+
         let spaceViewHeightAfterAnimation = animationWillStart(hidden: hidden)
         view.isHidden = !hidden
         layoutIfNeeded()
         superview?.layoutIfNeeded()
-        
+
         UIView.animate(withDuration: .animationDuration, animations: {
             view.isHidden = hidden
             self.animationWillEnd(spaceViewHeightAfterAnimation)
@@ -154,7 +154,7 @@ open class MessageStackView: UIStackView, Poster {
             completion()
         })
     }
-    
+
     /// Prepare `spaceView` if the animating is either:
     /// - adding the first arrangedSubview
     /// - removing the last arrangedSubview
@@ -166,7 +166,7 @@ open class MessageStackView: UIStackView, Poster {
         guard arrangedSubviewsExcludingSpace.count == 1 else {
             return nil
         }
-        
+
         let heightAfterAnimation: CGFloat
         if hidden {
             // Removing last arrangedSubview
@@ -174,14 +174,14 @@ open class MessageStackView: UIStackView, Poster {
         } else {
             // Adding first arrangedSubview
             heightAfterAnimation = spaceViewHeight
-            
+
             // Don't overrite spaceViewHeight
             spaceViewHeightConstraint.constant = .leastNormalMagnitude
         }
-        
+
         return heightAfterAnimation
     }
-    
+
     /// If `spaceViewHeightAfterAnimation` is defined, set the `spaceViewHeight`
     /// to this.
     /// - Parameter spaceViewHeightAfterAnimation: `CGFloat?`
@@ -191,13 +191,13 @@ open class MessageStackView: UIStackView, Poster {
         guard let spaceViewHeight = spaceViewHeightAfterAnimation else {
             return
         }
-        
+
         // Don't overrite spaceViewHeight
         spaceViewHeightConstraint.constant = spaceViewHeight
     }
-    
+
     // MARK: - SpaceView
-    
+
     /// Updates the `backgroundColor` of the `spaceView` based on the "next" arranged subview.
     /// If the `spaceView` is the first in the `arrangedSubviews`, then "next" is the subview
     /// after. Otherwise "next" is the subview before.
@@ -212,7 +212,7 @@ open class MessageStackView: UIStackView, Poster {
             postArrangedSubview(view: spaceView, order: order.switched)
             constrainSpaceView()
         }
-        
+
         let next: UIView?
         switch order {
         case .default:
@@ -220,11 +220,11 @@ open class MessageStackView: UIStackView, Poster {
         case .reversed:
             next = arrangedSubviews.elementBeforeFirst(of: spaceView)
         }
-        
+
         // Set backgroundColor equivalent to adjacent arranged subview
         spaceView.backgroundColor = next?.backgroundColor ?? .clear
     }
-    
+
     /// Add `spaceView` to the `arrangedSubviews`
     private func constrainSpaceView() {
         spaceView.translatesAutoresizingMaskIntoConstraints = false
@@ -232,9 +232,9 @@ open class MessageStackView: UIStackView, Poster {
             spaceViewHeightConstraint.isActive = true
         }
     }
-    
+
     // MARK: - Order
-    
+
     /// Update `order` given `layout`
     /// - Parameter layout: `MessageLayout`
     public func updateOrderForLayout(_ layout: MessageLayout) {
@@ -243,16 +243,16 @@ open class MessageStackView: UIStackView, Poster {
         case .bottom: order = .reversed
         }
     }
-    
+
     // MARK: - Post
-    
+
     /// `postArrangedSubview(view:order:)` with `view` and `order`
     ///
     /// - Parameter view: `UIView`
     private func postArrangedSubview(view: UIView) {
         postArrangedSubview(view: view, order: order)
     }
-    
+
     /// Post a `view` adding it to the `arrangedSubviews`
     ///
     /// - Parameters:
@@ -271,13 +271,13 @@ open class MessageStackView: UIStackView, Poster {
 // MARK: - UIViewPoster
 
 extension MessageStackView: UIViewPoster {
-    
+
     /// Only remove if `self` is the `view.superview`
     /// - Parameter view: `UIView`
     func shouldRemove(view: UIView) -> Bool {
         return view.superview == self
     }
-    
+
     /// Post `view`
     ///
     /// - Note:
@@ -297,16 +297,16 @@ extension MessageStackView: UIViewPoster {
     ) {
         postArrangedSubview(view: view)
         (view as? MessageConfigurable)?.set(configuration: messageConfiguation)
-        
+
         // Update spaceView here too incase properties on adjacent
         // arrangedSubview has, since posting, changed
         DispatchQueue.main.async {
             self.updateSpaceView()
         }
-        
+
         setView(view, hidden: false, animated: animated, completion: completion)
     }
-    
+
     /// Remove posted `view`
     ///
     /// - Parameters:
@@ -331,7 +331,7 @@ extension MessageStackView: UIViewPoster {
 // MARK: - Order + Extensions
 
 private extension MessageStackView.Order {
-    
+
     /// Other `Order` (opposite direction)
     var switched: Self {
         switch self {

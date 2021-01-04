@@ -657,6 +657,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = OBJ_87 /* Build configuration list for PBXNativeTarget "MessageStackView" */;
 			buildPhases = (
+				B872BE7C25A37F160031D619 /* Swift Lint */,
 				B87CC95624CAEAD9002B697C /* Headers */,
 				OBJ_90 /* Sources */,
 				OBJ_143 /* Frameworks */,
@@ -763,6 +764,27 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		B872BE7C25A37F160031D619 /* Swift Lint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Swift Lint";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint >/dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		B8BB086124C4BC23000E2E87 /* Sources */ = {

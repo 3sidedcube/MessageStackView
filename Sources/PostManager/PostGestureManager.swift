@@ -11,17 +11,17 @@ import UIKit
 
 /// Delegate callbacks for `PostGestureManager`
 protocol PostGestureManagerDelegate: class {
-    
+
     func postGestureManager(
         _ manager: PostGestureManager,
         didRequestToRemoveView view: UIView
     )
-    
+
     func postGestureManager(
         _ manager: PostGestureManager,
         didStartPanGestureForView view: UIView
     )
-    
+
     func postGestureManager(
         _ manager: PostGestureManager,
         didEndPanGestureForView view: UIView
@@ -33,24 +33,24 @@ protocol PostGestureManagerDelegate: class {
 /// E.g. The user pans a view off the top wanting for it to be dimissed.
 /// E.g. T user tapped to dismiss
 public class PostGestureManager {
-    
+
     /// `PostGestureManagerDelegate`
     weak var delegate: PostGestureManagerDelegate?
-    
+
     /// Map `UIView`s to their "tap to dismiss" `UITapGestureRecognizer`
     private var tapGestureMap = [UIView: UITapGestureRecognizer]()
-    
+
     /// Map `UIView`s to their "pan to dismiss" `UIPanGestureRecognizer`
     private var panGestureMap = [UIView: UIPanGestureRecognizer]()
-    
+
     // MARK: - Deinit
-    
+
     deinit {
         invalidate()
     }
-    
+
     // MARK: - Invalidate
-    
+
     func invalidate() {
         tapGestureMap.forEach {
             $0.key.removeGestureRecognizer($0.value)
@@ -58,13 +58,13 @@ public class PostGestureManager {
         panGestureMap.forEach {
             $0.key.removeGestureRecognizer($0.value)
         }
-        
+
         tapGestureMap = [:]
         panGestureMap = [:]
     }
-    
+
     // MARK: - Tap
-    
+
     /// Add `UITapGestureRecognizer` to `view` to remove it from `self`
     /// - Parameter view: `UIView` to add gesture to
     public func addTapToRemoveGesture(to view: UIView) {
@@ -78,18 +78,18 @@ public class PostGestureManager {
         tapGestureMap[view] = tap
         view.addGestureRecognizer(tap)
     }
-    
+
     /// Remove `UITapGestureRecognizer` from `view`
     /// - Parameter view: `UIView` to remove gesture from
     public func removeTapToRemoveGesture(from view: UIView) {
         guard let tap = tapGestureMap[view] else {
             return
         }
-        
+
         tapGestureMap[view] = nil
         view.removeGestureRecognizer(tap)
     }
-    
+
     /// When a `UIView` wants to be dismissed on tap.
     /// - Parameter sender: `UITapGestureRecognizer`
     @objc private func viewTapped(_ sender: UITapGestureRecognizer) {
@@ -97,9 +97,9 @@ public class PostGestureManager {
             requestRemove(view: view)
         }
     }
-    
+
     // MARK: - Pan
-    
+
     /// Add `UIPanGestureRecognizer` to `view` to remove it from `self`
     /// - Parameter view: `UIView` to add gesture to
     public func addPanToRemoveGesture(to view: UIView) {
@@ -113,24 +113,24 @@ public class PostGestureManager {
         panGestureMap[view] = tap
         view.addGestureRecognizer(tap)
     }
-    
+
     /// Remove `UIPanGestureRecognizer` from `view`
     /// - Parameter view: `UIView` to remove gesture from
     public func removePanToRemoveGesture(from view: UIView) {
         guard let tap = panGestureMap[view] else {
             return
         }
-        
+
         panGestureMap[view] = nil
         view.removeGestureRecognizer(tap)
     }
-    
+
     /// When a `UIView` wants to be dismissed on pan.
     /// - Parameter sender: `UIPanGestureRecognizer`
     @objc private func viewPanned(_ sender: UIPanGestureRecognizer) {
         guard let view = sender.view else { return }
         let state = sender.state
-        
+
         // Trigger delegate callback based for `boundaryState`
         switch state.boundaryState {
         case .started:
@@ -144,10 +144,10 @@ public class PostGestureManager {
         default:
             break
         }
-        
+
         // Handle pan based on state
         switch state {
-            
+
         // Pan did update
         case .changed:
             view.transform = CGAffineTransform(
@@ -155,37 +155,37 @@ public class PostGestureManager {
                 y: min(0, sender.translation(in: view.superview).y)
             )
             return
-            
+
         // Pan did finish
         case .ended:
             let translateY = view.transform.ty
             let centerY = view.center.y
-            
+
             let finalY = centerY + translateY
             if finalY < 0 {
                 requestRemove(view: view)
                 return
             }
-            
+
         // Other
         default:
             break
         }
-        
+
         UIView.animate(withDuration: .animationDuration) {
             view.transform = .identity
         }
     }
-    
+
     // MARK: - Remove
-    
+
     /// `UIView` should be removed based on gesture
     /// - Parameter view: `UIView` to remove
     private func requestRemove(view: UIView) {
         remove(view: view)
         delegate?.postGestureManager(self, didRequestToRemoveView: view)
     }
-    
+
     /// Remove references to gestures for `view`
     /// - Parameter view: `UIView`
     func remove(view: UIView) {
@@ -197,17 +197,17 @@ public class PostGestureManager {
 // MARK: - UIGestureRecognizer.State + BoundaryState
 
 private extension UIGestureRecognizer.State {
-    
+
     /// `State` can be started or finished
     @frozen enum BoundaryState {
-        
+
         /// `State` when the gesture started
         case started
-        
+
         /// `State` when the gesture end
         case ended
     }
-    
+
     /// `BoundaryState`
     var boundaryState: BoundaryState? {
         switch self {

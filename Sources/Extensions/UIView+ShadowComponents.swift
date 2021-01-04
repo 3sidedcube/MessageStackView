@@ -10,19 +10,19 @@ import UIKit
 
 /// Component representation of all properties required to render a shadow in UIKit
 public struct ShadowComponents {
-    
+
     /// The blur radius of the shadow
     public let radius: CGFloat
-    
+
     /// The opacity of the shadow
     public let opacity: Float
-    
+
     /// The color of the shadow
     public let color: UIColor
-    
+
     /// The offset of the shadow
     public let offset: CGSize
-    
+
     /// Default public memberwise initialiser
     /// - Parameters:
     ///   - radius: The blur radius of the shadow
@@ -40,7 +40,7 @@ public struct ShadowComponents {
         self.color = color
         self.offset = offset
     }
-    
+
     /// Default shadow properties on  `CALayer` from UIKit
     /// - Note: This won't show any shadow
     public static let `default` = ShadowComponents(
@@ -49,7 +49,7 @@ public struct ShadowComponents {
         color: .black,
         offset: CGSize(width: 0, height: -3)
     )
-    
+
     /// Default shadow gray
     public static let defaultBlack = ShadowComponents(
         radius: 3,
@@ -62,15 +62,8 @@ public struct ShadowComponents {
 // MARK: - CALayer + ShadowComponents
 
 public extension CALayer {
-    
+
     var shadowComponents: ShadowComponents? {
-        set {
-            guard let newValue = newValue else {
-                setShadowComponents(.default)
-                return
-            }
-            setShadowComponents(newValue)
-        }
         get {
             guard let shadowColor = shadowColor else {
                 return nil
@@ -83,8 +76,15 @@ public extension CALayer {
                 offset: shadowOffset
             )
         }
+        set {
+            guard let newValue = newValue else {
+                setShadowComponents(.default)
+                return
+            }
+            setShadowComponents(newValue)
+        }
     }
-    
+
     /// Set properties on the `CALayer` given by `components`
     /// - Parameter components: `ShadowComponents`
     private func setShadowComponents(_ components: ShadowComponents) {
@@ -98,7 +98,7 @@ public extension CALayer {
 // MARK: - UIView + ShadowComponents
 
 public extension UIView {
-    
+
     var shadowComponents: ShadowComponents? {
         get {
             return layer.shadowComponents

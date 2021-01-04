@@ -12,7 +12,7 @@ import UIKit
 // MARK: - UIColor + Colors
 
 extension UIColor {
-    
+
     /// Override `.red` color
     static let red = UIColor(
         red: 231/255, green: 19/255, blue: 36/255, alpha: 1

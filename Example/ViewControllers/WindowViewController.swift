@@ -11,12 +11,12 @@ import UIKit
 import MessageStackView
 
 class WindowViewController: UIViewController {
-    
+
     // MARK: - ViewController lifecycle
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         // `UIButton` to pop this `UIViewController` on
         // the `navigationController`
         UIButton.addToCenter(
@@ -25,7 +25,7 @@ class WindowViewController: UIViewController {
             target: self,
             selector: #selector(popButtonTouchUpInside)
         )
-        
+
         // `UIButton` to present another `UIViewController` on top
         // of this one
         UIButton.addToCenter(
@@ -34,7 +34,7 @@ class WindowViewController: UIViewController {
             target: self,
             selector: #selector(presentButtonTouchUpInside)
         ).transform = CGAffineTransform(translationX: 0, y: 30)
-        
+
         // `UIButton` to set another `UIViewController` as the
         // `rootViewController` on the window
         UIButton.addToCenter(
@@ -44,10 +44,10 @@ class WindowViewController: UIViewController {
             selector: #selector(keyWindowButtonTouchUpInside)
         ).transform = CGAffineTransform(translationX: 0, y: 60)
     }
-    
+
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
+
         UIApplication.shared.postView.post(badgeMessage:
             BadgeMessage(
                 title: "This is a window notification",
@@ -57,13 +57,13 @@ class WindowViewController: UIViewController {
             )
         )
     }
-    
+
     // MARK: - Actions
-    
+
     @objc private func popButtonTouchUpInside(_ sender: UIButton) {
         navigationController?.popViewController(animated: true)
     }
-    
+
     @objc private func presentButtonTouchUpInside(_ sender: UIButton) {
         let viewController = UIViewController()
         viewController.view.backgroundColor = UIColor.gray
@@ -72,37 +72,37 @@ class WindowViewController: UIViewController {
             target: self,
             action: #selector(cancelBarButtonItemTouchUpInside)
         )
-        
+
         let navigationController = UINavigationController(
             rootViewController: viewController
         )
-        
+
         present(navigationController, animated: true)
     }
-    
+
     @objc private func keyWindowButtonTouchUpInside(_ sender: UIButton) {
         let connectedScenes = UIApplication.shared.connectedScenes
         guard let windowScene = connectedScenes.first as? UIWindowScene,
             let sceneDelegate = windowScene.delegate as? SceneDelegate else {
                 return
         }
-        
+
         let oldWindow = sceneDelegate.window
         let viewController = WindowRootViewController()
-        
+
         let newWindow = UIWindow(windowScene: windowScene)
         newWindow.rootViewController = viewController
         sceneDelegate.window = newWindow
         newWindow.makeKeyAndVisible()
-        
+
         viewController.completion = { [weak newWindow] in
             newWindow?.resignKey()
-            
+
             sceneDelegate.window = oldWindow
             oldWindow?.makeKeyAndVisible()
         }
     }
-    
+
     @objc private func cancelBarButtonItemTouchUpInside(_ sender: UIBarButtonItem) {
         dismiss(animated: true)
     }
@@ -111,13 +111,13 @@ class WindowViewController: UIViewController {
 // MARK: - WindowRootViewController
 
 class WindowRootViewController: UIViewController {
-    
+
     var completion: (() -> Void)?
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
-        
+
         UIButton.addToCenter(
             of: view,
             title: "Resign Key Window",
@@ -125,7 +125,7 @@ class WindowRootViewController: UIViewController {
             selector: #selector(buttonTouchUpInside)
         )
     }
-    
+
     @objc private func buttonTouchUpInside(_ sender: UIButton) {
         completion?()
     }

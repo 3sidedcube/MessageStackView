@@ -11,7 +11,7 @@ import Foundation
 /// Alow the caller to control the animation when posting a message
 public struct PostAnimation: OptionSet {
     public let rawValue: Int
-    
+
     /// Override access modifier to public
     /// - Parameter rawValue: `Int`
     public init(rawValue: Int) {
@@ -20,13 +20,13 @@ public struct PostAnimation: OptionSet {
 
     /// Animate only on post
     public static let onPost = PostAnimation(rawValue: 1 << 0)
-    
+
     /// Animate only on remove
     public static let onRemove = PostAnimation(rawValue: 1 << 1)
-    
+
     /// Animate both on post and remove
     public static let both: PostAnimation = [.onPost, .onRemove]
-    
+
     /// Don't animate on either post or remove
     public static let none: PostAnimation = []
 }
@@ -34,7 +34,7 @@ public struct PostAnimation: OptionSet {
 // MARK: PostAnimation + Default
 
 extension PostAnimation {
-    
+
     /// Default `PostAnimation`
     public static let `default`: PostAnimation = .both
 }

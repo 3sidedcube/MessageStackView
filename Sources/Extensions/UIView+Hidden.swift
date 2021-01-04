@@ -12,7 +12,7 @@ import UIKit
 // MARK: - UIImageView + Image + Hidden
 
 extension UIImageView {
-    
+
     /// Set the `UIImageView.image` and update `isHidden` by nullability of`image`
     /// - Parameter image: `UIImage` to set
     func setImageAndHidden(_ image: UIImage?) {
@@ -24,7 +24,7 @@ extension UIImageView {
 // MARK: - UILabel + Text + Hidden
 
 extension UILabel {
-    
+
     /// Set the `UILabel.text` and update `isHidden` by nullability of `text`
     /// - Parameters:
     ///   - text: `String` text to set

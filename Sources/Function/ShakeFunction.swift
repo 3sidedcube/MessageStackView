@@ -23,32 +23,32 @@ struct ShakeFunction: Function {
 
     /// Maximum function value
     let Y: ValueType
-    
+
     /// A `sin(x)` curve repeats after a given cycle, define the number of cycles before `T`
     let N: Int
-    
+
     public init(
         T: ValueType,
         Y: ValueType,
         N: Int
-    ){
+    ) {
         self.T = T
         self.Y = Y
         self.N = N
     }
-    
+
     /// Function scale factor
     var alpha: Double {
         return Y / (T * T)
     }
-    
+
     /// Cycle time
     var C: TimeInterval {
         return T / TimeInterval(N)
     }
-    
+
     // MARK: - Function
-    
+
     func value(for x: Double) -> Double {
         return alpha * x * x * sin(2 * Double.pi * x / C)
     }

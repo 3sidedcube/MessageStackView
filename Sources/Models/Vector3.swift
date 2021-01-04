@@ -10,13 +10,13 @@ import Foundation
 
 /// 3 dimensional vector with values in X, Y, and Z
 struct Vector3<Element> where Element: FloatingPoint {
-    
+
     /// X coordinate value
     var x: Element
-    
+
     /// Y coordinate value
     var y: Element
-    
+
     /// Z coordinate value
     var z: Element
 }
@@ -44,11 +44,11 @@ extension Vector3: CustomStringConvertible {
 // MARK: - AdditiveArithmetic
 
 extension Vector3: AdditiveArithmetic {
-    
+
     static var zero: Vector3 {
         return Vector3(x: 0, y: 0, z: 0)
     }
-    
+
     static func + (lhs: Vector3, rhs: Vector3) -> Vector3 {
         return Vector3(
             x: lhs.x + rhs.x,
@@ -56,7 +56,7 @@ extension Vector3: AdditiveArithmetic {
             z: lhs.z + rhs.z
         )
     }
-    
+
     static func - (lhs: Vector3, rhs: Vector3) -> Vector3 {
         return Vector3(
             x: lhs.x - rhs.x,
@@ -69,7 +69,7 @@ extension Vector3: AdditiveArithmetic {
 // MARK: - Extensions
 
 extension Vector3 {
-    
+
     /// `Array<Element>` for `x`, `y`, `z`
     var array: [Element] {
         return [x, y, z]

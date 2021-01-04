@@ -10,19 +10,19 @@ import UIKit
 
 /// Message model to post
 public struct Message {
-    
+
     /// Title of the message
-    public var title: String? = nil
-    
+    public var title: String?
+
     /// Subtitle of the message
-    public var subtitle: String? = nil
-    
+    public var subtitle: String?
+
     /// Left `UIImage` of the message
-    public var leftImage: UIImage? = nil
-    
+    public var leftImage: UIImage?
+
     /// Right `UIImage` of the message
-    public var rightImage: UIImage? = nil
-    
+    public var rightImage: UIImage?
+
     /// Default public memberwise initializer.
     /// - Parameters:
     ///   - title: `String` title of the message
@@ -34,7 +34,7 @@ public struct Message {
         subtitle: String? = nil,
         leftImage: UIImage? = nil,
         rightImage: UIImage? = nil
-    ){
+    ) {
         self.title = title
         self.subtitle = subtitle
         self.leftImage = leftImage

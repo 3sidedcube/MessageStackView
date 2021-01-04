@@ -12,7 +12,7 @@ import UIKit
 // MARK: - Post
 
 extension Poster {
-    
+
     /// Post a `Message` creating a `MessageView`
     ///
     /// - Parameters:
@@ -27,20 +27,20 @@ extension Poster {
         dismissAfter: TimeInterval? = .defaultMessageDismiss,
         animated: PostAnimation = .default
     ) -> MessageView {
-        
+
         // Create a `MessageView`
         let messageView = MessageView()
-        
+
         // Apply message
         messageView.set(message: message)
-        
+
         // Post the view
         postManager.post(postRequest: PostRequest(
             view: messageView,
             dismissAfter: dismissAfter,
             animated: animated
         ))
-        
+
         return messageView
     }
 }

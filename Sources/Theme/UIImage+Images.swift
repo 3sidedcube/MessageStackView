@@ -11,10 +11,10 @@ import UIKit
 
 /// Custom `UIImage`s used in the framework
 public extension UIImage {
-    
+
     /// Gray circle with a cross in the center
     static let iconClose = UIImage("iconClose")
-    
+
     /// Icon for not connected to internet
     static let noInternet = UIImage("noInternet")
 }
@@ -22,7 +22,7 @@ public extension UIImage {
 // MARK: - UIImage + Init
 
 private extension UIImage {
-    
+
     /// Find a `UIImage` with name from this frameworks `Bundle`
     /// - Parameter name: Name of the `UIImage`
     convenience init?(_ name: String) {

@@ -10,14 +10,15 @@ import Foundation
 import UIKit
 
 public extension UIApplication {
-    
+
     /// First `UIWindow` where `isKeyWindow`
+    ///
     /// - Note:
-    /// Named as such due to naming conflicts. TODO: Look to resolve
+    /// Named as such due to common naming conflicts.
     var appKeyWindow: UIWindow? {
         return windows.first { $0.isKeyWindow } ?? windows.first
     }
-    
+
     /// `visibleViewController` on the `rootViewController` of `keyWindow`
     var visibleViewController: UIViewController? {
         guard let rootViewController = appKeyWindow?.rootViewController else {
@@ -32,7 +33,7 @@ public extension UIApplication {
 // MARK: - UIViewController + VisibleViewController
 
 public extension UIViewController {
-    
+
     /// Visible `UIViewController` from `viewController`
     ///
     /// - Parameters:
@@ -43,32 +44,32 @@ public extension UIViewController {
         from viewController: UIViewController,
         includeSystemViewControllers: Bool = false
     ) -> UIViewController {
-        
+
         // splitViewController
         if let splitViewController = viewController as? UISplitViewController,
             let firstViewController = splitViewController.viewControllers.first {
             return visibleViewController(from: firstViewController)
         }
-        
+
         // navigationController
         if let navigationController = viewController as? UINavigationController,
             let lastViewController = navigationController.viewControllers.last {
             return visibleViewController(from: lastViewController)
         }
-        
+
         // tabBarController
         if let tabController = viewController as? UITabBarController {
             if let selectedViewController = tabController.selectedViewController {
                 return visibleViewController(from: selectedViewController)
             }
         }
-        
+
         // presentedViewController
         if let presentedViewController = viewController.presentedViewController,
             (includeSystemViewControllers || !presentedViewController.isSystemViewController) {
             return visibleViewController(from: presentedViewController)
         }
-        
+
         return viewController
     }
 }

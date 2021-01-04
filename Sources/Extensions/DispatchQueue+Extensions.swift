@@ -9,7 +9,7 @@
 import Foundation
 
 public extension DispatchQueue {
-    
+
     /// Execute `closure` after `time` from `.now()`
     /// - Parameters:
     ///   - time: `DispatchTimeInterval`
@@ -23,7 +23,7 @@ public extension DispatchQueue {
             execute: closure
         )
     }
-    
+
     /// Execute `closure` on main thread or immediately if already on it.
     /// - Parameter closure: Closure to execute
     static func executeOnMain(execute closure: @escaping () -> Void) {

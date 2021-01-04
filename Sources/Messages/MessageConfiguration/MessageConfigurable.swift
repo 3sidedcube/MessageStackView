@@ -10,7 +10,7 @@ import UIKit
 
 /// Apply a `MessageConfiguration`
 public protocol MessageConfigurable {
-    
+
     /// Allow a `MessageConfiguration` to be applied
     ///
     /// - Parameter configuration: The `MessageConfiguration`

@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 extension UIView {
-    
+
     /// Find the first superview (recursive) of type `T`.
     /// - Parameters:
     ///   - includeSelf: If `self` is of type `T` then return `self`
@@ -18,10 +18,10 @@ extension UIView {
         if includeSelf, let view = self as? T {
             return view
         }
-        
+
         return superview?.firstSuperviewOfType(includeSelf: true)
     }
-    
+
     /// Find the first subview (recursive) of type `T`.
     /// - Parameters:
     ///   - includeSelf: If `self` is of type `T` then return `self`
@@ -29,16 +29,16 @@ extension UIView {
         if includeSelf, let view = self as? T {
             return view
         }
-        
+
         for subview in subviews {
             if let view: T = subview.firstSubviewOfType(includeSelf: true) {
                 return view
             }
         }
-        
+
         return nil
     }
-    
+
     /// Bring `self` to front of `superview` `subviews` stack
     func bringToFront() {
         superview?.bringSubviewToFront(self)

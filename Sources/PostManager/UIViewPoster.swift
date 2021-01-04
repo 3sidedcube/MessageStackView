@@ -12,9 +12,9 @@ import UIKit
 /// `UIViewPoster` is sent messages to post and remove `UIView`s.
 /// It should handle any animation and execute a given closure on completion.
 internal protocol UIViewPoster: class {
-    
+
     // MARK: - Post
-    
+
     /// Post `view` with animation if `animated`
     ///
     /// - Parameters:
@@ -24,14 +24,14 @@ internal protocol UIViewPoster: class {
     func post(
         view: UIView, animated: Bool, completion: @escaping () -> Void
     )
-    
+
     /// Should `view` be posted
     ///
     /// - Parameter view: `UIView`
     func shouldPost(view: UIView) -> Bool
-    
+
     // MARK: - Remove
-    
+
     /// Remove `view` with animation if `animated`
     ///
     /// - Parameters:
@@ -41,7 +41,7 @@ internal protocol UIViewPoster: class {
     func remove(
         view: UIView, animated: Bool, completion: @escaping () -> Void
     )
-    
+
     /// Should `view` be removed
     ///
     /// - Parameter view: `UIView`
@@ -51,11 +51,11 @@ internal protocol UIViewPoster: class {
 // MARK: - UIViewPoster + Default
 
 internal extension UIViewPoster {
-    
+
     func shouldPost(view: UIView) -> Bool {
         return true // By default allow post
     }
-    
+
     func shouldRemove(view: UIView) -> Bool {
         return true // By default allow remove
     }

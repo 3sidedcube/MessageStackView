@@ -18,21 +18,21 @@ open class ConnectivityViewController: UIViewController, ConnectivityMessageable
     open var messageLayout: MessageLayout {
         return .bottom
     }
-    
+
     /// `MessageStackView` at the bottom of the screen
     public private(set) lazy var messageStackView = MessageStackView()
-    
+
     // MARK: - Deinit
-    
+
     deinit {
         messageStackView.postManager.invalidate()
     }
-    
+
     // MARK: - ViewController lifecycle
 
     open override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         messageStackView.addTo(
             view: view,
             layout: messageLayout,
@@ -46,9 +46,9 @@ open class ConnectivityViewController: UIViewController, ConnectivityMessageable
         super.viewSafeAreaInsetsDidChange()
         messageStackView.spaceViewHeight = safeAreaInset
     }
-    
+
     // MARK: - SafeArea
-    
+
     /// Safe area inset of `messageParentView`
     var safeAreaInset: CGFloat {
         switch messageLayout {

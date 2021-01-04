@@ -10,51 +10,53 @@ import Foundation
 
 /// `PostView` singleton to to be added to the `UIApplication`'s key window
 class ApplicationPostView: PostView {
-    
+
     /// Shared `PostView` singleton
     static let shared = ApplicationPostView()
-    
+
     /// Override `removeFromSuperviewOnEmpty` forcing `true`
     override var removeFromSuperviewOnEmpty: Bool {
         get {
             return true
         }
+        // swiftlint:disable unused_setter_value
         set {
         }
+        // swiftlint:enable unused_setter_value
     }
-    
+
     // MARK: - Init
-    
+
     convenience init() {
         self.init(frame: .zero)
     }
-    
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         setup()
     }
-    
+
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         setup()
     }
-    
+
     deinit {
         NotificationCenter.default.removeObserver(
             self,
             name: UIWindow.didBecomeKeyNotification,
             object: nil
         )
-        
+
         NotificationCenter.default.removeObserver(
             self,
             name: .viewWillAppear,
             object: nil
         )
     }
-    
+
     // MARK: - Setup
-    
+
     private func setup() {
         NotificationCenter.default.addObserver(
             self,
@@ -62,7 +64,7 @@ class ApplicationPostView: PostView {
             name: UIWindow.didBecomeKeyNotification,
             object: nil
         )
-        
+
         NotificationCenter.default.addObserver(
             self,
             selector: #selector(viewWillAppearNotification),
@@ -70,9 +72,9 @@ class ApplicationPostView: PostView {
             object: nil
         )
     }
-    
+
     // MARK: - Functionality
-    
+
     /// Add as subview to `UIApplication.shared.appKeyWindow` if required
     /// or bring to front of superview subviews hierarchy.
     ///
@@ -83,16 +85,16 @@ class ApplicationPostView: PostView {
         if force {
             removeFromSuperview()
         }
-        
+
         guard superview == nil else {
             bringToFront()
             return
         }
-            
+
         guard let keyWindow = UIApplication.shared.appKeyWindow else {
             return
         }
-        
+
         addTo(
             view: keyWindow,
             layout: .top,
@@ -101,24 +103,24 @@ class ApplicationPostView: PostView {
         keyWindow.layoutIfNeeded()
         layoutIfNeeded()
     }
-    
+
     // MARK: - Notification
-    
+
     @objc private func windowDidBecomeKeyNotification(
         _ sender: Notification
-    ){
+    ) {
         guard postManager.isActive else { return }
         updateSuperviewIfRequired(force: true)
     }
-    
+
     @objc private func viewWillAppearNotification(
         _ sender: Notification
-    ){
+    ) {
         bringToFront()
     }
-    
+
     // MARK: - PostManagerDelegate
-    
+
     override func postManager(
         _ postManager: PostManager,
         willPost view: UIView

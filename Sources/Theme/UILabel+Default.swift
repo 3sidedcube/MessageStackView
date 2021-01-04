@@ -12,7 +12,7 @@ import UIKit
 // MARK: - UILabel + Default
 
 extension UILabel {
-    
+
     /// `UILabel` setting default properties
     static var `default`: UILabel {
         let label = UILabel()

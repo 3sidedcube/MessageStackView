@@ -11,22 +11,22 @@ import UIKit
 
 /// Model based on Sketch properties.
 struct SketchShadow {
-    
+
     /// Shadow color
     var color: UIColor
-    
+
     /// Shadow opacity
     var alpha: Float
-    
+
     /// Shadow offset in x
     var x: CGFloat
-    
+
     /// Shadow offset in y
     var y: CGFloat
-    
+
     /// Shadow blur (2 * shadow radius)
     var blur: CGFloat
-    
+
     /// Shadow spread
     var spread: CGFloat
 }
@@ -34,7 +34,7 @@ struct SketchShadow {
 // MARK: - ShadowComponents + SketchShadow
 
 extension ShadowComponents {
-    
+
     /// `ShadowComponents` to `SketchShadow`
     var sketchShadow: SketchShadow {
         return SketchShadow(
@@ -51,7 +51,7 @@ extension ShadowComponents {
 // MARK: - CALayer + SketchShadow
 
 extension CALayer {
-    
+
     /// Apply `sketchShadow` to `CALayer`
     ///
     /// - Warning:
