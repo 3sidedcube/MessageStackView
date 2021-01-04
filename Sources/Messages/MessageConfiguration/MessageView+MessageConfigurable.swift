@@ -1,5 +1,5 @@
 //
-//  Message+MessageConfigurable.swift
+//  MessageView+MessageConfigurable.swift
 //  MessageStackView
 //
 //  Created by Ben Shutt on 03/07/2020.

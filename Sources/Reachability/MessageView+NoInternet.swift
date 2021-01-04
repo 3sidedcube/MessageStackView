@@ -1,5 +1,5 @@
 //
-//  NoInternet+UI.swift
+//  MessageView+NoInternet.swift
 //  MessageStackView
 //
 //  Created by Ben Shutt on 24/07/2020.
@@ -25,7 +25,7 @@ public extension MessageView {
 
 // MARK: - UILabel + Configure
 
-extension UILabel {
+private extension UILabel {
 
     /// Configure UI properties for the no internet `UILabel`
     /// - Parameters:
