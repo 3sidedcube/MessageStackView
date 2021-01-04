@@ -66,6 +66,7 @@ final class ArrayExtensionTests: XCTestCase {
         XCTAssertNil(double.elementAfterFirst(of: last))
     }
 
+    // swiftlint:disable empty_xctest_method
     static var allTests = [
         ("testElementAfter", testElementAfter),
         ("testElementBefore", testElementBefore),
@@ -73,4 +74,5 @@ final class ArrayExtensionTests: XCTestCase {
         ("testSingle", testSingle),
         ("testDouble", testDouble)
     ]
+    // swiftlint:enable empty_xctest_method
 }
