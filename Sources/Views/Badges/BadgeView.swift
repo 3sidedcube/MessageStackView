@@ -28,6 +28,14 @@ open class BadgeView: BadgeContainerView {
     }()
     
     // MARK: - Computed
+
+    /// Allows setting the rendering mode of the image view,
+    /// defaults to `.alwaysTemplate`
+    public var renderingMode: UIImage.RenderingMode = .alwaysTemplate {
+        didSet {
+            imageView.image = image?.withRenderingMode(renderingMode)
+        }
+    }
     
     /// Shorthand for getting and setting `image` of `imageView`
     public var image: UIImage? {
@@ -35,7 +43,7 @@ open class BadgeView: BadgeContainerView {
             return imageView.image
         }
         set {
-            imageView.image = newValue?.withRenderingMode(.alwaysTemplate)
+            imageView.image = newValue?.withRenderingMode(renderingMode)
         }
     }
     
