@@ -11,19 +11,19 @@ import UIKit
 
 /// Custom `UIColor`s used in the framework
 extension UIColor {
-    
+
     /// Theme red color
     static let themeRed = UIColor(red255: 231, green255: 19, blue255: 36)
-    
+
     /// Theme dark gray color
     static let themeDarkGray = UIColor(red255: 109, green255: 110, blue255: 112)
-    
+
     /// Shadow color
     static let shadowGray = UIColor(red255: 63, green255: 63, blue255: 63)
-    
+
     /// First part of neomorphic shadow
     static let neomorphicGray1 = UIColor(red255: 149, green255: 150, blue255: 177)
-    
+
     /// Second part of neomorphic shadow
     static let neomorphicGray2 = UIColor(red255: 143, green255: 147, blue255: 150)
 }
@@ -31,7 +31,7 @@ extension UIColor {
 // MARK: - UIColor + RGB-255
 
 extension UIColor {
-    
+
     /// Shorthand to create colors using 255 notation
     ///
     /// - Parameters:
@@ -46,9 +46,9 @@ extension UIColor {
         alpha: CGFloat = 1
     ) {
         self.init(
-            red: red/255,
-            green: green/255,
-            blue: blue/255,
+            red: red / 255,
+            green: green / 255,
+            blue: blue / 255,
             alpha: alpha
         )
     }

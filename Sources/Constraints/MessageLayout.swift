@@ -13,10 +13,10 @@ import UIKit
 /// - Note:
 /// `MessageLayout` is not required, one may opt to constrain explicitly instead.
 public enum MessageLayout: Int {
-    
+
     /// Constrain a `UIView` to the top of `UIView`
     case top
-    
+
     /// Constrain a `UIView` to the bottom of another `UIView`
     case bottom
 }
@@ -37,7 +37,7 @@ public extension MessageLayout {
     ) {
         superview.addSubview(subview)
         subview.translatesAutoresizingMaskIntoConstraints = false
-        
+
         switch self {
         case .top:
             constrain(subview, to: superview, including: [
@@ -53,7 +53,7 @@ public extension MessageLayout {
             ], safeAnchors: safeAnchors)
         }
     }
-    
+
     /// Constrain given `constraints` + leading and width anchor of `subview` to `superview`
     /// - Parameters:
     ///   - subview: `UIView` to add to `superview`
@@ -64,7 +64,7 @@ public extension MessageLayout {
         to superview: UIView,
         including constraints: [NSLayoutConstraint],
         safeAnchors: Bool
-    ){
+    ) {
         NSLayoutConstraint.activate(constraints + [
             subview.leadingAnchor.constraint(
                 equalTo: superview.leadingAnchor(safe: safeAnchors)
@@ -79,7 +79,7 @@ public extension MessageLayout {
 // MARK: - UIView + MessageLayout
 
 public extension UIView {
-    
+
     /// Layout `self` with `layout` (a common `MessageLayout` use case).
     ///
     /// - Note:
@@ -97,12 +97,12 @@ public extension UIView {
     ) {
         // Remove from previous layout tree if exists
         removeFromSuperview()
-        
+
         // Constrain `self`
         layout.constrain(
             subview: self, to: view, safeAnchors: constrainToSafeArea
         )
-        
+
         // Trigger a layout cycle
         view.setNeedsLayout()
     }

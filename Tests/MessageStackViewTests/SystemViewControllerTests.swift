@@ -31,11 +31,19 @@ class SystemViewControllerTests: XCTestCase {
         }
         XCTAssertTrue(UIImagePickerController().isSystemViewController)
         XCTAssertTrue(EKEventEditViewController().isSystemViewController)
-        XCTAssertTrue(UIActivityViewController(activityItems: [], applicationActivities: nil).isSystemViewController)
+        XCTAssertTrue(
+            UIActivityViewController(
+                activityItems: [],
+                applicationActivities: nil).isSystemViewController
+        )
         XCTAssertTrue(CNContactViewController().isSystemViewController)
-        XCTAssertTrue(UIDocumentPickerViewController(documentTypes: [".txt"], in: .open).isSystemViewController)
+        XCTAssertTrue(
+            UIDocumentPickerViewController(
+                documentTypes: [".txt"], in: .open
+            ).isSystemViewController
+        )
         XCTAssertTrue(AVPlayerViewController().isSystemViewController)
-        
+
         XCTAssertFalse(UIViewController().isSystemViewController)
         XCTAssertFalse(UITableViewController().isSystemViewController)
         XCTAssertFalse(CustomViewController().isSystemViewController)
@@ -50,7 +58,7 @@ class CustomViewController: UIViewController {
 // MARK: - Extensions
 
 private extension URL {
-    
+
     /// A sample `URL`
     static let sample = URL(string: "https://3sidedcube.com/")!
 }

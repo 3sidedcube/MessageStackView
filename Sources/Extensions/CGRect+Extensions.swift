@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 extension CGRect {
-    
+
     /// `CRect` with `.zero` origin and `self.size` set to the given `size`
     /// - Parameter size: `CGSize`
     init (size: CGSize) {
@@ -24,7 +24,7 @@ extension CGRect {
     func inset(by value: CGFloat) -> CGRect {
         return self.inset(by: UIEdgeInsets(value: value))
     }
-    
+
     /// `CGRect` centered about `self` with size `size`
     /// - Parameter size: Size of square rect
     func centered(size: CGFloat) -> CGRect {
@@ -35,14 +35,14 @@ extension CGRect {
             height: size
         )
     }
-    
+
     /// Center `CGPoint` defined as:
     /// - `x` equals half the `width` and
     /// - `y` equals half the `height`
     var center: CGPoint {
         return CGPoint(x: width * 0.5, y: height * 0.5)
     }
-    
+
     /// "Circle" `CGRect` at the given `center` with `radius`.
     /// Of course the `CGRect` is a square by definition
     /// - Parameters:

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "1120"
+   LastUpgradeVersion = "1230"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "B844209B238D3DF700462399"
+               BlueprintIdentifier = "MessageStackView::MessageStackView"
                BuildableName = "MessageStackView.framework"
                BlueprintName = "MessageStackView"
                ReferencedContainer = "container:MessageStackView.xcodeproj">
@@ -50,7 +50,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "B844209B238D3DF700462399"
+            BlueprintIdentifier = "MessageStackView::MessageStackView"
             BuildableName = "MessageStackView.framework"
             BlueprintName = "MessageStackView"
             ReferencedContainer = "container:MessageStackView.xcodeproj">

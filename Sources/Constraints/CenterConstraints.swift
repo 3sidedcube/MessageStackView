@@ -17,15 +17,15 @@ import UIKit
 /// When talking about `UIEdgeInsets` for trailing and bottom, the value of `c` would refer to
 /// the opposite direction
 struct CenterConstraints: Constrainable {
-    
+
     /// Center X `NSLayoutConstraint`
     var centerX: NSLayoutConstraint
-    
+
     /// Center Y `NSLayoutConstraint`
     var centerY: NSLayoutConstraint
-    
+
     // MARK: - Constrainable
-    
+
     /// All `NSLayoutConstraint`s of `Center`
     var constraints: [NSLayoutConstraint] {
         return [centerX, centerY]
@@ -35,7 +35,7 @@ struct CenterConstraints: Constrainable {
 // MARK: - UIView + EdgeConstraints
 
 extension UIView {
-    
+
     /// Construct `CenterConstraints` `NSLayoutConstraint`s from
     /// `self` to `view`
     ///
@@ -48,18 +48,18 @@ extension UIView {
         activate: Bool = true
     ) -> CenterConstraints {
         translatesAutoresizingMaskIntoConstraints = false
-        
+
         // Create `NSLayoutConstraint`s to the center anchors
         let centerConstraints = CenterConstraints(
             centerX: centerXAnchor.constraint(equalTo: view.centerXAnchor),
             centerY: centerYAnchor.constraint(equalTo: view.centerYAnchor)
         )
-        
+
         // Activate `NSLayoutConstraint`s if required
         if activate {
             centerConstraints.activate()
         }
-        
+
         return centerConstraints
     }
 }

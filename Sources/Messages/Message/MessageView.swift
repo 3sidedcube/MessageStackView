@@ -16,46 +16,46 @@ import UIKit
 ///       - Title `UILabel`
 ///       - Detail `UILabel`
 open class MessageView: UIView {
-    
+
     /// Constants for the `MessageView`
     public struct Constants {
-        
+
         /// Size of the `UIImageView`
-        static let imageViewSize: CGSize = CGSize(width: 20, height: 20)
-        
+        static let imageViewSize = CGSize(width: 20, height: 20)
+
         /// Inset of the `UIStackView` relative to the `MessageView`
         static let stackViewInsets = UIEdgeInsets(
             top: 10, left: 16, bottom: 10, right: 16
         )
-        
+
         /// Vertical `UIStackView` spacing
         static let verticalStackViewSpacing: CGFloat = 5
-        
+
         /// Horizontal `UIStackView` spacing
         static let horizontalStackViewSpacing: CGFloat = 10
-        
+
         /// Default tint color for view
         static let defaultTintColor = UIColor.darkGray
-        
+
         /// Default font for `titleLabel`
         static let titleFont = UIFont.systemFont(ofSize: 14, weight: .semibold)
-        
+
         /// Default font for `detailLabel`
         static let detailFont = UIFont.systemFont(ofSize: 12, weight: .regular)
     }
-    
+
     /// Container view for other subviews of `MessageView`.
     /// Required for shadow: for smooth animations we need to clip subview content (`clipsToBounds = true` ),
     /// but this would remove shadow. So clip this `containerView`, but allow out of bounds content on the `MessageView`
     public private(set) lazy var containerView: UIView = {
         let view = UIView()
         view.backgroundColor = .clear
-        
+
         /// Hide subview content when the height of this view is being animated
         view.clipsToBounds = true
         return view
     }()
-    
+
     /// `UIStackView` subview of `MessageView` to position `UIImageView` and `UILabel`
     public private(set) lazy var horizontalStackView: UIStackView = {
         let stackView: UIStackView = .defaultStackView
@@ -64,19 +64,19 @@ open class MessageView: UIView {
         stackView.spacing = Constants.horizontalStackViewSpacing
         return stackView
     }()
-    
+
     /// `UIImageView`, first arrangedSubview of the horizontally oriented `UIStackView`
     public private(set) lazy var leftImageView: UIImageView = {
         return .defaultImageView
     }()
-    
+
     /// `UIStackView` subview of `MessageView` to position `UIImageView` and `UILabel`
     public private(set) lazy var verticalStackView: UIStackView = {
         let stackView: UIStackView = .defaultStackView
         stackView.spacing = Constants.verticalStackViewSpacing
         return stackView
     }()
-    
+
     /// `UILabel`, last arrangedSubview of the horizontally oriented `UIStackView`
     public private(set) lazy var titleLabel: UILabel = {
         let label: UILabel = .default
@@ -84,7 +84,7 @@ open class MessageView: UIView {
         label.textColor = .black
         return label
     }()
-    
+
     /// `UILabel`, last arrangedSubview of the horizontally oriented `UIStackView`
     public private(set) lazy var subtitleLabel: UILabel = {
         let label: UILabel = .default
@@ -92,59 +92,59 @@ open class MessageView: UIView {
         label.textColor = .darkGray
         return label
     }()
-    
+
     /// `UIImageView`, first arrangedSubview of the horizontally oriented `UIStackView`
     public private(set) lazy var rightImageView: UIImageView = {
         return .defaultImageView
     }()
-    
+
     /// `CGSize` of the `leftImageView`
     public var leftImageViewSize: CGSize = Constants.imageViewSize {
         didSet {
             leftImageSizeConstaints.setSize(leftImageViewSize)
         }
     }
-    
+
     /// `CGSize` of the `rightImageView`
     public var rightImageViewSize: CGSize = Constants.imageViewSize {
         didSet {
             rightImageSizeConstaints.setSize(rightImageViewSize)
         }
     }
-    
+
     /// `NSLayoutConstraints` setting the `SizeConstraints` on the `leftImageView`
     private var leftImageSizeConstaints: SizeConstraints!
-    
+
     /// `NSLayoutConstraints` setting the `SizeConstraints` on the `rightImageView`
     private var rightImageSizeConstaints: SizeConstraints!
-    
+
     // MARK: - Init
-    
+
     /// Create with default frame
     public convenience init() {
         self.init(frame: .zero)
     }
-    
+
     /// Create with explicit frame - `CGRect`
-    public override init(frame: CGRect) {
+    override public init(frame: CGRect) {
         super.init(frame: frame)
         setup()
     }
-    
+
     /// Create with coder - `NSCoder`
     public required init?(coder: NSCoder) {
         super.init(coder: coder)
         setup()
     }
-    
+
     // MARK: - Setup
-    
+
     /// Add subviews and constrain
     internal func setup() {
-        
+
         /// Explicity set default tintColor
         tintColor = Constants.defaultTintColor
-        
+
         // Add subviews
         addSubview(containerView)
         containerView.addSubview(horizontalStackView)
@@ -153,17 +153,17 @@ open class MessageView: UIView {
         horizontalStackView.addArrangedSubview(rightImageView)
         verticalStackView.addArrangedSubview(titleLabel)
         verticalStackView.addArrangedSubview(subtitleLabel)
-        
+
         // Set translatesAutoresizingMaskIntoConstraints
         containerView.translatesAutoresizingMaskIntoConstraints = false
         horizontalStackView.translatesAutoresizingMaskIntoConstraints = false
         leftImageView.translatesAutoresizingMaskIntoConstraints = false
         rightImageView.translatesAutoresizingMaskIntoConstraints = false
-        
+
         // Set hugging and compressionResistance
         subtitleLabel.setContentHuggingPriority(.init(200), for: .vertical)
         subtitleLabel.setContentCompressionResistancePriority(.init(700), for: .vertical)
-        
+
         // Constrain
         var constraints = containerView.edgeConstraints(to: self).constraints
 
@@ -171,7 +171,7 @@ open class MessageView: UIView {
         let horizontalStackViewBottom = horizontalStackView.bottomAnchor.constraint(
             equalTo: containerView.bottomAnchor, constant: -Constants.stackViewInsets.bottom)
         horizontalStackViewBottom.priority = .init(999)
-        
+
         constraints += [
             horizontalStackView.leadingAnchor.constraint(
                 equalTo: containerView.leadingAnchor, constant: Constants.stackViewInsets.left),
@@ -183,16 +183,16 @@ open class MessageView: UIView {
         ]
         leftImageSizeConstaints = leftImageView.sizeConstraints(size: Constants.imageViewSize)
         constraints += leftImageSizeConstaints?.constraints ?? []
-        
+
         rightImageSizeConstaints = rightImageView.sizeConstraints(size: Constants.imageViewSize)
         constraints += rightImageSizeConstaints?.constraints ?? []
-        
+
         NSLayoutConstraint.activate(constraints)
     }
-    
+
     // MARK: - Override
-    
-    public override var tintColor: UIColor! {
+
+    override public var tintColor: UIColor! {
         didSet {
             leftImageView.tintColor = tintColor
             titleLabel.textColor = tintColor
@@ -205,7 +205,7 @@ open class MessageView: UIView {
 // MARK: - UIStackView + Default
 
 private extension UIStackView {
-    
+
     /// `UIStackView` setting default properties
     static var defaultStackView: UIStackView {
         let stackView = UIStackView()
@@ -220,7 +220,7 @@ private extension UIStackView {
 // MARK: - UIImageView + Default
 
 private extension UIImageView {
-    
+
     /// `UIImageView` setting default properties
     static var defaultImageView: UIImageView {
         let imageView = UIImageView()

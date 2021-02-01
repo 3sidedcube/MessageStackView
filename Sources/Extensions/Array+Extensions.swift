@@ -8,7 +8,7 @@
 import Foundation
 
 public extension Array where Element: Equatable {
-    
+
     /// Get the next `Element` after the first instance equal to `element`, where equal to is
     /// defined by `Equatable`
     ///
@@ -21,7 +21,7 @@ public extension Array where Element: Equatable {
         guard newIndex < endIndex else { return nil }
         return self[newIndex]
     }
-    
+
     /// Get the previous `Element` before the first instance equal to `element`, where equal to is
     /// defined by `Equatable`
     ///
@@ -33,5 +33,4 @@ public extension Array where Element: Equatable {
         let newIndex = self.index(before: index)
         return self[newIndex]
     }
-    
 }

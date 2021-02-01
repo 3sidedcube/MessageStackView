@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 public extension UIView {
-    
+
     /// Set a Neuomorphic Shadow on the `UIView` instance
     ///
     /// - Parameters:
@@ -22,14 +22,14 @@ public extension UIView {
     ) {
         setShadowComponents(shadow.components, createSubview: createSubview)
     }
-    
+
     /// Remove sublayers of type `ShadowLayer`
     func removeShadowLayers() {
         layer.forEachShadowLayer {
             $0.removeFromSuperlayer()
         }
     }
-    
+
     /// Add `ShadowLayer` sublayers mapped by the given `components`
     ///
     /// - Parameters:
@@ -54,7 +54,7 @@ public extension UIView {
     ) {
         // view to add `ShadowLayer`s to
         var view = self
-        
+
         // If `createSubview`, find or create a `ShadowView` to add the
         // `ShadowLayer`s to.
         // Setting this to `true` allows setting an `autoresizingMask`
@@ -66,17 +66,17 @@ public extension UIView {
                 insertSubview(shadowView, at: 0)
             }
             view = shadowView
-            
+
             if shadowView != self {
                 // Copy shadow relevant properties of superlayer to new
                 // shadowView subview
                 shadowView.layer.copySuperlayerPropertiesForShadow()
             }
         }
-        
+
         // Remove `ShadowLayer`s
         view.removeShadowLayers()
-        
+
         // Add `ShadowLayer`s
         components.forEach {
             let shadowLayer = ShadowLayer()

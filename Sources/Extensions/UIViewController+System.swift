@@ -15,7 +15,7 @@ import EventKitUI
 import ContactsUI
 
 extension UIViewController {
-    
+
     /// Array of "system" `UIViewController`s.
     /// We define "system" here as an Apple `UIViewController` which mostly defines
     /// it's own UI and behaviour. It wouldn't be common to subclass
@@ -37,7 +37,7 @@ extension UIViewController {
             // Bluetooth, NFC?
         ]
     }
-    
+
     /// Is the `type(of: self)` in `systemViewControllerTypes`
     var isSystemViewController: Bool {
         return Self.systemViewControllerTypes.contains { type(of: self) == $0 }

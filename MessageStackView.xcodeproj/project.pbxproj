@@ -29,6 +29,8 @@
 		B81AEE5024FFF27A0068CE23 /* ShadowLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B81AEE4F24FFF27A0068CE23 /* ShadowLayer.swift */; };
 		B81AEE5224FFFB2E0068CE23 /* ParentShadowLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B81AEE5124FFFB2E0068CE23 /* ParentShadowLayer.swift */; };
 		B81AEE5425003F270068CE23 /* ShadowViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B81AEE5325003F270068CE23 /* ShadowViewController.swift */; };
+		B872BE8725A3874C0031D619 /* UIImageView+Hidden.swift in Sources */ = {isa = PBXBuildFile; fileRef = B872BE8625A3874C0031D619 /* UIImageView+Hidden.swift */; };
+		B872BE9125A387570031D619 /* UILabel+Hidden.swift in Sources */ = {isa = PBXBuildFile; fileRef = B872BE9025A387570031D619 /* UILabel+Hidden.swift */; };
 		B875C98925126EB200FA05B5 /* UIViewController+System.swift in Sources */ = {isa = PBXBuildFile; fileRef = B875C98825126EB200FA05B5 /* UIViewController+System.swift */; };
 		B875C98F251270A200FA05B5 /* SystemViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B875C98E251270A200FA05B5 /* SystemViewControllerTests.swift */; };
 		B87CC94D24C9FB80002B697C /* Array+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B87CC94B24C9F5A3002B697C /* Array+Extensions.swift */; };
@@ -40,7 +42,7 @@
 		B87CC98B24CB02F8002B697C /* ConnectivityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B87CC98A24CB02F8002B697C /* ConnectivityViewController.swift */; };
 		B87CC99124CB2370002B697C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B87CC98E24CB21E1002B697C /* Assets.xcassets */; };
 		B87CC99324CB48DD002B697C /* ConnectivityMessageable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B87CC99224CB48DD002B697C /* ConnectivityMessageable.swift */; };
-		B87CC99524CB4A0E002B697C /* NoInternet+UI.swift in Sources */ = {isa = PBXBuildFile; fileRef = B87CC99424CB4A0D002B697C /* NoInternet+UI.swift */; };
+		B87CC99524CB4A0E002B697C /* MessageView+NoInternet.swift in Sources */ = {isa = PBXBuildFile; fileRef = B87CC99424CB4A0D002B697C /* MessageView+NoInternet.swift */; };
 		B87CC99D24CC263E002B697C /* NoInternetTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B87CC99C24CC263E002B697C /* NoInternetTabBarController.swift */; };
 		B87CC9A024CC2829002B697C /* UIButton+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B87CC99F24CC2829002B697C /* UIButton+Extensions.swift */; };
 		B8BB088224C4BC46000E2E87 /* RootTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8BB087424C4BC46000E2E87 /* RootTableViewController.swift */; };
@@ -71,7 +73,6 @@
 		OBJ_102 /* UIEdgeInsets+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_24 /* UIEdgeInsets+Extensions.swift */; };
 		OBJ_103 /* UIView+Animation.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_25 /* UIView+Animation.swift */; };
 		OBJ_104 /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_26 /* UIView+Extensions.swift */; };
-		OBJ_105 /* UIView+Hidden.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_27 /* UIView+Hidden.swift */; };
 		OBJ_106 /* UIView+SafeArea.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_28 /* UIView+SafeArea.swift */; };
 		OBJ_107 /* UIView+Shadow.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_29 /* UIView+Shadow.swift */; };
 		OBJ_108 /* UIView+ShadowComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_30 /* UIView+ShadowComponents.swift */; };
@@ -89,7 +90,7 @@
 		OBJ_120 /* MessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_46 /* MessageView.swift */; };
 		OBJ_121 /* MessageViewable.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_47 /* MessageViewable.swift */; };
 		OBJ_122 /* Poster+Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_48 /* Poster+Message.swift */; };
-		OBJ_123 /* Message+MessageConfigurable.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_50 /* Message+MessageConfigurable.swift */; };
+		OBJ_123 /* MessageView+MessageConfigurable.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_50 /* MessageView+MessageConfigurable.swift */; };
 		OBJ_124 /* MessageConfigurable.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_51 /* MessageConfigurable.swift */; };
 		OBJ_125 /* MessageConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_52 /* MessageConfiguration.swift */; };
 		OBJ_126 /* PostAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_54 /* PostAnimation.swift */; };
@@ -171,6 +172,8 @@
 		B81AEE4F24FFF27A0068CE23 /* ShadowLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShadowLayer.swift; sourceTree = "<group>"; };
 		B81AEE5124FFFB2E0068CE23 /* ParentShadowLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParentShadowLayer.swift; sourceTree = "<group>"; };
 		B81AEE5325003F270068CE23 /* ShadowViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShadowViewController.swift; sourceTree = "<group>"; };
+		B872BE8625A3874C0031D619 /* UIImageView+Hidden.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Hidden.swift"; sourceTree = "<group>"; };
+		B872BE9025A387570031D619 /* UILabel+Hidden.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Hidden.swift"; sourceTree = "<group>"; };
 		B875C98825126EB200FA05B5 /* UIViewController+System.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+System.swift"; sourceTree = "<group>"; };
 		B875C98E251270A200FA05B5 /* SystemViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemViewControllerTests.swift; sourceTree = "<group>"; };
 		B87CC94B24C9F5A3002B697C /* Array+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Extensions.swift"; sourceTree = "<group>"; };
@@ -181,7 +184,7 @@
 		B87CC98A24CB02F8002B697C /* ConnectivityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectivityViewController.swift; sourceTree = "<group>"; };
 		B87CC98E24CB21E1002B697C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B87CC99224CB48DD002B697C /* ConnectivityMessageable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectivityMessageable.swift; sourceTree = "<group>"; };
-		B87CC99424CB4A0D002B697C /* NoInternet+UI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NoInternet+UI.swift"; sourceTree = "<group>"; };
+		B87CC99424CB4A0D002B697C /* MessageView+NoInternet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MessageView+NoInternet.swift"; sourceTree = "<group>"; };
 		B87CC99C24CC263E002B697C /* NoInternetTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoInternetTabBarController.swift; sourceTree = "<group>"; };
 		B87CC99F24CC2829002B697C /* UIButton+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Extensions.swift"; sourceTree = "<group>"; };
 		B8BB086D24C4BC23000E2E87 /* Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -223,7 +226,6 @@
 		OBJ_24 /* UIEdgeInsets+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIEdgeInsets+Extensions.swift"; sourceTree = "<group>"; };
 		OBJ_25 /* UIView+Animation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Animation.swift"; sourceTree = "<group>"; };
 		OBJ_26 /* UIView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extensions.swift"; sourceTree = "<group>"; };
-		OBJ_27 /* UIView+Hidden.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Hidden.swift"; sourceTree = "<group>"; };
 		OBJ_28 /* UIView+SafeArea.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+SafeArea.swift"; sourceTree = "<group>"; };
 		OBJ_29 /* UIView+Shadow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Shadow.swift"; sourceTree = "<group>"; };
 		OBJ_30 /* UIView+ShadowComponents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+ShadowComponents.swift"; sourceTree = "<group>"; };
@@ -241,7 +243,7 @@
 		OBJ_46 /* MessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageView.swift; sourceTree = "<group>"; };
 		OBJ_47 /* MessageViewable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageViewable.swift; sourceTree = "<group>"; };
 		OBJ_48 /* Poster+Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Poster+Message.swift"; sourceTree = "<group>"; };
-		OBJ_50 /* Message+MessageConfigurable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Message+MessageConfigurable.swift"; sourceTree = "<group>"; };
+		OBJ_50 /* MessageView+MessageConfigurable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MessageView+MessageConfigurable.swift"; sourceTree = "<group>"; };
 		OBJ_51 /* MessageConfigurable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageConfigurable.swift; sourceTree = "<group>"; };
 		OBJ_52 /* MessageConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageConfiguration.swift; sourceTree = "<group>"; };
 		OBJ_54 /* PostAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostAnimation.swift; sourceTree = "<group>"; };
@@ -311,6 +313,15 @@
 			path = Shadow;
 			sourceTree = "<group>";
 		};
+		B872BE8525A3873F0031D619 /* Hidden */ = {
+			isa = PBXGroup;
+			children = (
+				B872BE8625A3874C0031D619 /* UIImageView+Hidden.swift */,
+				B872BE9025A387570031D619 /* UILabel+Hidden.swift */,
+			);
+			path = Hidden;
+			sourceTree = "<group>";
+		};
 		B87CC94E24CAE52A002B697C /* Reachability */ = {
 			isa = PBXGroup;
 			children = (
@@ -321,7 +332,7 @@
 				B8BCDA8224CD8E920067F26C /* ConnectivityManager+MessageManager.swift */,
 				B87CC99224CB48DD002B697C /* ConnectivityMessageable.swift */,
 				B87CC98A24CB02F8002B697C /* ConnectivityViewController.swift */,
-				B87CC99424CB4A0D002B697C /* NoInternet+UI.swift */,
+				B87CC99424CB4A0D002B697C /* MessageView+NoInternet.swift */,
 			);
 			path = Reachability;
 			sourceTree = "<group>";
@@ -412,6 +423,7 @@
 		OBJ_18 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				B872BE8525A3873F0031D619 /* Hidden */,
 				OBJ_19 /* CALayer+Animation.swift */,
 				OBJ_20 /* CGRect+Extensions.swift */,
 				OBJ_21 /* DispatchQueue+Extensions.swift */,
@@ -420,7 +432,6 @@
 				OBJ_24 /* UIEdgeInsets+Extensions.swift */,
 				OBJ_25 /* UIView+Animation.swift */,
 				OBJ_26 /* UIView+Extensions.swift */,
-				OBJ_27 /* UIView+Hidden.swift */,
 				OBJ_28 /* UIView+SafeArea.swift */,
 				OBJ_29 /* UIView+Shadow.swift */,
 				OBJ_30 /* UIView+ShadowComponents.swift */,
@@ -481,7 +492,7 @@
 		OBJ_49 /* MessageConfiguration */ = {
 			isa = PBXGroup;
 			children = (
-				OBJ_50 /* Message+MessageConfigurable.swift */,
+				OBJ_50 /* MessageView+MessageConfigurable.swift */,
 				OBJ_51 /* MessageConfigurable.swift */,
 				OBJ_52 /* MessageConfiguration.swift */,
 			);
@@ -657,6 +668,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = OBJ_87 /* Build configuration list for PBXNativeTarget "MessageStackView" */;
 			buildPhases = (
+				B872BE7C25A37F160031D619 /* Swift Lint */,
 				B87CC95624CAEAD9002B697C /* Headers */,
 				OBJ_90 /* Sources */,
 				OBJ_143 /* Frameworks */,
@@ -710,7 +722,7 @@
 			attributes = {
 				LastSwiftMigration = 9999;
 				LastSwiftUpdateCheck = 1160;
-				LastUpgradeCheck = 9999;
+				LastUpgradeCheck = 1230;
 				ORGANIZATIONNAME = "3 SIDED CUBE APP PRODUCTIONS LTD";
 				TargetAttributes = {
 					B8BB086024C4BC23000E2E87 = {
@@ -764,6 +776,27 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		B872BE7C25A37F160031D619 /* Swift Lint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Swift Lint";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint >/dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		B8BB086124C4BC23000E2E87 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -807,14 +840,16 @@
 			files = (
 				OBJ_91 /* TimeInterval+Defaults.swift in Sources */,
 				B81AEE5224FFFB2E0068CE23 /* ParentShadowLayer.swift in Sources */,
+				B872BE9125A387570031D619 /* UILabel+Hidden.swift in Sources */,
 				OBJ_92 /* CenterConstraints.swift in Sources */,
 				OBJ_93 /* Constrainable.swift in Sources */,
 				OBJ_94 /* EdgeConstraints.swift in Sources */,
 				OBJ_95 /* MessageLayout.swift in Sources */,
-				B87CC99524CB4A0E002B697C /* NoInternet+UI.swift in Sources */,
+				B87CC99524CB4A0E002B697C /* MessageView+NoInternet.swift in Sources */,
 				OBJ_96 /* SizeConstraints.swift in Sources */,
 				OBJ_97 /* CALayer+Animation.swift in Sources */,
 				B875C98925126EB200FA05B5 /* UIViewController+System.swift in Sources */,
+				B872BE8725A3874C0031D619 /* UIImageView+Hidden.swift in Sources */,
 				OBJ_98 /* CGRect+Extensions.swift in Sources */,
 				OBJ_99 /* DispatchQueue+Extensions.swift in Sources */,
 				OBJ_100 /* String+Extensions.swift in Sources */,
@@ -824,7 +859,6 @@
 				B8BCDA8C24CDB55B0067F26C /* UIViewController+Lifecycle.m in Sources */,
 				B8BCDA8524CD8EB20067F26C /* UIApplication+KeyWindow.swift in Sources */,
 				OBJ_104 /* UIView+Extensions.swift in Sources */,
-				OBJ_105 /* UIView+Hidden.swift in Sources */,
 				B8E1CEE92500DA37002BFE77 /* UIColor+Hex.swift in Sources */,
 				OBJ_106 /* UIView+SafeArea.swift in Sources */,
 				OBJ_107 /* UIView+Shadow.swift in Sources */,
@@ -850,7 +884,7 @@
 				OBJ_120 /* MessageView.swift in Sources */,
 				OBJ_121 /* MessageViewable.swift in Sources */,
 				OBJ_122 /* Poster+Message.swift in Sources */,
-				OBJ_123 /* Message+MessageConfigurable.swift in Sources */,
+				OBJ_123 /* MessageView+MessageConfigurable.swift in Sources */,
 				OBJ_124 /* MessageConfigurable.swift in Sources */,
 				B81AEE4C24FFEE520068CE23 /* FloatingPoint+Equals.swift in Sources */,
 				OBJ_125 /* MessageConfiguration.swift in Sources */,
@@ -1075,15 +1109,15 @@
 		OBJ_157 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CLANG_ENABLE_MODULES = YES;
-				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
 				);
 				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = MessageStackView.xcodeproj/MessageStackViewTests_Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/../Frameworks @loader_path/Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				OTHER_CFLAGS = "$(inherited)";
@@ -1092,7 +1126,7 @@
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited)";
 				SWIFT_VERSION = 5.0;
 				TARGET_NAME = MessageStackViewTests;
-				TVOS_DEPLOYMENT_TARGET = 9.0;
+				TVOS_DEPLOYMENT_TARGET = 12.0;
 				WATCHOS_DEPLOYMENT_TARGET = 2.0;
 			};
 			name = Debug;
@@ -1100,15 +1134,15 @@
 		OBJ_158 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CLANG_ENABLE_MODULES = YES;
-				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
 				);
 				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = MessageStackView.xcodeproj/MessageStackViewTests_Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/../Frameworks @loader_path/Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				OTHER_CFLAGS = "$(inherited)";
@@ -1117,7 +1151,7 @@
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited)";
 				SWIFT_VERSION = 5.0;
 				TARGET_NAME = MessageStackViewTests;
-				TVOS_DEPLOYMENT_TARGET = 9.0;
+				TVOS_DEPLOYMENT_TARGET = 12.0;
 				WATCHOS_DEPLOYMENT_TARGET = 2.0;
 			};
 			name = Release;
@@ -1126,17 +1160,44 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				ENABLE_NS_ASSERTIONS = YES;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"$(inherited)",
 					"SWIFT_PACKAGE=1",
 					"DEBUG=1",
 				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_SWIFT_FLAGS = "$(inherited) -DXcode";
@@ -1153,15 +1214,41 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = s;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"$(inherited)",
 					"SWIFT_PACKAGE=1",
 				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				OTHER_SWIFT_FLAGS = "$(inherited) -DXcode";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1186,7 +1273,7 @@
 				);
 				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "$(SRCROOT)/Sources/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) $(TOOLCHAIN_DIR)/usr/lib/swift/macosx";
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				MARKETING_VERSION = 2.0.0;
@@ -1203,7 +1290,7 @@
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGET_NAME = MessageStackView;
-				TVOS_DEPLOYMENT_TARGET = 9.0;
+				TVOS_DEPLOYMENT_TARGET = 12.0;
 				WATCHOS_DEPLOYMENT_TARGET = 2.0;
 			};
 			name = Debug;
@@ -1221,7 +1308,7 @@
 				);
 				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "$(SRCROOT)/Sources/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) $(TOOLCHAIN_DIR)/usr/lib/swift/macosx";
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				MARKETING_VERSION = 2.0.0;
@@ -1237,7 +1324,7 @@
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited)";
 				SWIFT_VERSION = 5.0;
 				TARGET_NAME = MessageStackView;
-				TVOS_DEPLOYMENT_TARGET = 9.0;
+				TVOS_DEPLOYMENT_TARGET = 12.0;
 				WATCHOS_DEPLOYMENT_TARGET = 2.0;
 			};
 			name = Release;

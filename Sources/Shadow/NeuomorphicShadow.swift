@@ -10,10 +10,10 @@ import Foundation
 
 /// Neuomorphic shadow styling to add to a `CALayer`
 public enum NeuomorphicShadow {
-    
+
     /// Neuomorphic shadow centralised on view
     case center
-    
+
     /// Neuomorphic shadow dropped below view
     case dropped
 }
@@ -21,7 +21,7 @@ public enum NeuomorphicShadow {
 // MARK: - NeuomorphicShadow + ShadowComponents
 
 public extension NeuomorphicShadow {
-    
+
     /// `ShadowComponents`s for the given `NeuomorphicShadow`
     var components: [ShadowComponents] {
         switch self {
@@ -45,7 +45,7 @@ public extension NeuomorphicShadow {
                 offset: .init(width: 0, height: 2)
             )
         ]
-            
+
         case .dropped: return [
             .init(
                 radius: 2,

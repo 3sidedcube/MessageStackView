@@ -9,7 +9,7 @@
 import Foundation
 
 extension FloatingPoint {
-    
+
     /// Is equal to `other` within precision of `epsilon`
     ///
     /// - Parameters:
