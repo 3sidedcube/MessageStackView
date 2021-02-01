@@ -10,7 +10,7 @@ import UIKit
 
 /// `UIView` for displaying a badge.
 open class BadgeView: BadgeContainerView {
-    
+
     /// `UIImageView` subview
     public private(set) lazy var imageView: UIImageView = {
         let imageView = UIImageView()
@@ -24,7 +24,7 @@ open class BadgeView: BadgeContainerView {
     /// container view's width. Can be adjusted to change how much
     /// of the container the image fills
     private var imageWidthConstraint: NSLayoutConstraint!
-    
+
     // MARK: - Computed
 
     /// Width of `imageView` subview relative to `self`
@@ -42,7 +42,7 @@ open class BadgeView: BadgeContainerView {
             imageView.image = image?.withRenderingMode(renderingMode)
         }
     }
-    
+
     /// Shorthand for getting and setting `image` of `imageView`
     public var image: UIImage? {
         get {
@@ -52,9 +52,9 @@ open class BadgeView: BadgeContainerView {
             imageView.image = newValue?.withRenderingMode(renderingMode)
         }
     }
-    
+
     /// Drive `UIImageView`s `tintColor` from `tintColor` of `self`
-    public override var tintColor: UIColor! {
+    override public var tintColor: UIColor! {
         get {
             return super.tintColor
         }
@@ -65,23 +65,23 @@ open class BadgeView: BadgeContainerView {
     }
 
     // MARK: - Init
-    
+
     public convenience init() {
         self.init(frame: .zero)
     }
-    
-    public override init(frame: CGRect) {
+
+    override public init(frame: CGRect) {
         super.init(frame: frame)
         setup()
     }
-    
+
     public required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         setup()
     }
-    
+
     // MARK: - Setup
-    
+
     private func setup() {
         addSubview(imageView)
         imageView.translatesAutoresizingMaskIntoConstraints = false
