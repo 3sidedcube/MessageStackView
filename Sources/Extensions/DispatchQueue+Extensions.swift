@@ -18,10 +18,7 @@ public extension DispatchQueue {
         time: DispatchTimeInterval,
         closure: @escaping () -> Void
     ) {
-        DispatchQueue.main.asyncAfter(
-            deadline: .now() + time,
-            execute: closure
-        )
+        asyncAfter(deadline: .now() + time, execute: closure)
     }
 
     /// Execute `closure` on main thread or immediately if already on it.

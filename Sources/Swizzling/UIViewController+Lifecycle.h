@@ -11,7 +11,9 @@
 NS_ASSUME_NONNULL_BEGIN
 
 extern NSString *kViewWillAppearNotification;
+extern NSString *kViewDidAppearNotification;
 extern NSString *kViewWillDisappearNotification;
+extern NSString *kViewDidDisappearNotification;
 
 @interface UIViewController (Lifecycle)
 

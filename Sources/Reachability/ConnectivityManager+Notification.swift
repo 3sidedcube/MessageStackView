@@ -12,7 +12,7 @@ import Foundation
 
 public extension Notification.Name {
 
-    /// `Notification.Name` for `ConnectivityManager` `Notfication`
+    /// `Notification.Name` for `ConnectivityManager` `Notification`
     static let internetConnectivityChanged = Notification.Name(
         rawValue: "messageStackView.internetConnectivityChanged"
     )
