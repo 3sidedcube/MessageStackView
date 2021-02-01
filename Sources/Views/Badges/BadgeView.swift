@@ -23,17 +23,14 @@ open class BadgeView: BadgeContainerView {
     /// The constraint between the image view's width and the
     /// container view's width. Can be adjusted to change how much
     /// of the container the image fills
-    private var imageWidthConstraint: NSLayoutConstraint?
+    private var imageWidthConstraint: NSLayoutConstraint!
     
     // MARK: - Computed
 
     /// Width of `imageView` subview relative to `self`
     public var imageSizeRatio: CGFloat = 0.65 {
         didSet {
-            if let widthConstraint = imageWidthConstraint {
-                imageView.removeConstraint(widthConstraint)
-            }
-            setupImageWidthConstraint()
+            updateImageWidthConstraint()
             setNeedsUpdateConstraints()
         }
     }
@@ -88,7 +85,7 @@ open class BadgeView: BadgeContainerView {
     private func setup() {
         addSubview(imageView)
         imageView.translatesAutoresizingMaskIntoConstraints = false
-        setupImageWidthConstraint()
+        updateImageWidthConstraint()
         NSLayoutConstraint.activate([
             imageView.centerXAnchor.constraint(equalTo: centerXAnchor),
             imageView.centerYAnchor.constraint(equalTo: centerYAnchor),
@@ -96,7 +93,10 @@ open class BadgeView: BadgeContainerView {
         ])
     }
 
-    private func setupImageWidthConstraint() {
+    private func updateImageWidthConstraint() {
+        if let widthConstraint = imageWidthConstraint {
+            imageView.removeConstraint(widthConstraint)
+        }
         imageWidthConstraint = imageView.widthAnchor.constraint(
             equalTo: widthAnchor,
             multiplier: imageSizeRatio
