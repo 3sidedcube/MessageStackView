@@ -15,71 +15,71 @@ import UIKit
 /// This is required to handle the relevant lifecycle/observable methods onto the
 /// `ShadowLayer` sublayers.
 open class ParentShadowLayer: CALayer {
-    
+
     // MARK: - Init
-    
-    public override init() {
+
+    override public init() {
         super.init()
         setup()
     }
-    
-    public override init(layer: Any) {
+
+    override public init(layer: Any) {
         super.init(layer: layer)
         setup()
     }
-    
-    required public init?(coder: NSCoder) {
+
+    public required init?(coder: NSCoder) {
         super.init(coder: coder)
         setup()
     }
-    
+
     func setup() {
         masksToBounds = false
         backgroundColor = UIColor.clear.cgColor
     }
-    
+
     // MARK: - Observable Properties
-    
+
     @available(iOS 13, *)
-    public override var cornerCurve: CALayerCornerCurve {
+    override public var cornerCurve: CALayerCornerCurve {
         didSet {
             forEachShadowLayer {
                 $0.cornerCurve = cornerCurve
             }
         }
     }
-    
-    public override var cornerRadius: CGFloat {
+
+    override public var cornerRadius: CGFloat {
         didSet {
             forEachShadowLayer {
                 $0.cornerRadius = cornerRadius
             }
         }
     }
-    
-    public override var backgroundColor: CGColor? {
+
+    override public var backgroundColor: CGColor? {
         didSet {
             forEachShadowLayer {
                 $0.backgroundColor = backgroundColor
             }
         }
     }
-    
+
     // MARK: - Sublayer
-    
-    open override func insertSublayer(_ layer: CALayer, at idx: UInt32) {
+
+    override open func insertSublayer(_ layer: CALayer, at idx: UInt32) {
         super.insertSublayer(layer, at: idx)
-        
+
         if let shadow = layer as? ShadowLayer {
             shadow.copySuperlayerPropertiesForShadow()
         }
     }
-    
+
     // MARK: - Layout
-    
-    public override func layoutSublayers() {
+
+    override public func layoutSublayers() {
         super.layoutSublayers()
-       
+
         forEachShadowLayer {
             $0.frame = bounds
         }
@@ -89,7 +89,7 @@ open class ParentShadowLayer: CALayer {
 // MARK: - CALayer + ShadowLayer
 
 extension CALayer {
-    
+
     /// Iterate sublayers of type `ShadowLayer`
     /// - Parameter closure: Closure to execute
     func forEachSublayer<T>(
@@ -99,7 +99,7 @@ extension CALayer {
             .compactMap { $0 as? T }
             .forEach { closure($0) }
     }
-    
+
     /// Iterate sublayers of type `ShadowLayer`
     /// - Parameter closure: Closure to execute
     func forEachShadowLayer(_ closure: (ShadowLayer) -> Void) {
@@ -110,23 +110,23 @@ extension CALayer {
 // MARK: - CALayer + SuperlayerShadow
 
 extension CALayer {
-    
+
     /// Copy shadow relevant properties of `superlayer` to `self`
     /// - Warning: These aren't the `ShadowComponents`
     func copySuperlayerPropertiesForShadow() {
         guard let superlayer = superlayer else { return }
-        
+
         // cornerRadius
         cornerRadius = superlayer.cornerRadius
-        
+
         // This is important because layers with no background colour
         // cannot render shadows
         // backgroundColor
         backgroundColor = superlayer.backgroundColor
-        
+
         // frame
         frame = superlayer.bounds
-        
+
         if #available(iOS 13, *) {
             // cornerCurve
             cornerCurve = superlayer.cornerCurve

@@ -20,4 +20,3 @@ protocol Function {
     /// - Returns: `f(x)` in `Y`, the range of `f`
     func value(for x: ValueType) -> ValueType
 }
-

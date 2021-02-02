@@ -10,7 +10,7 @@ import Foundation
 
 /// Handle a `BadgeMessage`
 public protocol BadgeMessageViewable {
-    
+
     /// Apply the given `BadgeMessage` model
     /// - Parameter badgeMessage: `BadgeMessage`
     func set(badgeMessage: BadgeMessage)

@@ -11,7 +11,7 @@ import UIKit
 
 /// Entity which has an Array of `NSLayoutConstraint`s
 protocol Constrainable {
-    
+
     /// Array of `NSLayoutConstraint`s to activate
     var constraints: [NSLayoutConstraint] { get }
 }
@@ -19,7 +19,7 @@ protocol Constrainable {
 // MARK: - Constrainable + Extensions
 
 extension Constrainable {
-    
+
     /// Activate `constraints`
     func activate() {
         NSLayoutConstraint.activate(constraints)

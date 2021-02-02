@@ -12,29 +12,29 @@ import UIKit
 /// A subclass of `UIView` which sets the layer to `ParentShadowLayer` which
 /// manages `ShadowLayer` sublayers
 open class ShadowView: UIView {
-    
+
     // MARK: - Layer
-    
-    public override class var layerClass: AnyClass {
+
+    override public class var layerClass: AnyClass {
         return ParentShadowLayer.self
     }
-    
+
     // MARK: - Init
-    
-    convenience public init() {
+
+    public convenience init() {
         self.init(frame: .zero)
     }
-    
+
     override public init(frame: CGRect) {
         super.init(frame: frame)
         setup()
     }
-    
-    required public init?(coder aDecoder: NSCoder) {
+
+    public required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         setup()
     }
-    
+
     private func setup() {
         backgroundColor = .white
         clipsToBounds = false

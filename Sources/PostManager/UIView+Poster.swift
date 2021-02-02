@@ -12,7 +12,7 @@ import UIKit
 // MARK: - UIView + Poster
 
 public extension UIView {
-    
+
     /// Create a `T` and constrain inline with the given arguments
     ///
     /// - Parameters:
@@ -21,7 +21,7 @@ public extension UIView {
     func createPosterView<T>(
         layout: MessageLayout = .default,
         constrainToSafeArea: Bool = true
-    ) -> T where T : UIView, T : Poster {
+    ) -> T where T: UIView, T: Poster {
         let posterView = T()
         posterView.addTo(
             view: self,
@@ -32,9 +32,9 @@ public extension UIView {
         posterView.layoutIfNeeded()
         return posterView
     }
-    
+
     // MARK: - Instance
-    
+
     /// `MessageStackView` or create and constrain on `view`
     ///
     /// - Parameters:
@@ -51,7 +51,7 @@ public extension UIView {
         messageStackView.updateOrderForLayout(layout)
         return messageStackView
     }
-    
+
     /// `PostView` or create and constrain on `view`
     /// - Parameters:
     ///   - layout: `MessageLayout`
@@ -70,7 +70,7 @@ public extension UIView {
 // MARK: - UIApplication + PostView
 
 public extension UIApplication {
-    
+
     /// `UIApplication` shared singleton `PostView`
     var postView: PostView {
         return ApplicationPostView.shared
@@ -80,7 +80,7 @@ public extension UIApplication {
 // MARK: - UIApplication + PostView
 
 public extension MessageLayout {
-    
+
     /// The default `MessageLayout`
     static let `default`: MessageLayout = .top
 }

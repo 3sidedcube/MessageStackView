@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 extension UIEdgeInsets {
-    
+
     /// Set all properties:
     /// `top`, `left`, `bottom`, `right`
     /// to the same given `value`

@@ -11,19 +11,19 @@ import UIKit
 
 /// `UIView` to post `UIView`s on a `PostManager` in a serial manner
 open class PostView: UIView, Poster, UIViewPoster, PostManagerDelegate {
-    
+
     /// Fixed constants for `PostView`
     private struct Constants {
-        
+
         /// `UIEdgeInsets` to inset subviews relative to `self`
         static let edgeInsets = UIEdgeInsets(
             top: 20, left: 10, bottom: 20, right: 10
         )
     }
-    
+
     /// `UIEdgeInsets` of subviews from `self`
     public var edgeInsets: UIEdgeInsets = Constants.edgeInsets
-    
+
     /// `PostManager` to manage posting, queueing, removing of `PostRequest`s
     public private(set) lazy var postManager: PostManager = {
         let postManager = PostManager(poster: self)
@@ -36,39 +36,39 @@ open class PostView: UIView, Poster, UIViewPoster, PostManagerDelegate {
     public var removeFromSuperviewOnEmpty = false
 
     // MARK: - Init
-    
+
     public convenience init() {
         self.init(frame: .zero)
     }
-    
-    public override init(frame: CGRect) {
+
+    override public init(frame: CGRect) {
         super.init(frame: frame)
         setup()
     }
-    
+
     public required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         setup()
     }
-    
+
     private func setup() {
         clipsToBounds = true
-        
+
         // Make sure `postManger` is instantiated. This is in case `deinit` is
         // is the first instance to reference `postManager`, lazily
         // instantiating it, referencing `self`, which is being
         // de-initialized...
-        let _ = self.postManager.isSerialQueue
+        _ = self.postManager.isSerialQueue
     }
-    
+
     // MARK: - IntrinsicContentSize
-    
-    open override var intrinsicContentSize: CGSize {
+
+    override open var intrinsicContentSize: CGSize {
         return CGSize(width: UIView.noIntrinsicMetric, height: 0)
     }
-    
+
     // MARK: - Animation
-    
+
     /// Show or hide a subview (`view`) based on the `hidden`argument.
     /// The transition may be animated.
     ///
@@ -98,13 +98,14 @@ open class PostView: UIView, Poster, UIViewPoster, PostManagerDelegate {
             options: .curveEaseIn,
             animations: {
                 self.setTransform(on: view, forHidden: hidden)
-        }) { _ in
-            completion()
-        }
+            }, completion: { _ in
+                completion()
+            }
+        )
     }
-    
+
     // MARK: - Transform
-    
+
     /// Consider "hidden" views as transformed out of the bounds above.
     /// With `clipsToBounds = true` these views will not be visible.
     /// We can then "show" them by animating their transform back to `.identity`
@@ -115,7 +116,7 @@ open class PostView: UIView, Poster, UIViewPoster, PostManagerDelegate {
     private func setTransform(on view: UIView, forHidden hidden: Bool) {
         view.transform = hidden ? hiddenTranslationY(for: view) : .identity
     }
-    
+
     /// `CGAffineTransform` to effectively "hide" a view off the top of `self`'s `bounds`
     ///
     /// - Note:
@@ -132,32 +133,32 @@ open class PostView: UIView, Poster, UIViewPoster, PostManagerDelegate {
             y: -(view.bounds.size.height + edgeInsets.top)
         )
     }
-    
+
     // MARK: - Subview
-    
+
     /// Add posted `subview`, constraining accordingly and ensuring `transform` for animation
     /// - Parameter subview: `UIView`
     private func addPostSubview(_ subview: UIView) {
         addSubview(subview)
         subview.edgeConstraints(to: self, insets: edgeInsets)
         layoutIfNeeded()
-        
+
         setTransform(on: subview, forHidden: true)
     }
-    
+
     /// Remove a previously posted `subview` and ensure layout
     /// - Parameter subview: `UIView`
     private func removePostSubview(_ subview: UIView) {
         subview.removeFromSuperview()
         layoutIfNeeded()
     }
-    
+
     // MARK: - UIViewPoster
 
     func shouldRemove(view: UIView) -> Bool {
         return view.superview == self
     }
-    
+
     func post(
         view: UIView,
         animated: Bool,
@@ -165,10 +166,10 @@ open class PostView: UIView, Poster, UIViewPoster, PostManagerDelegate {
     ) {
         // Add `view` as a posted subview
         addPostSubview(view)
-        
+
         // Add pan gesture by default
         postManager.gestureManager.addPanToRemoveGesture(to: view)
-        
+
         // Execute hide/show with animation if required
         setView(
             view,
@@ -177,7 +178,7 @@ open class PostView: UIView, Poster, UIViewPoster, PostManagerDelegate {
             completion: completion
         )
     }
-    
+
     func remove(
         view: UIView,
         animated: Bool,
@@ -192,7 +193,8 @@ open class PostView: UIView, Poster, UIViewPoster, PostManagerDelegate {
                 // Remove `view` as a posted subview
                 self.removePostSubview(view)
                 completion()
-        })
+            }
+        )
     }
 
     // MARK: - PostManagerDelegate
@@ -200,9 +202,9 @@ open class PostView: UIView, Poster, UIViewPoster, PostManagerDelegate {
     public func postManager(
         _ postManager: PostManager,
         willPost view: UIView
-    ){
+    ) {
     }
-    
+
     /// Called when a `view` was posted
     /// - Parameters:
     ///   - postManager: `PostManager`
@@ -210,9 +212,9 @@ open class PostView: UIView, Poster, UIViewPoster, PostManagerDelegate {
     public func postManager(
         _ postManager: PostManager,
         didPost view: UIView
-    ){
+    ) {
     }
-    
+
     /// Called when a `view` will be removed
     /// - Parameters:
     ///   - postManager: `PostManager`
@@ -220,13 +222,13 @@ open class PostView: UIView, Poster, UIViewPoster, PostManagerDelegate {
     public func postManager(
         _ postManager: PostManager,
         willRemove view: UIView
-    ){
+    ) {
     }
-    
+
     public func postManager(
         _ postManager: PostManager,
         didRemove view: UIView
-    ){
+    ) {
         // Should check to remove self
         guard removeFromSuperviewOnEmpty, !postManager.isActive else {
             return

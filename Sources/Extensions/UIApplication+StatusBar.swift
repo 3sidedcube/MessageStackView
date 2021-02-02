@@ -16,7 +16,7 @@ extension UIApplication {
             // If not iOS 13 simply return `statusBarFrame`
             return statusBarFrame
         }
-        
+
         // Otherwise find the key window and get frame from the scene
         return appKeyWindow?.windowScene?.statusBarManager?
             .statusBarFrame ?? .zero

@@ -12,34 +12,34 @@ import UIKit
 /// A `UIView` often toasted from the top of a screen to detail a message.
 /// This is a more comprehensive `MessageView`.
 open class BadgeMessageView: UIView {
-    
+
     /// Fixed constants for `BadgeMessageView`
     private struct Constants {
-        
+
         /// Corner radius of the `BadgeMessageView`
         static let cornerRadius: CGFloat = 16
-        
+
         /// `UIImage` for the cancel `UIButton`
         static let cancelImage: UIImage? = .iconClose
-        
+
         /// `CGFloat` inset value for the `UIButton`
         static let buttonInset = UIEdgeInsets(value: 10)
-        
+
         /// `UIEdgeInsets` of the `horizontalStackView` from self
         static let horizontalStackViewInsets = UIEdgeInsets(
             top: 20, left: 15, bottom: 20, right: 15 - buttonInset.right
         )
-        
+
         /// Fixed `CGSize` of the `badgeView`
         static let badgeViewSize = CGSize(width: 48, height: 48)
-        
+
         /// `CALayer` `opacity` for `backgroundImageView`
         static let backgroundImageViewOpacity: Float = 0.06
-        
+
         /// Translate the `backgroundImageView` in X by this amount
         static let backgroundImageViewTranslationX: CGFloat = -8
     }
-    
+
     /// Overrideable default shadow components for `BadgeMessageView`
     public static var shadowComponents = ShadowComponents(
         radius: 8,
@@ -49,14 +49,14 @@ open class BadgeMessageView: UIView {
     )
 
     // MARK: - Subviews
-    
+
     /// `ShadowView` container `UIView` of `containerView` so `containerView`
     /// can clip subview content but we can also apply shadow
     private(set) lazy var shadowView: UIView = {
         let shadowView = UIView()
         return shadowView
     }()
-    
+
     /// Subview of `self` but container (super) `UIView` for all other subviews.
     /// This is so this `UIView` can clip content but we can apply shadow on `self`.
     private(set) lazy var containerView: UIView = {
@@ -65,7 +65,7 @@ open class BadgeMessageView: UIView {
         view.clipsToBounds = true
         return view
     }()
-    
+
     /// Root, horizontally aligned `UIStackView`
     public private(set) lazy var horizontalStackView: UIStackView = {
         let stackView = UIStackView()
@@ -75,7 +75,7 @@ open class BadgeMessageView: UIView {
         stackView.spacing = 22
         return stackView
     }()
-    
+
     /// `UIImageView` behind the `badgeView` for a background effect
     public private(set) lazy var backgroundImageView: UIImageView = {
         let imageView = UIImageView()
@@ -88,10 +88,10 @@ open class BadgeMessageView: UIView {
         )
         return imageView
     }()
-    
+
     /// `BadgeView` at the leading edge of the `horizontalStackView`
     public private(set) lazy var badgeView = BadgeView()
-    
+
     /// Vertically aligned `UIStackView` for the `titleLabel` and `subtitleLabel`.
     /// Central between `badgeView` and `button`.
     public private(set) lazy var verticalStackView: UIStackView = {
@@ -102,7 +102,7 @@ open class BadgeMessageView: UIView {
         stackView.spacing = 4
         return stackView
     }()
-    
+
     /// `UILabel` at the top of `verticalStackView`
     public private(set) lazy var titleLabel: UILabel = {
         let label = UILabel.default
@@ -110,12 +110,12 @@ open class BadgeMessageView: UIView {
         label.font = UIFont.systemFont(ofSize: 18, weight: .heavy)
         return label
     }()
-    
+
     /// `UILabel` at the bottom of `verticalStackView`
     public private(set) lazy var subtitleLabel: UILabel = {
         return UILabel.default
     }()
-    
+
     /// `UIButton` at the trailing edge of the `stackView`
     public private(set) lazy var button: UIButton = {
         let button = UIButton()
@@ -124,9 +124,9 @@ open class BadgeMessageView: UIView {
         button.contentEdgeInsets = Constants.buttonInset
         return button
     }()
-    
+
     // MARK: - containerViewInsets
-    
+
     /// `UIEdgeInsets` of `containerViewEdgeConstraints`
     public var containerViewInsets: UIEdgeInsets {
         get {
@@ -136,37 +136,37 @@ open class BadgeMessageView: UIView {
             containerViewEdgeConstraints.insets = newValue
         }
     }
-    
+
     /// `EdgeConstraints` constraining `containerView` to `self`
     private var containerViewEdgeConstraints: EdgeConstraints!
-    
+
     // MARK: - Init
-    
+
     public convenience init() {
         self.init(frame: .zero)
     }
-    
-    public override init(frame: CGRect) {
+
+    override public init(frame: CGRect) {
         super.init(frame: frame)
         setup()
     }
-    
+
     public required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         setup()
     }
-    
+
     private func setup() {
         // backgroundColor
         backgroundColor = .clear
         clipsToBounds = false
-        
+
         // Add subviews to `self` and add constraints
         addSubviewsAndConstrain()
-        
+
         // layer
         updateCornersAndShadow()
-        
+
         // Add target for dismiss on `.touchUpInside`
         button.addTarget(
             self,
@@ -174,55 +174,55 @@ open class BadgeMessageView: UIView {
             for: .touchUpInside
         )
     }
-    
+
     // MARK: - Constraints
-    
+
     private func addSubviewsAndConstrain() {
         // verticalStackView
         verticalStackView.addArrangedSubview(titleLabel)
         verticalStackView.addArrangedSubview(subtitleLabel)
-        
+
         // horizontalStackView
         horizontalStackView.addArrangedSubview(badgeView)
         horizontalStackView.addArrangedSubview(verticalStackView)
         horizontalStackView.addArrangedSubview(button)
-        
+
         // containerView
         containerView.addSubview(backgroundImageView)
         containerView.addSubview(horizontalStackView)
-        
+
         // shadowView
         shadowView.addSubview(containerView)
-        
+
         // self
         addSubview(shadowView)
-        
+
         // Constrain
         addConstraints()
     }
-    
+
     private func addConstraints() {
         // shadowView
         shadowView.edgeConstraints(to: containerView)
-        
+
         // containerView
         containerViewEdgeConstraints = containerView.edgeConstraints(to: self)
-        
+
         // horizontalStackView
         horizontalStackView.edgeConstraints(
             to: containerView,
             insets: Constants.horizontalStackViewInsets
         )
-        
+
         // badgeView
         let size = badgeView.sizeConstraints(size: Constants.badgeViewSize)
-        
+
         // backgroundImageView
         backgroundImageView.sizeConstraints(size: CGSize(
             width: 2 * size.width.constant,
             height: 2 * size.height.constant
         ))
-        
+
         NSLayoutConstraint.activate([
             // backgroundImageView
             backgroundImageView.centerXAnchor.constraint(
@@ -232,7 +232,7 @@ open class BadgeMessageView: UIView {
                 equalTo: badgeView.centerYAnchor
             )
         ])
-        
+
         // button
         let axes: [NSLayoutConstraint.Axis] = [.vertical, .horizontal]
         axes.forEach {
@@ -241,42 +241,43 @@ open class BadgeMessageView: UIView {
             button.setContentCompressionResistancePriority(priority, for: $0)
         }
     }
-    
+
     // MARK: - Layout
-    
-    public override func layoutSubviews() {
+
+    override public func layoutSubviews() {
         super.layoutSubviews()
         updateCornersAndShadow()
     }
-    
+
     /// Update cornerRadius and shadow
     private func updateCornersAndShadow() {
         let layers = [layer, containerView.layer, shadowView.layer]
-        
+
         // cornerRadius
         layers.forEach {
             $0.updateCornerRadius(Constants.cornerRadius)
         }
-        
+
         if #available(iOS 13.0, *) {
             layers.forEach {
                 $0.cornerCurve = .continuous
             }
         }
-        
+
         shadowView.layer.setSketchShadow(Self.shadowComponents.sketchShadow)
     }
-    
+
     // MARK: - UIControlEvent
-    
+
     /// On `sender` `.touchUpInside`, find the first `Poster` superview and call
     /// remove
     /// - Parameter sender: `UIButton`
-    @objc private func buttonTouchUpInside(_ sender: UIButton) {
+    @objc
+    private func buttonTouchUpInside(_ sender: UIButton) {
         let poster: Poster? = sender.firstSuperviewOfType()
         let request = poster?.postManager.currentPostRequests
             .first { $0.view == self }
-        
+
         if let postRequest = request {
             poster?.postManager.remove(postRequest: postRequest)
         }

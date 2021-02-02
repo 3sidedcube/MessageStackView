@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 extension UIView {
-    
+
     /// Transform `self` in `x` and `y` by the given `scale`
     /// - Parameters:
     ///   - scale: Transform scale
@@ -34,4 +34,3 @@ extension UIView {
         layer.add(animation, forKey: #keyPath(layer.transform))
     }
 }
-

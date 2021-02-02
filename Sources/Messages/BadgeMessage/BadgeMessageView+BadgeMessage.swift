@@ -11,20 +11,20 @@ import UIKit
 
 /// View-model applying model `BadgeMessage` to view `BadgeMessageView`
 extension BadgeMessageView: BadgeMessageViewable {
-    
+
     /// Apply `badgeMessage` model to `self` (`UIView`)
     /// - Parameter badgeMessage: `BadgeMessage`
     public func set(badgeMessage: BadgeMessage) {
         // title
         titleLabel.text = badgeMessage.title
-        
+
         // subtitle
         subtitleLabel.text = badgeMessage.subtitle
-        
+
         // fillColor
         badgeView.fillColor = badgeMessage.fillColor
         backgroundImageView.tintColor = badgeMessage.fillColor
-        
+
         // image
         let image = badgeMessage.image?.withRenderingMode(.alwaysTemplate)
         badgeView.image = image

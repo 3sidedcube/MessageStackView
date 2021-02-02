@@ -1,5 +1,5 @@
 //
-//  NoInternet+UI.swift
+//  MessageView+NoInternet.swift
 //  MessageStackView
 //
 //  Created by Ben Shutt on 24/07/2020.
@@ -12,7 +12,7 @@ import UIKit
 // MARK: - MessageView + Configure
 
 public extension MessageView {
-    
+
     /// Configure UI properties for the no internet `MessageView`
     func configureNoInternet() {
         backgroundColor = .darkGray
@@ -25,8 +25,8 @@ public extension MessageView {
 
 // MARK: - UILabel + Configure
 
-extension UILabel {
-    
+private extension UILabel {
+
     /// Configure UI properties for the no internet `UILabel`
     /// - Parameters:
     ///   - size: `CGFloat` Size of the font

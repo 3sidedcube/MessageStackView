@@ -11,8 +11,8 @@ import Foundation
 // MARK: - Notification.Name
 
 public extension Notification.Name {
-    
-    /// `Notification.Name` for `ConnectivityManager` `Notfication`
+
+    /// `Notification.Name` for `ConnectivityManager` `Notification`
     static let internetConnectivityChanged = Notification.Name(
         rawValue: "messageStackView.internetConnectivityChanged"
     )
@@ -25,24 +25,24 @@ public typealias StateClosure = (ConnectivityManager.State) -> Void
 
 /// `Notification` related `ConnectivityManager` functionality
 public extension ConnectivityManager {
-    
+
     /// `String` key in the `Notification` `userInfo` to find `State`
     static let stateUserInfoKey = "messageStackView.connectivityManager.state"
-    
+
     /// Post `Notification` on the `.default` `NotificationCenter` on
     /// `state` updated
     ///
     /// - Parameter state: `State`
     func postNotification(for state: State) {
         let key = ConnectivityManager.stateUserInfoKey
-        
+
         NotificationCenter.default.post(
             name: .internetConnectivityChanged,
             object: self,
             userInfo: [key: state]
         )
     }
-    
+
     /// Add an observer to the `.default` `NotificationCenter` listening for
     /// internet connectivity `Notification`s. Execute `closure` on observation event.
     ///
@@ -62,7 +62,7 @@ public extension ConnectivityManager {
         observers.append(observer)
         return observer
     }
-    
+
     /// Remove `observer` from the `.default` `NotificationCenter` listening for
     /// internet connectivity `Notification`s
     ///
@@ -74,7 +74,7 @@ public extension ConnectivityManager {
             name: .internetConnectivityChanged,
             object: self
         )
-        
+
         observers.removeAll { $0 === observer }
     }
 }

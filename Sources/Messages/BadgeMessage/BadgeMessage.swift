@@ -11,21 +11,21 @@ import UIKit
 
 /// Model structure for the view `BadgeMessageView`
 public struct BadgeMessage {
-    
+
     /// `String` text for the `titleLabel`
     public var title: String?
-    
+
     /// `String` subtitle for the `subtitleLabel`
     public var subtitle: String?
-    
+
     /// - `UIImage` for the `badgeView` image
     /// - `UIImage` for the `backgroundImageView`
     public var image: UIImage?
-    
+
     /// - Fill `UIColor` for the `badgeView`
     /// - `tintColor` for the `backgroundImageView`
     public var fillColor: UIColor
-    
+
     /// Default public memberwise initializer
     /// - Parameters:
     ///   - title: `String?`
@@ -37,7 +37,7 @@ public struct BadgeMessage {
         subtitle: String?,
         image: UIImage?,
         fillColor: UIColor
-    ){
+    ) {
         self.title = title
         self.subtitle = subtitle
         self.image = image

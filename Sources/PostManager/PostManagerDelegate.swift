@@ -13,7 +13,7 @@ import UIKit
 
 /// Delegate methods for `PostManager`
 public protocol PostManagerDelegate: AnyObject {
-    
+
     /// Called when a `view` will be posted
     /// - Parameters:
     ///   - postManager: `PostManager`
@@ -22,7 +22,7 @@ public protocol PostManagerDelegate: AnyObject {
         _ postManager: PostManager,
         willPost view: UIView
     )
-    
+
     /// Called when a `view` was posted
     /// - Parameters:
     ///   - postManager: `PostManager`
@@ -31,7 +31,7 @@ public protocol PostManagerDelegate: AnyObject {
         _ postManager: PostManager,
         didPost view: UIView
     )
-    
+
     /// Called when a `view` will be removed
     /// - Parameters:
     ///   - postManager: `PostManager`
@@ -40,7 +40,7 @@ public protocol PostManagerDelegate: AnyObject {
         _ postManager: PostManager,
         willRemove view: UIView
     )
-    
+
     /// Called when a `view` was removed
     /// - Parameters:
     ///   - postManager: `PostManager`
@@ -53,32 +53,32 @@ public protocol PostManagerDelegate: AnyObject {
 
 /// Provide default implementation of `PostManagerDelegate` optional methods
 public extension PostManagerDelegate {
-    
+
     func postManager(
         _ postManager: PostManager,
         willPost view: UIView
-    ){
+    ) {
         // by default do nothing
     }
-    
+
     func postManager(
         _ postManager: PostManager,
         didPost view: UIView
-    ){
+    ) {
         // by default do nothing
     }
-    
+
     func postManager(
         _ postManager: PostManager,
         willRemove view: UIView
-    ){
+    ) {
         // by default do nothing
     }
-    
+
     func postManager(
         _ postManager: PostManager,
         didRemove view: UIView
-    ){
+    ) {
         // by default do nothing
     }
 }

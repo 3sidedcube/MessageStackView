@@ -11,7 +11,7 @@ import UIKit
 
 /// Entity with a `PostManager`
 public protocol Poster {
-    
+
     /// Has reference to a `PostManager`
     var postManager: PostManager { get }
 }
@@ -19,7 +19,7 @@ public protocol Poster {
 // MARK: - Poster + UIView
 
 public extension Poster {
-    
+
     /// Post `view`, `dismissAfter`, `animated` onto the `postManager`
     /// - Parameters:
     ///   - view: `UIView`
@@ -29,7 +29,7 @@ public extension Poster {
         view: UIView,
         dismissAfter: TimeInterval? = .defaultDismiss,
         animated: PostAnimation = .default
-    ){
+    ) {
         postManager.post(postRequest: PostRequest(
             view: view,
             dismissAfter: dismissAfter,

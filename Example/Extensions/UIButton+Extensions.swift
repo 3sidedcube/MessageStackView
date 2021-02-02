@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 extension UIButton {
-    
+
     @discardableResult
     static func addToCenter(
         of view: UIView,
@@ -22,14 +22,14 @@ extension UIButton {
         button.setTitle(title, for: .normal)
         button.addTarget(target, action: selector, for: .touchUpInside)
         button.setTitleColor(.systemBlue, for: .normal)
-        
+
         view.addSubview(button)
         button.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             button.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             button.centerYAnchor.constraint(equalTo: view.centerYAnchor)
         ])
-        
+
         return button
     }
 }

@@ -10,7 +10,7 @@ import Foundation
 
 /// Handle a `Message`
 public protocol MessageViewable {
-    
+
     /// Apply the given `Message` model
     /// - Parameter message: `Message`
     func set(message: Message)
