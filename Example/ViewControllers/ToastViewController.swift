@@ -41,7 +41,7 @@ class ToastViewController: UIViewController {
 private extension String {
 
     static let shortMessage = """
-        This is a toast!"
+        This is a toast!
         """
 
     static let longMessage = """

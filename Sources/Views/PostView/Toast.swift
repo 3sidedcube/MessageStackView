@@ -63,7 +63,7 @@ open class Toast: PostView {
 
         messageView.clipsToBounds = true
         messageView.layer.cornerRadius = 5
-        messageView.backgroundColor = .darkGray
+        messageView.backgroundColor = .themeDarkGray
         messageView.titleLabel.textColor = .white
         messageView.titleLabel.font = UIFont.systemFont(
             ofSize: 16,
