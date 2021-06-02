@@ -35,6 +35,14 @@ open class PostView: UIView, Poster, UIViewPoster, PostManagerDelegate {
     /// `postManager`
     public var removeFromSuperviewOnEmpty = false
 
+    /// Define how the translation animation moves the subview
+    ///
+    /// When `.topToBottom`, the subview will be animated from the top of the screen down
+    /// When `.bottomToTop`, the subview will be animated from the bottom of the screen up
+    open var order: Order {
+        return .topToBottom
+    }
+
     // MARK: - Init
 
     public convenience init() {
@@ -126,10 +134,16 @@ open class PostView: UIView, Poster, UIViewPoster, PostManagerDelegate {
     ///
     /// - Parameter view: `UIView`
     private func hiddenTranslationY(for view: UIView) -> CGAffineTransform {
-        return CGAffineTransform(
-            translationX: 0,
-            y: -(view.bounds.size.height + edgeInsets.top)
-        )
+        let y: CGFloat
+
+        switch order {
+        case .topToBottom:
+            y = -(view.bounds.size.height + edgeInsets.top)
+        case .bottomToTop:
+            y = view.bounds.size.height + edgeInsets.bottom
+        }
+
+        return CGAffineTransform(translationX: 0, y: y)
     }
 
     // MARK: - Subview
