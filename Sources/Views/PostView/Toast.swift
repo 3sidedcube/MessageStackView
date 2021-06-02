@@ -49,8 +49,7 @@ open class Toast: PostView {
     /// - Parameter message: `String` message to show
     open func isShowing(message: String) -> Bool {
         return postManager.currentPostRequests
-            .compactMap { $0.view as? MessageView }
-            .compactMap { $0.titleLabel.text }
+            .compactMap { ($0.view as? MessageView)?.titleLabel.text }
             .contains(message)
     }
 

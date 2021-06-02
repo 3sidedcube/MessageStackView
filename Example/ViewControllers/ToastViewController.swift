@@ -32,6 +32,7 @@ class ToastViewController: UIViewController {
         super.viewDidAppear(animated)
 
         toast.post(message: .shortMessage)
+        toast.postIfNotShowing(message: .shortMessage) // Shouldn't show
         toast.post(message: .longMessage)
     }
 }
