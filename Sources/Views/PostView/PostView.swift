@@ -114,7 +114,9 @@ open class PostView: UIView, Poster, UIViewPoster, PostManagerDelegate {
 
     // MARK: - Transform
 
-    /// Consider "hidden" views as transformed out of the bounds above.
+    /// Consider "hidden" views as transformed out of the bounds above when `order` is
+    /// `.topToBottom`, otherwise below when `order` is `.bottomToTop`.
+    ///
     /// With `clipsToBounds = true` these views will not be visible.
     /// We can then "show" them by animating their transform back to `.identity`
     ///
@@ -126,6 +128,7 @@ open class PostView: UIView, Poster, UIViewPoster, PostManagerDelegate {
     }
 
     /// `CGAffineTransform` to effectively "hide" a view off the top of `self`'s `bounds`
+    /// when `order` is `.topToBottom`, otherwise off the bottom when `order` is `.bottomToTop`.
     ///
     /// - Note:
     /// From the docs of `frame`:
@@ -149,6 +152,7 @@ open class PostView: UIView, Poster, UIViewPoster, PostManagerDelegate {
     // MARK: - Subview
 
     /// Add posted `subview`, constraining accordingly and ensuring `transform` for animation
+    ///
     /// - Parameter subview: `UIView`
     private func addPostSubview(_ subview: UIView) {
         addSubview(subview)
@@ -159,6 +163,7 @@ open class PostView: UIView, Poster, UIViewPoster, PostManagerDelegate {
     }
 
     /// Remove a previously posted `subview` and ensure layout
+    ///
     /// - Parameter subview: `UIView`
     private func removePostSubview(_ subview: UIView) {
         subview.removeFromSuperview()
@@ -218,6 +223,7 @@ open class PostView: UIView, Poster, UIViewPoster, PostManagerDelegate {
     }
 
     /// Called when a `view` was posted
+    /// 
     /// - Parameters:
     ///   - postManager: `PostManager`
     ///   - view: The `UIView` that was posted
@@ -228,6 +234,7 @@ open class PostView: UIView, Poster, UIViewPoster, PostManagerDelegate {
     }
 
     /// Called when a `view` will be removed
+    ///
     /// - Parameters:
     ///   - postManager: `PostManager`
     ///   - view: The `UIView` that will be removed
