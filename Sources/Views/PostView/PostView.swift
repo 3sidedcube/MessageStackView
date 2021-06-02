@@ -125,9 +125,7 @@ open class PostView: UIView, Poster, UIViewPoster, PostManagerDelegate {
     /// and therefore should be ignored."
     ///
     /// - Parameter view: `UIView`
-    private func hiddenTranslationY(
-        for view: UIView
-    ) -> CGAffineTransform {
+    private func hiddenTranslationY(for view: UIView) -> CGAffineTransform {
         return CGAffineTransform(
             translationX: 0,
             y: -(view.bounds.size.height + edgeInsets.top)
@@ -230,9 +228,7 @@ open class PostView: UIView, Poster, UIViewPoster, PostManagerDelegate {
         didRemove view: UIView
     ) {
         // Should check to remove self
-        guard removeFromSuperviewOnEmpty, !postManager.isActive else {
-            return
-        }
+        guard removeFromSuperviewOnEmpty, !postManager.isActive else { return }
         removeFromSuperview()
     }
 }
