@@ -47,7 +47,7 @@ open class Toast: PostView {
     /// Is the given `message` already being shown
     ///
     /// - Parameter message: `String` message to show
-    private func isShowing(message: String) -> Bool {
+    open func isShowing(message: String) -> Bool {
         return postManager.currentPostRequests
             .compactMap { $0.view as? MessageView }
             .compactMap { $0.titleLabel.text }
