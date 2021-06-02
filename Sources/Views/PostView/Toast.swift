@@ -44,9 +44,44 @@ open class Toast: PostView {
 
     // MARK: - Post
 
+    /// Is the given `message` already being shown
+    ///
+    /// - Parameter message: `String` message to show
+    private func isShowing(message: String) -> Bool {
+        return postManager.currentPostRequests
+            .compactMap { $0.view as? MessageView }
+            .compactMap { $0.titleLabel.text }
+            .contains(message)
+    }
+
+    /// Post a `message` if that message isn't already been shown
+    ///
+    /// - Parameters:
+    ///   - message: `String` message to post
+    ///   - dismissAfter: `TimeInterval`
+    ///   - animated: `PostAnimation`
+    ///
+    /// - Returns: `MessageView`
+    @discardableResult
+    open func postIfNotShowing(
+        message: String,
+        dismissAfter: TimeInterval? = .defaultMessageDismiss,
+        animated: PostAnimation = .default
+    ) -> MessageView? {
+        guard !isShowing(message: message) else { return nil }
+        return post(
+            message: message,
+            dismissAfter: dismissAfter,
+            animated: animated
+        )
+    }
+
     /// Post a `message`
     ///
-    /// - Parameter message: `String` message to post
+    /// - Parameters:
+    ///   - message: `String` message to post
+    ///   - dismissAfter: `TimeInterval`
+    ///   - animated: `PostAnimation`
     ///
     /// - Returns: `MessageView`
     @discardableResult
