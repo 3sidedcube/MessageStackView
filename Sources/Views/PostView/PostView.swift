@@ -156,10 +156,17 @@ open class PostView: UIView, Poster, UIViewPoster, PostManagerDelegate {
     /// - Parameter subview: `UIView`
     private func addPostSubview(_ subview: UIView) {
         addSubview(subview)
-        subview.edgeConstraints(to: self, insets: edgeInsets)
+        constrain(subview: subview)
         layoutIfNeeded()
 
         setTransform(on: subview, forHidden: true)
+    }
+
+    /// Constrain the given `subview`
+    ///
+    /// - Parameter subview: `UIView`
+    func constrain(subview: UIView) {
+        subview.edgeConstraints(to: self, insets: edgeInsets)
     }
 
     /// Remove a previously posted `subview` and ensure layout

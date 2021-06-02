@@ -10,6 +10,7 @@ import Foundation
 import UIKit
 import MessageStackView
 
+/// `UIViewController` to test `Toast`
 class ToastViewController: UIViewController {
 
     /// `Toast` to post at the bottom of the screen
@@ -30,8 +31,21 @@ class ToastViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
 
-        DispatchQueue.main.asyncAfterNow(time: .seconds(1)) { [weak self] in
-            self?.toast.post(message: "This is a toast!")
-        }
+        toast.post(message: .shortMessage)
+        toast.post(message: .longMessage)
     }
+}
+
+// MARK: - String + Text
+
+private extension String {
+
+    static let shortMessage = """
+        This is a toast!"
+        """
+
+    static let longMessage = """
+        This is a long toast to test how the text wraps when the width \
+        of the text is greater than the width of the screen
+        """
 }

@@ -18,6 +18,30 @@ open class Toast: PostView {
         return .bottomToTop
     }
 
+    /// Constrain the given `subview`
+    ///
+    /// - Parameter subview: `UIView`
+    override func constrain(subview: UIView) {
+        subview.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            subview.topAnchor.constraint(
+                equalTo: topAnchor,
+                constant: edgeInsets.top
+            ),
+            subview.bottomAnchor.constraint(
+                equalTo: bottomAnchor,
+                constant: -edgeInsets.bottom
+            ),
+            subview.centerXAnchor.constraint(
+                equalTo: centerXAnchor
+            ),
+            subview.widthAnchor.constraint(
+                lessThanOrEqualTo: widthAnchor,
+                constant: -(edgeInsets.left + edgeInsets.right)
+            )
+        ])
+    }
+
     // MARK: - Post
 
     /// Post a `message`
