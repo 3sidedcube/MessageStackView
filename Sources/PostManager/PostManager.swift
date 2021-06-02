@@ -157,7 +157,8 @@ public class PostManager {
             animated: postRequest.animated.contains(.onPost),
             completion: {
                 self.completePost(postRequest: postRequest)
-            })
+            }
+        )
     }
 
     /// Invoke on the completion of `poster` posting a `view` of a `postRequest`.
@@ -217,7 +218,7 @@ public class PostManager {
         )
     }
 
-    /// Remove (unpost) a posted `view` invalidatating appropriate properties.
+    /// Remove (un-post) a posted `view` invalidating appropriate properties.
     /// - Parameters:
     ///   - view: `UIView` to remove
     ///   - animated: Should the removal be animated

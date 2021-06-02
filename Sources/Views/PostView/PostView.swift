@@ -66,7 +66,7 @@ open class PostView: UIView, Poster, UIViewPoster, PostManagerDelegate {
         // is the first instance to reference `postManager`, lazily
         // instantiating it, referencing `self`, which is being
         // de-initialized...
-        _ = self.postManager.isSerialQueue
+        self.postManager.gestureManager.order = order
     }
 
     // MARK: - IntrinsicContentSize

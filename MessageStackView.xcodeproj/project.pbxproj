@@ -30,6 +30,8 @@
 		B81AEE5224FFFB2E0068CE23 /* ParentShadowLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B81AEE5124FFFB2E0068CE23 /* ParentShadowLayer.swift */; };
 		B81AEE5425003F270068CE23 /* ShadowViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B81AEE5325003F270068CE23 /* ShadowViewController.swift */; };
 		B83CACB12667D5CE008FB755 /* Order.swift in Sources */ = {isa = PBXBuildFile; fileRef = B83CACB02667D5CE008FB755 /* Order.swift */; };
+		B83CACB32667D97E008FB755 /* Toast.swift in Sources */ = {isa = PBXBuildFile; fileRef = B83CACB22667D97E008FB755 /* Toast.swift */; };
+		B83CACB52667DA8A008FB755 /* ToastViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B83CACB42667DA8A008FB755 /* ToastViewController.swift */; };
 		B872BE8725A3874C0031D619 /* UIImageView+Hidden.swift in Sources */ = {isa = PBXBuildFile; fileRef = B872BE8625A3874C0031D619 /* UIImageView+Hidden.swift */; };
 		B872BE9125A387570031D619 /* UILabel+Hidden.swift in Sources */ = {isa = PBXBuildFile; fileRef = B872BE9025A387570031D619 /* UILabel+Hidden.swift */; };
 		B875C98925126EB200FA05B5 /* UIViewController+System.swift in Sources */ = {isa = PBXBuildFile; fileRef = B875C98825126EB200FA05B5 /* UIViewController+System.swift */; };
@@ -174,6 +176,8 @@
 		B81AEE5124FFFB2E0068CE23 /* ParentShadowLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParentShadowLayer.swift; sourceTree = "<group>"; };
 		B81AEE5325003F270068CE23 /* ShadowViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShadowViewController.swift; sourceTree = "<group>"; };
 		B83CACB02667D5CE008FB755 /* Order.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Order.swift; sourceTree = "<group>"; };
+		B83CACB22667D97E008FB755 /* Toast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Toast.swift; sourceTree = "<group>"; };
+		B83CACB42667DA8A008FB755 /* ToastViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastViewController.swift; sourceTree = "<group>"; };
 		B872BE8625A3874C0031D619 /* UIImageView+Hidden.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Hidden.swift"; sourceTree = "<group>"; };
 		B872BE9025A387570031D619 /* UILabel+Hidden.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Hidden.swift"; sourceTree = "<group>"; };
 		B875C98825126EB200FA05B5 /* UIViewController+System.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+System.swift"; sourceTree = "<group>"; };
@@ -371,6 +375,7 @@
 				B8BB087924C4BC46000E2E87 /* MessageViewController.swift */,
 				B87CC99C24CC263E002B697C /* NoInternetTabBarController.swift */,
 				B81AEE5325003F270068CE23 /* ShadowViewController.swift */,
+				B83CACB42667DA8A008FB755 /* ToastViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -598,6 +603,7 @@
 				OBJ_74 /* MessageStackView.swift */,
 				OBJ_75 /* PostView.swift */,
 				B8F1C76224D8198E007C2712 /* ApplicationPostView.swift */,
+				B83CACB22667D97E008FB755 /* Toast.swift */,
 			);
 			path = PostView;
 			sourceTree = "<group>";
@@ -815,6 +821,7 @@
 				B8BB088424C4BC46000E2E87 /* WindowViewController.swift in Sources */,
 				B8BB088724C4BC46000E2E87 /* MessageViewController.swift in Sources */,
 				B8BB088224C4BC46000E2E87 /* RootTableViewController.swift in Sources */,
+				B83CACB52667DA8A008FB755 /* ToastViewController.swift in Sources */,
 				B87CC99D24CC263E002B697C /* NoInternetTabBarController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -857,6 +864,7 @@
 				OBJ_99 /* DispatchQueue+Extensions.swift in Sources */,
 				OBJ_100 /* String+Extensions.swift in Sources */,
 				OBJ_101 /* UIApplication+StatusBar.swift in Sources */,
+				B83CACB32667D97E008FB755 /* Toast.swift in Sources */,
 				OBJ_102 /* UIEdgeInsets+Extensions.swift in Sources */,
 				OBJ_103 /* UIView+Animation.swift in Sources */,
 				B8BCDA8C24CDB55B0067F26C /* UIViewController+Lifecycle.m in Sources */,

@@ -24,7 +24,8 @@ class RootTableViewController: UITableViewController {
         ("Badge Message", BadgeMessageViewController.self, false),
         ("Message", MessageViewController.self, false),
         ("No Internet", NoInternetTabBarController.self, true),
-        ("Shadow", ShadowViewController.self, false)
+        ("Shadow", ShadowViewController.self, false),
+        ("Toast", ToastViewController.self, false)
     ]
 
     // MARK: - ViewController lifecycle
