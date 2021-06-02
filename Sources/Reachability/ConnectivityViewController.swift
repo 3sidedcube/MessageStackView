@@ -38,7 +38,7 @@ open class ConnectivityViewController: UIViewController, ConnectivityMessageable
             layout: messageLayout,
             constrainToSafeArea: false // Inset spaceView height
         )
-        messageStackView.updateOrderForLayout(messageLayout)
+        messageStackView.order = messageLayout.toOrder()
         view.setNeedsLayout()
     }
 

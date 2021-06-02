@@ -13,7 +13,7 @@ class MessageViewController: UIViewController {
 
     private lazy var messageStackView: MessageStackView = {
         let messageStackView: MessageStackView = view.createMessageStackView()
-        messageStackView.messageConfiguation = MessageConfiguration(
+        messageStackView.messageConfiguration = MessageConfiguration(
             backgroundColor: .systemGroupedBackground,
             tintColor: .gray,
             shadow: true,

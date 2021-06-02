@@ -11,18 +11,6 @@ import UIKit
 /// A `UIStackView` with a `PostManager` for posting, queueing and removing `UIView`s
 open class MessageStackView: UIStackView, Poster {
 
-    /// How posted `UIView`s are ordered in the `arrangedSubviews`.
-    public enum Order {
-
-        /// Natural order of `UIStackView`s. Posted `UIView`s get appended to the
-        /// `arrangedSubviews` array appearing below/after the previous.
-        case `default` // topToBottom
-
-        /// Reverese order of `UIStackView`s. Posted `UIView`s get inserted at the start of the
-        /// `arrangedSubviews` array appearing above/before the previous.
-        case reversed // bottomToTop
-    }
-
     /// `PostManager` to manage posting, queueing, removing of `PostRequest`s
     public private(set) lazy var postManager: PostManager = {
         let postManager = PostManager(poster: self)
@@ -31,24 +19,24 @@ open class MessageStackView: UIStackView, Poster {
     }()
 
     /// Default `MessageConfiguration` to apply to posted `UIView`s
-    public var messageConfiguation = MessageConfiguration() {
+    public var messageConfiguration = MessageConfiguration() {
         didSet {
-            guard messageConfiguation.applyToAll else {
+            guard messageConfiguration.applyToAll else {
                 return
             }
 
-            // If the `messageConfiguation` has updated, update the current `UIView`s
+            // If the `messageConfiguration` has updated, update the current `UIView`s
             arrangedSubviewsExcludingSpace
                 .compactMap { $0 as? MessageConfigurable }
-                .forEach { $0.set(configuration: messageConfiguation) }
+                .forEach { $0.set(configuration: messageConfiguration) }
         }
     }
 
     /// Order of the posted `UIView`s in the `arrangedSubviews`
     ///
-    /// When `.default`, `spaceView` will be the first `arrangedSubview`.
-    /// When `.reversed`, `spaceView` will be the last `arrangedSubview`.
-    public var order: Order = .default {
+    /// When `.topToBottom`, `spaceView` will be the first `arrangedSubview`.
+    /// When `.bottomToTop`, `spaceView` will be the last `arrangedSubview`.
+    public var order: Order = .topToBottom {
         didSet {
             updateSpaceView(updateArrangedSubviews: true)
         }
@@ -215,9 +203,9 @@ open class MessageStackView: UIStackView, Poster {
 
         let next: UIView?
         switch order {
-        case .default:
+        case .topToBottom:
             next = arrangedSubviews.elementAfterFirst(of: spaceView)
-        case .reversed:
+        case .bottomToTop:
             next = arrangedSubviews.elementBeforeFirst(of: spaceView)
         }
 
@@ -230,17 +218,6 @@ open class MessageStackView: UIStackView, Poster {
         spaceView.translatesAutoresizingMaskIntoConstraints = false
         if !spaceViewHeightConstraint.isActive {
             spaceViewHeightConstraint.isActive = true
-        }
-    }
-
-    // MARK: - Order
-
-    /// Update `order` given `layout`
-    /// - Parameter layout: `MessageLayout`
-    public func updateOrderForLayout(_ layout: MessageLayout) {
-        switch layout {
-        case .top: order = .default
-        case .bottom: order = .reversed
         }
     }
 
@@ -260,9 +237,9 @@ open class MessageStackView: UIStackView, Poster {
     ///   - order: `Order`
     private func postArrangedSubview(view: UIView, order: Order) {
         switch order {
-        case .default:
+        case .topToBottom:
             addArrangedSubview(view)
-        case .reversed:
+        case .bottomToTop:
             insertArrangedSubview(view, at: 0)
         }
     }
@@ -296,7 +273,7 @@ extension MessageStackView: UIViewPoster {
         completion: @escaping () -> Void
     ) {
         postArrangedSubview(view: view)
-        (view as? MessageConfigurable)?.set(configuration: messageConfiguation)
+        (view as? MessageConfigurable)?.set(configuration: messageConfiguration)
 
         // Update spaceView here too incase properties on adjacent
         // arrangedSubview has, since posting, changed
@@ -324,19 +301,6 @@ extension MessageStackView: UIViewPoster {
             view.removeFromSuperview()
             self?.updateSpaceView()
             completion()
-        }
-    }
-}
-
-// MARK: - Order + Extensions
-
-private extension MessageStackView.Order {
-
-    /// Other `Order` (opposite direction)
-    var switched: Self {
-        switch self {
-        case .default: return .reversed
-        case .reversed: return .default
         }
     }
 }
