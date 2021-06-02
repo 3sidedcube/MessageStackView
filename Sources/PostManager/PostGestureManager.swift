@@ -30,7 +30,7 @@ protocol PostGestureManagerDelegate: AnyObject {
 
 /// Manage gestures for posted `UIView`s to trigger a removal of that posted `UIView`.
 /// 
-/// E.g. The user pans a view off the top wanting for it to be dimissed.
+/// E.g. The user pans a view off of the top wanting for it to be dismissed.
 /// E.g. T user tapped to dismiss
 public class PostGestureManager {
 
