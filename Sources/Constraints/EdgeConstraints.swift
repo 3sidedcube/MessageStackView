@@ -64,26 +64,32 @@ struct EdgeConstraints: Constrainable {
 
 extension UIView {
 
-    /// Construct `EdgeConstraints` `NSLayoutConstraint`s from
-    /// `self` to `view`
+    /// Construct `EdgeConstraints` `NSLayoutConstraint`s from `self` to `view`
     ///
     /// - Parameters:
     ///   - view: `UIView` to constrain to
+    ///   - insets: `UIEdgeInsets` to inset
+    ///   - safeAreaLayoutGuide: `Bool` constrain to `view`'s `safeAreaLayoutGuide`
     ///   - activate: Activate the `NSLayoutConstraint`s
     @discardableResult
     func edgeConstraints(
         to view: UIView,
         insets: UIEdgeInsets = .zero,
+        safeAreaLayoutGuide: Bool = false,
         activate: Bool = true
     ) -> EdgeConstraints {
         translatesAutoresizingMaskIntoConstraints = false
 
+        // `EdgeLayoutGuide` of `view` to constrain `self` to
+        let viewLayoutGuide: EdgeLayoutGuide =
+            safeAreaLayoutGuide ? view.safeAreaLayoutGuide : view
+
         // Create `NSLayoutConstraint`s to the edge anchors
         var edgeConstraints = EdgeConstraints(
-            leading: leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            top: topAnchor.constraint(equalTo: view.topAnchor),
-            trailing: trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            bottom: bottomAnchor.constraint(equalTo: view.bottomAnchor)
+            leading: leadingAnchor.constraint(equalTo: viewLayoutGuide.leadingAnchor),
+            top: topAnchor.constraint(equalTo: viewLayoutGuide.topAnchor),
+            trailing: trailingAnchor.constraint(equalTo: viewLayoutGuide.trailingAnchor),
+            bottom: bottomAnchor.constraint(equalTo: viewLayoutGuide.bottomAnchor)
         )
 
         // Set `UIEdgeInsets` as provided

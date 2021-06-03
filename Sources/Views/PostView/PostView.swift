@@ -92,6 +92,8 @@ open class PostView: UIView, Poster, UIViewPoster, PostManagerDelegate {
         animated: Bool,
         completion: @escaping () -> Void
     ) {
+        view.layoutIfNeeded()
+
         guard animated else {
             setTransform(on: view, forHidden: hidden)
             completion()
@@ -131,9 +133,12 @@ open class PostView: UIView, Poster, UIViewPoster, PostManagerDelegate {
     /// when `order` is `.topToBottom`, otherwise off the bottom when `order` is `.bottomToTop`.
     ///
     /// - Note:
-    /// From the docs of `frame`:
+    /// Don't use `frame` in calculations here, from the docs of `frame`:
     /// "If the transform property is not the identity transform, the value of this property is undefined
     /// and therefore should be ignored."
+    ///
+    /// In the docs of `safeAreaInsets`:
+    /// The insets only reflect only the portion of the view that is covered by the safe area.
     ///
     /// - Parameter view: `UIView`
     private func hiddenTranslationY(for view: UIView) -> CGAffineTransform {
@@ -141,9 +146,9 @@ open class PostView: UIView, Poster, UIViewPoster, PostManagerDelegate {
 
         switch order {
         case .topToBottom:
-            y = -(view.bounds.size.height + edgeInsets.top)
+            y = -(view.bounds.size.height + edgeInsets.top + safeAreaInsets.top)
         case .bottomToTop:
-            y = view.bounds.size.height + edgeInsets.bottom
+            y = view.bounds.size.height + edgeInsets.bottom + safeAreaInsets.bottom
         }
 
         return CGAffineTransform(translationX: 0, y: y)
@@ -166,7 +171,11 @@ open class PostView: UIView, Poster, UIViewPoster, PostManagerDelegate {
     ///
     /// - Parameter subview: `UIView`
     func constrain(subview: UIView) {
-        subview.edgeConstraints(to: self, insets: edgeInsets)
+        subview.edgeConstraints(
+            to: self,
+            insets: edgeInsets,
+            safeAreaLayoutGuide: true
+        )
     }
 
     /// Remove a previously posted `subview` and ensure layout
@@ -258,5 +267,25 @@ open class PostView: UIView, Poster, UIViewPoster, PostManagerDelegate {
         // Should check to remove self
         guard removeFromSuperviewOnEmpty, !postManager.isActive else { return }
         removeFromSuperview()
+    }
+
+    // MARK: - Touches
+
+    /// Only catch touches on subviews, otherwise pass touch through view
+    ///
+    /// - Parameters:
+    ///   - point: `CGPoint`
+    ///   - event: `UIEvent`
+    ///
+    /// - Returns: `Bool`
+    override open func point(inside point: CGPoint, with event: UIEvent?) -> Bool {
+        for subview in subviews {
+            let point = convert(point, to: subview)
+            if subview.hitTest(point, with: event) != nil {
+                return true
+            }
+        }
+
+        return false
     }
 }
