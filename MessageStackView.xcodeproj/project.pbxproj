@@ -29,6 +29,7 @@
 		B81AEE5024FFF27A0068CE23 /* ShadowLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B81AEE4F24FFF27A0068CE23 /* ShadowLayer.swift */; };
 		B81AEE5224FFFB2E0068CE23 /* ParentShadowLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B81AEE5124FFFB2E0068CE23 /* ParentShadowLayer.swift */; };
 		B81AEE5425003F270068CE23 /* ShadowViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B81AEE5325003F270068CE23 /* ShadowViewController.swift */; };
+		B82405672668F6A200E4178B /* EdgeLayoutGuide.swift in Sources */ = {isa = PBXBuildFile; fileRef = B82405662668F6A200E4178B /* EdgeLayoutGuide.swift */; };
 		B83CACB12667D5CE008FB755 /* Order.swift in Sources */ = {isa = PBXBuildFile; fileRef = B83CACB02667D5CE008FB755 /* Order.swift */; };
 		B83CACB32667D97E008FB755 /* Toast.swift in Sources */ = {isa = PBXBuildFile; fileRef = B83CACB22667D97E008FB755 /* Toast.swift */; };
 		B83CACB52667DA8A008FB755 /* ToastViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B83CACB42667DA8A008FB755 /* ToastViewController.swift */; };
@@ -175,6 +176,7 @@
 		B81AEE4F24FFF27A0068CE23 /* ShadowLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShadowLayer.swift; sourceTree = "<group>"; };
 		B81AEE5124FFFB2E0068CE23 /* ParentShadowLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParentShadowLayer.swift; sourceTree = "<group>"; };
 		B81AEE5325003F270068CE23 /* ShadowViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShadowViewController.swift; sourceTree = "<group>"; };
+		B82405662668F6A200E4178B /* EdgeLayoutGuide.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EdgeLayoutGuide.swift; sourceTree = "<group>"; };
 		B83CACB02667D5CE008FB755 /* Order.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Order.swift; sourceTree = "<group>"; };
 		B83CACB22667D97E008FB755 /* Toast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Toast.swift; sourceTree = "<group>"; };
 		B83CACB42667DA8A008FB755 /* ToastViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastViewController.swift; sourceTree = "<group>"; };
@@ -319,6 +321,18 @@
 			path = Shadow;
 			sourceTree = "<group>";
 		};
+		B82405682668F8EB00E4178B /* UIView */ = {
+			isa = PBXGroup;
+			children = (
+				OBJ_25 /* UIView+Animation.swift */,
+				OBJ_26 /* UIView+Extensions.swift */,
+				OBJ_28 /* UIView+SafeArea.swift */,
+				OBJ_29 /* UIView+Shadow.swift */,
+				OBJ_30 /* UIView+ShadowComponents.swift */,
+			);
+			path = UIView;
+			sourceTree = "<group>";
+		};
 		B872BE8525A3873F0031D619 /* Hidden */ = {
 			isa = PBXGroup;
 			children = (
@@ -421,6 +435,7 @@
 				OBJ_13 /* CenterConstraints.swift */,
 				OBJ_14 /* Constrainable.swift */,
 				OBJ_15 /* EdgeConstraints.swift */,
+				B82405662668F6A200E4178B /* EdgeLayoutGuide.swift */,
 				OBJ_16 /* MessageLayout.swift */,
 				OBJ_17 /* SizeConstraints.swift */,
 			);
@@ -430,6 +445,7 @@
 		OBJ_18 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				B82405682668F8EB00E4178B /* UIView */,
 				B872BE8525A3873F0031D619 /* Hidden */,
 				OBJ_19 /* CALayer+Animation.swift */,
 				OBJ_20 /* CGRect+Extensions.swift */,
@@ -437,11 +453,6 @@
 				OBJ_22 /* String+Extensions.swift */,
 				OBJ_23 /* UIApplication+StatusBar.swift */,
 				OBJ_24 /* UIEdgeInsets+Extensions.swift */,
-				OBJ_25 /* UIView+Animation.swift */,
-				OBJ_26 /* UIView+Extensions.swift */,
-				OBJ_28 /* UIView+SafeArea.swift */,
-				OBJ_29 /* UIView+Shadow.swift */,
-				OBJ_30 /* UIView+ShadowComponents.swift */,
 				B87CC94B24C9F5A3002B697C /* Array+Extensions.swift */,
 				B8BCDA8424CD8EB10067F26C /* UIApplication+KeyWindow.swift */,
 				B81AEE4B24FFEE520068CE23 /* FloatingPoint+Equals.swift */,
@@ -888,6 +899,7 @@
 				B83CACB12667D5CE008FB755 /* Order.swift in Sources */,
 				OBJ_115 /* BadgeMessageView.swift in Sources */,
 				OBJ_116 /* BadgeMessageViewable.swift in Sources */,
+				B82405672668F6A200E4178B /* EdgeLayoutGuide.swift in Sources */,
 				OBJ_117 /* Poster+BadgeMessage.swift in Sources */,
 				OBJ_118 /* Message.swift in Sources */,
 				B81AEE4E24FFF2650068CE23 /* ShadowView.swift in Sources */,
