@@ -35,7 +35,7 @@ class ToastViewController: UIViewController {
         super.viewDidLoad()
 
         addButtonToBottomLeading()
-        addAndConstrain(toast)
+        addAndConstrainToast(toast)
     }
 
     override func viewDidAppear(_ animated: Bool) {

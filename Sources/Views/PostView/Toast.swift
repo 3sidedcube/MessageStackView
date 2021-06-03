@@ -118,7 +118,7 @@ public extension UIViewController {
     /// Add and constrain the given `toast`
     /// 
     /// - Parameter toast: `Toast`
-    func addAndConstrain(_ toast: Toast) {
+    func addAndConstrainToast(_ toast: Toast) {
         toast.addTo(
             view: view,
             layout: .bottom,
