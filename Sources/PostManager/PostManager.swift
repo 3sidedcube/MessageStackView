@@ -26,7 +26,7 @@ public class PostManager {
     /// `UIViewPoster` to handle the post and remove of a `PostRequest`
     private weak var poster: UIViewPoster?
 
-    /// `PostManagerDelegate` for `PostManager` delegate callabacks
+    /// `PostManagerDelegate` for `PostManager` delegate callbacks
     public weak var delegate: PostManagerDelegate?
 
     /// `PostGestureManager` to manage `UIGestureRecognizer` actions
@@ -48,7 +48,7 @@ public class PostManager {
 
     /// Should the posted `UIView`s be handled by a serial `Queue`, i.e. one at a time.
     /// If `true`, queued `PostRequest`s are stored in `queue`.
-    public var isSerialQueue: Bool = true {
+    public var isSerialQueue = true {
         didSet {
             guard !isSerialQueue else { return }
             while let postRequest = queue.dequeue() {
@@ -107,10 +107,10 @@ public class PostManager {
 
     /// Is the `PostManager` posting or scheduled to post
     public var isActive: Bool {
-        // A post is showing atm
+        // Is a post is showing at the moment
         let isPosting = !currentPostRequests.isEmpty
 
-        // A post is scheduled to show in the future
+        // Is a post is scheduled to show in the future
         let isQueued = !queue.isEmpty
 
         return isPosting || isQueued
@@ -157,7 +157,8 @@ public class PostManager {
             animated: postRequest.animated.contains(.onPost),
             completion: {
                 self.completePost(postRequest: postRequest)
-            })
+            }
+        )
     }
 
     /// Invoke on the completion of `poster` posting a `view` of a `postRequest`.
@@ -217,7 +218,7 @@ public class PostManager {
         )
     }
 
-    /// Remove (unpost) a posted `view` invalidatating appropriate properties.
+    /// Remove (un-post) a posted `view` invalidating appropriate properties.
     /// - Parameters:
     ///   - view: `UIView` to remove
     ///   - animated: Should the removal be animated

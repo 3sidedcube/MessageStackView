@@ -35,6 +35,14 @@ open class PostView: UIView, Poster, UIViewPoster, PostManagerDelegate {
     /// `postManager`
     public var removeFromSuperviewOnEmpty = false
 
+    /// Define how the translation animation moves the subview
+    ///
+    /// When `.topToBottom`, the subview will be animated from the top of the screen down
+    /// When `.bottomToTop`, the subview will be animated from the bottom of the screen up
+    open var order: Order {
+        return .topToBottom
+    }
+
     // MARK: - Init
 
     public convenience init() {
@@ -58,7 +66,7 @@ open class PostView: UIView, Poster, UIViewPoster, PostManagerDelegate {
         // is the first instance to reference `postManager`, lazily
         // instantiating it, referencing `self`, which is being
         // de-initialized...
-        _ = self.postManager.isSerialQueue
+        self.postManager.gestureManager.order = order
     }
 
     // MARK: - IntrinsicContentSize
@@ -106,7 +114,9 @@ open class PostView: UIView, Poster, UIViewPoster, PostManagerDelegate {
 
     // MARK: - Transform
 
-    /// Consider "hidden" views as transformed out of the bounds above.
+    /// Consider "hidden" views as transformed out of the bounds above when `order` is
+    /// `.topToBottom`, otherwise below when `order` is `.bottomToTop`.
+    ///
     /// With `clipsToBounds = true` these views will not be visible.
     /// We can then "show" them by animating their transform back to `.identity`
     ///
@@ -118,6 +128,7 @@ open class PostView: UIView, Poster, UIViewPoster, PostManagerDelegate {
     }
 
     /// `CGAffineTransform` to effectively "hide" a view off the top of `self`'s `bounds`
+    /// when `order` is `.topToBottom`, otherwise off the bottom when `order` is `.bottomToTop`.
     ///
     /// - Note:
     /// From the docs of `frame`:
@@ -125,28 +136,41 @@ open class PostView: UIView, Poster, UIViewPoster, PostManagerDelegate {
     /// and therefore should be ignored."
     ///
     /// - Parameter view: `UIView`
-    private func hiddenTranslationY(
-        for view: UIView
-    ) -> CGAffineTransform {
-        return CGAffineTransform(
-            translationX: 0,
-            y: -(view.bounds.size.height + edgeInsets.top)
-        )
+    private func hiddenTranslationY(for view: UIView) -> CGAffineTransform {
+        let y: CGFloat
+
+        switch order {
+        case .topToBottom:
+            y = -(view.bounds.size.height + edgeInsets.top)
+        case .bottomToTop:
+            y = view.bounds.size.height + edgeInsets.bottom
+        }
+
+        return CGAffineTransform(translationX: 0, y: y)
     }
 
     // MARK: - Subview
 
     /// Add posted `subview`, constraining accordingly and ensuring `transform` for animation
+    ///
     /// - Parameter subview: `UIView`
     private func addPostSubview(_ subview: UIView) {
         addSubview(subview)
-        subview.edgeConstraints(to: self, insets: edgeInsets)
+        constrain(subview: subview)
         layoutIfNeeded()
 
         setTransform(on: subview, forHidden: true)
     }
 
+    /// Constrain the given `subview`
+    ///
+    /// - Parameter subview: `UIView`
+    func constrain(subview: UIView) {
+        subview.edgeConstraints(to: self, insets: edgeInsets)
+    }
+
     /// Remove a previously posted `subview` and ensure layout
+    ///
     /// - Parameter subview: `UIView`
     private func removePostSubview(_ subview: UIView) {
         subview.removeFromSuperview()
@@ -206,6 +230,7 @@ open class PostView: UIView, Poster, UIViewPoster, PostManagerDelegate {
     }
 
     /// Called when a `view` was posted
+    /// 
     /// - Parameters:
     ///   - postManager: `PostManager`
     ///   - view: The `UIView` that was posted
@@ -216,6 +241,7 @@ open class PostView: UIView, Poster, UIViewPoster, PostManagerDelegate {
     }
 
     /// Called when a `view` will be removed
+    ///
     /// - Parameters:
     ///   - postManager: `PostManager`
     ///   - view: The `UIView` that will be removed
@@ -230,9 +256,7 @@ open class PostView: UIView, Poster, UIViewPoster, PostManagerDelegate {
         didRemove view: UIView
     ) {
         // Should check to remove self
-        guard removeFromSuperviewOnEmpty, !postManager.isActive else {
-            return
-        }
+        guard removeFromSuperviewOnEmpty, !postManager.isActive else { return }
         removeFromSuperview()
     }
 }

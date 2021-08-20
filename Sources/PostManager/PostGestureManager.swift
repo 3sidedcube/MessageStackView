@@ -30,7 +30,7 @@ protocol PostGestureManagerDelegate: AnyObject {
 
 /// Manage gestures for posted `UIView`s to trigger a removal of that posted `UIView`.
 /// 
-/// E.g. The user pans a view off the top wanting for it to be dimissed.
+/// E.g. The user pans a view off of the top wanting for it to be dismissed.
 /// E.g. T user tapped to dismiss
 public class PostGestureManager {
 
@@ -43,6 +43,12 @@ public class PostGestureManager {
     /// Map `UIView`s to their "pan to dismiss" `UIPanGestureRecognizer`
     private var panGestureMap = [UIView: UIPanGestureRecognizer]()
 
+    /// `Order` to configure which direction the user is allowed to pan.
+    ///
+    /// - When `.topToBottom`, the user can pan/swipe up to dismiss
+    /// - When `.bottomToTop`, the user can pan/swipe down to dismiss
+    var order: Order = .topToBottom
+
     // MARK: - Deinit
 
     deinit {
@@ -51,6 +57,7 @@ public class PostGestureManager {
 
     // MARK: - Invalidate
 
+    /// Invalidate maps
     func invalidate() {
         tapGestureMap.forEach {
             $0.key.removeGestureRecognizer($0.value)
@@ -152,19 +159,15 @@ public class PostGestureManager {
 
         // Pan did update
         case .changed:
-            view.transform = CGAffineTransform(
-                translationX: 0,
-                y: min(0, sender.translation(in: view.superview).y)
-            )
+            let ty = sender.translation(in: view.superview).y
+            let y = order.translationY(ty)
+            view.transform = CGAffineTransform(translationX: 0, y: y)
             return
 
         // Pan did finish
         case .ended:
             let translateY = view.transform.ty
-            let centerY = view.center.y
-
-            let finalY = centerY + translateY
-            if finalY < 0 {
+            if abs(translateY) > view.bounds.size.height * 0.5 {
                 requestRemove(view: view)
                 return
             }
@@ -217,6 +220,18 @@ private extension UIGestureRecognizer.State {
         case .began: return .started
         case .ended, .cancelled, .failed: return .ended
         default: return nil // .possible, .changed
+        }
+    }
+}
+
+// MARK: - Order + Translation
+
+private extension Order {
+
+    func translationY(_ ty: CGFloat) -> CGFloat {
+        switch self {
+        case .topToBottom: return min(0, ty)
+        case .bottomToTop: return max(0, ty)
         }
     }
 }

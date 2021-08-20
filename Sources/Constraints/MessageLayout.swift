@@ -21,6 +21,19 @@ public enum MessageLayout: Int {
     case bottom
 }
 
+// MARK: - Order
+
+public extension MessageLayout {
+
+    /// Map to `Order`
+    func toOrder() -> Order {
+        switch self {
+        case .top: return .topToBottom
+        case .bottom: return .bottomToTop
+        }
+    }
+}
+
 // MARK: - NSLayoutConstraint
 
 public extension MessageLayout {
