@@ -21,6 +21,19 @@ public enum MessageLayout: Int {
     case bottom
 }
 
+// MARK: - Order
+
+public extension MessageLayout {
+
+    /// Map to `Order`
+    func toOrder() -> Order {
+        switch self {
+        case .top: return .topToBottom
+        case .bottom: return .bottomToTop
+        }
+    }
+}
+
 // MARK: - NSLayoutConstraint
 
 public extension MessageLayout {
@@ -28,7 +41,7 @@ public extension MessageLayout {
     /// Constrain `subview` to `superview` based on `self` (`MessageLayout`).
     /// - Parameters:
     ///   - subview: `UIView` to add as a subview to `superview`
-    ///   - superview: `UIView` superivew of `subview`
+    ///   - superview: `UIView` superview of `subview`
     ///   - safeAnchors: Constrain to safe anchors
     func constrain(
         subview: UIView,
@@ -100,7 +113,9 @@ public extension UIView {
 
         // Constrain `self`
         layout.constrain(
-            subview: self, to: view, safeAnchors: constrainToSafeArea
+            subview: self,
+            to: view,
+            safeAnchors: constrainToSafeArea
         )
 
         // Trigger a layout cycle

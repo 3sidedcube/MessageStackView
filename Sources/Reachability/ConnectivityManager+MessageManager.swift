@@ -21,7 +21,7 @@ public extension ConnectivityManager {
         /// `MessageStackView ` to post messages
         public private(set) lazy var messageStackView: MessageStackView = {
             let messageStackView = MessageStackView()
-            messageStackView.updateOrderForLayout(.bottom)
+            messageStackView.order = MessageLayout.bottom.toOrder()
             messageStackView.postManager.delegate = self
             return messageStackView
         }()

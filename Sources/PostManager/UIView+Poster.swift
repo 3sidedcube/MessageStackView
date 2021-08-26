@@ -1,5 +1,5 @@
 //
-//  UIView+MessageStackView.swift
+//  UIView+Poster.swift
 //  MessageStackView
 //
 //  Created by Ben Shutt on 03/07/2020.
@@ -48,7 +48,7 @@ public extension UIView {
             layout: layout,
             constrainToSafeArea: constrainToSafeArea
         )
-        messageStackView.updateOrderForLayout(layout)
+        messageStackView.order = layout.toOrder()
         return messageStackView
     }
 
