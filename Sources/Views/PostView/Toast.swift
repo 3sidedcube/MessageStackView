@@ -18,18 +18,21 @@ open class Toast: PostView {
         return .bottomToTop
     }
 
-    /// Constrain the given `subview`
+    /// Constrain the given `subview`.
+    /// Instead of constraining the subviews leading and trailing to the parent (with insets),
+    /// allow the width to be defined by the intrinsic content size of the subview.
+    /// I.e. in Android, wrap_content instead of match_parent
     ///
     /// - Parameter subview: `UIView`
     override func constrain(subview: UIView) {
         subview.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             subview.topAnchor.constraint(
-                equalTo: topAnchor,
+                equalTo: safeAreaLayoutGuide.topAnchor,
                 constant: edgeInsets.top
             ),
             subview.bottomAnchor.constraint(
-                equalTo: bottomAnchor,
+                equalTo: safeAreaLayoutGuide.bottomAnchor,
                 constant: -edgeInsets.bottom
             ),
             subview.centerXAnchor.constraint(
@@ -105,5 +108,21 @@ open class Toast: PostView {
         )
 
         return messageView
+    }
+}
+
+// MARK: - UIViewController + Toast
+
+public extension UIViewController {
+
+    /// Add and constrain the given `toast`
+    /// 
+    /// - Parameter toast: `Toast`
+    func addAndConstrainToast(_ toast: Toast) {
+        toast.addTo(
+            view: view,
+            layout: .bottom,
+            constrainToSafeArea: false
+        )
     }
 }
