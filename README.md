@@ -29,7 +29,7 @@ See the Example project for more on what this framework can do!
 [CocoaPods](https://cocoapods.org) is a dependency manager for Cocoa projects. To integrate MessageStackView into your Xcode project using CocoaPods, specify it in your `Podfile`:
 
 ```ruby
-pod 'MessageStackView', :git => 'https://github.com/3sidedcube/MessageStackView.git', :tag ~> '2.0.0'
+pod 'MessageStackView', :git => 'https://github.com/3sidedcube/MessageStackView.git', :tag ~> '3.0.0'
 ```
 
 ### Carthage
@@ -37,7 +37,7 @@ pod 'MessageStackView', :git => 'https://github.com/3sidedcube/MessageStackView.
 [Carthage](https://github.com/Carthage/Carthage) is a decentralized dependency manager that builds your dependencies and provides you with binary frameworks. To integrate MessageStackView into your Xcode project using Carthage, specify it in your `Cartfile`:
 
 ```ogdl
-github "3sidedcube/MessageStackView" ~> 2.0.0
+github "3sidedcube/MessageStackView" ~> 3.0.0
 ```
 
 ### Swift Package Manager
@@ -46,7 +46,7 @@ The [Swift Package Manager](https://swift.org/package-manager/) is a tool for au
 
 ```swift
 dependencies: [
-    .package(url: "https://github.com/3sidedcube/MessageStackView.git", .upToNextMajor(from: "2.0.0"))
+    .package(url: "https://github.com/3sidedcube/MessageStackView.git", .upToNextMajor(from: "3.0.0"))
 ]
 ```
 
