@@ -46,12 +46,12 @@ open class MessageView: UIView {
 
     /// Container view for other subviews of `MessageView`.
     /// Required for shadow: for smooth animations we need to clip subview content (`clipsToBounds = true` ),
-    /// but this would remove shadow. So clip this `containerView`, but allow out of bounds content on the `MessageView`
+    /// but this would remove shadow.
+    /// So clip this `containerView`, but allow out of bounds content on the `MessageView`
     public private(set) lazy var containerView: UIView = {
         let view = UIView()
         view.backgroundColor = .clear
-
-        /// Hide subview content when the height of this view is being animated
+        // Hide subview content when the height of this view is being animated
         view.clipsToBounds = true
         return view
     }()
@@ -101,22 +101,35 @@ open class MessageView: UIView {
     /// `CGSize` of the `leftImageView`
     public var leftImageViewSize: CGSize = Constants.imageViewSize {
         didSet {
-            leftImageSizeConstaints.setSize(leftImageViewSize)
+            leftImageSizeConstraints.setSize(leftImageViewSize)
         }
     }
 
     /// `CGSize` of the `rightImageView`
     public var rightImageViewSize: CGSize = Constants.imageViewSize {
         didSet {
-            rightImageSizeConstaints.setSize(rightImageViewSize)
+            rightImageSizeConstraints.setSize(rightImageViewSize)
         }
     }
 
+    /// `EdgeConstraints` of `horizontalStackView` to `self`
+    private var edgeConstraints: EdgeConstraints!
+
     /// `NSLayoutConstraints` setting the `SizeConstraints` on the `leftImageView`
-    private var leftImageSizeConstaints: SizeConstraints!
+    private var leftImageSizeConstraints: SizeConstraints!
 
     /// `NSLayoutConstraints` setting the `SizeConstraints` on the `rightImageView`
-    private var rightImageSizeConstaints: SizeConstraints!
+    private var rightImageSizeConstraints: SizeConstraints!
+
+    /// Get and set `insets` of `UIEdgeInsets`
+    public var insets: UIEdgeInsets {
+        get {
+            return edgeConstraints.insets
+        }
+        set {
+            edgeConstraints.insets = newValue
+        }
+    }
 
     // MARK: - Init
 
@@ -142,7 +155,7 @@ open class MessageView: UIView {
     /// Add subviews and constrain
     internal func setup() {
 
-        /// Explicity set default tintColor
+        /// Explicitly set default tintColor
         tintColor = Constants.defaultTintColor
 
         // Add subviews
@@ -167,25 +180,22 @@ open class MessageView: UIView {
         // Constrain
         var constraints = containerView.edgeConstraints(to: self).constraints
 
+        // EdgeConstraints
+        edgeConstraints = horizontalStackView.edgeConstraints(
+            to: containerView, insets: Constants.stackViewInsets
+        )
+        constraints += edgeConstraints.constraints
+
         // When the view is being hidden in an animation, allow the bottom constraint to break so the animation is smooth
-        let horizontalStackViewBottom = horizontalStackView.bottomAnchor.constraint(
-            equalTo: containerView.bottomAnchor, constant: -Constants.stackViewInsets.bottom)
-        horizontalStackViewBottom.priority = .init(999)
+        edgeConstraints.bottom.priority = .init(999)
 
-        constraints += [
-            horizontalStackView.leadingAnchor.constraint(
-                equalTo: containerView.leadingAnchor, constant: Constants.stackViewInsets.left),
-            horizontalStackView.topAnchor.constraint(
-                equalTo: containerView.topAnchor, constant: Constants.stackViewInsets.top),
-            horizontalStackView.trailingAnchor.constraint(
-                equalTo: containerView.trailingAnchor, constant: -Constants.stackViewInsets.right),
-            horizontalStackViewBottom
-        ]
-        leftImageSizeConstaints = leftImageView.sizeConstraints(size: Constants.imageViewSize)
-        constraints += leftImageSizeConstaints?.constraints ?? []
+        // Left image constraints
+        leftImageSizeConstraints = leftImageView.sizeConstraints(size: Constants.imageViewSize)
+        constraints += leftImageSizeConstraints?.constraints ?? []
 
-        rightImageSizeConstaints = rightImageView.sizeConstraints(size: Constants.imageViewSize)
-        constraints += rightImageSizeConstaints?.constraints ?? []
+        // Right image constraints
+        rightImageSizeConstraints = rightImageView.sizeConstraints(size: Constants.imageViewSize)
+        constraints += rightImageSizeConstraints?.constraints ?? []
 
         NSLayoutConstraint.activate(constraints)
     }
