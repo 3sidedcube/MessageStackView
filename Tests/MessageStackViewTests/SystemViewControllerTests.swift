@@ -15,6 +15,7 @@ import AVKit
 import MessageUI
 import EventKitUI
 import ContactsUI
+import UniformTypeIdentifiers
 
 @testable import MessageStackView
 
@@ -39,7 +40,7 @@ class SystemViewControllerTests: XCTestCase {
         XCTAssertTrue(CNContactViewController().isSystemViewController)
         XCTAssertTrue(
             UIDocumentPickerViewController(
-                documentTypes: [".txt"], in: .open
+                forOpeningContentTypes: [.text]
             ).isSystemViewController
         )
         XCTAssertTrue(AVPlayerViewController().isSystemViewController)

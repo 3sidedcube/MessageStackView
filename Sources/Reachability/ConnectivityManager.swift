@@ -11,12 +11,14 @@ import Foundation
 
 /// Simple Swift wrapper of `Reachability`.
 /// Manage internet connection`Notification`s on connect and disconnect.
+///
+/// - TODO: Migrate to NWPathMonitor
 public class ConnectivityManager {
 
     /// Internet connectivity state
     public enum State {
 
-        /// Conencted to the internet with `NetworkStatus`
+        /// Connected to the internet with `NetworkStatus`
         case connected(NetworkStatus)
 
         /// Not connected to the internet

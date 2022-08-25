@@ -33,11 +33,14 @@ public extension ConnectivityManager {
             }
         }
 
+        /// Configure the given `MessageView`
+        public var messageViewConfiguration: ((MessageView) -> Void)?
+
         /// `MessageView` posted when internet connectivity was lost
         ///
         /// - Warning:
         /// `messageView` is not necessarily posted on `messageStackView`,
-        /// if the `visibleViewController` conforms to `InternetConnectivityMessageable`
+        /// if the `visibleViewController` conforms to `ConnectivityMessageable`
         /// then it will post on there instead
         private weak var messageView: MessageView?
 
@@ -87,6 +90,15 @@ public extension ConnectivityManager {
                 onConnected()
             } else {
                 onDisconnected()
+            }
+        }
+
+        // MARK: - ConnectivityMessageable
+
+        public func configureMessageView(_ messageView: MessageView) {
+            messageView.configureNoInternet()
+            if let configuration = messageViewConfiguration {
+                configuration(messageView)
             }
         }
 
@@ -174,19 +186,16 @@ public extension ConnectivityManager {
         /// 
         /// - Parameter messageable: `ConnectivityMessageable`
         private func post(to messageable: ConnectivityMessageable) {
-            guard messageable.messageManagerShouldPost(self) else {
-                return
-            }
+            guard messageable.messageManagerShouldPost(self) else { return }
 
             let messageView = messageable.messageStackView.post(
                 message: messageable.message,
                 dismissAfter: messageable.dismissAfter,
                 animated: messageable.postAnimation
             )
-
-            messageView.configureNoInternet()
             self.messageView = messageView
 
+            configureMessageView(messageView)
             messageable.messageManager(self, didPostMessageView: messageView)
         }
 

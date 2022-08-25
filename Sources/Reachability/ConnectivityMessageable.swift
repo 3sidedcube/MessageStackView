@@ -1,5 +1,5 @@
 //
-//  InternetConnectivityMessageable.swift
+//  ConnectivityMessageable.swift
 //  MessageStackView
 //
 //  Created by Ben Shutt on 24/07/2020.
@@ -46,6 +46,11 @@ public protocol ConnectivityMessageable: AnyObject {
         _ messageManager: ConnectivityManager.MessageManager,
         didPostMessageView messageView: MessageView
     )
+
+    /// Configure "no internet" `MessageView`
+    ///
+    /// - Parameter messageView: `MessageView`
+    func configureMessageView(_ messageView: MessageView)
 }
 
 // MARK: - ConnectivityMessageable + Functionality
@@ -74,5 +79,9 @@ public extension ConnectivityMessageable {
         _ messageManager: ConnectivityManager.MessageManager,
         didPostMessageView messageView: MessageView
     ) {
+    }
+
+    func configureMessageView(_ messageView: MessageView) {
+        messageView.configureNoInternet()
     }
 }
