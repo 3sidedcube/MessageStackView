@@ -19,10 +19,7 @@ class ApplicationPostView: PostView {
         get {
             return true
         }
-        // swiftlint:disable unused_setter_value
-        set {
-        }
-        // swiftlint:enable unused_setter_value
+        set {}
     }
 
     // MARK: - Init
