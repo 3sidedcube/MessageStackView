@@ -8,24 +8,47 @@
 
 import UIKit
 
-/// Element in the `UITableViewController` list
-typealias ExampleElement = (
-    title: String,
-    type: UIViewController.Type,
-    present: Bool
-)
-
 /// `UITableViewController` to choose an example `UIViewController`
 class RootTableViewController: UITableViewController {
 
+    struct ExampleElement {
+        var title: String
+        var type: UIViewController.Type
+        var present: Bool
+    }
+
     /// `ExampleElement`
     private lazy var exampleElements: [ExampleElement] = [
-        ("Window", WindowViewController.self, false),
-        ("Badge Message", BadgeMessageViewController.self, false),
-        ("Message", MessageViewController.self, false),
-        ("No Internet", NoInternetTabBarController.self, true),
-        ("Shadow", ShadowViewController.self, false),
-        ("Toast", ToastViewController.self, false)
+        .init(
+            title: "Window",
+            type: WindowViewController.self,
+            present: false
+        ),
+        .init(
+            title: "Badge Message",
+            type: BadgeMessageViewController.self,
+            present: false
+        ),
+        .init(
+            title: "Message",
+            type: MessageViewController.self,
+            present: false
+        ),
+        .init(
+            title: "No Internet",
+            type: NoInternetTabBarController.self,
+            present: true
+        ),
+        .init(
+            title: "Shadow",
+            type: ShadowViewController.self,
+            present: false
+        ),
+        .init(
+            title: "Toast",
+            type: ToastViewController.self,
+            present: false
+        )
     ]
 
     // MARK: - ViewController lifecycle
