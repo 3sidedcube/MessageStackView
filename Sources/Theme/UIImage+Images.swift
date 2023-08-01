@@ -9,14 +9,15 @@
 import Foundation
 import UIKit
 
-/// Custom `UIImage`s used in the framework
+/// Custom `UIImage`s used in the framework - to be provided by the main app as they come
+/// from the main bundle.
 public extension UIImage {
 
     /// Gray circle with a cross in the center
-    static let iconClose = UIImage("iconClose")
+    static let iconClose = UIImage("msv-iconClose")
 
     /// Icon for not connected to internet
-    static let noInternet = UIImage("noInternet")
+    static let noInternet = UIImage("msv-noInternet")
 }
 
 // MARK: - UIImage + Init
@@ -28,7 +29,7 @@ private extension UIImage {
     convenience init?(_ name: String) {
         self.init(
             named: name,
-            in: Bundle(for: MessageStackView.self),
+            in: Bundle.main,
             compatibleWith: nil
         )
     }

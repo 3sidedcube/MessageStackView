@@ -44,7 +44,6 @@
 		B87CC98724CAF4E7002B697C /* MessageStackView.h in Headers */ = {isa = PBXBuildFile; fileRef = OBJ_8 /* MessageStackView.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B87CC98924CAF6D6002B697C /* ConnectivityManager+Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = B87CC98824CAF6D6002B697C /* ConnectivityManager+Notification.swift */; };
 		B87CC98B24CB02F8002B697C /* ConnectivityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B87CC98A24CB02F8002B697C /* ConnectivityViewController.swift */; };
-		B87CC99124CB2370002B697C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B87CC98E24CB21E1002B697C /* Assets.xcassets */; };
 		B87CC99324CB48DD002B697C /* ConnectivityMessageable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B87CC99224CB48DD002B697C /* ConnectivityMessageable.swift */; };
 		B87CC99524CB4A0E002B697C /* MessageView+NoInternet.swift in Sources */ = {isa = PBXBuildFile; fileRef = B87CC99424CB4A0D002B697C /* MessageView+NoInternet.swift */; };
 		B87CC99D24CC263E002B697C /* NoInternetTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B87CC99C24CC263E002B697C /* NoInternetTabBarController.swift */; };
@@ -190,7 +189,6 @@
 		B87CC95224CAE5A5002B697C /* ConnectivityManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectivityManager.swift; sourceTree = "<group>"; };
 		B87CC98824CAF6D6002B697C /* ConnectivityManager+Notification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ConnectivityManager+Notification.swift"; sourceTree = "<group>"; };
 		B87CC98A24CB02F8002B697C /* ConnectivityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectivityViewController.swift; sourceTree = "<group>"; };
-		B87CC98E24CB21E1002B697C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B87CC99224CB48DD002B697C /* ConnectivityMessageable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectivityMessageable.swift; sourceTree = "<group>"; };
 		B87CC99424CB4A0D002B697C /* MessageView+NoInternet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MessageView+NoInternet.swift"; sourceTree = "<group>"; };
 		B87CC99C24CC263E002B697C /* NoInternetTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoInternetTabBarController.swift; sourceTree = "<group>"; };
@@ -562,7 +560,6 @@
 				OBJ_65 /* UIColor+Colors.swift */,
 				OBJ_66 /* UIImage+Images.swift */,
 				OBJ_67 /* UILabel+Default.swift */,
-				B87CC98E24CB21E1002B697C /* Assets.xcassets */,
 			);
 			path = Theme;
 			sourceTree = "<group>";
@@ -781,7 +778,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B87CC99124CB2370002B697C /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
