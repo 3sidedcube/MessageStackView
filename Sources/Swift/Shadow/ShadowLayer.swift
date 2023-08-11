@@ -6,7 +6,7 @@
 //  Copyright © 2020 3 SIDED CUBE APP PRODUCTIONS LTD. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 /// Subclass of `CALayer` for explicit type
 internal class ShadowLayer: CALayer {

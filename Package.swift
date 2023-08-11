@@ -11,18 +11,27 @@ let package = Package(
     products: [
         .library(
             name: "MessageStackView",
-            targets: ["MessageStackView"]
+            targets: ["MessageStackView", "MessageStackViewObjC"]
         )
     ],
     targets: [
         .target(
             name: "MessageStackView",
-            dependencies: [],
-            path: "Sources"
+            dependencies: ["MessageStackViewObjC"],
+            path: "Sources/Swift"
         ),
         .testTarget(
             name: "MessageStackViewTests",
             dependencies: ["MessageStackView"]
-        )
+        ),
+        .target(
+            name: "MessageStackViewObjC",
+            dependencies: [],
+            path: "Sources/ObjectiveC",
+            publicHeadersPath: "include",
+            cSettings: [
+                .headerSearchPath(".")
+            ]
+            )
     ]
 )

@@ -6,7 +6,7 @@
 //  Copyright © 2020 3 SIDED CUBE APP PRODUCTIONS LTD. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 /// `PostView` singleton to to be added to the `UIApplication`'s key window
 class ApplicationPostView: PostView {
@@ -127,4 +127,13 @@ class ApplicationPostView: PostView {
         super.postManager(postManager, willPost: view)
         updateSuperviewIfRequired(force: false)
     }
+}
+
+// MARK: - Notification.Name
+
+public extension Notification.Name {
+
+    static let viewWillAppear = Notification.Name(
+        rawValue: "messageStackView.viewWillAppear"
+    )
 }

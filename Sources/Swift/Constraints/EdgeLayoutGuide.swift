@@ -6,7 +6,7 @@
 //  Copyright © 2021 3 SIDED CUBE APP PRODUCTIONS LTD. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 /// Edge layout guide
 protocol EdgeLayoutGuide {
