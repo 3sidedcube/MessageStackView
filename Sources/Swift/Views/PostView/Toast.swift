@@ -6,7 +6,7 @@
 //  Copyright © 2021 3 SIDED CUBE APP PRODUCTIONS LTD. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 /// A `PostView` which looks like and behaves like a "Toast" on Android.
 /// That is, a short message which pops in from the bottom of the screen to display a message.

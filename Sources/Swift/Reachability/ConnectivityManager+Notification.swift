@@ -16,6 +16,10 @@ public extension Notification.Name {
     static let internetConnectivityChanged = Notification.Name(
         rawValue: "messageStackView.internetConnectivityChanged"
     )
+
+    static let viewWillDisappear = Notification.Name(
+        rawValue: "messageStackView.viewWillDisappear"
+    )
 }
 
 // MARK: - ConnectivityManager + Notification
