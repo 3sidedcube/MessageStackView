@@ -28,10 +28,7 @@ let package = Package(
             name: "MessageStackViewObjC",
             dependencies: [],
             path: "Sources/ObjectiveC",
-            publicHeadersPath: "include",
-            cSettings: [
-                .headerSearchPath(".")
-            ]
+            publicHeadersPath: "include"
             )
     ]
 )
