@@ -21,16 +21,15 @@ extension UIButton {
 
         // Set title
         setTitle(title, for: .normal)
-
-        // Set action
+        
+        // Remove existing actions
+        enumerateEventHandlers { existingAction, _, event, _ in
+            guard let existingAction else { return }
+            removeAction(existingAction, for: event)
+        }
+        
         if let action {
             addAction(action, for: .touchUpInside)
-        } else {
-            // Remove actions
-            enumerateEventHandlers { action, _, event, _ in
-                guard let action else { return }
-                removeAction(action, for: event)
-            }
         }
     }
 }
