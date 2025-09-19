@@ -29,10 +29,16 @@ open class MessageView: UIView {
         )
 
         /// Vertical `UIStackView` spacing
-        static let verticalStackViewSpacing: CGFloat = 5
+        static let verticalStackViewSpacing: CGFloat = 12
 
         /// Horizontal `UIStackView` spacing
         static let horizontalStackViewSpacing: CGFloat = 10
+
+        /// Label `UIStackView` spacing
+        static let labelStackViewSpacing: CGFloat = 5
+
+        /// Button `UIStackView` spacing
+        static let buttonStackViewSpacing: CGFloat = 12
 
         /// Default tint color for view
         static let defaultTintColor = UIColor.darkGray
@@ -56,7 +62,14 @@ open class MessageView: UIView {
         return view
     }()
 
-    /// `UIStackView` subview of `MessageView` to position `UIImageView` and `UILabel`
+    /// `UIStackView` subview of `MessageView` to `horizontalStackView` and `buttonStackView`.
+    public private(set) lazy var verticalStackView: UIStackView = {
+        let stackView: UIStackView = .defaultStackView
+        stackView.spacing = Constants.verticalStackViewSpacing
+        return stackView
+    }()
+
+    /// `UIStackView` subview of `MessageView` to position `UIImageView`s and `UILabel`s
     public private(set) lazy var horizontalStackView: UIStackView = {
         let stackView: UIStackView = .defaultStackView
         stackView.axis = .horizontal
@@ -70,10 +83,10 @@ open class MessageView: UIView {
         return .defaultImageView
     }()
 
-    /// `UIStackView` subview of `MessageView` to position `UIImageView` and `UILabel`
-    public private(set) lazy var verticalStackView: UIStackView = {
+    /// `UIStackView` subview of `MessageView` to position `UILabel`s
+    public private(set) lazy var labelStackView: UIStackView = {
         let stackView: UIStackView = .defaultStackView
-        stackView.spacing = Constants.verticalStackViewSpacing
+        stackView.spacing = Constants.labelStackViewSpacing
         return stackView
     }()
 
@@ -96,6 +109,31 @@ open class MessageView: UIView {
     /// `UIImageView`, first arrangedSubview of the horizontally oriented `UIStackView`
     public private(set) lazy var rightImageView: UIImageView = {
         return .defaultImageView
+    }()
+
+    /// `UIStackView` subview of `MessageView` to position `UIButtons`s
+    public private(set) lazy var buttonStackView: UIStackView = {
+        let stackView: UIStackView = .defaultStackView
+        stackView.axis = .horizontal
+        stackView.spacing = Constants.buttonStackViewSpacing
+        stackView.distribution = .fillEqually
+        return stackView
+    }()
+
+    /// Filled `UIButton` on the left
+    public private(set) lazy var primaryButton: UIButton = {
+        let button: UIButton = .defaultButton
+        button.setTitle("PRIMARY", for: .normal)
+        button.backgroundColor = .white
+        return button
+    }()
+
+    /// Bordered `UIButton` on the right
+    public private(set) lazy var secondaryButton: UIButton = {
+        let button: UIButton = .defaultButton
+        button.setTitle("SECONDARY", for: .normal)
+        button.setTitleColor(.white, for: .normal)
+        return button
     }()
 
     /// `CGSize` of the `leftImageView`
@@ -160,16 +198,20 @@ open class MessageView: UIView {
 
         // Add subviews
         addSubview(containerView)
-        containerView.addSubview(horizontalStackView)
+        containerView.addSubview(verticalStackView)
+        verticalStackView.addArrangedSubview(horizontalStackView)
+        verticalStackView.addArrangedSubview(buttonStackView)
         horizontalStackView.addArrangedSubview(leftImageView)
-        horizontalStackView.addArrangedSubview(verticalStackView)
+        horizontalStackView.addArrangedSubview(labelStackView)
         horizontalStackView.addArrangedSubview(rightImageView)
-        verticalStackView.addArrangedSubview(titleLabel)
-        verticalStackView.addArrangedSubview(subtitleLabel)
+        buttonStackView.addArrangedSubview(primaryButton)
+        buttonStackView.addArrangedSubview(secondaryButton)
+        labelStackView.addArrangedSubview(titleLabel)
+        labelStackView.addArrangedSubview(subtitleLabel)
 
         // Set translatesAutoresizingMaskIntoConstraints
         containerView.translatesAutoresizingMaskIntoConstraints = false
-        horizontalStackView.translatesAutoresizingMaskIntoConstraints = false
+        verticalStackView.translatesAutoresizingMaskIntoConstraints = false
         leftImageView.translatesAutoresizingMaskIntoConstraints = false
         rightImageView.translatesAutoresizingMaskIntoConstraints = false
 
@@ -181,7 +223,7 @@ open class MessageView: UIView {
         var constraints = containerView.edgeConstraints(to: self).constraints
 
         // EdgeConstraints
-        edgeConstraints = horizontalStackView.edgeConstraints(
+        edgeConstraints = verticalStackView.edgeConstraints(
             to: containerView, insets: Constants.stackViewInsets
         )
         constraints += edgeConstraints.constraints
@@ -197,6 +239,9 @@ open class MessageView: UIView {
         rightImageSizeConstraints = rightImageView.sizeConstraints(size: Constants.imageViewSize)
         constraints += rightImageSizeConstraints?.constraints ?? []
 
+        // Button constraints
+        constraints.append(buttonStackView.heightAnchor.constraint(equalToConstant: 40))
+
         NSLayoutConstraint.activate(constraints)
     }
 
@@ -208,6 +253,12 @@ open class MessageView: UIView {
             titleLabel.textColor = tintColor
             subtitleLabel.textColor = tintColor
             rightImageView.tintColor = tintColor
+        }
+    }
+
+    override public var backgroundColor: UIColor! {
+        didSet {
+            primaryButton.setTitleColor(backgroundColor, for: .normal)
         }
     }
 }
@@ -237,5 +288,20 @@ private extension UIImageView {
         imageView.contentMode = .scaleAspectFit
         imageView.image = nil
         return imageView
+    }
+}
+
+// MARK: - UIButton + Default
+
+private extension UIButton {
+    
+    /// `UIButton` setting default properties
+    static var defaultButton: UIButton {
+        let button = UIButton()
+        button.titleLabel?.font = .systemFont(ofSize: 13, weight: .heavy)
+        button.layer.updateCornerRadius(6)
+        button.layer.borderWidth = 1
+        button.layer.borderColor = UIColor.white.cgColor
+        return button
     }
 }

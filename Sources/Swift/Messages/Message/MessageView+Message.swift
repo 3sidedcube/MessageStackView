@@ -27,5 +27,20 @@ extension MessageView: MessageViewable {
 
         // Right Image
         rightImageView.setImageAndHidden(message.rightImage)
+
+        // Primary button
+        primaryButton.setAndHide(
+            title: message.primaryButtonTitle,
+            action: message.primaryButtonAction
+        )
+
+        // Secondary button
+        secondaryButton.setAndHide(
+            title: message.secondaryButtonTitle,
+            action: message.secondaryButtonAction
+        )
+
+        // Button stack view
+        buttonStackView.isHidden = primaryButton.isHidden && secondaryButton.isHidden
     }
 }

@@ -28,8 +28,10 @@ class MessageViewController: UIViewController {
         // Post first message
         messageStackView.post(message: Message(
             title: "This is a title",
-            subtitle: "This is a subtitle, with a left image",
-            leftImage: .information
+            subtitle: "This is a subtitle, with a left image, and buttons.",
+            leftImage: .information,
+            primaryButtonTitle: "PRIMARY",
+            secondaryButtonTitle: "SECONDARY"
         ), dismissAfter: 6)
 
         // Post another message after delay

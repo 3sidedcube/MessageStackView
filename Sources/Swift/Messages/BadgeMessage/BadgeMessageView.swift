@@ -103,7 +103,7 @@ open class BadgeMessageView: UIView {
         return stackView
     }()
 
-    /// `UILabel` at the top of `verticalStackView`
+    /// `UILabel` at the top of `labelStackView`
     public private(set) lazy var titleLabel: UILabel = {
         let label = UILabel.default
         label.textColor = .black
@@ -111,7 +111,7 @@ open class BadgeMessageView: UIView {
         return label
     }()
 
-    /// `UILabel` at the bottom of `verticalStackView`
+    /// `UILabel` at the bottom of `labelStackView`
     public private(set) lazy var subtitleLabel: UILabel = {
         return UILabel.default
     }()
@@ -178,7 +178,7 @@ open class BadgeMessageView: UIView {
     // MARK: - Constraints
 
     private func addSubviewsAndConstrain() {
-        // verticalStackView
+        // labelStackView
         verticalStackView.addArrangedSubview(titleLabel)
         verticalStackView.addArrangedSubview(subtitleLabel)
 
