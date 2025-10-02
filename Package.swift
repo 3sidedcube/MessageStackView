@@ -6,23 +6,29 @@ import PackageDescription
 let package = Package(
     name: "MessageStackView",
     platforms: [
-        .iOS(.v15)
+        .iOS(.v16)
     ],
     products: [
         .library(
             name: "MessageStackView",
-            targets: ["MessageStackView"]
+            targets: ["MessageStackView", "MessageStackViewObjC"]
         )
     ],
     targets: [
         .target(
             name: "MessageStackView",
-            dependencies: [],
-            path: "Sources"
+            dependencies: ["MessageStackViewObjC"],
+            path: "Sources/Swift"
         ),
         .testTarget(
             name: "MessageStackViewTests",
             dependencies: ["MessageStackView"]
-        )
+        ),
+        .target(
+            name: "MessageStackViewObjC",
+            dependencies: [],
+            path: "Sources/ObjectiveC",
+            publicHeadersPath: "include"
+            )
     ]
 )
