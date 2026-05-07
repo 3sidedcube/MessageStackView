@@ -1,6 +1,4 @@
 // swift-tools-version:5.9
-// The swift-tools-version declares the minimum version of Swift required to build this package.
-
 import PackageDescription
 
 let package = Package(
@@ -16,13 +14,23 @@ let package = Package(
     ],
     targets: [
         .target(
+            name: "MessageStackViewObjC",
+            path: "Sources/MessageStackViewObjC",
+            publicHeadersPath: "include"
+        ),
+        .target(
             name: "MessageStackView",
-            dependencies: [],
-            path: "Sources"
+            dependencies: ["MessageStackViewObjC"],
+            path: "Sources/MessageStackView",
+            resources: [
+                .process("Theme/Assets.xcassets"),
+                .process("Theme/Images.xcassets")
+            ]
         ),
         .testTarget(
             name: "MessageStackViewTests",
-            dependencies: ["MessageStackView"]
+            dependencies: ["MessageStackView"],
+            path: "Tests/MessageStackViewTests"
         )
     ]
 )
