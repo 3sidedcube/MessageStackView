@@ -26,9 +26,17 @@ private extension UIImage {
     /// Find a `UIImage` with name from this frameworks `Bundle`
     /// - Parameter name: Name of the `UIImage`
     convenience init?(_ name: String) {
+        // canImport(MessageStackViewObjC) is only true in SPM builds, where
+        // resources live in Bundle.module. The framework/CocoaPods builds
+        // define SWIFT_PACKAGE too, so that flag can't be used here.
+        #if canImport(MessageStackViewObjC)
+        let bundle = Bundle.module
+        #else
+        let bundle = Bundle(for: MessageStackView.self)
+        #endif
         self.init(
             named: name,
-            in: Bundle(for: MessageStackView.self),
+            in: bundle,
             compatibleWith: nil
         )
     }
