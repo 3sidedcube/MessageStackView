@@ -33,6 +33,8 @@
 		B82405672668F6A200E4178B /* EdgeLayoutGuide.swift in Sources */ = {isa = PBXBuildFile; fileRef = B82405662668F6A200E4178B /* EdgeLayoutGuide.swift */; };
 		B83CACB12667D5CE008FB755 /* Order.swift in Sources */ = {isa = PBXBuildFile; fileRef = B83CACB02667D5CE008FB755 /* Order.swift */; };
 		B83CACB32667D97E008FB755 /* Toast.swift in Sources */ = {isa = PBXBuildFile; fileRef = B83CACB22667D97E008FB755 /* Toast.swift */; };
+		36AB4146000000000000A002 /* HostingMessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36AB4146000000000000A001 /* HostingMessageView.swift */; };
+		36AB4146000000000000A004 /* Poster+SwiftUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36AB4146000000000000A003 /* Poster+SwiftUI.swift */; };
 		B83CACB52667DA8A008FB755 /* ToastViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B83CACB42667DA8A008FB755 /* ToastViewController.swift */; };
 		B872BE8725A3874C0031D619 /* UIImageView+Hidden.swift in Sources */ = {isa = PBXBuildFile; fileRef = B872BE8625A3874C0031D619 /* UIImageView+Hidden.swift */; };
 		B872BE9125A387570031D619 /* UILabel+Hidden.swift in Sources */ = {isa = PBXBuildFile; fileRef = B872BE9025A387570031D619 /* UILabel+Hidden.swift */; };
@@ -181,6 +183,8 @@
 		B82405662668F6A200E4178B /* EdgeLayoutGuide.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EdgeLayoutGuide.swift; sourceTree = "<group>"; };
 		B83CACB02667D5CE008FB755 /* Order.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Order.swift; sourceTree = "<group>"; };
 		B83CACB22667D97E008FB755 /* Toast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Toast.swift; sourceTree = "<group>"; };
+		36AB4146000000000000A001 /* HostingMessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HostingMessageView.swift; sourceTree = "<group>"; };
+		36AB4146000000000000A003 /* Poster+SwiftUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Poster+SwiftUI.swift"; sourceTree = "<group>"; };
 		B83CACB42667DA8A008FB755 /* ToastViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastViewController.swift; sourceTree = "<group>"; };
 		B872BE8625A3874C0031D619 /* UIImageView+Hidden.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Hidden.swift"; sourceTree = "<group>"; };
 		B872BE9025A387570031D619 /* UILabel+Hidden.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Hidden.swift"; sourceTree = "<group>"; };
@@ -553,6 +557,7 @@
 				OBJ_59 /* PostManagerDelegate.swift */,
 				OBJ_60 /* PostRequest.swift */,
 				OBJ_61 /* Poster.swift */,
+				36AB4146000000000000A003 /* Poster+SwiftUI.swift */,
 				OBJ_62 /* UIView+Poster.swift */,
 				OBJ_63 /* UIViewPoster.swift */,
 			);
@@ -618,6 +623,7 @@
 				OBJ_75 /* PostView.swift */,
 				B8F1C76224D8198E007C2712 /* ApplicationPostView.swift */,
 				B83CACB22667D97E008FB755 /* Toast.swift */,
+				36AB4146000000000000A001 /* HostingMessageView.swift */,
 			);
 			path = PostView;
 			sourceTree = "<group>";
@@ -881,6 +887,7 @@
 				OBJ_100 /* String+Extensions.swift in Sources */,
 				OBJ_101 /* UIApplication+StatusBar.swift in Sources */,
 				B83CACB32667D97E008FB755 /* Toast.swift in Sources */,
+				36AB4146000000000000A002 /* HostingMessageView.swift in Sources */,
 				OBJ_102 /* UIEdgeInsets+Extensions.swift in Sources */,
 				OBJ_103 /* UIView+Animation.swift in Sources */,
 				B8BCDA8C24CDB55B0067F26C /* UIViewController+Lifecycle.m in Sources */,
@@ -930,6 +937,7 @@
 				OBJ_130 /* PostManagerDelegate.swift in Sources */,
 				OBJ_131 /* PostRequest.swift in Sources */,
 				OBJ_132 /* Poster.swift in Sources */,
+				36AB4146000000000000A004 /* Poster+SwiftUI.swift in Sources */,
 				OBJ_133 /* UIView+Poster.swift in Sources */,
 				OBJ_134 /* UIViewPoster.swift in Sources */,
 				OBJ_135 /* UIColor+Colors.swift in Sources */,
