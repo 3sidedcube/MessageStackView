@@ -15,19 +15,19 @@ public extension Poster {
     /// Post a SwiftUI `View`, `dismissAfter`, `animated` onto the `postManager`
     ///
     /// - Parameters:
-    ///   - content: SwiftUI `View` to post
     ///   - dismissAfter: `TimeInterval?`
     ///   - animated: `PostAnimation`
+    ///   - content: SwiftUI `View` to post
     ///
     /// - Returns: The `HostingMessageView` wrapping `content`, e.g. to later
     /// remove via the `postManager`
     @discardableResult
     func post<Content: View>(
-        _ content: Content,
         dismissAfter: TimeInterval? = .defaultDismiss,
-        animated: PostAnimation = .default
+        animated: PostAnimation = .default,
+        @ViewBuilder content: () -> Content
     ) -> HostingMessageView<Content> {
-        let view = HostingMessageView(rootView: content)
+        let view = HostingMessageView(rootView: content())
         postManager.post(postRequest: PostRequest(
             view: view,
             dismissAfter: dismissAfter,
@@ -52,7 +52,7 @@ public extension Poster {
     )
     messageStackView.order = MessageLayout.bottom.toOrder()
 
-    messageStackView.post(
+    messageStackView.post(dismissAfter: nil) {
         HStack(spacing: 12) {
             Image(systemName: "checkmark.circle.fill")
                 .foregroundColor(.white)
@@ -64,9 +64,8 @@ public extension Poster {
         .padding(.horizontal, 15)
         .background(Capsule().fill(Color.green))
         .frame(maxWidth: .infinity)
-        .padding(.bottom, 16),
-        dismissAfter: nil
-    )
+        .padding(.bottom, 16)
+    }
 
     return viewController
 }
