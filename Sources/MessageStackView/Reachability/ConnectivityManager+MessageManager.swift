@@ -93,7 +93,6 @@ public extension ConnectivityManager {
         /// `ConnectivityManager.State` did update
         /// - Parameter state: `ConnectivityManager.State`
         private func didUpdateState(_ state: ConnectivityManager.State) {
-            NSLog("🥬 MessageManager.didUpdateState — isConnected=\(state.isConnected)")
             if state.isConnected {
                 onConnected()
             } else {
@@ -119,11 +118,8 @@ public extension ConnectivityManager {
             guard let visibleViewController =
                 UIApplication.shared.visibleViewController,
                 var visibleView = visibleViewController.view else {
-                    NSLog("🥬 MessageManager.onDisconnected — no visibleViewController/view, bailing")
                     return
             }
-
-            NSLog("🥬 MessageManager.onDisconnected — visibleVC=\(type(of: visibleViewController)) isMessageable=\(visibleViewController is ConnectivityMessageable)")
 
             // If the `visibleViewController` conforms to `ConnectivityMessageable`
             // then send the message there!
@@ -198,10 +194,8 @@ public extension ConnectivityManager {
         /// - Parameter messageable: `ConnectivityMessageable`
         private func post(to messageable: ConnectivityMessageable) {
             guard messageable.messageManagerShouldPost(self) else {
-                NSLog("🥬 MessageManager.post(to:) — messageable refused, not posting")
                 return
             }
-            NSLog("🥬 MessageManager.post(to:) — posting, hasCustomViewProvider=\(customViewProvider != nil)")
 
             // Post the custom view instead of a `MessageView` when a
             // `customViewProvider` is set
