@@ -9,6 +9,28 @@
 import SwiftUI
 import UIKit
 
+// MARK: - PostRequest + SwiftUI
+
+public extension PostRequest {
+    /// Create a `PostRequest` wrapping a SwiftUI `View` in a `HostingMessageView`
+    ///
+    /// - Parameters:
+    ///   - dismissAfter: `TimeInterval?`
+    ///   - animated: `PostAnimation`
+    ///   - content: SwiftUI `View` to post
+    init<Content: View>(
+        dismissAfter: TimeInterval? = .defaultDismiss,
+        animated: PostAnimation = .default,
+        @ViewBuilder content: () -> Content
+    ) {
+        self.init(
+            view: HostingMessageView(rootView: content()),
+            dismissAfter: dismissAfter,
+            animated: animated
+        )
+    }
+}
+
 // MARK: - Poster + SwiftUI
 
 public extension Poster {
@@ -26,14 +48,14 @@ public extension Poster {
         dismissAfter: TimeInterval? = .defaultDismiss,
         animated: PostAnimation = .default,
         @ViewBuilder content: () -> Content
-    ) -> HostingMessageView<Content> {
-        let view = HostingMessageView(rootView: content())
-        postManager.post(postRequest: PostRequest(
-            view: view,
+    ) -> HostingMessageView<Content>? {
+        let request = PostRequest(
             dismissAfter: dismissAfter,
-            animated: animated
-        ))
-        return view
+            animated: animated,
+            content: content
+        )
+        postManager.post(postRequest: request)
+        return request.view as? HostingMessageView<Content>
     }
 }
 
