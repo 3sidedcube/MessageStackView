@@ -19,7 +19,7 @@ public extension PostRequest {
     ///   - animated: `PostAnimation`
     ///   - content: SwiftUI `View` to post
     init<Content: View>(
-        dismissAfter: TimeInterval? = .defaultDismiss,
+        dismissAfter: TimeInterval? = .defaultMessageDismiss,
         animated: PostAnimation = .default,
         @ViewBuilder content: () -> Content
     ) {
@@ -45,7 +45,7 @@ public extension Poster {
     /// remove via the `postManager`
     @discardableResult
     func post<Content: View>(
-        dismissAfter: TimeInterval? = .defaultDismiss,
+        dismissAfter: TimeInterval? = .defaultMessageDismiss,
         animated: PostAnimation = .default,
         @ViewBuilder content: () -> Content
     ) -> HostingMessageView<Content>? {
