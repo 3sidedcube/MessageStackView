@@ -33,6 +33,9 @@
 		B82405672668F6A200E4178B /* EdgeLayoutGuide.swift in Sources */ = {isa = PBXBuildFile; fileRef = B82405662668F6A200E4178B /* EdgeLayoutGuide.swift */; };
 		B83CACB12667D5CE008FB755 /* Order.swift in Sources */ = {isa = PBXBuildFile; fileRef = B83CACB02667D5CE008FB755 /* Order.swift */; };
 		B83CACB32667D97E008FB755 /* Toast.swift in Sources */ = {isa = PBXBuildFile; fileRef = B83CACB22667D97E008FB755 /* Toast.swift */; };
+		36AB4146000000000000A002 /* HostingMessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36AB4146000000000000A001 /* HostingMessageView.swift */; };
+		36AB4146000000000000A004 /* Poster+SwiftUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36AB4146000000000000A003 /* Poster+SwiftUI.swift */; };
+		E4A146000000000000000005 /* Exports.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4A146000000000000000004 /* Exports.swift */; };
 		B83CACB52667DA8A008FB755 /* ToastViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B83CACB42667DA8A008FB755 /* ToastViewController.swift */; };
 		B872BE8725A3874C0031D619 /* UIImageView+Hidden.swift in Sources */ = {isa = PBXBuildFile; fileRef = B872BE8625A3874C0031D619 /* UIImageView+Hidden.swift */; };
 		B872BE9125A387570031D619 /* UILabel+Hidden.swift in Sources */ = {isa = PBXBuildFile; fileRef = B872BE9025A387570031D619 /* UILabel+Hidden.swift */; };
@@ -181,6 +184,9 @@
 		B82405662668F6A200E4178B /* EdgeLayoutGuide.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EdgeLayoutGuide.swift; sourceTree = "<group>"; };
 		B83CACB02667D5CE008FB755 /* Order.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Order.swift; sourceTree = "<group>"; };
 		B83CACB22667D97E008FB755 /* Toast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Toast.swift; sourceTree = "<group>"; };
+		36AB4146000000000000A001 /* HostingMessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HostingMessageView.swift; sourceTree = "<group>"; };
+		E4A146000000000000000004 /* Exports.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Exports.swift; sourceTree = "<group>"; };
+		36AB4146000000000000A003 /* Poster+SwiftUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Poster+SwiftUI.swift"; sourceTree = "<group>"; };
 		B83CACB42667DA8A008FB755 /* ToastViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastViewController.swift; sourceTree = "<group>"; };
 		B872BE8625A3874C0031D619 /* UIImageView+Hidden.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Hidden.swift"; sourceTree = "<group>"; };
 		B872BE9025A387570031D619 /* UILabel+Hidden.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Hidden.swift"; sourceTree = "<group>"; };
@@ -348,8 +354,6 @@
 		B87CC94E24CAE52A002B697C /* Reachability */ = {
 			isa = PBXGroup;
 			children = (
-				B87CC94F24CAE56E002B697C /* Reachability.h */,
-				B87CC95024CAE56E002B697C /* Reachability.m */,
 				B87CC95224CAE5A5002B697C /* ConnectivityManager.swift */,
 				B87CC98824CAF6D6002B697C /* ConnectivityManager+Notification.swift */,
 				B8BCDA8224CD8E920067F26C /* ConnectivityManager+MessageManager.swift */,
@@ -413,15 +417,25 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		B8BCDA8824CDB06E0067F26C /* Swizzling */ = {
+		B8BCDA8824CDB06E0067F26C /* MessageStackViewObjC */ = {
 			isa = PBXGroup;
 			children = (
-				B8BCDA8924CDB55B0067F26C /* UIViewController+Lifecycle.h */,
-				B8BCDA8A24CDB55B0067F26C /* UIViewController+Lifecycle.m */,
-				B8BCDA8D24CDB8580067F26C /* SwizzledMethod.h */,
+				E4A146000000000000000003 /* include */,
+				B87CC95024CAE56E002B697C /* Reachability.m */,
 				B8BCDA8E24CDB8580067F26C /* SwizzledMethod.m */,
+				B8BCDA8A24CDB55B0067F26C /* UIViewController+Lifecycle.m */,
 			);
-			path = Swizzling;
+			path = MessageStackViewObjC;
+			sourceTree = "<group>";
+		};
+		E4A146000000000000000003 /* include */ = {
+			isa = PBXGroup;
+			children = (
+				B87CC94F24CAE56E002B697C /* Reachability.h */,
+				B8BCDA8D24CDB8580067F26C /* SwizzledMethod.h */,
+				B8BCDA8924CDB55B0067F26C /* UIViewController+Lifecycle.h */,
+			);
+			path = include;
 			sourceTree = "<group>";
 		};
 		OBJ_10 /* Constants */ = {
@@ -553,6 +567,7 @@
 				OBJ_59 /* PostManagerDelegate.swift */,
 				OBJ_60 /* PostRequest.swift */,
 				OBJ_61 /* Poster.swift */,
+				36AB4146000000000000A003 /* Poster+SwiftUI.swift */,
 				OBJ_62 /* UIView+Poster.swift */,
 				OBJ_63 /* UIViewPoster.swift */,
 			);
@@ -595,11 +610,20 @@
 			children = (
 				OBJ_8 /* MessageStackView.h */,
 				OBJ_9 /* Info.plist */,
+				E4A146000000000000000001 /* MessageStackView */,
+				B8BCDA8824CDB06E0067F26C /* MessageStackViewObjC */,
+			);
+			path = Sources;
+			sourceTree = SOURCE_ROOT;
+		};
+		E4A146000000000000000001 /* MessageStackView */ = {
+			isa = PBXGroup;
+			children = (
 				OBJ_10 /* Constants */,
 				OBJ_12 /* Constraints */,
+				E4A146000000000000000004 /* Exports.swift */,
 				OBJ_18 /* Extensions */,
 				B87CC94E24CAE52A002B697C /* Reachability */,
-				B8BCDA8824CDB06E0067F26C /* Swizzling */,
 				OBJ_31 /* Function */,
 				OBJ_36 /* Messages */,
 				OBJ_53 /* Models */,
@@ -608,8 +632,8 @@
 				B81AEE4824FFEBF60068CE23 /* Shadow */,
 				OBJ_68 /* Views */,
 			);
-			path = Sources;
-			sourceTree = SOURCE_ROOT;
+			path = MessageStackView;
+			sourceTree = "<group>";
 		};
 		OBJ_73 /* PostView */ = {
 			isa = PBXGroup;
@@ -618,6 +642,7 @@
 				OBJ_75 /* PostView.swift */,
 				B8F1C76224D8198E007C2712 /* ApplicationPostView.swift */,
 				B83CACB22667D97E008FB755 /* Toast.swift */,
+				36AB4146000000000000A001 /* HostingMessageView.swift */,
 			);
 			path = PostView;
 			sourceTree = "<group>";
@@ -864,6 +889,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 0;
 			files = (
+				E4A146000000000000000005 /* Exports.swift in Sources */,
 				OBJ_91 /* TimeInterval+Defaults.swift in Sources */,
 				B81AEE5224FFFB2E0068CE23 /* ParentShadowLayer.swift in Sources */,
 				B872BE9125A387570031D619 /* UILabel+Hidden.swift in Sources */,
@@ -881,6 +907,7 @@
 				OBJ_100 /* String+Extensions.swift in Sources */,
 				OBJ_101 /* UIApplication+StatusBar.swift in Sources */,
 				B83CACB32667D97E008FB755 /* Toast.swift in Sources */,
+				36AB4146000000000000A002 /* HostingMessageView.swift in Sources */,
 				OBJ_102 /* UIEdgeInsets+Extensions.swift in Sources */,
 				OBJ_103 /* UIView+Animation.swift in Sources */,
 				B8BCDA8C24CDB55B0067F26C /* UIViewController+Lifecycle.m in Sources */,
@@ -930,6 +957,7 @@
 				OBJ_130 /* PostManagerDelegate.swift in Sources */,
 				OBJ_131 /* PostRequest.swift in Sources */,
 				OBJ_132 /* Poster.swift in Sources */,
+				36AB4146000000000000A004 /* Poster+SwiftUI.swift in Sources */,
 				OBJ_133 /* UIView+Poster.swift in Sources */,
 				OBJ_134 /* UIViewPoster.swift in Sources */,
 				OBJ_135 /* UIColor+Colors.swift in Sources */,
@@ -1169,7 +1197,10 @@
 					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
 				);
 				GENERATE_INFOPLIST_FILE = YES;
-				HEADER_SEARCH_PATHS = "$(inherited)";
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SRCROOT)/Sources/MessageStackViewObjC/include",
+				);
 				INFOPLIST_OUTPUT_FORMAT = binary;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1199,7 +1230,10 @@
 					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
 				);
 				GENERATE_INFOPLIST_FILE = YES;
-				HEADER_SEARCH_PATHS = "$(inherited)";
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SRCROOT)/Sources/MessageStackViewObjC/include",
+				);
 				INFOPLIST_OUTPUT_FORMAT = binary;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1337,7 +1371,10 @@
 					"$(inherited)",
 					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
 				);
-				HEADER_SEARCH_PATHS = "$(inherited)";
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SRCROOT)/Sources/MessageStackViewObjC/include",
+				);
 				INFOPLIST_FILE = "$(SRCROOT)/Sources/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1380,7 +1417,10 @@
 					"$(inherited)",
 					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
 				);
-				HEADER_SEARCH_PATHS = "$(inherited)";
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SRCROOT)/Sources/MessageStackViewObjC/include",
+				);
 				INFOPLIST_FILE = "$(SRCROOT)/Sources/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (

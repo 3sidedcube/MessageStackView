@@ -29,20 +29,27 @@ public extension ConnectivityManager {
         /// `Message` to post when internet connectivity is lost
         public var message: Message = .noInternet {
             didSet {
-                messageView?.set(message: message)
+                (postedView as? MessageView)?.set(message: message)
             }
         }
 
         /// Configure the given `MessageView`
         public var messageViewConfiguration: ((MessageView) -> Void)?
 
-        /// `MessageView` posted when internet connectivity was lost
+        /// When set, post the `UIView` returned by this closure instead of the
+        /// default `MessageView`. The `Message` argument is `message`.
+        ///
+        /// - Note:
+        /// `messageViewConfiguration` is not executed for custom views.
+        public var customViewProvider: ((Message) -> UIView)?
+
+        /// `UIView` posted when internet connectivity was lost
         ///
         /// - Warning:
-        /// `messageView` is not necessarily posted on `messageStackView`,
+        /// `postedView` is not necessarily posted on `messageStackView`,
         /// if the `visibleViewController` conforms to `ConnectivityMessageable`
         /// then it will post on there instead
-        private weak var messageView: MessageView?
+        private weak var postedView: UIView?
 
         // MARK: - Init
 
@@ -154,14 +161,14 @@ public extension ConnectivityManager {
         /// Remove the `messageStackView` from its superview
         /// - Parameter animated: `Bool`
         private func removeMessageStackView(animated: Bool) {
-            guard let messageView = messageView,
-                let messageStackView = messageView.superview as? MessageStackView else {
+            guard let postedView = postedView,
+                let messageStackView = postedView.superview as? MessageStackView else {
                     invalidateMessageStackView()
                     return
             }
 
             messageStackView.postManager.remove(
-                view: messageView,
+                view: postedView,
                 animated: animated
             )
         }
@@ -186,14 +193,31 @@ public extension ConnectivityManager {
         /// 
         /// - Parameter messageable: `ConnectivityMessageable`
         private func post(to messageable: ConnectivityMessageable) {
-            guard messageable.messageManagerShouldPost(self) else { return }
+            guard messageable.messageManagerShouldPost(self) else {
+                return
+            }
+
+            // Post the custom view instead of a `MessageView` when a
+            // `customViewProvider` is set
+            if let customViewProvider = customViewProvider {
+                let view = customViewProvider(messageable.message)
+                messageable.messageStackView.postManager.post(
+                    postRequest: PostRequest(
+                        view: view,
+                        dismissAfter: messageable.dismissAfter,
+                        animated: messageable.postAnimation
+                    )
+                )
+                self.postedView = view
+                return
+            }
 
             let messageView = messageable.messageStackView.post(
                 message: messageable.message,
                 dismissAfter: messageable.dismissAfter,
                 animated: messageable.postAnimation
             )
-            self.messageView = messageView
+            self.postedView = messageView
 
             configureMessageView(messageView)
             messageable.messageManager(self, didPostMessageView: messageView)
