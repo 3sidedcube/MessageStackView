@@ -8,7 +8,7 @@ Pod::Spec.new do |s|
   s.source = { :git => 'https://github.com/3sidedcube/MessageStackView.git', :tag => s.version }
   s.documentation_url = s.homepage
 
-  s.ios.deployment_target = '17.0'
+  s.ios.deployment_target = '18.0'
   s.swift_versions = ['5.7']
   s.source_files = 'Sources/**/*.{swift,h,m}'
   s.ios.framework  = 'UIKit'
