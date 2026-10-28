@@ -9,6 +9,7 @@ let package = Package(
     products: [
         .library(
             name: "MessageStackView",
+            type: .dynamic,
             targets: ["MessageStackView"]
         )
     ],
