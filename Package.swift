@@ -4,11 +4,12 @@ import PackageDescription
 let package = Package(
     name: "MessageStackView",
     platforms: [
-        .iOS(.v18)
+        .iOS("18.0")
     ],
     products: [
         .library(
             name: "MessageStackView",
+            type: .dynamic,
             targets: ["MessageStackView"]
         )
     ],
